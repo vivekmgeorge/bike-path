@@ -8,6 +8,7 @@
 
 #import "SearchMapViewController.h"
 #import <GoogleMaps/GoogleMaps.h>
+#import <MapKit/MapKit.h>
 
 @interface SearchMapViewController ()
 
@@ -23,8 +24,27 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
     
+    MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
+    request.naturalLanguageQuery = @"222 Fulton Street New York NY";
+    
+    MKLocalSearch *search = [[MKLocalSearch alloc]initWithRequest:request];
+    
+    [search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
+        if (response.mapItems.count == 0)
+            NSLog(@"No Matches");
+        else
+            for (MKMapItem *item in response.mapItems)
+            {
+                GMSMarker *marker = [[GMSMarker alloc] init];
+                marker.position = CLLocationCoordinate2DMake(item.placemark.location.coordinate.latitude, item.placemark.location.coordinate.longitude);
+                marker.title = item.name;
+                marker.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
+                marker.map = _mapView;
+                NSLog(@"latitude = %f", item.placemark.location.coordinate.latitude);
+                NSLog(@"longitude = %f", item.placemark.location.coordinate.longitude);
+            }
+    }];
 //    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.706638
 //                                                            longitude:-74.009070
 //                                                                 zoom:14];
