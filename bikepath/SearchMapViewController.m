@@ -15,9 +15,7 @@
 
 @implementation SearchMapViewController {
 
-    GMSMapView *mapView_;
 }
-
 
 - (IBAction)unwindToSearchPage:(UIStoryboardSegue *)segue {
 }
@@ -27,18 +25,21 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.706638
-                                                            longitude:-74.009070
-                                                                 zoom:14];
+//    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.706638
+//                                                            longitude:-74.009070
+//                                                                 zoom:14];
     
 //    [mapView_ setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
 //    NSString *urlString = [NSString stringWithFormat:@"http://maps.google.com/maps/geo?q=%@&output=CSV", "FETCH TEXT FROM SEARCH BAR" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
-    
-    mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
-    mapView_.myLocationEnabled = YES;
-    mapView_.settings.myLocationButton = YES;
-    mapView_.settings.zoomGestures = YES;
-    self.view = mapView_;
+//
+    self.mapView.mapType = kGMSTypeNormal;
+    self.mapView.myLocationEnabled = YES;
+    self.mapView.settings.compassButton = YES;
+    self.mapView.settings.myLocationButton = YES;
+    self.mapView.settings.zoomGestures = YES;
+    self.mapView.delegate = self;
+//
+//    mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
 }
 
 - (void)didReceiveMemoryWarning
