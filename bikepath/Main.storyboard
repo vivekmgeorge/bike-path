@@ -42,13 +42,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y7a-VX-Ox6">
-                                <rect key="frame" x="0.0" y="65" width="320" height="44"/>
+                            <view contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uPa-IS-vE7" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="107" width="320" height="461"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vo6-8q-uUa">
+                                <rect key="frame" x="0.0" y="63" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="nM0-WI-Oec" id="Tkf-Cl-SAG"/>
-                                </connections>
                             </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -61,17 +63,41 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="searchDisplayController" destination="GhL-u8-WL2" id="rwD-id-IG4"/>
+                        <outlet property="mapView" destination="uPa-IS-vE7" id="pX1-OW-1Q6"/>
+                        <outlet property="searchDisplayController" destination="oC1-Ha-OMm" id="RkQ-WX-i58"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M7r-03-6kQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <searchDisplayController id="GhL-u8-WL2">
                     <connections>
                         <outlet property="delegate" destination="nM0-WI-Oec" id="2H8-ZJ-Xds"/>
-                        <outlet property="searchBar" destination="y7a-VX-Ox6" id="cGv-KO-A5r"/>
                         <outlet property="searchContentsController" destination="nM0-WI-Oec" id="kyd-JZ-gZn"/>
                         <outlet property="searchResultsDataSource" destination="nM0-WI-Oec" id="JnT-pP-YIt"/>
                         <outlet property="searchResultsDelegate" destination="nM0-WI-Oec" id="dSK-Oz-gdg"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="ZF5-TU-n1C">
+                    <connections>
+                        <outlet property="delegate" destination="nM0-WI-Oec" id="gIh-iH-Fvf"/>
+                        <outlet property="searchContentsController" destination="nM0-WI-Oec" id="jwO-aG-uDd"/>
+                        <outlet property="searchResultsDataSource" destination="nM0-WI-Oec" id="KLl-NJ-H3F"/>
+                        <outlet property="searchResultsDelegate" destination="nM0-WI-Oec" id="KPT-rp-FRG"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="m3D-PU-Ikl">
+                    <connections>
+                        <outlet property="delegate" destination="nM0-WI-Oec" id="Bwq-24-SfJ"/>
+                        <outlet property="searchContentsController" destination="nM0-WI-Oec" id="olt-GG-oN1"/>
+                        <outlet property="searchResultsDataSource" destination="nM0-WI-Oec" id="Lzx-MS-bb7"/>
+                        <outlet property="searchResultsDelegate" destination="nM0-WI-Oec" id="P71-40-LSZ"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="oC1-Ha-OMm">
+                    <connections>
+                        <outlet property="delegate" destination="nM0-WI-Oec" id="k6j-LQ-UaQ"/>
+                        <outlet property="searchContentsController" destination="nM0-WI-Oec" id="ny6-7q-yVb"/>
+                        <outlet property="searchResultsDataSource" destination="nM0-WI-Oec" id="gHh-Qf-lqM"/>
+                        <outlet property="searchResultsDelegate" destination="nM0-WI-Oec" id="O2i-1v-rt0"/>
                     </connections>
                 </searchDisplayController>
             </objects>
