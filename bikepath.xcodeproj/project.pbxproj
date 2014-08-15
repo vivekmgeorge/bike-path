@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		09E37D45199E5D37007E2060 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09E37D44199E5D37007E2060 /* MapKit.framework */; };
 		8AB03325199DAD8A0036FF7A /* SearchMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB03324199DAD8A0036FF7A /* SearchMapViewController.m */; };
 		8AB03328199DADA80036FF7A /* ResultsMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB03327199DADA80036FF7A /* ResultsMapViewController.m */; };
 		8AB0332A199DB2930036FF7A /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AB03329199DB2930036FF7A /* GoogleMaps.framework */; };
@@ -37,6 +36,8 @@
 		8AE403E9199D924200B926AB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8AE403E7199D924200B926AB /* InfoPlist.strings */; };
 		8AE403EB199D924200B926AB /* bikepathTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AE403EA199D924200B926AB /* bikepathTests.m */; };
 		8AE403F5199D951100B926AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8AE403F4199D951100B926AB /* Main.storyboard */; };
+		C2813E40199E789700B19D69 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2813E3F199E789700B19D69 /* MapKit.framework */; };
+		C2813E42199E7BD800B19D69 /* dbc.gpx in Resources */ = {isa = PBXBuildFile; fileRef = C2813E41199E7BD800B19D69 /* dbc.gpx */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +51,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		09E37D44199E5D37007E2060 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		8AB03323199DAD8A0036FF7A /* SearchMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchMapViewController.h; sourceTree = "<group>"; };
 		8AB03324199DAD8A0036FF7A /* SearchMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchMapViewController.m; sourceTree = "<group>"; };
 		8AB03326199DADA80036FF7A /* ResultsMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsMapViewController.h; sourceTree = "<group>"; };
@@ -86,6 +86,8 @@
 		8AE403E8199D924200B926AB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8AE403EA199D924200B926AB /* bikepathTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = bikepathTests.m; sourceTree = "<group>"; };
 		8AE403F4199D951100B926AB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		C2813E3F199E789700B19D69 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		C2813E41199E7BD800B19D69 /* dbc.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = dbc.gpx; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				09E37D45199E5D37007E2060 /* MapKit.framework in Frameworks */,
+				C2813E40199E789700B19D69 /* MapKit.framework in Frameworks */,
 				8AB03346199DB4AE0036FF7A /* CoreText.framework in Frameworks */,
 				8AB03344199DB3F20036FF7A /* SystemConfiguration.framework in Frameworks */,
 				8AB03342199DB3EA0036FF7A /* QuartzCore.framework in Frameworks */,
@@ -129,6 +131,7 @@
 		8AE403B9199D924200B926AB = {
 			isa = PBXGroup;
 			children = (
+				C2813E41199E7BD800B19D69 /* dbc.gpx */,
 				8AE403CB199D924200B926AB /* bikepath */,
 				8AE403E4199D924200B926AB /* bikepathTests */,
 				8AE403C4199D924200B926AB /* Frameworks */,
@@ -148,7 +151,7 @@
 		8AE403C4199D924200B926AB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				09E37D44199E5D37007E2060 /* MapKit.framework */,
+				C2813E3F199E789700B19D69 /* MapKit.framework */,
 				8AB03345199DB4AE0036FF7A /* CoreText.framework */,
 				8AB03343199DB3F20036FF7A /* SystemConfiguration.framework */,
 				8AB03341199DB3EA0036FF7A /* QuartzCore.framework */,
@@ -292,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8AE403F5199D951100B926AB /* Main.storyboard in Resources */,
+				C2813E42199E7BD800B19D69 /* dbc.gpx in Resources */,
 				8AE403D0199D924200B926AB /* InfoPlist.strings in Resources */,
 				8AE403D8199D924200B926AB /* Images.xcassets in Resources */,
 				8AB0332E199DB3090036FF7A /* GoogleMaps.bundle in Resources */,
