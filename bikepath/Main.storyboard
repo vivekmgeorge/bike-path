@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Search Map-->
         <scene sceneID="y25-Gz-VHz">
             <objects>
-                <viewController id="StR-Yi-Gvc" sceneMemberID="viewController">
+                <viewController id="StR-Yi-Gvc" customClass="SearchMap" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gkH-hp-aio"/>
                         <viewControllerLayoutGuide type="bottom" id="doY-Pr-8J5"/>
