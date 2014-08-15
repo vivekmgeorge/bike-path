@@ -1,10 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="nM0-WI-Oec">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Icl-rY-jN6">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
+        <scene sceneID="y25-Gz-VHz">
+            <objects>
+                <viewController id="StR-Yi-Gvc" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gkH-hp-aio"/>
+                        <viewControllerLayoutGuide type="bottom" id="doY-Pr-8J5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="iVa-G1-NWu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ijX-LB-Qyj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="860" y="-97"/>
+        </scene>
+        <!--View Controller - BikePath-->
         <scene sceneID="uBy-pW-Yuz">
             <objects>
                 <viewController id="nM0-WI-Oec" sceneMemberID="viewController">
@@ -17,17 +35,36 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mQg-Qi-oHM">
-                                <rect key="frame" x="0.0" y="49" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="229" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="BikePath" id="EoJ-yJ-sBB"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M7r-03-6kQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="11" y="-76"/>
+            <point key="canvasLocation" x="363" y="-97"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Ntl-jZ-pu8">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Icl-rY-jN6" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="E9u-0I-AuQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="nM0-WI-Oec" kind="relationship" relationship="rootViewController" id="Rfv-aX-QIh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qVs-tJ-rn4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-163" y="-97"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
