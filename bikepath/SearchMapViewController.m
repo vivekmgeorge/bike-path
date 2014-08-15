@@ -30,6 +30,10 @@
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.706638
                                                             longitude:-74.009070
                                                                  zoom:14];
+    
+//    [mapView_ setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
+//    NSString *urlString = [NSString stringWithFormat:@"http://maps.google.com/maps/geo?q=%@&output=CSV", "FETCH TEXT FROM SEARCH BAR" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
+    
     mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     mapView_.myLocationEnabled = YES;
     mapView_.settings.myLocationButton = YES;
