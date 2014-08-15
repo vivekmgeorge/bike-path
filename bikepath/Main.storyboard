@@ -50,6 +50,10 @@
                                     <outlet property="delegate" destination="nM0-WI-Oec" id="Tkf-Cl-SAG"/>
                                 </connections>
                             </searchBar>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="xC1-uR-WDn">
+                                <rect key="frame" x="0.0" y="109" width="320" height="466"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
