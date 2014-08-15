@@ -40,7 +40,7 @@
     //
     
     MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
-    request.naturalLanguageQuery = @"222 Broadway, New York, NY";
+    request.naturalLanguageQuery = @"Brooklyn Bridge";
     
     MKLocalSearch *search = [[MKLocalSearch alloc]initWithRequest:request];
     
@@ -50,8 +50,12 @@
         else
             for (MKMapItem *item in response.mapItems)
             {
+                GMSMarker *marker = [[GMSMarker alloc] init];
+                marker.position = CLLocationCoordinate2DMake(item.placemark.location.coordinate.latitude, item.placemark.location.coordinate.longitude);
+                marker.title = item.name;
+                marker.map = mapView_;
                 NSLog(@"latitude = %f", item.placemark.location.coordinate.latitude);
-//                NSLog(@"Phone = %@", item.phoneNumber);
+                NSLog(@"longitude = %f", item.placemark.location.coordinate.longitude);
             }
     }];
 }
