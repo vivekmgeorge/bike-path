@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GoogleMaps/GoogleMaps.h>
 
-@interface SearchMapViewController : UIViewController
+@interface SearchMapViewController : UIViewController <GMSMapViewDelegate>
+@property (weak, nonatomic) IBOutlet GMSMapView *mapView;
+
 
 @end

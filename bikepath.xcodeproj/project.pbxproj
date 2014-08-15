@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09E37D45199E5D37007E2060 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09E37D44199E5D37007E2060 /* MapKit.framework */; };
 		8AB03325199DAD8A0036FF7A /* SearchMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB03324199DAD8A0036FF7A /* SearchMapViewController.m */; };
 		8AB03328199DADA80036FF7A /* ResultsMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB03327199DADA80036FF7A /* ResultsMapViewController.m */; };
 		8AB0332A199DB2930036FF7A /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AB03329199DB2930036FF7A /* GoogleMaps.framework */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		09E37D44199E5D37007E2060 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		8AB03323199DAD8A0036FF7A /* SearchMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchMapViewController.h; sourceTree = "<group>"; };
 		8AB03324199DAD8A0036FF7A /* SearchMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchMapViewController.m; sourceTree = "<group>"; };
 		8AB03326199DADA80036FF7A /* ResultsMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsMapViewController.h; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09E37D45199E5D37007E2060 /* MapKit.framework in Frameworks */,
 				8AB03346199DB4AE0036FF7A /* CoreText.framework in Frameworks */,
 				8AB03344199DB3F20036FF7A /* SystemConfiguration.framework in Frameworks */,
 				8AB03342199DB3EA0036FF7A /* QuartzCore.framework in Frameworks */,
@@ -145,6 +148,7 @@
 		8AE403C4199D924200B926AB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				09E37D44199E5D37007E2060 /* MapKit.framework */,
 				8AB03345199DB4AE0036FF7A /* CoreText.framework */,
 				8AB03343199DB3F20036FF7A /* SystemConfiguration.framework */,
 				8AB03341199DB3EA0036FF7A /* QuartzCore.framework */,
