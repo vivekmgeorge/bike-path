@@ -25,14 +25,27 @@
 {
     [super viewDidLoad];
     
+    GMSCameraPosition *dbc = [GMSCameraPosition cameraWithLatitude:40.706638
+                                                         longitude:-74.009070
+                                                              zoom:14];
+    
+    self.mapView.mapType = kGMSTypeNormal;
+    [self.mapView setCamera:dbc];
+    self.mapView.myLocationEnabled = YES;
+    self.mapView.settings.compassButton = YES;
+    self.mapView.settings.myLocationButton = YES;
+    self.mapView.settings.zoomGestures = YES;
+    self.mapView.delegate = self;
+    
     MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
-    request.naturalLanguageQuery = @"222 Fulton Street New York NY";
+    request.naturalLanguageQuery = @"Starbucks, New York, NY";
+//    request.naturalLanguageQuery = @"48 Wall Street New York NY";
     
     MKLocalSearch *search = [[MKLocalSearch alloc]initWithRequest:request];
     
     [search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
         if (response.mapItems.count == 0)
-            NSLog(@"No Matches");
+            NSLog(@"no items");
         else
             for (MKMapItem *item in response.mapItems)
             {
@@ -40,26 +53,15 @@
                 marker.position = CLLocationCoordinate2DMake(item.placemark.location.coordinate.latitude, item.placemark.location.coordinate.longitude);
                 marker.title = item.name;
                 marker.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
-                marker.map = _mapView;
+                marker.map = self.mapView;
                 NSLog(@"latitude = %f", item.placemark.location.coordinate.latitude);
                 NSLog(@"longitude = %f", item.placemark.location.coordinate.longitude);
             }
     }];
-//    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.706638
-//                                                            longitude:-74.009070
-//                                                                 zoom:14];
     
 //    [mapView_ setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
 //    NSString *urlString = [NSString stringWithFormat:@"http://maps.google.com/maps/geo?q=%@&output=CSV", "FETCH TEXT FROM SEARCH BAR" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
 //
-    self.mapView.mapType = kGMSTypeNormal;
-    self.mapView.myLocationEnabled = YES;
-    self.mapView.settings.compassButton = YES;
-    self.mapView.settings.myLocationButton = YES;
-    self.mapView.settings.zoomGestures = YES;
-    self.mapView.delegate = self;
-//
-//    mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
 }
 
 - (void)didReceiveMemoryWarning
