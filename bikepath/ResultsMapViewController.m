@@ -7,6 +7,7 @@
 //
 
 #import "ResultsMapViewController.h"
+#import <GoogleMaps/GoogleMaps.h>
 
 @implementation ResultsMapViewController
 
