@@ -18,10 +18,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="BikePath Results" id="TcU-1J-CRn">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="uJL-aa-GD6"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="uJL-aa-GD6">
+                            <connections>
+                                <segue destination="G0S-6X-bg1" kind="unwind" unwindAction="unwindToList:" id="1vF-id-30L"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ijX-LB-Qyj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="G0S-6X-bg1" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1386" y="-97"/>
         </scene>
