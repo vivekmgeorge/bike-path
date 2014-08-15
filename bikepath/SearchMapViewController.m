@@ -10,17 +10,16 @@
 #import <GoogleMaps/GoogleMaps.h>
 
 @interface SearchMapViewController ()
+
 @end
 
 @implementation SearchMapViewController {
-   
 
-//    - (IBAction)unwindToSearchPage:(UIStoryboardSegue *)segue;
-//{
-//    
-//}
-//
     GMSMapView *mapView_;
+}
+
+
+- (IBAction)unwindToSearchPage:(UIStoryboardSegue *)segue {
 }
 
 - (void)viewDidLoad

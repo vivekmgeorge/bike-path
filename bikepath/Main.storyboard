@@ -20,7 +20,7 @@
                     <navigationItem key="navigationItem" title="BikePath Results" id="TcU-1J-CRn">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="uJL-aa-GD6">
                             <connections>
-                                <segue destination="G0S-6X-bg1" kind="unwind" unwindAction="unwindToList:" id="1vF-id-30L"/>
+                                <segue destination="G0S-6X-bg1" kind="unwind" unwindAction="unwindToSearchPage:" id="erh-B2-gzs"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -42,18 +42,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="mQg-Qi-oHM">
-                                <rect key="frame" x="0.0" y="262" width="320" height="44"/>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y7a-VX-Ox6">
+                                <rect key="frame" x="0.0" y="65" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="nM0-WI-Oec" id="Tkf-Cl-SAG"/>
+                                </connections>
                             </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="mQg-Qi-oHM" firstAttribute="leading" secondItem="eN0-HA-GRj" secondAttribute="leading" id="4qd-Iq-iRc"/>
-                            <constraint firstItem="mQg-Qi-oHM" firstAttribute="top" secondItem="Pbr-VN-JDE" secondAttribute="bottom" constant="198" id="AHY-Og-jcq"/>
-                            <constraint firstAttribute="trailing" secondItem="mQg-Qi-oHM" secondAttribute="trailing" id="MvT-pS-uXj"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="BikePath Search" id="EoJ-yJ-sBB">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="FjH-MX-Uw3">
@@ -62,8 +60,20 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="GhL-u8-WL2" id="rwD-id-IG4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M7r-03-6kQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="GhL-u8-WL2">
+                    <connections>
+                        <outlet property="delegate" destination="nM0-WI-Oec" id="2H8-ZJ-Xds"/>
+                        <outlet property="searchBar" destination="y7a-VX-Ox6" id="cGv-KO-A5r"/>
+                        <outlet property="searchContentsController" destination="nM0-WI-Oec" id="kyd-JZ-gZn"/>
+                        <outlet property="searchResultsDataSource" destination="nM0-WI-Oec" id="JnT-pP-YIt"/>
+                        <outlet property="searchResultsDelegate" destination="nM0-WI-Oec" id="dSK-Oz-gdg"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="363" y="-97"/>
         </scene>

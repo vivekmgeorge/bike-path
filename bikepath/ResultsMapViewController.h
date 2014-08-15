@@ -10,6 +10,6 @@
 
 @interface ResultsMapViewController : UIViewController
 
-- (IBAction)unwindToSearchResults:(UIStoryboardSegue *)segue;
+- (IBAction)unwindToSearchPage:(UIStoryboardSegue *)segue;
 
 @end
