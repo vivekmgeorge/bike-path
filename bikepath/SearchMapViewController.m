@@ -8,6 +8,7 @@
 
 #import "SearchMapViewController.h"
 #import <GoogleMaps/GoogleMaps.h>
+#import <MapKit/MapKit.h>
 
 @interface SearchMapViewController ()
 
@@ -34,7 +35,25 @@
     mapView_.myLocationEnabled = YES;
     mapView_.settings.myLocationButton = YES;
     mapView_.settings.zoomGestures = YES;
+    
     self.view = mapView_;
+    //
+    
+    MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
+    request.naturalLanguageQuery = @"222 Broadway, New York, NY";
+    
+    MKLocalSearch *search = [[MKLocalSearch alloc]initWithRequest:request];
+    
+    [search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
+        if (response.mapItems.count == 0)
+            NSLog(@"No Matches");
+        else
+            for (MKMapItem *item in response.mapItems)
+            {
+                NSLog(@"latitude = %f", item.placemark.location.coordinate.latitude);
+//                NSLog(@"Phone = %@", item.phoneNumber);
+            }
+    }];
 }
 
 - (void)didReceiveMemoryWarning
