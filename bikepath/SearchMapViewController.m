@@ -15,7 +15,7 @@
 @implementation SearchMapViewController {
    
 
-//- (IBAction)unwindToList:(UIStoryboardSegue *)segue
+//    - (IBAction)unwindToSearchPage:(UIStoryboardSegue *)segue;
 //{
 //    
 //}
@@ -45,11 +45,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:-33.86
-                                                            longitude:151.20
-                                                                 zoom:6];
-//    GMSCameraPosition *camera = [GMSCameraPosition cameraWithTarget:target
-//                                                               zoom:10];
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.706638
+                                                            longitude:-74.009070
+                                                                 zoom:14];
     
     mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     
