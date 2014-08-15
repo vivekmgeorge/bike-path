@@ -19,6 +19,7 @@
 		8AE403E1199D924200B926AB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE403C9199D924200B926AB /* UIKit.framework */; };
 		8AE403E9199D924200B926AB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8AE403E7199D924200B926AB /* InfoPlist.strings */; };
 		8AE403EB199D924200B926AB /* bikepathTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AE403EA199D924200B926AB /* bikepathTests.m */; };
+		8AE403F5199D951100B926AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8AE403F4199D951100B926AB /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		8AE403E6199D924200B926AB /* bikepathTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "bikepathTests-Info.plist"; sourceTree = "<group>"; };
 		8AE403E8199D924200B926AB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8AE403EA199D924200B926AB /* bikepathTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = bikepathTests.m; sourceTree = "<group>"; };
+		8AE403F4199D951100B926AB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 			children = (
 				8AE403D4199D924200B926AB /* AppDelegate.h */,
 				8AE403D5199D924200B926AB /* AppDelegate.m */,
+				8AE403F4199D951100B926AB /* Main.storyboard */,
 				8AE403D7199D924200B926AB /* Images.xcassets */,
 				8AE403CC199D924200B926AB /* Supporting Files */,
 			);
@@ -219,6 +222,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AE403F5199D951100B926AB /* Main.storyboard in Resources */,
 				8AE403D0199D924200B926AB /* InfoPlist.strings in Resources */,
 				8AE403D8199D924200B926AB /* Images.xcassets in Resources */,
 			);
