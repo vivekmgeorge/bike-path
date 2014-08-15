@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8AB03325199DAD8A0036FF7A /* SearchMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB03324199DAD8A0036FF7A /* SearchMapViewController.m */; };
+		8AB03328199DADA80036FF7A /* ResultsMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB03327199DADA80036FF7A /* ResultsMapViewController.m */; };
 		8AE403C6199D924200B926AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE403C5199D924200B926AB /* Foundation.framework */; };
 		8AE403C8199D924200B926AB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE403C7199D924200B926AB /* CoreGraphics.framework */; };
 		8AE403CA199D924200B926AB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE403C9199D924200B926AB /* UIKit.framework */; };
@@ -20,7 +22,6 @@
 		8AE403E9199D924200B926AB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8AE403E7199D924200B926AB /* InfoPlist.strings */; };
 		8AE403EB199D924200B926AB /* bikepathTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AE403EA199D924200B926AB /* bikepathTests.m */; };
 		8AE403F5199D951100B926AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8AE403F4199D951100B926AB /* Main.storyboard */; };
-		8AE403FB199D9B0500B926AB /* SearchMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AE403FA199D9B0500B926AB /* SearchMap.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +35,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8AB03323199DAD8A0036FF7A /* SearchMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchMapViewController.h; sourceTree = "<group>"; };
+		8AB03324199DAD8A0036FF7A /* SearchMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchMapViewController.m; sourceTree = "<group>"; };
+		8AB03326199DADA80036FF7A /* ResultsMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsMapViewController.h; sourceTree = "<group>"; };
+		8AB03327199DADA80036FF7A /* ResultsMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsMapViewController.m; sourceTree = "<group>"; };
 		8AE403C2199D924200B926AB /* bikepath.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bikepath.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AE403C5199D924200B926AB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8AE403C7199D924200B926AB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -51,8 +56,6 @@
 		8AE403E8199D924200B926AB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8AE403EA199D924200B926AB /* bikepathTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = bikepathTests.m; sourceTree = "<group>"; };
 		8AE403F4199D951100B926AB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		8AE403F9199D9B0500B926AB /* SearchMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchMap.h; path = ../SearchMap.h; sourceTree = "<group>"; };
-		8AE403FA199D9B0500B926AB /* SearchMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchMap.m; path = ../SearchMap.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,11 +115,13 @@
 		8AE403CB199D924200B926AB /* bikepath */ = {
 			isa = PBXGroup;
 			children = (
+				8AB03323199DAD8A0036FF7A /* SearchMapViewController.h */,
+				8AB03324199DAD8A0036FF7A /* SearchMapViewController.m */,
+				8AB03326199DADA80036FF7A /* ResultsMapViewController.h */,
+				8AB03327199DADA80036FF7A /* ResultsMapViewController.m */,
 				8AE403D4199D924200B926AB /* AppDelegate.h */,
 				8AE403D5199D924200B926AB /* AppDelegate.m */,
 				8AE403F4199D951100B926AB /* Main.storyboard */,
-				8AE403F9199D9B0500B926AB /* SearchMap.h */,
-				8AE403FA199D9B0500B926AB /* SearchMap.m */,
 				8AE403D7199D924200B926AB /* Images.xcassets */,
 				8AE403CC199D924200B926AB /* Supporting Files */,
 			);
@@ -248,9 +253,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AB03328199DADA80036FF7A /* ResultsMapViewController.m in Sources */,
 				8AE403D6199D924200B926AB /* AppDelegate.m in Sources */,
+				8AB03325199DAD8A0036FF7A /* SearchMapViewController.m in Sources */,
 				8AE403D2199D924200B926AB /* main.m in Sources */,
-				8AE403FB199D9B0500B926AB /* SearchMap.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,6 +453,7 @@
 				8AE403F0199D924200B926AB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8AE403F1199D924200B926AB /* Build configuration list for PBXNativeTarget "bikepathTests" */ = {
 			isa = XCConfigurationList;
@@ -455,6 +462,7 @@
 				8AE403F3199D924200B926AB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

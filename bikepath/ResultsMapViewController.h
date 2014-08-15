@@ -1,5 +1,5 @@
 //
-//  SearchMap.h
+//  ResultsMapViewController.h
 //  bikepath
 //
 //  Created by Farheen Malik on 8/14/14.
@@ -8,11 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SearchMapController : UIViewController
-
-@end
-
-@implementation SearchMapController
-
+@interface ResultsMapViewController : UIViewController
 
 @end
