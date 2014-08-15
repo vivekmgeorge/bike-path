@@ -38,13 +38,14 @@
     self.mapView.delegate = self;
     
     MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
-    request.naturalLanguageQuery = @"222 Fulton Street New York NY";
+    request.naturalLanguageQuery = @"Starbucks, New York, NY";
+//    request.naturalLanguageQuery = @"48 Wall Street New York NY";
     
     MKLocalSearch *search = [[MKLocalSearch alloc]initWithRequest:request];
     
     [search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
         if (response.mapItems.count == 0)
-            NSLog(@"10 Downing St London");
+            NSLog(@"no items");
         else
             for (MKMapItem *item in response.mapItems)
             {
@@ -52,12 +53,11 @@
                 marker.position = CLLocationCoordinate2DMake(item.placemark.location.coordinate.latitude, item.placemark.location.coordinate.longitude);
                 marker.title = item.name;
                 marker.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
-                marker.map = _mapView;
+                marker.map = self.mapView;
                 NSLog(@"latitude = %f", item.placemark.location.coordinate.latitude);
                 NSLog(@"longitude = %f", item.placemark.location.coordinate.longitude);
             }
     }];
-    
     
 //    [mapView_ setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
 //    NSString *urlString = [NSString stringWithFormat:@"http://maps.google.com/maps/geo?q=%@&output=CSV", "FETCH TEXT FROM SEARCH BAR" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
