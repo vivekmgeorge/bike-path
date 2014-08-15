@@ -37,6 +37,7 @@
 		8AE403EB199D924200B926AB /* bikepathTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AE403EA199D924200B926AB /* bikepathTests.m */; };
 		8AE403F5199D951100B926AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8AE403F4199D951100B926AB /* Main.storyboard */; };
 		C2813E40199E789700B19D69 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2813E3F199E789700B19D69 /* MapKit.framework */; };
+		C2813E42199E7BD800B19D69 /* dbc.gpx in Resources */ = {isa = PBXBuildFile; fileRef = C2813E41199E7BD800B19D69 /* dbc.gpx */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,7 @@
 		8AE403EA199D924200B926AB /* bikepathTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = bikepathTests.m; sourceTree = "<group>"; };
 		8AE403F4199D951100B926AB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		C2813E3F199E789700B19D69 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		C2813E41199E7BD800B19D69 /* dbc.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = dbc.gpx; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 		8AE403B9199D924200B926AB = {
 			isa = PBXGroup;
 			children = (
+				C2813E41199E7BD800B19D69 /* dbc.gpx */,
 				8AE403CB199D924200B926AB /* bikepath */,
 				8AE403E4199D924200B926AB /* bikepathTests */,
 				8AE403C4199D924200B926AB /* Frameworks */,
@@ -292,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8AE403F5199D951100B926AB /* Main.storyboard in Resources */,
+				C2813E42199E7BD800B19D69 /* dbc.gpx in Resources */,
 				8AE403D0199D924200B926AB /* InfoPlist.strings in Resources */,
 				8AE403D8199D924200B926AB /* Images.xcassets in Resources */,
 				8AB0332E199DB3090036FF7A /* GoogleMaps.bundle in Resources */,
