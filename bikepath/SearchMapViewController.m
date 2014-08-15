@@ -40,7 +40,7 @@
     //
     
     MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
-    request.naturalLanguageQuery = @"Brooklyn Bridge";
+    request.naturalLanguageQuery = @"222 Fulton Street New York NY";
     
     MKLocalSearch *search = [[MKLocalSearch alloc]initWithRequest:request];
     
@@ -53,6 +53,7 @@
                 GMSMarker *marker = [[GMSMarker alloc] init];
                 marker.position = CLLocationCoordinate2DMake(item.placemark.location.coordinate.latitude, item.placemark.location.coordinate.longitude);
                 marker.title = item.name;
+                marker.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
                 marker.map = mapView_;
                 NSLog(@"latitude = %f", item.placemark.location.coordinate.latitude);
                 NSLog(@"longitude = %f", item.placemark.location.coordinate.longitude);
