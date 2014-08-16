@@ -38,6 +38,7 @@
     self.mapView.settings.zoomGestures = YES;
     self.mapView.delegate = self;
     
+    
     MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
     
     request.naturalLanguageQuery = @"Starbucks, New York, NY";

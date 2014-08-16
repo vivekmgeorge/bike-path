@@ -15,8 +15,7 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UISearchBar *searchField;
-//@property (strong, nonatomic) NSArray *array;
-@property (strong, nonatomic) NSMutableArray *searchResults;
+//@property (strong, nonatomic) NSMutableArray *searchResults;
 
 @end
 
@@ -25,7 +24,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    self.array = [[NSArray alloc] init ]; //WithObjects:@"Apple", @"Samsung", @"HTC", @"LG", @"Moto", nil];
     self.searchResults = [[NSMutableArray alloc] init];
 //    
 }
@@ -50,11 +48,9 @@
 
 -(void) searchBar: (UISearchBar *) searchBar textDidChange:(NSString *) searchText
 {
-    // Use this delegate if you want to make ur app to show the search results while the user entering their search item in search bar…
-    // Am going to put the search functionality in Search button click delegate…
 }
 
--(NSMutableArray *) searchBarSearchButtonClicked: (UISearchBar *) searchBar
+-(NSMutableArray*) searchBarSearchButtonClicked: (UISearchBar *) searchBar
 {
     self.searchLocation = [[SearchItem alloc] init];
     self.searchLocation.searchQuery = self.searchField.text;
@@ -64,8 +60,6 @@
     NSLog(self.searchLocation.searchQuery);
     
     MKLocalSearch *search = [[MKLocalSearch alloc]initWithRequest:request];
-    
-  
     
     [search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
         if (response.mapItems.count == 0)
@@ -84,9 +78,8 @@
                 
                 [self.searchResults addObject:query];
             }
-        
     }];
-        [self.tableView reloadData];
+//    [self.tableView reloadData];
     return self.searchResults;
 }
 
@@ -109,53 +102,15 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"ListPrototypeCell" forIndexPath:indexPath];
     SearchItem *item = (SearchItem*)[self.searchResults objectAtIndex:indexPath.row];
     cell.textLabel.text = item.searchQuery;
-    
     return cell;
-
 }
-
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    static NSString *cellID = @"cellID";
-//    NSLog(@"zomg");
-//    
-////    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-//    
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"ListPrototypeCell" forIndexPath:indexPath];
-//    // Configure the cell...
-//    SearchItem *item = (SearchItem*)[self.searchResults objectAtIndex:indexPath.row];
-////    ToDoItem *toDoItem = [self.toDoItems objectAtIndex:indexPath.row];
-//    cell.textLabel.text = item.searchQuery;
-//    
-////    if (cell == nil)
-//    {
-////        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-//    }
-//    if (tableView == self.searchDisplayController.searchResultsTableView) {
-//        NSLog(@"zomg");
-//        SearchItem *item = (SearchItem*)[self.searchResults objectAtIndex:indexPath.row];
-//        NSLog(item.searchQuery);
-//        
-//        NSLog([self.searchResults objectAtIndex:indexPath.row]);
-////cell.textLabel.text = [self.searchResults objectAtIndex:indexPath.row];
-//        
-//    } else {
-////        cell.textLabel.text = [self.array objectAtIndex:indexPath.row];
-//    }
-//    //    cell.textLabel.text = [self.array objectAtIndex:indexPath.row];
 
 
 #pragma Search Methods
 
-//- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
-//{
-//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF beginswith[c] %@", searchText];
-//    //    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"contains[c] %@", searchText];
-//    self.searchResults = [self.array filteredArrayUsingPredicate:predicate];
-//}
-
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
+    NSLog(@"now here");
     [self.tableView reloadData];
 //    [self filterContentForSearchText:searchString
 //    scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
