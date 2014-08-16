@@ -41,7 +41,7 @@
 //    request.naturalLanguageQuery = @"48 Wall Street New York NY";
     
     MKLocalSearch *search = [[MKLocalSearch alloc]initWithRequest:request];
-    
+   
     [search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
         if (response.mapItems.count == 0)
             NSLog(@"no items");
@@ -53,8 +53,9 @@
                 marker.title = item.name;
                 marker.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
                 marker.map = self.mapView;
-                NSLog(@"latitude = %f", item.placemark.location.coordinate.latitude);
-                NSLog(@"longitude = %f", item.placemark.location.coordinate.longitude);
+                
+//                NSLog(@"latitude = %f", item.placemark.location.coordinate.latitude);
+//                NSLog(@"longitude = %f", item.placemark.location.coordinate.longitude);
             }
     }];
     
