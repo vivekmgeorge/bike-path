@@ -23,12 +23,38 @@
                                 <segue destination="G0S-6X-bg1" kind="unwind" unwindAction="unwindToSearchPage:" id="erh-B2-gzs"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="9ZU-FS-WQJ">
+                            <connections>
+                                <segue destination="otc-CS-obf" kind="modal" id="it7-bU-Jex"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ijX-LB-Qyj" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="G0S-6X-bg1" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1378" y="-373"/>
+        </scene>
+        <!--Citi View Controller-->
+        <scene sceneID="hFY-af-fca">
+            <objects>
+                <viewController id="otc-CS-obf" customClass="CitiViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="H7j-of-Jfi"/>
+                        <viewControllerLayoutGuide type="bottom" id="fch-qt-Ho0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rUA-eI-RaC" customClass="GMSMapView">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="rUA-eI-RaC" id="4nV-5o-8to"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VOW-IA-NOJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1870" y="-94"/>
         </scene>
         <!--Search Map View Controller - BikePath Search-->
         <scene sceneID="uBy-pW-Yuz">
