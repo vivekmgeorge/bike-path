@@ -58,17 +58,17 @@
                  citiMarker.map      = self.mapView;
 
                  NSLog(@"%@", [station objectForKey:@"availableBikes"]);
-                 NSString *num = [station objectForKey:@"availableBikes"];
+                 NSNumber *num = @([[station objectForKey:@"availableBikes"] intValue]);
                  
                  CLLocation *location = [[CLLocation alloc] initWithLatitude:[lati doubleValue] longitude:[longi doubleValue]];
                  NSMutableArray *locations = [[NSMutableArray alloc] init];
                  [locations addObject:location];
                  
-                 if (num > 5) {
+                 if ([num intValue] > 5) {
                      citiMarker.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
-                 } else (num < 5);{
+                 } else {
                      citiMarker.icon = [GMSMarker markerImageWithColor:[UIColor redColor]];
-                 }
+                 };
                  citiMarker.map = self.mapView;
              }
          }
