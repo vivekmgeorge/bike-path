@@ -17,7 +17,6 @@
 @implementation SearchMapViewController {
 
 }
-
 - (IBAction)unwindToSearchPage:(UIStoryboardSegue *)segue {
 }
 
