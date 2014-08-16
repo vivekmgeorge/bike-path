@@ -14,8 +14,9 @@
 @interface SearchListViewController ()
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSArray *array;
-@property (strong, nonatomic) NSArray *searchResults;
+@property (strong, nonatomic) IBOutlet UISearchBar *searchField;
+//@property (strong, nonatomic) NSArray *array;
+@property (strong, nonatomic) NSMutableArray *searchResults;
 
 @end
 
@@ -24,29 +25,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.array = [[NSArray alloc] init];
-    self.searchResults = [[NSArray alloc] init];
-    
-    MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
-    
-    request.naturalLanguageQuery = @"Starbucks, New York, NY";
-    //    request.naturalLanguageQuery = @"48 Wall Street New York NY";
-    
-    MKLocalSearch *search = [[MKLocalSearch alloc]initWithRequest:request];
-    
-    [search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
-        if (response.mapItems.count == 0)
-            NSLog(@"no items");
-        else
-            for (MKMapItem *item in response.mapItems)
-            {
-                GMSMarker *marker = [[GMSMarker alloc] init];
-                marker.position = CLLocationCoordinate2DMake(item.placemark.location.coordinate.latitude, item.placemark.location.coordinate.longitude);
-                marker.title = item.name;
-                marker.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
-                NSLog(@"title = %@", marker.title);
-            }
-    }];
+//    self.array = [[NSArray alloc] init ]; //WithObjects:@"Apple", @"Samsung", @"HTC", @"LG", @"Moto", nil];
+    self.searchResults = [[NSMutableArray alloc] init];
+//    
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,15 +37,14 @@
 }
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-    //    [searchBar setShowsCancelButton:YES animated:YES];
+    [searchBar setShowsCancelButton:YES animated:YES];
     //    [self keyboardWillShow];
 }
 -(void) searchBarCancelButtonClicked:(UISearchBar *) searchBar
 {
     //    [self keyboardWillHide];
-    //    searchBar.text=@"";
-    //
-    //    [searchBar setShowsCancelButton:NO animated:YES];
+    searchBar.text=@"";
+    [searchBar setShowsCancelButton:NO animated:YES];
     //    [searchBar resignFirstResponder];
 }
 
@@ -74,48 +54,115 @@
     // Am going to put the search functionality in Search button click delegate…
 }
 
--(void) searchBarSearchButtonClicked: (UISearchBar *) searchBar
+-(NSMutableArray *) searchBarSearchButtonClicked: (UISearchBar *) searchBar
 {
-    //    if (self.searchField.text.length > 0) {
-    //        self.search = [[SearchItem alloc] init];
-    //        self.search.searchQuery = self.searchField.text;
-    //    }
-    //    NSLog(self.search.searchQuery);
-    //    NSLog(searchBar.text);
-    //    return self.search.searchQuery;
+    self.searchLocation = [[SearchItem alloc] init];
+    self.searchLocation.searchQuery = self.searchField.text;
+    MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
+    request.naturalLanguageQuery = self.searchLocation.searchQuery;
     
+    NSLog(self.searchLocation.searchQuery);
+    
+    MKLocalSearch *search = [[MKLocalSearch alloc]initWithRequest:request];
+    
+  
+    
+    [search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
+        if (response.mapItems.count == 0)
+            NSLog(@"no items");
+        else
+            for (MKMapItem *item in response.mapItems)
+            {
+                NSLog(item.name);
+                
+                SearchItem *query = [[SearchItem alloc] init];
+                    query.searchQuery = item.name;
+//                    query.position = CLLocationCoordinate2DMake(item.placemark.location.coordinate.latitude, item.placemark.location.coordinate.longitude);
+
+                NSLog(@"HERE");
+                NSLog(query.searchQuery);
+                
+                [self.searchResults addObject:query];
+            }
+        
+    }];
+        [self.tableView reloadData];
+    return self.searchResults;
 }
 
 
 #pragma Table View Methods
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        return [self.searchResults count];
+#warning Potentially incomplete method implementation.
+    return 1;
+}
 
-    } else {
-        return [self.array count];
-    }
-    //    return [self.array count];
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+   return [self.searchResults count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellID = @"cellID";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    if (cell == nil)
-    {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-    }
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        cell.textLabel.text = [self.searchResults objectAtIndex:indexPath.row];
-
-    } else {
-        cell.textLabel.text = [self.array objectAtIndex:indexPath.row];
-    }
-    //    cell.textLabel.text = [self.array objectAtIndex:indexPath.row];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"ListPrototypeCell" forIndexPath:indexPath];
+    SearchItem *item = (SearchItem*)[self.searchResults objectAtIndex:indexPath.row];
+    cell.textLabel.text = item.searchQuery;
+    
     return cell;
+
+}
+
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    static NSString *cellID = @"cellID";
+//    NSLog(@"zomg");
+//    
+////    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+//    
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"ListPrototypeCell" forIndexPath:indexPath];
+//    // Configure the cell...
+//    SearchItem *item = (SearchItem*)[self.searchResults objectAtIndex:indexPath.row];
+////    ToDoItem *toDoItem = [self.toDoItems objectAtIndex:indexPath.row];
+//    cell.textLabel.text = item.searchQuery;
+//    
+////    if (cell == nil)
+//    {
+////        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+//    }
+//    if (tableView == self.searchDisplayController.searchResultsTableView) {
+//        NSLog(@"zomg");
+//        SearchItem *item = (SearchItem*)[self.searchResults objectAtIndex:indexPath.row];
+//        NSLog(item.searchQuery);
+//        
+//        NSLog([self.searchResults objectAtIndex:indexPath.row]);
+////cell.textLabel.text = [self.searchResults objectAtIndex:indexPath.row];
+//        
+//    } else {
+////        cell.textLabel.text = [self.array objectAtIndex:indexPath.row];
+//    }
+//    //    cell.textLabel.text = [self.array objectAtIndex:indexPath.row];
+
+
+#pragma Search Methods
+
+//- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
+//{
+//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF beginswith[c] %@", searchText];
+//    //    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"contains[c] %@", searchText];
+//    self.searchResults = [self.array filteredArrayUsingPredicate:predicate];
+//}
+
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [self.tableView reloadData];
+//    [self filterContentForSearchText:searchString
+//    scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
+//                                      objectAtIndex:[self.searchDisplayController.searchBar
+//                                                     selectedScopeButtonIndex]];
+////
+    return YES;
 }
 
 @end

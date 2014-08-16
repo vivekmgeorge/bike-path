@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SearchItem.h"
 
 @interface SearchListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate>
 
+@property SearchItem *searchLocation;
 
 @end
