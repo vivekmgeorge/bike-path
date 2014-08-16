@@ -10,9 +10,9 @@
 #import <GoogleMaps/GoogleMaps.h>
 
 @interface ResultsMapViewController : UIViewController <GMSMapViewDelegate>
+@property (strong, nonatomic) IBOutlet GMSMapView *mapView;
 
 - (IBAction)unwindToSearchPage:(UIStoryboardSegue *)segue;
 
-@property (strong, nonatomic) IBOutlet GMSMapView *mapView;
 
 @end
