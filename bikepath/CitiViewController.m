@@ -42,7 +42,7 @@
              NSDictionary *greeting = [NSJSONSerialization JSONObjectWithData:data
                                                                       options:0
                                                                         error:NULL];
-             //             NSLog(@"%@", greeting);
+                          NSLog(@"%@", greeting);
              //             NSLog(@"%@", [greeting objectForKey:@"stationBeanList"]);
              NSArray* stations = [greeting objectForKey:@"stationBeanList"];
              for(id st in stations) {
@@ -50,6 +50,7 @@
                  NSString *lati = [station objectForKey:@"latitude"];
                  NSString *longi = [station objectForKey:@"longitude"];
                  NSString *title = [station objectForKey:@"stationName"];
+                 NSString *bikesAvail = [station objectForKey:@"availableBikes"];
                  MKMapItem *item;
                  GMSMarker *citiMarker = [[GMSMarker alloc] init];
                  citiMarker.position= CLLocationCoordinate2DMake([lati doubleValue], [longi doubleValue]);
@@ -57,7 +58,7 @@
                  //                 NSLog(@"%@", [report.latitude = [latitude doubleValue]]);
                  //                 CLLocationCoordinate2DMake([[station objectForKey:[@"latitude" ] doubleValue], [[station objectForKey:[@"longitude" ] doubleValue]);
                  NSLog(@"%@", [station objectForKey:@"latitude"]);
-                 citiMarker.title = item.name;
+                 citiMarker.title = title;
                  citiMarker.icon = [GMSMarker markerImageWithColor:[UIColor blueColor]];
                  citiMarker.map = self.mapView;
 //                 NSLog(@"latitude = %f", item.placemark.location.coordinate.latitude);
