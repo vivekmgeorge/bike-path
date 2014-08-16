@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface SearchItem : NSObject
+
+@property NSString *searchQuery;
+@property (readonly) NSDate *creationDate;
 
 @end
