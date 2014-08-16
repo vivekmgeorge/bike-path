@@ -76,10 +76,10 @@
             </objects>
             <point key="canvasLocation" x="-301" y="-393"/>
         </scene>
-        <!--View Controller-->
+        <!--Search List View Controller-->
         <scene sceneID="Wex-fZ-9bE">
             <objects>
-                <viewController id="H3N-jD-Epf" sceneMemberID="viewController">
+                <viewController id="H3N-jD-Epf" customClass="SearchListViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="p9J-i8-fmt"/>
                         <viewControllerLayoutGuide type="bottom" id="7F1-2G-dtu"/>
@@ -89,25 +89,36 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="BFP-7F-t6k">
-                                <rect key="frame" x="0.0" y="65" width="320" height="503"/>
+                                <rect key="frame" x="0.0" y="109" width="320" height="459"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <sections/>
                             </tableView>
+                            <searchBar contentMode="redraw" fixedFrame="YES" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="Uis-Y5-GaI">
+                                <rect key="frame" x="0.0" y="65" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="H3N-jD-Epf" id="izc-W7-Th2"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Y5O-9D-F13"/>
                     <connections>
-                        <outlet property="searchDisplayController" destination="un1-7Q-vUj" id="kiU-Pb-fHa"/>
+                        <outlet property="searchDisplayController" destination="LZN-WJ-8rf" id="l2P-nz-Ur7"/>
+                        <outlet property="tableView" destination="BFP-7F-t6k" id="IEE-FD-kgf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vqO-PL-y0T" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="un1-7Q-vUj">
+                <searchDisplayController id="LZN-WJ-8rf">
                     <connections>
-                        <outlet property="delegate" destination="H3N-jD-Epf" id="gFY-fT-fa8"/>
-                        <outlet property="searchContentsController" destination="H3N-jD-Epf" id="b2b-Ql-UoW"/>
-                        <outlet property="searchResultsDataSource" destination="H3N-jD-Epf" id="UYP-bH-aCO"/>
-                        <outlet property="searchResultsDelegate" destination="H3N-jD-Epf" id="rVh-Co-fxm"/>
+                        <outlet property="delegate" destination="H3N-jD-Epf" id="3SR-vp-7r0"/>
+                        <outlet property="searchBar" destination="Uis-Y5-GaI" id="s24-ii-aQA"/>
+                        <outlet property="searchContentsController" destination="H3N-jD-Epf" id="yZw-rk-Bbf"/>
+                        <outlet property="searchResultsDataSource" destination="H3N-jD-Epf" id="JLk-b6-iat"/>
+                        <outlet property="searchResultsDelegate" destination="H3N-jD-Epf" id="SnQ-ZT-mmD"/>
                     </connections>
                 </searchDisplayController>
             </objects>
