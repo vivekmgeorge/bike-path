@@ -43,11 +43,11 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uPa-IS-vE7" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="107" width="320" height="461"/>
+                                <rect key="frame" x="0.0" y="63" width="320" height="505"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
-                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Destination" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vo6-8q-uUa">
+                            <searchBar hidden="YES" contentMode="redraw" fixedFrame="YES" placeholder="Destination" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vo6-8q-uUa">
                                 <rect key="frame" x="0.0" y="63" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
