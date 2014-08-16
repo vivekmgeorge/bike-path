@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09F19F78199EF6F500825ADE /* CitiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F19F77199EF6F500825ADE /* CitiViewController.m */; };
 		8AB03325199DAD8A0036FF7A /* SearchMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB03324199DAD8A0036FF7A /* SearchMapViewController.m */; };
 		8AB03328199DADA80036FF7A /* ResultsMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB03327199DADA80036FF7A /* ResultsMapViewController.m */; };
 		8AB0332A199DB2930036FF7A /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AB03329199DB2930036FF7A /* GoogleMaps.framework */; };
@@ -51,6 +52,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		09F19F76199EF6F500825ADE /* CitiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CitiViewController.h; sourceTree = "<group>"; };
+		09F19F77199EF6F500825ADE /* CitiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CitiViewController.m; sourceTree = "<group>"; };
 		8AB03323199DAD8A0036FF7A /* SearchMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchMapViewController.h; sourceTree = "<group>"; };
 		8AB03324199DAD8A0036FF7A /* SearchMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchMapViewController.m; sourceTree = "<group>"; };
 		8AB03326199DADA80036FF7A /* ResultsMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsMapViewController.h; sourceTree = "<group>"; };
@@ -179,6 +182,8 @@
 			children = (
 				8AB03323199DAD8A0036FF7A /* SearchMapViewController.h */,
 				8AB03324199DAD8A0036FF7A /* SearchMapViewController.m */,
+				09F19F76199EF6F500825ADE /* CitiViewController.h */,
+				09F19F77199EF6F500825ADE /* CitiViewController.m */,
 				8AB03326199DADA80036FF7A /* ResultsMapViewController.h */,
 				8AB03327199DADA80036FF7A /* ResultsMapViewController.m */,
 				8AE403D4199D924200B926AB /* AppDelegate.h */,
@@ -318,6 +323,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8AB03328199DADA80036FF7A /* ResultsMapViewController.m in Sources */,
+				09F19F78199EF6F500825ADE /* CitiViewController.m in Sources */,
 				8AE403D6199D924200B926AB /* AppDelegate.m in Sources */,
 				8AB03325199DAD8A0036FF7A /* SearchMapViewController.m in Sources */,
 				8AE403D2199D924200B926AB /* main.m in Sources */,
