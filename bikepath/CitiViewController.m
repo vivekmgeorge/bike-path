@@ -2,7 +2,7 @@
 //  CitiViewController.m
 //  bikepath
 //
-//  Created by Apprentice on 8/15/14.
+//  Created by Vivek George, Molly Huerster, Farheen Malik and Armen Vartan on 8/15/14.
 //  Copyright (c) 2014 Bike Path. All rights reserved.
 //
 
@@ -46,24 +46,31 @@
              NSArray* stations = [greeting objectForKey:@"stationBeanList"];
              for(id st in stations) {
                  NSDictionary *station = (NSDictionary *)st;
-                 NSString *lati = [station objectForKey:@"latitude"];
-                 NSString *longi = [station objectForKey:@"longitude"];
-                 NSString *title = [station objectForKey:@"stationName"];
-                 NSLog(@"%@", [station objectForKey:@"availableBikes"]);
-                 NSString *num = [station objectForKey:@"availableBikes"];
+                 NSString *lati             = [station objectForKey:@"latitude"];
+                 NSString *longi            = [station objectForKey:@"longitude"];
+                 NSString *title            = [station objectForKey:@"stationName"];
+                 NSString *availableBikes   = [[station objectForKey:@"availableBikes"] stringValue];
                  
                  GMSMarker *citiMarker = [[GMSMarker alloc] init];
-                 citiMarker.position= CLLocationCoordinate2DMake([lati doubleValue], [longi doubleValue]);
+                 
+                 citiMarker.position = CLLocationCoordinate2DMake([lati doubleValue], [longi doubleValue]);
+                 citiMarker.title    = title;
+                 citiMarker.map      = self.mapView;
+
+                 NSLog(@"%@", [station objectForKey:@"availableBikes"]);
+                 NSNumber *num = @([[station objectForKey:@"availableBikes"] intValue]);
                  
                  CLLocation *location = [[CLLocation alloc] initWithLatitude:[lati doubleValue] longitude:[longi doubleValue]];
                  NSMutableArray *locations = [[NSMutableArray alloc] init];
                  [locations addObject:location];
-                 citiMarker.title = title;
-                 if (num > 5) {
+                 
+                 if ([num intValue] > 0) {
                      citiMarker.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
-                 } else (num < 5);{
+                     citiMarker.snippet  = availableBikes;
+                 } else {
                      citiMarker.icon = [GMSMarker markerImageWithColor:[UIColor redColor]];
-                 }
+                     citiMarker.snippet = @"No bikes availabe at this location.";
+                 };
                  citiMarker.map = self.mapView;
              }
          }
