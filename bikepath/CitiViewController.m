@@ -50,14 +50,13 @@
                  NSString *lati = [station objectForKey:@"latitude"];
                  NSString *longi = [station objectForKey:@"longitude"];
                  NSString *title = [station objectForKey:@"stationName"];
-                 MKMapItem *item;
                  GMSMarker *citiMarker = [[GMSMarker alloc] init];
                  citiMarker.position= CLLocationCoordinate2DMake([lati doubleValue], [longi doubleValue]);
                  //                 NSDouble *latitude = [[station objectForKey:@"latitude"]];
                  //                 NSLog(@"%@", [report.latitude = [latitude doubleValue]]);
                  //                 CLLocationCoordinate2DMake([[station objectForKey:[@"latitude" ] doubleValue], [[station objectForKey:[@"longitude" ] doubleValue]);
                  NSLog(@"%@", [station objectForKey:@"latitude"]);
-                 citiMarker.title = item.name;
+                 citiMarker.title = title;
                  citiMarker.icon = [GMSMarker markerImageWithColor:[UIColor blueColor]];
                  citiMarker.map = self.mapView;
 //                 NSLog(@"latitude = %f", item.placemark.location.coordinate.latitude);
