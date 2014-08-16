@@ -63,7 +63,7 @@
                  CLLocation *location = [[CLLocation alloc] initWithLatitude:[lati doubleValue] longitude:[longi doubleValue]];
                  NSMutableArray *locations = [[NSMutableArray alloc] init];
                  [locations addObject:location];
-                 citiMarker.title = title;
+                 
                  if (num > 5) {
                      citiMarker.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
                  } else (num < 5);{
