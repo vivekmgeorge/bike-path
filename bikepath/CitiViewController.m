@@ -9,6 +9,7 @@
 #import "CitiViewController.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import <MapKit/MapKit.h>
+#import <Foundation/Foundation.h>
 
 @implementation CitiViewController
 
@@ -55,6 +56,20 @@
                  citiMarker.title    = title;
                  citiMarker.icon     = [GMSMarker markerImageWithColor:[UIColor blueColor]];
                  citiMarker.map      = self.mapView;
+
+                 NSLog(@"%@", [station objectForKey:@"availableBikes"]);
+                 NSString *num = [station objectForKey:@"availableBikes"];
+                 
+                 CLLocation *location = [[CLLocation alloc] initWithLatitude:[lati doubleValue] longitude:[longi doubleValue]];
+                 NSMutableArray *locations = [[NSMutableArray alloc] init];
+                 [locations addObject:location];
+                 citiMarker.title = title;
+                 if (num > 5) {
+                     citiMarker.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
+                 } else (num < 5);{
+                     citiMarker.icon = [GMSMarker markerImageWithColor:[UIColor redColor]];
+                 }
+                 citiMarker.map = self.mapView;
              }
          }
      }];
