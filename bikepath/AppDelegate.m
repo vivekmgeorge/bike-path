@@ -2,20 +2,19 @@
 //  AppDelegate.m
 //  bikepath
 //
-//  Created by Farheen Malik on 8/14/14.
+//  Created by Vivek George, Molly Huerster, Farheen Malik and Armen Vartan on 8/14/14.
 //  Copyright (c) 2014 Bike Path. All rights reserved.
 //
 
 #import "AppDelegate.h"
+#import <GoogleMaps/GoogleMaps.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
+    [GMSServices provideAPIKey:@"AIzaSyDqQ7Ds6pvIZucpKNe0OiEfCCyepC0SHnw"];
     return YES;
 }
 
