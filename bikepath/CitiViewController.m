@@ -2,7 +2,7 @@
 //  CitiViewController.m
 //  bikepath
 //
-//  Created by Apprentice on 8/15/14.
+//  Created by Vivek George, Molly Huerster, Farheen Malik and Armen Vartan on 8/15/14.
 //  Copyright (c) 2014 Bike Path. All rights reserved.
 //
 
@@ -42,25 +42,19 @@
              NSDictionary *greeting = [NSJSONSerialization JSONObjectWithData:data
                                                                       options:0
                                                                         error:NULL];
-             //             NSLog(@"%@", greeting);
-             //             NSLog(@"%@", [greeting objectForKey:@"stationBeanList"]);
              NSArray* stations = [greeting objectForKey:@"stationBeanList"];
              for(id st in stations) {
                  NSDictionary *station = (NSDictionary *)st;
                  NSString *lati = [station objectForKey:@"latitude"];
                  NSString *longi = [station objectForKey:@"longitude"];
                  NSString *title = [station objectForKey:@"stationName"];
+                 
                  GMSMarker *citiMarker = [[GMSMarker alloc] init];
-                 citiMarker.position= CLLocationCoordinate2DMake([lati doubleValue], [longi doubleValue]);
-                 //                 NSDouble *latitude = [[station objectForKey:@"latitude"]];
-                 //                 NSLog(@"%@", [report.latitude = [latitude doubleValue]]);
-                 //                 CLLocationCoordinate2DMake([[station objectForKey:[@"latitude" ] doubleValue], [[station objectForKey:[@"longitude" ] doubleValue]);
-                 NSLog(@"%@", [station objectForKey:@"latitude"]);
-                 citiMarker.title = title;
-                 citiMarker.icon = [GMSMarker markerImageWithColor:[UIColor blueColor]];
-                 citiMarker.map = self.mapView;
-//                 NSLog(@"latitude = %f", item.placemark.location.coordinate.latitude);
-//                 NSLog(@"longitude = %f", item.placemark.location.coordinate.longitude);
+                 
+                 citiMarker.position = CLLocationCoordinate2DMake([lati doubleValue], [longi doubleValue]);
+                 citiMarker.title    = title;
+                 citiMarker.icon     = [GMSMarker markerImageWithColor:[UIColor blueColor]];
+                 citiMarker.map      = self.mapView;
              }
          }
      }];
