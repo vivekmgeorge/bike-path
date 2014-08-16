@@ -7,11 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <MapKit/MapKit.h>
+#import <GoogleMaps/GoogleMaps.h>
 
 @interface SearchItem : NSObject
 
 @property NSString *searchQuery;
+//@property CLLocationCoordinate2D *position;
 @property (readonly) NSDate *creationDate;
 
 @end
