@@ -12,7 +12,7 @@
                         <viewControllerLayoutGuide type="top" id="gkH-hp-aio"/>
                         <viewControllerLayoutGuide type="bottom" id="doY-Pr-8J5"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="iVa-G1-NWu">
+                    <view key="view" contentMode="scaleToFill" id="iVa-G1-NWu" customClass="GMSMapView">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -29,6 +29,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="iVa-G1-NWu" id="Wg6-Kz-Xb5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ijX-LB-Qyj" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="G0S-6X-bg1" userLabel="Exit" sceneMemberID="exit"/>
