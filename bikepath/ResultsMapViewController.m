@@ -11,6 +11,8 @@
 
 @implementation ResultsMapViewController
 
-
+- (IBAction)unwindToSearchPage:(UIStoryboardSegue *)segue{
+    
+}
 
 @end
