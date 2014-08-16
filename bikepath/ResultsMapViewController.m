@@ -60,7 +60,7 @@
                  NSMutableArray *locations = [[NSMutableArray alloc] init];
                  [locations addObject:bikeStop];
 
-                 CLLocation *currentLocation = [[CLLocation alloc] initWithLatitude:40.748441 longitude:-73.985664];
+                 CLLocation *currentLocation = self.mapView.myLocation;
                  
                     for (CLLocation *location in locations) {
                         CLLocationDistance distance = [currentLocation distanceFromLocation:location];
