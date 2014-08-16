@@ -46,9 +46,10 @@
              NSArray* stations = [greeting objectForKey:@"stationBeanList"];
              for(id st in stations) {
                  NSDictionary *station = (NSDictionary *)st;
-                 NSString *lati = [station objectForKey:@"latitude"];
-                 NSString *longi = [station objectForKey:@"longitude"];
-                 NSString *title = [station objectForKey:@"stationName"];
+                 NSString *lati             = [station objectForKey:@"latitude"];
+                 NSString *longi            = [station objectForKey:@"longitude"];
+                 NSString *title            = [station objectForKey:@"stationName"];
+                 NSString *availableBikes   = [[station objectForKey:@"availableBikes"] stringValue];
                  
                  GMSMarker *citiMarker = [[GMSMarker alloc] init];
                  
@@ -65,8 +66,10 @@
                  
                  if ([num intValue] > 0) {
                      citiMarker.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
+                     citiMarker.snippet  = availableBikes;
                  } else {
                      citiMarker.icon = [GMSMarker markerImageWithColor:[UIColor redColor]];
+                     citiMarker.snippet = @"No bikes availabe at this location.";
                  };
                  citiMarker.map = self.mapView;
              }

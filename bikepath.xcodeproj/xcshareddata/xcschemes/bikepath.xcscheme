@@ -84,7 +84,7 @@
       <AdditionalOptions>
       </AdditionalOptions>
       <LocationScenarioReference
-         identifier = "../../dbc.gpx"
+         identifier = "../dbc.gpx"
          referenceType = "0">
       </LocationScenarioReference>
    </LaunchAction>
