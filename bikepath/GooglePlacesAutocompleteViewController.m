@@ -26,7 +26,7 @@
     NSLog(@"initWithCoder");
     if (self) {
         NSLog(@"hello");
-        searchQuery = [[SPGooglePlacesAutocompleteQuery alloc] initWithApiKey:@"AIzaSyBdmRd3XLlUecDEy-K0pS0s8eq-lEiMelU"];
+        searchQuery = [[SPGooglePlacesAutocompleteQuery alloc] initWithApiKey:@"AIzaSyAxaqfMyyc-WSrvsWP_jF2IUaTZVjkMlFo"];
         shouldBeginEditing = YES;
     }
     return self;
