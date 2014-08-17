@@ -64,9 +64,12 @@
                  NSMutableArray *locations = [[NSMutableArray alloc] init];
                  [locations addObject:location];
                  
-                 if ([num intValue] > 0) {
+                 if ([num intValue] > 3) {
                      citiMarker.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
                      citiMarker.snippet  = availableBikes;
+                 } else if ([num intValue] > 0) {
+                     citiMarker.icon = [GMSMarker markerImageWithColor:[UIColor orangeColor]];
+                     citiMarker.snippet = @"No bikes availabe at this location.";
                  } else {
                      citiMarker.icon = [GMSMarker markerImageWithColor:[UIColor redColor]];
                      citiMarker.snippet = @"No bikes availabe at this location.";
