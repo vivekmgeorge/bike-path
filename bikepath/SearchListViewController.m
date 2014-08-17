@@ -108,10 +108,10 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         
         ResultsMapViewController *destViewController = segue.destinationViewController;
-        NSLog(@"%@", destViewController);
         SearchItem *item = (SearchItem*)[self.searchResults objectAtIndex:indexPath.row];
-        NSLog(@"%@", item.searchQuery);
         destViewController.item = item;
+        
+        // to check what is being passed
         NSLog(@"%@", destViewController.item.searchQuery);
         NSLog(@"%f", destViewController.item.lati);
         NSLog(@"%f", destViewController.item.longi);
