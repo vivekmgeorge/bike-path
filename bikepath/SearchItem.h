@@ -13,7 +13,10 @@
 @interface SearchItem : NSObject
 
 @property NSString *searchQuery;
-//@property CLLocationCoordinate2D *position;
+@property CLLocationDegrees lati;
+@property CLLocationDegrees longi;
+@property CLLocationCoordinate2D position;
+@property NSString *address;
 @property (readonly) NSDate *creationDate;
 
 @end
