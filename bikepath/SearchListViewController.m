@@ -10,15 +10,16 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import <MapKit/MapKit.h>
 #import "SearchItem.h"
+#import "SearchItemTableCell.h"
 
 
 @interface SearchListViewController () <UITableViewDataSource, UITableViewDelegate>
 
-//@property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UISearchBar *searchField;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *searchResults;
-@property (strong,nonatomic) UITableView *tableView;
-@property(strong,nonatomic) UISearchBar *mySearchBar;
+//@property (strong,nonatomic) UITableView *tableView;
+//@property(strong,nonatomic) UISearchBar *mySearchBar;
 
 @end
 
@@ -29,27 +30,18 @@
     [super viewDidLoad];
     self.searchResults = [[NSMutableArray alloc] init];
  
-    self.mySearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 70, 320, 44)];
-    //set the delegate to self so we can listen for events
-    self.mySearchBar.delegate = self;
-    //display the cancel button next to the search bar
-    self.mySearchBar.showsCancelButton = YES;
-    //add the search bar to the view
-    [self.view addSubview:self.mySearchBar];
+//    self.mySearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 70, 320, 44)];
+//    //set the delegate to self so we can listen for events
+//    self.mySearchBar.delegate = self;
+//    //display the cancel button next to the search bar
+//    self.mySearchBar.showsCancelButton = YES;
+//    //add the search bar to the view
+//    [self.view addSubview:self.mySearchBar];
     
 
     //
 }
 
-//- (id) initWithNibName:(NSString *)nibName bundle:(NSString*)bundleName
-//{
-//    self = [super initWitNibName:nibName bundle:bundleName];
-//    if (self)
-//    {
-//        
-//    }
-//    return self;
-//}
 
 - (void)didReceiveMemoryWarning
 {
@@ -76,11 +68,11 @@
 -(void) searchBarSearchButtonClicked: (UISearchBar *) searchBar
 {
     self.searchLocation = [[SearchItem alloc] init];
-    self.searchLocation.searchQuery = self.mySearchBar.text;
+    self.searchLocation.searchQuery = self.searchField.text;
     MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
     request.naturalLanguageQuery = self.searchLocation.searchQuery;
     
-    NSLog(self.searchLocation.searchQuery);
+    NSLog(@"%@", self.searchLocation.searchQuery);
     
     MKLocalSearch *search = [[MKLocalSearch alloc]initWithRequest:request];
     
@@ -107,11 +99,9 @@
                 
                 [self.searchResults addObject:query];
             }
-        self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
         self.tableView.dataSource = self;
         self.tableView.delegate = self;
-        [self.view addSubview:self.tableView];
-//        [self.tableView reloadData];
+        [self.tableView reloadData];
 
     }];
 }
@@ -124,29 +114,32 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    int x = [self.searchResults count];
+    NSLog(@"count = %i", x);
     return [self.searchResults count];
 
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *MyIdentifier = @"MyReuseIdentifier";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
+    static NSString *CellIdentifier = @"SearchResultTableCell";
+    SearchItemTableCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier:MyIdentifier];
+        cell = [[SearchItemTableCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier:CellIdentifier];
     }
     SearchItem *item = (SearchItem*)[self.searchResults objectAtIndex:indexPath.row];
-    cell.textLabel.text = item.searchQuery;
-//    cell.detailTextLabel.text = item.address;
+    cell.nameLabel.text = item.searchQuery;
+    cell.addressLabel.text = item.address;
     return cell;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"showRecipeDetail"]) {
+    if ([segue.identifier isEqualToString:@"showResults"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-//        ResultsMapViewController *destViewController = segue.destinationViewController;
         
-//        Recipe *recipe = [recipes objectAtIndex:indexPath.row];
+//        ResultsMapViewController *destViewController = segue.destinationViewController;
+    
+        SearchItem *item = (SearchItem*)[self.searchResults objectAtIndex:indexPath.row];
 //        destViewController.recipe = recipe;
     }
 }
