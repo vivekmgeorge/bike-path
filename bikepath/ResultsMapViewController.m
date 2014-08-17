@@ -108,8 +108,6 @@
                  }
                  
              }
-             NSLog(@"%@", closestLocation);
-             NSLog(@"%f", closestLocation.coordinate.longitude);
              
              NSString *title            = [closestStation objectForKey:@"stationName"];
              NSString *availableBikes   = [[closestStation objectForKey:@"availableBikes"] stringValue];
@@ -128,44 +126,32 @@
              citiMarker.title       = title;
              citiMarker.position    = closestLocation.coordinate;
              citiMarker.map         = mapView_;
-             NSLog(@"%@", citiMarker);
              
              [waypoints_ addObject:citiMarker];
              NSString *citiMarkerString = [[NSString alloc] initWithFormat:@"%f,%f", closestLocation.coordinate.latitude, closestLocation.coordinate.longitude];
              [waypointStrings_ addObject:citiMarkerString];
-             NSLog(@"hello %@", waypointStrings_);
-         }
+             
+             CLLocationCoordinate2D endStationPosition = CLLocationCoordinate2DMake(40.722638, -74.009070);
+             GMSMarker *endStationPoint = [GMSMarker markerWithPosition:endStationPosition];
+             endStationPoint.title = @"End Station";
+             endStationPoint.map = mapView_;
+             [waypoints_ addObject:endStationPoint];
+             
+             NSString *endStationPositionString = [[NSString alloc] initWithFormat:@"%f,%f", 40.722638, -74.009070];
+             [waypointStrings_ addObject:endStationPositionString];
+             
+             NSString *sensor = @"false";
+             NSArray *parameters = [NSArray arrayWithObjects:sensor, waypointStrings_, nil];
+             NSArray *keys = [NSArray arrayWithObjects:@"sensor", @"waypoints", nil];
+             NSDictionary *query = [NSDictionary dictionaryWithObjects:parameters
+                                                               forKeys:keys];
+             MDDirectionService *mds=[[MDDirectionService alloc] init];
+             SEL selector = @selector(addDirections:);
+             [mds setDirectionsQuery:query
+                        withSelector:selector
+                        withDelegate:self];
+         };
      }];
-    
-    CLLocationCoordinate2D startStationPosition = CLLocationCoordinate2DMake(40.705638, -74.013070);
-    GMSMarker *startStationPoint = [GMSMarker markerWithPosition:startStationPosition];
-    startStationPoint.title = @"Start station";
-    startStationPoint.map = mapView_;
-    [waypoints_ addObject:startStationPoint];
-    
-    NSString *startStationPositionString = [[NSString alloc] initWithFormat:@"%f,%f", 40.705638, -74.013070];
-    [waypointStrings_ addObject:startStationPositionString];
-    
-    CLLocationCoordinate2D endStationPosition = CLLocationCoordinate2DMake(40.722638, -74.009070);
-    GMSMarker *endStationPoint = [GMSMarker markerWithPosition:endStationPosition];
-    endStationPoint.title = @"End Station";
-    endStationPoint.map = mapView_;
-    [waypoints_ addObject:endStationPoint];
-    
-    NSString *endStationPositionString = [[NSString alloc] initWithFormat:@"%f,%f", 40.722638, -74.009070];
-    [waypointStrings_ addObject:endStationPositionString];
-    
-    NSString *sensor = @"false";
-    NSArray *parameters = [NSArray arrayWithObjects:sensor, waypointStrings_,
-                           nil];
-    NSArray *keys = [NSArray arrayWithObjects:@"sensor", @"waypoints", nil];
-    NSDictionary *query = [NSDictionary dictionaryWithObjects:parameters
-                                                      forKeys:keys];
-    MDDirectionService *mds=[[MDDirectionService alloc] init];
-    SEL selector = @selector(addDirections:);
-    [mds setDirectionsQuery:query
-               withSelector:selector
-               withDelegate:self];
 }
 
 - (void)addDirections:(NSDictionary *)json {
