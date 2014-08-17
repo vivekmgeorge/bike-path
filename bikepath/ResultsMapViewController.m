@@ -159,7 +159,7 @@
         
         GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.706638
                                                                 longitude:-74.009070
-                                                                     zoom:12];
+                                                                     zoom:13];
         mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
         mapView_.delegate = self;
         self.view = mapView_;
@@ -173,14 +173,23 @@
         NSString *startPositionString = [[NSString alloc] initWithFormat:@"%f,%f", 40.706638, -74.009070];
         [waypointStrings_ addObject:startPositionString];
         
-        CLLocationCoordinate2D middlePosition = CLLocationCoordinate2DMake(40.732638, -74.004070);
-        GMSMarker *middlePoint = [GMSMarker markerWithPosition:middlePosition];
-        middlePoint.title = @"Middle";
-        middlePoint.map = mapView_;
-        [waypoints_ addObject:middlePoint];
+        CLLocationCoordinate2D startStationPosition = CLLocationCoordinate2DMake(40.705638, -74.013070);
+        GMSMarker *startStationPoint = [GMSMarker markerWithPosition:startStationPosition];
+        startStationPoint.title = @"Middle";
+        startStationPoint.map = mapView_;
+        [waypoints_ addObject:startStationPoint];
         
-        NSString *middlePositionString = [[NSString alloc] initWithFormat:@"%f,%f", 40.732638, -74.004070];
-        [waypointStrings_ addObject:middlePositionString];
+        NSString *startStationPositionString = [[NSString alloc] initWithFormat:@"%f,%f", 40.705638, -74.013070];
+        [waypointStrings_ addObject:startStationPositionString];
+        
+        CLLocationCoordinate2D endStationPosition = CLLocationCoordinate2DMake(40.722638, -74.009070);
+        GMSMarker *endStationPoint = [GMSMarker markerWithPosition:endStationPosition];
+        endStationPoint.title = @"Middle";
+        endStationPoint.map = mapView_;
+        [waypoints_ addObject:endStationPoint];
+        
+        NSString *endStationPositionString = [[NSString alloc] initWithFormat:@"%f,%f", 40.722638, -74.009070];
+        [waypointStrings_ addObject:endStationPositionString];
         
         CLLocationCoordinate2D endPosition = CLLocationCoordinate2DMake(40.720638, -74.006070);
         GMSMarker *endPoint = [GMSMarker markerWithPosition:endPosition];
