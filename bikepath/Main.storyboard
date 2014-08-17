@@ -13,7 +13,7 @@
                         <viewControllerLayoutGuide type="bottom" id="doY-Pr-8J5"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="iVa-G1-NWu" customClass="GMSMapView">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -47,7 +47,7 @@
                         <viewControllerLayoutGuide type="bottom" id="fch-qt-Ho0"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="rUA-eI-RaC" customClass="GMSMapView">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -68,7 +68,7 @@
                         <viewControllerLayoutGuide type="bottom" id="hYZ-xm-PYs"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="eN0-HA-GRj" customClass="GMSMapView">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -96,7 +96,7 @@
                         <viewControllerLayoutGuide type="bottom" id="NBP-ZH-SUb"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="vGL-th-Lyy">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Enter your destination" showsSearchResultsButton="YES" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ogR-Xi-9rc">
@@ -112,7 +112,7 @@
                                 </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="hKc-k8-JR0">
-                                <rect key="frame" x="0.0" y="109" width="332" height="472"/>
+                                <rect key="frame" x="0.0" y="109" width="332" height="384"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -190,7 +190,7 @@
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
+        <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="HYJ-FP-ZUY"/>
