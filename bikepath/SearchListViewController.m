@@ -24,6 +24,10 @@
 
 @implementation SearchListViewController
 
+- (IBAction)unwindToSearchPage:(UIStoryboardSegue *)segue {
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
