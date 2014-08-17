@@ -149,6 +149,69 @@
                        withDelegate:self];
         }
     }
+
+    - (void)viewDidLoad{
+        [super viewDidLoad];
+        
+        GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.706638
+                                                                longitude:-74.009070
+                                                                     zoom:13];
+        mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+        mapView_.delegate = self;
+        self.view = mapView_;
+        
+        NSString *sensor = @"false";
+        NSArray *parameters = [NSArray arrayWithObjects:sensor, waypointStrings_,
+                               nil];
+        NSArray *keys = [NSArray arrayWithObjects:@"sensor", @"waypoints", nil];
+        NSDictionary *query = [NSDictionary dictionaryWithObjects:parameters
+                                                          forKeys:keys];
+        
+        CLLocationCoordinate2D startPosition = CLLocationCoordinate2DMake(40.706638, -74.009070);
+        GMSMarker *startPoint = [[GMSMarker alloc] init];
+        startPoint.position = startPosition;
+        startPoint.title = @"Hello";
+        startPoint.map = mapView_;
+        [waypoints_ addObject:startPoint];
+        
+        NSString *startPositionString = [[NSString alloc] initWithFormat:@"%f,%f", 40.706638, -74.009070];
+        [waypointStrings_ addObject:startPositionString];
+        
+        CLLocationCoordinate2D endPosition = CLLocationCoordinate2DMake(40.730638, -74.006070);
+        GMSMarker *endPoint = [[GMSMarker alloc] init];
+        endPoint.position = endPosition;
+        endPoint.title = @"Hello";
+        endPoint.map = mapView_;
+        [waypoints_ addObject:endPoint];
+        
+        NSString *endPositionString = [[NSString alloc] initWithFormat:@"%f,%f", 40.730638, -74.006070];
+        [waypointStrings_ addObject:endPositionString];
+        
+        MDDirectionService *mdss=[[MDDirectionService alloc] init];
+        SEL selectorr = @selector(addDirections:);
+        [mdss setDirectionsQuery:query
+                   withSelector:selectorr
+                   withDelegate:self];
+        
+        CLLocationCoordinate2D middlePosition = CLLocationCoordinate2DMake(40.732638, -74.004070);
+        GMSMarker *middlePoint = [[GMSMarker alloc] init];
+        middlePoint.position = middlePosition;
+        middlePoint.title = @"Hello";
+        middlePoint.map = mapView_;
+        [waypoints_ addObject:middlePoint];
+        
+        NSString *middlePositionString = [[NSString alloc] initWithFormat:@"%f,%f", 40.732638, -74.004070];
+        [waypointStrings_ addObject:middlePositionString];
+        
+
+        
+        MDDirectionService *mds=[[MDDirectionService alloc] init];
+        SEL selector = @selector(addDirections:);
+        [mds setDirectionsQuery:query
+                   withSelector:selector
+                   withDelegate:self];
+    }
+
     - (void)addDirections:(NSDictionary *)json {
 
         NSDictionary *routes = [json objectForKey:@"routes"][0];
@@ -159,10 +222,8 @@
         GMSPolyline *polyline = [GMSPolyline polylineWithPath:path];
         polyline.map = mapView_;
     }
-    - (void)viewDidLoad
-    {
-        [super viewDidLoad];
-    }
+
+
 
     - (void)didReceiveMemoryWarning
     {
