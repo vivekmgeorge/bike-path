@@ -12,6 +12,6 @@
 @interface SearchListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate>
 
 @property SearchItem *searchLocation;
-@property NSMutableArray *searchResults;
+//@property NSMutableArray *searchResults;
 
 @end
