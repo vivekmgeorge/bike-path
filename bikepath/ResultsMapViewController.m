@@ -50,30 +50,15 @@
              NSDictionary *greeting = [NSJSONSerialization JSONObjectWithData:data
                                                                       options:0
                                                                         error:NULL];
-             NSArray* stations = [greeting objectForKey:@"stationBeanList"];
+             NSArray *stations = [greeting objectForKey:@"stationBeanList"];
              CLLocationDistance smallestDistance = DBL_MAX;
              CLLocation *closestLocation;
+             NSDictionary *closestStation;
+             
              for(id st in stations) {
                  NSDictionary *station      = (NSDictionary *)st;
                  NSString *lati             = [station objectForKey:@"latitude"];
                  NSString *longi            = [station objectForKey:@"longitude"];
-                 NSString *title            = [station objectForKey:@"stationName"];
-                 NSString *availableBikes   = [[station objectForKey:@"availableBikes"] stringValue];
-                 NSNumber *num              = @([[station objectForKey:@"availableBikes"] intValue]);
-                 
-                 GMSMarker *citiMarker  = [[GMSMarker alloc] init];
-                 citiMarker.position    = closestLocation.coordinate;
-                 citiMarker.title       = title;
-                 
-                 if ([num intValue] > 0) {
-                     citiMarker.icon    = [GMSMarker markerImageWithColor:[UIColor greenColor]];
-                     citiMarker.snippet = availableBikes;
-                 } else {
-                     citiMarker.icon    = [GMSMarker markerImageWithColor:[UIColor redColor]];
-                     citiMarker.snippet = @"No bikes available at this location.";
-                 };
-                 
-                 citiMarker.map = self.mapView;
 
                  CLLocation *bikeStop           = [[CLLocation alloc] initWithLatitude:[lati doubleValue] longitude:[longi doubleValue]];
                  CLLocation *currentLocation    = self.mapView.myLocation;
@@ -87,10 +72,31 @@
                         if (distance < smallestDistance) {
                             smallestDistance    = distance;
                             closestLocation     = location;
+                            closestStation      = station;
                         }
                     }
+                 
              }
-             NSLog(@"%f", smallestDistance);
+             NSLog(@"%f", closestLocation.coordinate.latitude);
+             NSLog(@"%f", closestLocation.coordinate.longitude);
+             
+             NSString *title            = [closestStation objectForKey:@"stationName"];
+             NSString *availableBikes   = [[closestStation objectForKey:@"availableBikes"] stringValue];
+             NSNumber *numBikes         = @([[closestStation objectForKey:@"availableBikes"] intValue]);
+             
+             GMSMarker *citiMarker  = [[GMSMarker alloc] init];
+             
+             if ([numBikes intValue] > 0) {
+                 citiMarker.icon    = [GMSMarker markerImageWithColor:[UIColor greenColor]];
+                 citiMarker.snippet = availableBikes;
+             } else {
+                 citiMarker.icon    = [GMSMarker markerImageWithColor:[UIColor redColor]];
+                 citiMarker.snippet = @"No bikes available at this location.";
+             };
+             
+             citiMarker.title       = title;
+             citiMarker.position    = closestLocation.coordinate;
+             citiMarker.map         = self.mapView;
         }
      }];
 }
