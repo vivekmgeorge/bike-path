@@ -29,6 +29,7 @@
     self.mapView.settings.compassButton     = YES;
     self.mapView.settings.myLocationButton  = YES;
     self.mapView.settings.zoomGestures      = YES;
+    self.mapView.settings.scrollGestures    = YES;
     self.mapView.delegate                   = self;
     
     NSURL *url = [NSURL URLWithString:@"http://www.citibikenyc.com/stations/json"];
