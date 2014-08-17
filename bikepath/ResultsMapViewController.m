@@ -50,7 +50,7 @@
     mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     mapView_.delegate = self;
     self.view = mapView_;
-    NSLog(@"%@", locationManager.location);
+
     CLLocationCoordinate2D startPosition = locationManager.location.coordinate;
     GMSMarker *startPoint = [GMSMarker markerWithPosition:startPosition];
     startPoint.title = @"Start";
@@ -86,6 +86,9 @@
              CLLocation *closestLocation;
              NSDictionary *closestStation;
              
+             CLLocation *closestEndLocation;
+             NSDictionary *closestEndStation;
+             
              for(id st in stations) {
                  NSDictionary *station      = (NSDictionary *)st;
                  NSString *stationLatitude  = [station objectForKey:@"latitude"];
@@ -107,38 +110,62 @@
                      }
                  }
                  
+                 CLLocation *endLocation = [[CLLocation alloc] initWithLatitude:endPosition.latitude longitude:endPosition.longitude];
+                 
+                 for (CLLocation *location in locations) {
+                     CLLocationDistance distance = [endLocation distanceFromLocation:location];
+                     
+                     if (distance < smallestDistance) {
+                         smallestDistance    = distance;
+                         closestEndLocation  = location;
+                         closestEndStation   = station;
+                     }
+                 }
              }
              
              NSString *title            = [closestStation objectForKey:@"stationName"];
              NSString *availableBikes   = [[closestStation objectForKey:@"availableBikes"] stringValue];
              NSNumber *numBikes         = @([[closestStation objectForKey:@"availableBikes"] intValue]);
              
-             GMSMarker *citiMarker  = [[GMSMarker alloc] init];
+             GMSMarker *startStation  = [[GMSMarker alloc] init];
              
              if ([numBikes intValue] > 0) {
-                 citiMarker.icon    = [GMSMarker markerImageWithColor:[UIColor greenColor]];
-                 citiMarker.snippet = availableBikes;
+                 startStation.icon    = [GMSMarker markerImageWithColor:[UIColor greenColor]];
+                 startStation.snippet = availableBikes;
              } else {
-                 citiMarker.icon    = [GMSMarker markerImageWithColor:[UIColor redColor]];
-                 citiMarker.snippet = @"No bikes available at this location.";
+                 startStation.icon    = [GMSMarker markerImageWithColor:[UIColor redColor]];
+                 startStation.snippet = @"No bikes available at this location.";
              };
              
-             citiMarker.title       = title;
-             citiMarker.position    = closestLocation.coordinate;
-             citiMarker.map         = mapView_;
+             startStation.title       = title;
+             startStation.position    = closestLocation.coordinate;
+             startStation.map         = mapView_;
              
-             [waypoints_ addObject:citiMarker];
-             NSString *citiMarkerString = [[NSString alloc] initWithFormat:@"%f,%f", closestLocation.coordinate.latitude, closestLocation.coordinate.longitude];
-             [waypointStrings_ addObject:citiMarkerString];
+             [waypoints_ addObject:startStation];
+             NSString *startStationString = [[NSString alloc] initWithFormat:@"%f,%f", closestLocation.coordinate.latitude, closestLocation.coordinate.longitude];
+             [waypointStrings_ addObject:startStationString];
              
-             CLLocationCoordinate2D endStationPosition = CLLocationCoordinate2DMake(40.722638, -74.009070);
-             GMSMarker *endStationPoint = [GMSMarker markerWithPosition:endStationPosition];
-             endStationPoint.title = @"End Station";
-             endStationPoint.map = mapView_;
-             [waypoints_ addObject:endStationPoint];
+             NSString *endTitle            = [closestStation objectForKey:@"stationName"];
+             NSString *availableEndBikes   = [[closestStation objectForKey:@"availableBikes"] stringValue];
+             NSNumber *numEndBikes         = @([[closestStation objectForKey:@"availableBikes"] intValue]);
              
-             NSString *endStationPositionString = [[NSString alloc] initWithFormat:@"%f,%f", 40.722638, -74.009070];
-             [waypointStrings_ addObject:endStationPositionString];
+             GMSMarker *endStation  = [[GMSMarker alloc] init];
+             
+             if ([numBikes intValue] > 0) {
+                 endStation.icon    = [GMSMarker markerImageWithColor:[UIColor greenColor]];
+                 endStation.snippet = availableBikes;
+             } else {
+                 endStation.icon    = [GMSMarker markerImageWithColor:[UIColor redColor]];
+                 endStation.snippet = @"No bikes available at this location.";
+             };
+             
+             endStation.title       = endTitle;
+             endStation.position    = closestEndLocation.coordinate;
+             endStation.map         = mapView_;
+             
+             [waypoints_ addObject:endStation];
+             NSString *endStationString = [[NSString alloc] initWithFormat:@"%f,%f", closestEndLocation.coordinate.latitude, closestEndLocation.coordinate.longitude];
+             [waypointStrings_ addObject:endStationString];
              
              NSString *sensor = @"false";
              NSArray *parameters = [NSArray arrayWithObjects:sensor, waypointStrings_, nil];
@@ -150,7 +177,7 @@
              [mds setDirectionsQuery:query
                         withSelector:selector
                         withDelegate:self];
-         };
+         }
      }];
 }
 
