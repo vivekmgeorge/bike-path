@@ -111,17 +111,17 @@
 //    }];
 //
 
-    - (void)loadView {
-        waypoints_ = [[NSMutableArray alloc]init];
-        waypointStrings_ = [[NSMutableArray alloc]init];
-        GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.706638
-                                                                longitude:-74.009070
-                                                                     zoom:13];
-        mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
-        mapView_.delegate = self;
-        self.view = mapView_;
-
-    }
+//    - (void)loadView {
+//        waypoints_ = [[NSMutableArray alloc]init];
+//        waypointStrings_ = [[NSMutableArray alloc]init];
+//        GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.706638
+//                                                                longitude:-74.009070
+//                                                                     zoom:13];
+//        mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+//        mapView_.delegate = self;
+//        self.view = mapView_;
+//
+//    }
 
     - (void)mapView:(GMSMapView *)mapView didTapAtCoordinate:
     (CLLocationCoordinate2D)coordinate {
@@ -152,6 +152,10 @@
 
     - (void)viewDidLoad{
         [super viewDidLoad];
+        
+        waypoints_ = [[NSMutableArray alloc]init];
+        waypointStrings_ = [[NSMutableArray alloc]init];
+
         
         GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.706638
                                                                 longitude:-74.009070
@@ -186,7 +190,7 @@
         
         NSString *endPositionString = [[NSString alloc] initWithFormat:@"%f,%f", 40.720638, -74.006070];
         [waypointStrings_ addObject:endPositionString];
-        NSLog(@"%@", waypoints_);
+        NSLog(@"%@", waypointStrings_);
         
         if([waypoints_ count]>1){
             NSString *sensor = @"false";
