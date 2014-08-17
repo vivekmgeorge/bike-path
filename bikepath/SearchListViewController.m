@@ -55,19 +55,6 @@
 -(void) searchBarSearchButtonClicked: (UISearchBar *) searchBar
 {
     
-//    [FTGooglePlacesAPIService provideAPIKey:@"AIzaSyBdmRd3XLlUecDEy-K0pS0s8eq-lEiMelU"];
-//    //  Optionally enable debug mode
-//    [FTGooglePlacesAPIService setDebugLoggingEnabled:YES];
-//    
-//    //  Create location around which to search (hardcoded location of Big Ben here)
-//    CLLocationCoordinate2D locationCoordinate = CLLocationCoordinate2DMake(51.501103,-0.124565);
-//    
-//    //  Create request searching nearest galleries and museums
-//    FTGooglePlacesAPINearbySearchRequest *request = [[FTGooglePlacesAPINearbySearchRequest alloc] initWithLocationCoordinate:locationCoordinate];
-//    request.rankBy = FTGooglePlacesAPIRequestParamRankByDistance;
-//    request.types = @[@"art_gallery", @"museum"];
-    
-    
     self.searchLocation = [[SearchItem alloc] init];
     self.searchLocation.searchQuery = self.searchField.text;
     MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
