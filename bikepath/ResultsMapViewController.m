@@ -201,19 +201,17 @@
         [waypointStrings_ addObject:endPositionString];
         NSLog(@"%@", waypointStrings_);
         
-        if([waypoints_ count]>1){
-            NSString *sensor = @"false";
-            NSArray *parameters = [NSArray arrayWithObjects:sensor, waypointStrings_,
-                                   nil];
-            NSArray *keys = [NSArray arrayWithObjects:@"sensor", @"waypoints", nil];
-            NSDictionary *query = [NSDictionary dictionaryWithObjects:parameters
-                                                              forKeys:keys];
-            MDDirectionService *mds=[[MDDirectionService alloc] init];
-            SEL selector = @selector(addDirections:);
-            [mds setDirectionsQuery:query
-                       withSelector:selector
-                       withDelegate:self];
-        }
+        NSString *sensor = @"false";
+        NSArray *parameters = [NSArray arrayWithObjects:sensor, waypointStrings_,
+                               nil];
+        NSArray *keys = [NSArray arrayWithObjects:@"sensor", @"waypoints", nil];
+        NSDictionary *query = [NSDictionary dictionaryWithObjects:parameters
+                                                          forKeys:keys];
+        MDDirectionService *mds=[[MDDirectionService alloc] init];
+        SEL selector = @selector(addDirections:);
+        [mds setDirectionsQuery:query
+                   withSelector:selector
+                   withDelegate:self];
     }
 
     - (void)addDirections:(NSDictionary *)json {
