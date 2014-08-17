@@ -46,6 +46,7 @@
     mapView_.delegate = self;
     self.view = mapView_;
     
+
     CLLocationCoordinate2D startPosition = CLLocationCoordinate2DMake(40.706638, -74.009070);
     GMSMarker *startPoint = [GMSMarker markerWithPosition:startPosition];
     startPoint.title = @"Start";
@@ -78,7 +79,7 @@
                  NSString *stationLongitude = [station objectForKey:@"longitude"];
                  
                  CLLocation *bikeStop = [[CLLocation alloc] initWithLatitude:[stationLatitude doubleValue] longitude:[stationLongitude doubleValue]];
-                 CLLocation *currentLocation = self.mapView.myLocation;
+                 CLLocation *currentLocation = [[CLLocation alloc] initWithLatitude:startPosition.latitude longitude:startPosition.longitude];
                  
                  NSMutableArray *locations = [[NSMutableArray alloc] init];
                  [locations addObject:bikeStop];
