@@ -11,11 +11,13 @@
 #import <MapKit/MapKit.h>
 #import "SearchItem.h"
 
-@interface SearchListViewController ()
+@interface SearchListViewController () <UITableViewDataSource, UITableViewDelegate>
 
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
+//@property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UISearchBar *searchField;
-//@property (strong, nonatomic) NSMutableArray *searchResults;
+@property (strong, nonatomic) NSMutableArray *searchResults;
+@property (strong,nonatomic) UITableView *tableView;
+@property(strong,nonatomic) UISearchBar *mySearchBar;
 
 @end
 
@@ -25,8 +27,28 @@
 {
     [super viewDidLoad];
     self.searchResults = [[NSMutableArray alloc] init];
-//    
+ 
+    self.mySearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 70, 320, 44)];
+    //set the delegate to self so we can listen for events
+    self.mySearchBar.delegate = self;
+    //display the cancel button next to the search bar
+    self.mySearchBar.showsCancelButton = YES;
+    //add the search bar to the view
+    [self.view addSubview:self.mySearchBar];
+    
+
+    //
 }
+
+//- (id) initWithNibName:(NSString *)nibName bundle:(NSString*)bundleName
+//{
+//    self = [super initWitNibName:nibName bundle:bundleName];
+//    if (self)
+//    {
+//        
+//    }
+//    return self;
+//}
 
 - (void)didReceiveMemoryWarning
 {
@@ -50,10 +72,10 @@
 {
 }
 
--(NSMutableArray*) searchBarSearchButtonClicked: (UISearchBar *) searchBar
+-(void) searchBarSearchButtonClicked: (UISearchBar *) searchBar
 {
     self.searchLocation = [[SearchItem alloc] init];
-    self.searchLocation.searchQuery = self.searchField.text;
+    self.searchLocation.searchQuery = self.mySearchBar.text;
     MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
     request.naturalLanguageQuery = self.searchLocation.searchQuery;
     
@@ -78,48 +100,78 @@
                 
                 [self.searchResults addObject:query];
             }
+        
+        // debugging for search results list
+        for (NSObject *item in self.searchResults)
+        {
+            SearchItem *item2 = (SearchItem*)item;
+            NSLog(item2.searchQuery);
+        }
+        self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+        self.tableView.dataSource = self;
+        self.tableView.delegate = self;
+        [self.view addSubview:self.tableView];
+//        [self.tableView reloadData];
+
     }];
-//    [self.tableView reloadData];
-    return self.searchResults;
 }
 
-
+-(void)showResultsTable
+{
+ 
+}
 #pragma Table View Methods
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    return 1;
-}
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+//{
+//#warning Potentially incomplete method implementation.
+//    return 1;
+//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-   return [self.searchResults count];
+    int x = [self.searchResults count];
+    NSLog(@"count = %i", x);
+    return [self.searchResults count];
+
+//    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"ListPrototypeCell" forIndexPath:indexPath];
+    static NSString *MyIdentifier = @"MyReuseIdentifier";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier:MyIdentifier];
+    }
     SearchItem *item = (SearchItem*)[self.searchResults objectAtIndex:indexPath.row];
     cell.textLabel.text = item.searchQuery;
+//    cell.textLabel.text = @"foo";
     return cell;
+//    
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"ListPrototypeCell" forIndexPath:indexPath];
+////    SearchItem *item = (SearchItem*)[self.searchResults objectAtIndex:indexPath.row];
+////    cell.textLabel.text = item.searchQuery;
+//    
+//    cell.textLabel.text = @"foo";
+//    return cell;
 }
 
 
 #pragma Search Methods
 
--(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-{
-    NSLog(@"now here");
-    [self.tableView reloadData];
-//    [self filterContentForSearchText:searchString
-//    scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
-//                                      objectAtIndex:[self.searchDisplayController.searchBar
-//                                                     selectedScopeButtonIndex]];
-////
-    return YES;
-}
-
+//-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+//{
+//    NSLog(@"now here");
+//    [self.tableView reloadData];
+////    [self filterContentForSearchText:searchString
+////    scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
+////                                      objectAtIndex:[self.searchDisplayController.searchBar
+////                                                     selectedScopeButtonIndex]];
+//////
+//    return YES;
+//}
+//
 @end
 
 
