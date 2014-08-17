@@ -62,18 +62,6 @@
             }
     }];
     
-//    [mapView_ setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
-//    NSString *urlString = [NSString stringWithFormat:@"http://maps.google.com/maps/geo?q=%@&output=CSV", "FETCH TEXT FROM SEARCH BAR" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
-    
-//    self.title = @"Searching";
-//    UISearchBar *nameSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
-//    nameSearchBar = self;
-//    nameSearchBar.placeholder = @"Enter Search Item";
-//    nameSearchBar.tintColor = [UIColor blackColor];
-//    [nameSearchBar sizeToFit];
-//    [self.view addSubview:nameSearchBar];
-//
-//    self.searchField.delegate = self;
 }
 
 
