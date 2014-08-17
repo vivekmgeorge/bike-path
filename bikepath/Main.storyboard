@@ -143,7 +143,7 @@
                                         <connections>
                                             <outlet property="addressLabel" destination="eoy-DK-cgH" id="xtx-4v-ghE"/>
                                             <outlet property="nameLabel" destination="Xys-VG-fV5" id="Hcf-z5-7Zr"/>
-                                            <segue destination="StR-Yi-Gvc" kind="push" id="HYJ-FP-ZUY"/>
+                                            <segue destination="StR-Yi-Gvc" kind="push" identifier="showResults" id="HYJ-FP-ZUY"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -155,7 +155,7 @@
                     <navigationItem key="navigationItem" id="apk-eL-f0g">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="Zbg-N4-Qjh">
                             <connections>
-                                <segue destination="StR-Yi-Gvc" kind="push" id="LmC-ZQ-9e3"/>
+                                <segue destination="StR-Yi-Gvc" kind="push" identifier="" id="LmC-ZQ-9e3"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -193,6 +193,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="LmC-ZQ-9e3"/>
+        <segue reference="HYJ-FP-ZUY"/>
     </inferredMetricsTieBreakers>
 </document>
