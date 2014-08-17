@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8A18221C199ED28D001D7AE2 /* SearchItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A18221B199ED28D001D7AE2 /* SearchItem.m */; };
-		8A48A710199FC4420030F153 /* SearchListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A48A70F199FC4420030F153 /* SearchListViewController.m */; };
 		09F19F78199EF6F500825ADE /* CitiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F19F77199EF6F500825ADE /* CitiViewController.m */; };
 		09F19F7B199FB16600825ADE /* LaunchScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F19F7A199FB16600825ADE /* LaunchScreenViewController.m */; };
+		80942BA319A048AC009305CB /* MDDirectionService.m in Sources */ = {isa = PBXBuildFile; fileRef = 80942BA219A048AC009305CB /* MDDirectionService.m */; };
+		8A18221C199ED28D001D7AE2 /* SearchItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A18221B199ED28D001D7AE2 /* SearchItem.m */; };
+		8A48A710199FC4420030F153 /* SearchListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A48A70F199FC4420030F153 /* SearchListViewController.m */; };
 		8AB03325199DAD8A0036FF7A /* SearchMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB03324199DAD8A0036FF7A /* SearchMapViewController.m */; };
 		8AB03328199DADA80036FF7A /* ResultsMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB03327199DADA80036FF7A /* ResultsMapViewController.m */; };
 		8AB0332A199DB2930036FF7A /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AB03329199DB2930036FF7A /* GoogleMaps.framework */; };
@@ -40,6 +41,7 @@
 		8AE403E9199D924200B926AB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8AE403E7199D924200B926AB /* InfoPlist.strings */; };
 		8AE403EB199D924200B926AB /* bikepathTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AE403EA199D924200B926AB /* bikepathTests.m */; };
 		8AE403F5199D951100B926AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8AE403F4199D951100B926AB /* Main.storyboard */; };
+		A92B12CA175940D7A6AD6942 /* libPods-bikepath.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DCC7FAA8B0C7490B8457CBC3 /* libPods-bikepath.a */; };
 		C2813E40199E789700B19D69 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2813E3F199E789700B19D69 /* MapKit.framework */; };
 		C2813E42199E7BD800B19D69 /* dbc.gpx in Resources */ = {isa = PBXBuildFile; fileRef = C2813E41199E7BD800B19D69 /* dbc.gpx */; };
 /* End PBXBuildFile section */
@@ -55,14 +57,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8A18221A199ED28D001D7AE2 /* SearchItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchItem.h; sourceTree = "<group>"; };
-		8A18221B199ED28D001D7AE2 /* SearchItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchItem.m; sourceTree = "<group>"; };
-		8A48A70E199FC4420030F153 /* SearchListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchListViewController.h; sourceTree = "<group>"; };
-		8A48A70F199FC4420030F153 /* SearchListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchListViewController.m; sourceTree = "<group>"; };
 		09F19F76199EF6F500825ADE /* CitiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CitiViewController.h; sourceTree = "<group>"; };
 		09F19F77199EF6F500825ADE /* CitiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CitiViewController.m; sourceTree = "<group>"; };
 		09F19F79199FB16600825ADE /* LaunchScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchScreenViewController.h; sourceTree = "<group>"; };
 		09F19F7A199FB16600825ADE /* LaunchScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchScreenViewController.m; sourceTree = "<group>"; };
+		80942BA119A048AC009305CB /* MDDirectionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDDirectionService.h; sourceTree = "<group>"; };
+		80942BA219A048AC009305CB /* MDDirectionService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDDirectionService.m; sourceTree = "<group>"; };
+		8A18221A199ED28D001D7AE2 /* SearchItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchItem.h; sourceTree = "<group>"; };
+		8A18221B199ED28D001D7AE2 /* SearchItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchItem.m; sourceTree = "<group>"; };
+		8A48A70E199FC4420030F153 /* SearchListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchListViewController.h; sourceTree = "<group>"; };
+		8A48A70F199FC4420030F153 /* SearchListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchListViewController.m; sourceTree = "<group>"; };
 		8AB03323199DAD8A0036FF7A /* SearchMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchMapViewController.h; sourceTree = "<group>"; };
 		8AB03324199DAD8A0036FF7A /* SearchMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchMapViewController.m; sourceTree = "<group>"; };
 		8AB03326199DADA80036FF7A /* ResultsMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsMapViewController.h; sourceTree = "<group>"; };
@@ -98,8 +102,10 @@
 		8AE403E8199D924200B926AB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8AE403EA199D924200B926AB /* bikepathTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = bikepathTests.m; sourceTree = "<group>"; };
 		8AE403F4199D951100B926AB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		9FB68BF6A67F4944864A854A /* Pods-bikepath.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bikepath.xcconfig"; path = "Pods/Pods-bikepath.xcconfig"; sourceTree = "<group>"; };
 		C2813E3F199E789700B19D69 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C2813E41199E7BD800B19D69 /* dbc.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = dbc.gpx; sourceTree = "<group>"; };
+		DCC7FAA8B0C7490B8457CBC3 /* libPods-bikepath.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-bikepath.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +130,7 @@
 				8AE403CA199D924200B926AB /* UIKit.framework in Frameworks */,
 				8AB0332A199DB2930036FF7A /* GoogleMaps.framework in Frameworks */,
 				8AE403C6199D924200B926AB /* Foundation.framework in Frameworks */,
+				A92B12CA175940D7A6AD6942 /* libPods-bikepath.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,6 +155,7 @@
 				8AE403E4199D924200B926AB /* bikepathTests */,
 				8AE403C4199D924200B926AB /* Frameworks */,
 				8AE403C3199D924200B926AB /* Products */,
+				9FB68BF6A67F4944864A854A /* Pods-bikepath.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -182,6 +190,7 @@
 				8AE403C7199D924200B926AB /* CoreGraphics.framework */,
 				8AE403C9199D924200B926AB /* UIKit.framework */,
 				8AE403DE199D924200B926AB /* XCTest.framework */,
+				DCC7FAA8B0C7490B8457CBC3 /* libPods-bikepath.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -196,6 +205,8 @@
 				09F19F77199EF6F500825ADE /* CitiViewController.m */,
 				8AB03326199DADA80036FF7A /* ResultsMapViewController.h */,
 				8AB03327199DADA80036FF7A /* ResultsMapViewController.m */,
+				80942BA119A048AC009305CB /* MDDirectionService.h */,
+				80942BA219A048AC009305CB /* MDDirectionService.m */,
 				09F19F79199FB16600825ADE /* LaunchScreenViewController.h */,
 				09F19F7A199FB16600825ADE /* LaunchScreenViewController.m */,
 				8AE403D4199D924200B926AB /* AppDelegate.h */,
@@ -246,9 +257,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8AE403EE199D924200B926AB /* Build configuration list for PBXNativeTarget "bikepath" */;
 			buildPhases = (
+				439CB0C214A14D45AFB76995 /* Check Pods Manifest.lock */,
 				8AE403BE199D924200B926AB /* Sources */,
 				8AE403BF199D924200B926AB /* Frameworks */,
 				8AE403C0199D924200B926AB /* Resources */,
+				BA8737E173D347849E6FEA9C /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -332,6 +345,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		439CB0C214A14D45AFB76995 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		BA8737E173D347849E6FEA9C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-bikepath-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8AE403BE199D924200B926AB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -339,6 +385,7 @@
 			files = (
 				8A48A710199FC4420030F153 /* SearchListViewController.m in Sources */,
 				8AB03328199DADA80036FF7A /* ResultsMapViewController.m in Sources */,
+				80942BA319A048AC009305CB /* MDDirectionService.m in Sources */,
 				09F19F78199EF6F500825ADE /* CitiViewController.m in Sources */,
 				8AE403D6199D924200B926AB /* AppDelegate.m in Sources */,
 				8AB03325199DAD8A0036FF7A /* SearchMapViewController.m in Sources */,
@@ -458,6 +505,7 @@
 		};
 		8AE403EF199D924200B926AB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9FB68BF6A67F4944864A854A /* Pods-bikepath.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -477,6 +525,7 @@
 		};
 		8AE403F0199D924200B926AB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9FB68BF6A67F4944864A854A /* Pods-bikepath.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -510,6 +559,11 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "bikepathTests/bikepathTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-framework",
+					XCTest,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -528,6 +582,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "bikepath/bikepath-Prefix.pch";
 				INFOPLIST_FILE = "bikepathTests/bikepathTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-framework",
+					XCTest,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
