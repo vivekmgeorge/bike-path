@@ -67,14 +67,18 @@
         else
             for (MKMapItem *item in response.mapItems)
             {
-                NSLog(item.name);
+                NSLog(@"%@", item.name);
                 
-                SearchItem *query = [[SearchItem alloc] init];
-                    query.searchQuery = item.name;
-//                    query.position = CLLocationCoordinate2DMake(item.placemark.location.coordinate.latitude, item.placemark.location.coordinate.longitude);
+                SearchItem *query   = [[SearchItem alloc] init];
+                query.searchQuery   = item.name;
+                query.lati          = item.placemark.location.coordinate.latitude;
+                query.longi         = item.placemark.location.coordinate.longitude;
+                query.position      = CLLocationCoordinate2DMake(item.placemark.location.coordinate.latitude, item.placemark.location.coordinate.longitude);
 
-                NSLog(@"HERE");
-                NSLog(query.searchQuery);
+                NSLog(@"New Query");
+                NSLog(@"%@", query.searchQuery);
+                NSLog(@"%f", query.lati);
+                NSLog(@"%f", query.longi);
                 
                 [self.searchResults addObject:query];
             }
