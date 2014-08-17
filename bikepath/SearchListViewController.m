@@ -10,12 +10,14 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import <MapKit/MapKit.h>
 #import "SearchItem.h"
+#import "SearchItemTableCell.h"
 
-@interface SearchListViewController ()
 
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@interface SearchListViewController () <UITableViewDataSource, UITableViewDelegate>
+
 @property (strong, nonatomic) IBOutlet UISearchBar *searchField;
-//@property (strong, nonatomic) NSMutableArray *searchResults;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSMutableArray *searchResults;
 
 @end
 
@@ -25,7 +27,6 @@
 {
     [super viewDidLoad];
     self.searchResults = [[NSMutableArray alloc] init];
-//    
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,15 +51,12 @@
 {
 }
 
--(NSMutableArray*) searchBarSearchButtonClicked: (UISearchBar *) searchBar
+-(void) searchBarSearchButtonClicked: (UISearchBar *) searchBar
 {
     self.searchLocation = [[SearchItem alloc] init];
     self.searchLocation.searchQuery = self.searchField.text;
     MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
     request.naturalLanguageQuery = self.searchLocation.searchQuery;
-    
-    NSLog(self.searchLocation.searchQuery);
-    
     MKLocalSearch *search = [[MKLocalSearch alloc]initWithRequest:request];
     
     [search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
@@ -67,61 +65,52 @@
         else
             for (MKMapItem *item in response.mapItems)
             {
-                NSLog(@"%@", item.name);
-                
                 SearchItem *query   = [[SearchItem alloc] init];
                 query.searchQuery   = item.name;
                 query.lati          = item.placemark.location.coordinate.latitude;
                 query.longi         = item.placemark.location.coordinate.longitude;
                 query.position      = CLLocationCoordinate2DMake(item.placemark.location.coordinate.latitude, item.placemark.location.coordinate.longitude);
-
-                NSLog(@"New Query");
-                NSLog(@"%@", query.searchQuery);
-                NSLog(@"%f", query.lati);
-                NSLog(@"%f", query.longi);
+                query.address       = item.placemark.thoroughfare;
                 
                 [self.searchResults addObject:query];
             }
-    }];
-//    [self.tableView reloadData];
-    return self.searchResults;
-}
+        self.tableView.dataSource = self;
+        self.tableView.delegate = self;
+        [self.tableView reloadData];
 
+    }];
+}
 
 #pragma Table View Methods
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    return 1;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-   return [self.searchResults count];
+    return [self.searchResults count];
+
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"ListPrototypeCell" forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"SearchResultTableCell";
+    SearchItemTableCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[SearchItemTableCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier:CellIdentifier];
+    }
     SearchItem *item = (SearchItem*)[self.searchResults objectAtIndex:indexPath.row];
-    cell.textLabel.text = item.searchQuery;
+    cell.nameLabel.text = item.searchQuery;
+    cell.addressLabel.text = item.address;
     return cell;
 }
 
-
-#pragma Search Methods
-
--(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-{
-    NSLog(@"now here");
-    [self.tableView reloadData];
-//    [self filterContentForSearchText:searchString
-//    scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
-//                                      objectAtIndex:[self.searchDisplayController.searchBar
-//                                                     selectedScopeButtonIndex]];
-////
-    return YES;
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"showResults"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        
+//        ResultsMapViewController *destViewController = segue.destinationViewController;
+    
+        SearchItem *item = (SearchItem*)[self.searchResults objectAtIndex:indexPath.row];
+//        destViewController.recipe = recipe;
+    }
 }
 
 @end

@@ -18,9 +18,9 @@
 @implementation SearchMapViewController {
 
 }
+
 - (IBAction)unwindToSearchPage:(UIStoryboardSegue *)segue {
 }
-
 
 - (void)viewDidLoad
 {
@@ -28,8 +28,7 @@
     
     GMSCameraPosition *dbc = [GMSCameraPosition cameraWithLatitude:40.706638
                                                          longitude:-74.009070
-                                                              zoom:14];
-    
+                                                              zoom:14];    
     self.mapView.mapType = kGMSTypeNormal;
     [self.mapView setCamera:dbc];
     self.mapView.myLocationEnabled = YES;
@@ -58,11 +57,11 @@
                 marker.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
                 marker.map = self.mapView;
                 
-                NSLog(@"latitude = %f", item.placemark.location.coordinate.latitude);
-                NSLog(@"longitude = %f", item.placemark.location.coordinate.longitude);
-                NSLog(@"street address = %@", item.placemark.thoroughfare);
+//                NSLog(@"latitude = %f", item.placemark.location.coordinate.latitude);
+//                NSLog(@"longitude = %f", item.placemark.location.coordinate.longitude);
             }
     }];
+    
 }
 
 
