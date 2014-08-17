@@ -69,6 +69,74 @@
     NSString *endPositionString = [[NSString alloc] initWithFormat:@"%f,%f", 40.720638, -74.006070];
     [waypointStrings_ addObject:endPositionString];
     
+    NSURL *url = [NSURL URLWithString:@"http://www.citibikenyc.com/stations/json"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response,
+                                               NSData *data, NSError *connectionError)
+     {
+         if (data.length > 0 && connectionError == nil)
+         {
+             NSDictionary *greeting = [NSJSONSerialization JSONObjectWithData:data
+                                                                      options:0
+                                                                        error:NULL];
+             NSArray *stations = [greeting objectForKey:@"stationBeanList"];
+             CLLocationDistance smallestDistance = DBL_MAX;
+             CLLocation *closestLocation;
+             NSDictionary *closestStation;
+             
+             for(id st in stations) {
+                 NSDictionary *station      = (NSDictionary *)st;
+                 NSString *stationLatitude  = [station objectForKey:@"latitude"];
+                 NSString *stationLongitude = [station objectForKey:@"longitude"];
+                 
+                 CLLocation *bikeStop = [[CLLocation alloc] initWithLatitude:[stationLatitude doubleValue] longitude:[stationLongitude doubleValue]];
+                 CLLocation *currentLocation = [[CLLocation alloc] initWithLatitude:startPosition.latitude longitude:startPosition.longitude];
+                 
+                 NSMutableArray *locations = [[NSMutableArray alloc] init];
+                 [locations addObject:bikeStop];
+                 
+                 for (CLLocation *location in locations) {
+                     CLLocationDistance distance = [currentLocation distanceFromLocation:location];
+                     
+                     if (distance < smallestDistance) {
+                         smallestDistance    = distance;
+                         closestLocation     = location;
+                         closestStation      = station;
+                     }
+                 }
+                 
+             }
+             NSLog(@"%@", closestLocation);
+             NSLog(@"%f", closestLocation.coordinate.longitude);
+             
+             NSString *title            = [closestStation objectForKey:@"stationName"];
+             NSString *availableBikes   = [[closestStation objectForKey:@"availableBikes"] stringValue];
+             NSNumber *numBikes         = @([[closestStation objectForKey:@"availableBikes"] intValue]);
+             
+             GMSMarker *citiMarker  = [[GMSMarker alloc] init];
+             
+             if ([numBikes intValue] > 0) {
+                 citiMarker.icon    = [GMSMarker markerImageWithColor:[UIColor greenColor]];
+                 citiMarker.snippet = availableBikes;
+             } else {
+                 citiMarker.icon    = [GMSMarker markerImageWithColor:[UIColor redColor]];
+                 citiMarker.snippet = @"No bikes available at this location.";
+             };
+             
+             citiMarker.title       = title;
+             citiMarker.position    = closestLocation.coordinate;
+             citiMarker.map         = mapView_;
+             NSLog(@"%@", citiMarker);
+             
+             [waypoints_ addObject:citiMarker];
+             NSString *citiMarkerString = [[NSString alloc] initWithFormat:@"%f,%f", closestLocation.coordinate.latitude, closestLocation.coordinate.longitude];
+             [waypointStrings_ addObject:citiMarkerString];
+             NSLog(@"hello %@", waypointStrings_);
+         }
+     }];
+    
     CLLocationCoordinate2D startStationPosition = CLLocationCoordinate2DMake(40.705638, -74.013070);
     GMSMarker *startStationPoint = [GMSMarker markerWithPosition:startStationPosition];
     startStationPoint.title = @"Start station";
