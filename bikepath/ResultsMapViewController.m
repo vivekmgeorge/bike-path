@@ -43,7 +43,6 @@
     waypoints_ = [[NSMutableArray alloc]init];
     waypointStrings_ = [[NSMutableArray alloc]init];
     
-    
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.706638
                                                             longitude:-74.009070
                                                                  zoom:13];
@@ -57,16 +56,17 @@
     startPoint.map = mapView_;
     [waypoints_ addObject:startPoint];
     
-    NSString *startPositionString = [[NSString alloc] initWithFormat:@"%f,%f", 40.706638, -74.009070];
+    NSString *startPositionString = [[NSString alloc] initWithFormat:@"%f,%f", locationManager.location.coordinate.latitude, locationManager.location.coordinate.longitude];
     [waypointStrings_ addObject:startPositionString];
     
-    CLLocationCoordinate2D endPosition = CLLocationCoordinate2DMake(40.720638, -74.006070);
-    GMSMarker *endPoint = [GMSMarker markerWithPosition:endPosition];
-    endPoint.title = @"Your destination";
+    GMSMarker *endPoint = [[GMSMarker alloc] init];
+    endPoint.position = CLLocationCoordinate2DMake(self.item.lati, self.item.longi);
+    endPoint.title = self.item.searchQuery;
+    endPoint.icon = [GMSMarker markerImageWithColor:[UIColor redColor]];
     endPoint.map = mapView_;
     [waypoints_ addObject:endPoint];
     
-    NSString *endPositionString = [[NSString alloc] initWithFormat:@"%f,%f", 40.720638, -74.006070];
+    NSString *endPositionString = [[NSString alloc] initWithFormat:@"%f,%f", self.item.lati, self.item.longi];
     [waypointStrings_ addObject:endPositionString];
     
     NSURL *url = [NSURL URLWithString:@"http://www.citibikenyc.com/stations/json"];
@@ -110,7 +110,7 @@
                      }
                  }
                  
-                 CLLocation *endLocation = [[CLLocation alloc] initWithLatitude:endPosition.latitude longitude:endPosition.longitude];
+                 CLLocation *endLocation = [[CLLocation alloc] initWithLatitude:self.item.lati longitude:self.item.longi];
                  
                  for (CLLocation *location in locations) {
                      CLLocationDistance distance = [endLocation distanceFromLocation:location];
@@ -151,9 +151,9 @@
              
              GMSMarker *endStation  = [[GMSMarker alloc] init];
              
-             if ([numBikes intValue] > 0) {
+             if ([numEndBikes intValue] > 0) {
                  endStation.icon    = [GMSMarker markerImageWithColor:[UIColor greenColor]];
-                 endStation.snippet = availableBikes;
+                 endStation.snippet = availableEndBikes;
              } else {
                  endStation.icon    = [GMSMarker markerImageWithColor:[UIColor redColor]];
                  endStation.snippet = @"No bikes available at this location.";
