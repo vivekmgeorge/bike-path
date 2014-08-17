@@ -2,8 +2,56 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>Pods-bikepath-AFNetworking.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
+		<key>Pods-bikepath-AFNetworking.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
+		<key>Pods-bikepath-FTGooglePlacesAPI.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
+		<key>Pods-bikepath-SPGooglePlacesAutocomplete.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
+		<key>Pods-bikepath.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>Pods-bikepath.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>Pods-bikepathTests-Kiwi.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>9</integer>
+		</dict>
+		<key>Pods-bikepathTests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
+	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>1C9D899096774703B6290890</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>61CE1A985DA44516B48DD104</key>
 		<dict>
 			<key>primary</key>
@@ -19,7 +67,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>892C396140774E71812BEF81</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B14C03614F824B8F945E40BF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>CEF4C80E116F430AAED1D731</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D345C44D4DF04B3AB8BDC9D9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
