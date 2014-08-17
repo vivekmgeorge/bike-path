@@ -54,33 +54,32 @@
              CLLocationDistance smallestDistance = DBL_MAX;
              CLLocation *closestLocation;
              for(id st in stations) {
-                 NSDictionary *station = (NSDictionary *)st;
-                 NSString *lati = [station objectForKey:@"latitude"];
-                 NSString *longi = [station objectForKey:@"longitude"];
-                 NSString *title = [station objectForKey:@"stationName"];
+                 NSDictionary *station      = (NSDictionary *)st;
+                 NSString *lati             = [station objectForKey:@"latitude"];
+                 NSString *longi            = [station objectForKey:@"longitude"];
+                 NSString *title            = [station objectForKey:@"stationName"];
                  NSString *availableBikes   = [[station objectForKey:@"availableBikes"] stringValue];
-                 NSNumber *num = @([[station objectForKey:@"availableBikes"] intValue]);
+                 NSNumber *num              = @([[station objectForKey:@"availableBikes"] intValue]);
                  
-                 GMSMarker *citiMarker = [[GMSMarker alloc] init];
-                 
-                 citiMarker.position = closestLocation.coordinate;
-                 citiMarker.title = title;
-                 //             citiMarker.icon = [GMSMarker markerImageWithColor:[UIColor redColor]];
+                 GMSMarker *citiMarker  = [[GMSMarker alloc] init];
+                 citiMarker.position    = closestLocation.coordinate;
+                 citiMarker.title       = title;
                  
                  if ([num intValue] > 0) {
-                     citiMarker.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
-                     citiMarker.snippet  = availableBikes;
+                     citiMarker.icon    = [GMSMarker markerImageWithColor:[UIColor greenColor]];
+                     citiMarker.snippet = availableBikes;
                  } else {
-                     citiMarker.icon = [GMSMarker markerImageWithColor:[UIColor redColor]];
-                     citiMarker.snippet = @"No bikes availabe at this location.";
+                     citiMarker.icon    = [GMSMarker markerImageWithColor:[UIColor redColor]];
+                     citiMarker.snippet = @"No bikes available at this location.";
                  };
+                 
                  citiMarker.map = self.mapView;
 
-                 CLLocation *bikeStop = [[CLLocation alloc] initWithLatitude:[lati doubleValue] longitude:[longi doubleValue]];
+                 CLLocation *bikeStop           = [[CLLocation alloc] initWithLatitude:[lati doubleValue] longitude:[longi doubleValue]];
+                 CLLocation *currentLocation    = self.mapView.myLocation;
+                 
                  NSMutableArray *locations = [[NSMutableArray alloc] init];
                  [locations addObject:bikeStop];
-
-                 CLLocation *currentLocation = self.mapView.myLocation;
                  
                     for (CLLocation *location in locations) {
                         CLLocationDistance distance = [currentLocation distanceFromLocation:location];
@@ -88,15 +87,10 @@
                         if (distance < smallestDistance) {
                             smallestDistance = distance;
                             closestLocation = location;
-                           
                         }
                     }
              }
-             
              NSLog(@"%f", smallestDistance);
-             
-             
-             
         }
      }];
 }
