@@ -19,24 +19,17 @@
 }
 - (void)viewDidLoad
 {
-//
-//    locationManager = [[CLLocationManager alloc] init];
-//    locationManager.delegate = self;
-//    locationManager.distanceFilter = kCLDistanceFilterNone;
-//    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-//    [locationManager startUpdatingLocation];
-
     GMSCameraPosition *dbc = [GMSCameraPosition cameraWithLatitude:40.706638
                                                          longitude:-74.009070
                                                               zoom:14];
     
     self.mapView.mapType = kGMSTypeNormal;
     [self.mapView setCamera:dbc];
-    self.mapView.myLocationEnabled = YES;
-    self.mapView.settings.compassButton = YES;
-    self.mapView.settings.myLocationButton = YES;
-    self.mapView.settings.zoomGestures = YES;
-    self.mapView.delegate = self;
+    self.mapView.myLocationEnabled          = YES;
+    self.mapView.settings.compassButton     = YES;
+    self.mapView.settings.myLocationButton  = YES;
+    self.mapView.settings.zoomGestures      = YES;
+    self.mapView.delegate                   = self;
     
     NSURL *url = [NSURL URLWithString:@"http://www.citibikenyc.com/stations/json"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -50,30 +43,15 @@
              NSDictionary *greeting = [NSJSONSerialization JSONObjectWithData:data
                                                                       options:0
                                                                         error:NULL];
-             NSArray* stations = [greeting objectForKey:@"stationBeanList"];
+             NSArray *stations = [greeting objectForKey:@"stationBeanList"];
              CLLocationDistance smallestDistance = DBL_MAX;
              CLLocation *closestLocation;
+             NSDictionary *closestStation;
+             
              for(id st in stations) {
                  NSDictionary *station      = (NSDictionary *)st;
                  NSString *lati             = [station objectForKey:@"latitude"];
                  NSString *longi            = [station objectForKey:@"longitude"];
-                 NSString *title            = [station objectForKey:@"stationName"];
-                 NSString *availableBikes   = [[station objectForKey:@"availableBikes"] stringValue];
-                 NSNumber *num              = @([[station objectForKey:@"availableBikes"] intValue]);
-                 
-                 GMSMarker *citiMarker  = [[GMSMarker alloc] init];
-                 citiMarker.position    = closestLocation.coordinate;
-                 citiMarker.title       = title;
-                 
-                 if ([num intValue] > 0) {
-                     citiMarker.icon    = [GMSMarker markerImageWithColor:[UIColor greenColor]];
-                     citiMarker.snippet = availableBikes;
-                 } else {
-                     citiMarker.icon    = [GMSMarker markerImageWithColor:[UIColor redColor]];
-                     citiMarker.snippet = @"No bikes available at this location.";
-                 };
-                 
-                 citiMarker.map = self.mapView;
 
                  CLLocation *bikeStop           = [[CLLocation alloc] initWithLatitude:[lati doubleValue] longitude:[longi doubleValue]];
                  CLLocation *currentLocation    = self.mapView.myLocation;
@@ -85,12 +63,33 @@
                         CLLocationDistance distance = [currentLocation distanceFromLocation:location];
     
                         if (distance < smallestDistance) {
-                            smallestDistance = distance;
-                            closestLocation = location;
+                            smallestDistance    = distance;
+                            closestLocation     = location;
+                            closestStation      = station;
                         }
                     }
+                 
              }
-             NSLog(@"%f", smallestDistance);
+             NSLog(@"%f", closestLocation.coordinate.latitude);
+             NSLog(@"%f", closestLocation.coordinate.longitude);
+             
+             NSString *title            = [closestStation objectForKey:@"stationName"];
+             NSString *availableBikes   = [[closestStation objectForKey:@"availableBikes"] stringValue];
+             NSNumber *numBikes         = @([[closestStation objectForKey:@"availableBikes"] intValue]);
+             
+             GMSMarker *citiMarker  = [[GMSMarker alloc] init];
+             
+             if ([numBikes intValue] > 0) {
+                 citiMarker.icon    = [GMSMarker markerImageWithColor:[UIColor greenColor]];
+                 citiMarker.snippet = availableBikes;
+             } else {
+                 citiMarker.icon    = [GMSMarker markerImageWithColor:[UIColor redColor]];
+                 citiMarker.snippet = @"No bikes available at this location.";
+             };
+             
+             citiMarker.title       = title;
+             citiMarker.position    = closestLocation.coordinate;
+             citiMarker.map         = self.mapView;
         }
      }];
 }

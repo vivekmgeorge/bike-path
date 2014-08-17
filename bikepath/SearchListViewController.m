@@ -11,6 +11,7 @@
 #import <MapKit/MapKit.h>
 #import "SearchItem.h"
 
+
 @interface SearchListViewController () <UITableViewDataSource, UITableViewDelegate>
 
 //@property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -89,9 +90,21 @@
         else
             for (MKMapItem *item in response.mapItems)
             {
-                SearchItem *query = [[SearchItem alloc] init];
-                query.searchQuery = item.name;
-//                    query.position = CLLocationCoordinate2DMake(item.placemark.location.coordinate.latitude, item.placemark.location.coordinate.longitude);
+                NSLog(@"%@", item.name);
+                
+                SearchItem *query   = [[SearchItem alloc] init];
+                query.searchQuery   = item.name;
+                query.lati          = item.placemark.location.coordinate.latitude;
+                query.longi         = item.placemark.location.coordinate.longitude;
+                query.position      = CLLocationCoordinate2DMake(item.placemark.location.coordinate.latitude, item.placemark.location.coordinate.longitude);
+                query.address       = item.placemark.thoroughfare;
+
+                NSLog(@"New Query");
+                NSLog(@"%@", query.searchQuery);
+                NSLog(@"%f", query.lati);
+                NSLog(@"%f", query.longi);
+                NSLog(@"%@", query.address);
+                
                 [self.searchResults addObject:query];
             }
         self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
@@ -124,8 +137,18 @@
     }
     SearchItem *item = (SearchItem*)[self.searchResults objectAtIndex:indexPath.row];
     cell.textLabel.text = item.searchQuery;
-//    cell.textLabel.text = @"foo";
+//    cell.detailTextLabel.text = item.address;
     return cell;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"showRecipeDetail"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+//        ResultsMapViewController *destViewController = segue.destinationViewController;
+        
+//        Recipe *recipe = [recipes objectAtIndex:indexPath.row];
+//        destViewController.recipe = recipe;
+    }
 }
 
 @end
