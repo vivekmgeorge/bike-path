@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface SearchItemTableCell : UITableViewCell
+
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *addressLabel;
 
