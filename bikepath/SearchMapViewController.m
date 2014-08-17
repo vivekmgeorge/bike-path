@@ -9,6 +9,7 @@
 #import "SearchMapViewController.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import <MapKit/MapKit.h>
+#import "SearchItem.h"
 
 @interface SearchMapViewController ()
 
@@ -17,6 +18,7 @@
 @implementation SearchMapViewController {
 
 }
+
 - (IBAction)unwindToSearchPage:(UIStoryboardSegue *)segue {
 }
 
@@ -26,8 +28,7 @@
     
     GMSCameraPosition *dbc = [GMSCameraPosition cameraWithLatitude:40.706638
                                                          longitude:-74.009070
-                                                              zoom:14];
-    
+                                                              zoom:14];    
     self.mapView.mapType = kGMSTypeNormal;
     [self.mapView setCamera:dbc];
     self.mapView.myLocationEnabled = YES;
@@ -36,7 +37,9 @@
     self.mapView.settings.zoomGestures = YES;
     self.mapView.delegate = self;
     
+    
     MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
+    
     request.naturalLanguageQuery = @"Starbucks, New York, NY";
 //    request.naturalLanguageQuery = @"48 Wall Street New York NY";
     
@@ -59,16 +62,9 @@
             }
     }];
     
-//    [mapView_ setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
-//    NSString *urlString = [NSString stringWithFormat:@"http://maps.google.com/maps/geo?q=%@&output=CSV", "FETCH TEXT FROM SEARCH BAR" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
-//
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
 @end
+
+

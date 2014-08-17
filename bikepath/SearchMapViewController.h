@@ -8,9 +8,10 @@
 // test stuff
 #import <UIKit/UIKit.h>
 #import <GoogleMaps/GoogleMaps.h>
+#import "SearchItem.h"
 
 @interface SearchMapViewController : UIViewController <GMSMapViewDelegate>
-@property (weak, nonatomic) IBOutlet GMSMapView *mapView;
 
+@property (strong, nonatomic) IBOutlet GMSMapView *mapView;
 
 @end
