@@ -7,7 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
+#import <GoogleMaps/GoogleMaps.h>
 
-@interface GoogleAutocompleteTestViewController : UIViewController
+@class SPGooglePlacesAutocompleteQuery;
+
+@interface GoogleAutocompleteTestViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, UISearchBarDelegate, MKMapViewDelegate>
+{
+    NSArray *searchResultPlaces;
+    SPGooglePlacesAutocompleteQuery *searchQuery;
+    MKPointAnnotation *selectedPlaceAnnotation;
+    
+    BOOL shouldBeginEditing;
+}
+//@property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (weak, nonatomic) IBOutlet GMSMapView *mapView;
+
+
+//@property (strong, nonatomic) IBOutlet MKMapView *mapView;
 
 @end

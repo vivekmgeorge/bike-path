@@ -7,6 +7,9 @@
 //
 
 #import "GoogleAutocompleteTestViewController.h"
+#import "SPGooglePlacesAutocomplete.h"
+#import <UIKit/UIKit.h>
+#import "SearchItem.h"
 
 @interface GoogleAutocompleteTestViewController ()
 
@@ -14,36 +17,224 @@
 
 @implementation GoogleAutocompleteTestViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+@synthesize mapView;
+
+- (id)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithCoder:aDecoder];
+    NSLog(@"initWithCoder");
     if (self) {
-        // Custom initialization
+        NSLog(@"hello");
+        searchQuery = [[SPGooglePlacesAutocompleteQuery alloc] initWithApiKey:@"AIzaSyAxaqfMyyc-WSrvsWP_jF2IUaTZVjkMlFo"];
+        shouldBeginEditing = YES;
     }
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+- (void)viewDidLoad {
+    NSLog(@"inviewDidLoad");
+    self.searchDisplayController.searchBar.placeholder = @"Search or Address";
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewDidUnload {
+    [self setMapView:nil];
+    [super viewDidUnload];
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+//- (IBAction)recenterMapToUserLocation:(id)sender {
+//    MKCoordinateRegion region;
+//    MKCoordinateSpan span;
+//    
+//    span.latitudeDelta = 0.02;
+//    span.longitudeDelta = 0.02;
+//    
+//    region.span = span;
+//    region.center = self.mapView.userLocation.coordinate;
+//    
+//    [self.mapView setRegion:region animated:YES];
+//}
+
+#pragma mark -
+#pragma mark UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [searchResultPlaces count];
 }
-*/
+
+- (SPGooglePlacesAutocompletePlace *)placeAtIndexPath:(NSIndexPath *)indexPath {
+    return searchResultPlaces[indexPath.row];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *cellIdentifier = @"SPGooglePlacesAutocompleteCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    
+    cell.textLabel.font = [UIFont fontWithName:@"GillSans" size:16.0];
+    cell.textLabel.text = [self placeAtIndexPath:indexPath].name;
+    return cell;
+}
+
+#pragma mark -
+#pragma mark UITableViewDelegate
+
+- (void)recenterMapToPlacemark:(CLPlacemark *)placemark {
+    MKCoordinateRegion region;
+    MKCoordinateSpan span;
+    
+    span.latitudeDelta = 0.02;
+    span.longitudeDelta = 0.02;
+    
+    region.span = span;
+    region.center = placemark.location.coordinate;
+    
+//    [self.mapView setRegion:region];
+}
+
+- (void)addPlacemarkAnnotationToMap:(CLPlacemark *)placemark addressString:(NSString *)address {
+//    [self.mapView removeAnnotation:selectedPlaceAnnotation];
+    
+    selectedPlaceAnnotation = [[MKPointAnnotation alloc] init];
+    selectedPlaceAnnotation.coordinate = placemark.location.coordinate;
+    selectedPlaceAnnotation.title = address;
+//    [self.mapView addAnnotation:selectedPlaceAnnotation];
+}
+
+- (void)dismissSearchControllerWhileStayingActive {
+    // Animate out the table view.
+    NSTimeInterval animationDuration = 0.3;
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:animationDuration];
+    self.searchDisplayController.searchResultsTableView.alpha = 0.0;
+    [UIView commitAnimations];
+    
+    [self.searchDisplayController.searchBar setShowsCancelButton:NO animated:YES];
+    [self.searchDisplayController.searchBar resignFirstResponder];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    SPGooglePlacesAutocompletePlace *place = [self placeAtIndexPath:indexPath];
+    [place resolveToPlacemark:^(CLPlacemark *placemark, NSString *addressString, NSError *error) {
+        if (error) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Could not map selected Place"
+                                                            message:error.localizedDescription
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil, nil];
+            [alert show];
+        } else if (placemark) {
+            SearchItem *selectedItem   = [[SearchItem alloc] init];
+            selectedItem.searchQuery   = place.name;
+            NSLog(@"%@", place);
+            NSLog(@"%@", addressString);
+            NSLog(@"%@", placemark);
+            
+            NSLog(@"%@", selectedItem.searchQuery);
+            
+//            selectedItem.lati          = place.placemark.location.coordinate.latitude;
+//            selectedItem.longi         = item.placemark.location.coordinate.longitude;
+//            selectedItem.position      = CLLocationCoordinate2DMake(item.placemark.location.coordinate.latitude, item.placemark.location.coordinate.longitude);
+//            selectedItem.address       = item.placemark.thoroughfare;
+
+            [self addPlacemarkAnnotationToMap:placemark addressString:addressString];
+            [self recenterMapToPlacemark:placemark];
+            [self dismissSearchControllerWhileStayingActive];
+            [self.searchDisplayController.searchResultsTableView deselectRowAtIndexPath:indexPath animated:NO];
+        }
+    }];
+}
+
+#pragma mark -
+#pragma mark UISearchDisplayDelegate
+
+- (void)handleSearchForSearchString:(NSString *)searchString {
+    
+    NSLog(@"%@", searchQuery);
+    
+//    searchQuery.location = self.mapView.userLocation.coordinate;
+    searchQuery.input = searchString;
+    [searchQuery fetchPlaces:^(NSArray *places, NSError *error) {
+        if (error) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Could not fetch Places"
+                                                            message:error.localizedDescription
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil, nil];
+            [alert show];
+        } else {
+            searchResultPlaces = places;
+            [self.searchDisplayController.searchResultsTableView reloadData];
+        }
+    }];
+}
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
+    [self handleSearchForSearchString:searchString];
+    
+    // Return YES to cause the search result table view to be reloaded.
+    return YES;
+}
+
+#pragma mark -
+#pragma mark UISearchBar Delegate
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    if (![searchBar isFirstResponder]) {
+        // User tapped the 'clear' button.
+        shouldBeginEditing = NO;
+        [self.searchDisplayController setActive:NO];
+//        [self.mapView removeAnnotation:selectedPlaceAnnotation];
+    }
+}
+
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
+    if (shouldBeginEditing) {
+        // Animate in the table view.
+        NSTimeInterval animationDuration = 0.3;
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:animationDuration];
+        self.searchDisplayController.searchResultsTableView.alpha = 0.75;
+        [UIView commitAnimations];
+        
+        [self.searchDisplayController.searchBar setShowsCancelButton:YES animated:YES];
+    }
+    BOOL boolToReturn = shouldBeginEditing;
+    shouldBeginEditing = YES;
+    return boolToReturn;
+}
+
+#pragma mark -
+#pragma mark MKMapView Delegate
+
+//- (MKAnnotationView *)mapView:(MKMapView *)mapViewIn viewForAnnotation:(id <MKAnnotation>)annotation {
+//    if (mapViewIn != self.mapView || [annotation isKindOfClass:[MKUserLocation class]]) {
+//        return nil;
+//    }
+//    static NSString *annotationIdentifier = @"SPGooglePlacesAutocompleteAnnotation";
+//    MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[self.mapView dequeueReusableAnnotationViewWithIdentifier:annotationIdentifier];
+//    if (!annotationView) {
+//        annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationIdentifier];
+//    }
+//    annotationView.animatesDrop = YES;
+//    annotationView.canShowCallout = YES;
+//
+//    UIButton *detailButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+//    [detailButton addTarget:self action:@selector(annotationDetailButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+//    annotationView.rightCalloutAccessoryView = detailButton;
+//    
+//    return annotationView;
+//}
+//
+//- (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views {
+//    // Whenever we've dropped a pin on the map, immediately select it to present its callout bubble.
+//    [self.mapView selectAnnotation:selectedPlaceAnnotation animated:YES];
+//}
+//
+//- (void)annotationDetailButtonPressed:(id)sender {
+//    // Detail view controller application logic here.
+//}
 
 @end
