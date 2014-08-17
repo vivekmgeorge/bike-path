@@ -63,7 +63,6 @@
                  citiMarker.title    = title;
                  citiMarker.map      = self.mapView;
                  
-                 NSLog(@"%@", [station objectForKey:@"availableBikes"]);
                  NSNumber *num = @([[station objectForKey:@"availableBikes"] intValue]);
                  
                  CLLocation *location = [[CLLocation alloc] initWithLatitude:[lati doubleValue] longitude:[longi doubleValue]];
