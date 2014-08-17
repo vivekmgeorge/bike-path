@@ -19,6 +19,26 @@
 }
 - (void)viewDidLoad
 {
+    // Checking to see if search item object is here
+    NSLog(@"%@", self.item.searchQuery);
+    NSLog(@"%f", self.item.lati);
+    NSLog(@"%f", self.item.longi);
+    NSLog(@"%@", self.item.address);
+    
+    // calling information from the search item object
+    // self.searchItem = self.item.searchQuery;
+    // self.searchItemLati = self.item.lati
+    // self.searchItemLongi = self.item.longi
+    // self.searchItemAddress = self.item.address
+    
+
+    //placing it on the map
+    GMSMarker *marker = [[GMSMarker alloc] init];
+    marker.position = CLLocationCoordinate2DMake(self.item.lati, self.item.longi);
+    marker.title = self.item.searchQuery;
+    marker.icon = [GMSMarker markerImageWithColor:[UIColor redColor]];
+    marker.map = self.mapView;
+    
     GMSCameraPosition *dbc = [GMSCameraPosition cameraWithLatitude:40.706638
                                                          longitude:-74.009070
                                                               zoom:14];

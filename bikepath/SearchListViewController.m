@@ -12,7 +12,7 @@
 #import "SearchItem.h"
 #import "SearchItemTableCell.h"
 #import "FTGooglePlacesAPI.h"
-
+#import "ResultsMapViewController.h"
 
 @interface SearchListViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -121,10 +121,15 @@
     if ([segue.identifier isEqualToString:@"showResults"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         
-//        ResultsMapViewController *destViewController = segue.destinationViewController;
-    
+        ResultsMapViewController *destViewController = segue.destinationViewController;
         SearchItem *item = (SearchItem*)[self.searchResults objectAtIndex:indexPath.row];
-//        destViewController.recipe = recipe;
+        destViewController.item = item;
+        
+        // to check what is being passed
+        NSLog(@"%@", destViewController.item.searchQuery);
+        NSLog(@"%f", destViewController.item.lati);
+        NSLog(@"%f", destViewController.item.longi);
+        NSLog(@"%@", destViewController.item.address);
     }
 }
 

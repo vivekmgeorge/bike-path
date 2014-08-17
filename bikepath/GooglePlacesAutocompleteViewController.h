@@ -12,9 +12,7 @@
 @class SPGooglePlacesAutocompleteQuery;
 
 @interface GooglePlacesAutocompleteViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, UISearchBarDelegate, MKMapViewDelegate>
-
 {
-    
     NSArray *searchResultPlaces;
     SPGooglePlacesAutocompleteQuery *searchQuery;
     MKPointAnnotation *selectedPlaceAnnotation;

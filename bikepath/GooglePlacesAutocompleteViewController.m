@@ -18,8 +18,6 @@
 
 @synthesize mapView;
 
-//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-//- (id)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
