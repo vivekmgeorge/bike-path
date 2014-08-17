@@ -19,13 +19,6 @@
 }
 - (void)viewDidLoad
 {
-//
-//    locationManager = [[CLLocationManager alloc] init];
-//    locationManager.delegate = self;
-//    locationManager.distanceFilter = kCLDistanceFilterNone;
-//    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-//    [locationManager startUpdatingLocation];
-
     GMSCameraPosition *dbc = [GMSCameraPosition cameraWithLatitude:40.706638
                                                          longitude:-74.009070
                                                               zoom:14];
