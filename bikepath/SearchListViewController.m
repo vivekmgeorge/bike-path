@@ -18,8 +18,6 @@
 @property (strong, nonatomic) IBOutlet UISearchBar *searchField;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *searchResults;
-//@property (strong,nonatomic) UITableView *tableView;
-//@property(strong,nonatomic) UISearchBar *mySearchBar;
 
 @end
 
@@ -29,19 +27,7 @@
 {
     [super viewDidLoad];
     self.searchResults = [[NSMutableArray alloc] init];
- 
-//    self.mySearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 70, 320, 44)];
-//    //set the delegate to self so we can listen for events
-//    self.mySearchBar.delegate = self;
-//    //display the cancel button next to the search bar
-//    self.mySearchBar.showsCancelButton = YES;
-//    //add the search bar to the view
-//    [self.view addSubview:self.mySearchBar];
-    
-
-    //
 }
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -71,9 +57,6 @@
     self.searchLocation.searchQuery = self.searchField.text;
     MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
     request.naturalLanguageQuery = self.searchLocation.searchQuery;
-    
-    NSLog(@"%@", self.searchLocation.searchQuery);
-    
     MKLocalSearch *search = [[MKLocalSearch alloc]initWithRequest:request];
     
     [search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
@@ -82,20 +65,12 @@
         else
             for (MKMapItem *item in response.mapItems)
             {
-                NSLog(@"%@", item.name);
-                
                 SearchItem *query   = [[SearchItem alloc] init];
                 query.searchQuery   = item.name;
                 query.lati          = item.placemark.location.coordinate.latitude;
                 query.longi         = item.placemark.location.coordinate.longitude;
                 query.position      = CLLocationCoordinate2DMake(item.placemark.location.coordinate.latitude, item.placemark.location.coordinate.longitude);
                 query.address       = item.placemark.thoroughfare;
-
-                NSLog(@"New Query");
-                NSLog(@"%@", query.searchQuery);
-                NSLog(@"%f", query.lati);
-                NSLog(@"%f", query.longi);
-                NSLog(@"%@", query.address);
                 
                 [self.searchResults addObject:query];
             }
@@ -106,16 +81,10 @@
     }];
 }
 
--(void)showResultsTable
-{
- 
-}
 #pragma Table View Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    int x = [self.searchResults count];
-    NSLog(@"count = %i", x);
     return [self.searchResults count];
 
 }
