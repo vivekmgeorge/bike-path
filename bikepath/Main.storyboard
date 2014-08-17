@@ -73,6 +73,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="BikePath Search" id="EoJ-yJ-sBB">
+                        <barButtonItem key="leftBarButtonItem" title="Other" id="Aq9-9Z-EkI">
+                            <connections>
+                                <segue destination="6Ty-Vv-Sfv" kind="modal" id="lKc-Sh-NkD"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="FjH-MX-Uw3">
                             <connections>
                                 <segue destination="vmW-OD-HOf" kind="push" id="cMg-Bf-juU"/>
@@ -86,6 +91,48 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M7r-03-6kQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-491" y="-977"/>
+        </scene>
+        <!--Google Places Autocomplete View Controller-->
+        <scene sceneID="Emy-P7-EaI">
+            <objects>
+                <viewController id="6Ty-Vv-Sfv" customClass="GooglePlacesAutocompleteViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0H1-sJ-x7w"/>
+                        <viewControllerLayoutGuide type="bottom" id="KAL-ow-Osm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ICa-aG-s9g">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="xaq-S0-PaV">
+                                <rect key="frame" x="-2" y="68" width="327" height="506"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </mapView>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OE4-j8-mQy">
+                                <rect key="frame" x="0.0" y="26" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="xaq-S0-PaV" id="6nF-56-ic8"/>
+                        <outlet property="searchDisplayController" destination="II0-aj-ML6" id="ttW-4T-Kns"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T2C-PA-PxV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="II0-aj-ML6">
+                    <connections>
+                        <outlet property="delegate" destination="6Ty-Vv-Sfv" id="hAh-gU-b0M"/>
+                        <outlet property="searchBar" destination="OE4-j8-mQy" id="a8s-bO-C0x"/>
+                        <outlet property="searchContentsController" destination="6Ty-Vv-Sfv" id="2ya-qr-Gzi"/>
+                        <outlet property="searchResultsDataSource" destination="6Ty-Vv-Sfv" id="RFT-LA-hqV"/>
+                        <outlet property="searchResultsDelegate" destination="6Ty-Vv-Sfv" id="9Sa-bb-Iy5"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="-476" y="-311"/>
         </scene>
         <!--Search List View Controller-->
         <scene sceneID="JjR-Li-dwF">
