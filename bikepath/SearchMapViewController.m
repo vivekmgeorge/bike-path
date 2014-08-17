@@ -36,31 +36,6 @@
     self.mapView.settings.myLocationButton = YES;
     self.mapView.settings.zoomGestures = YES;
     self.mapView.delegate = self;
-    
-    
-//    MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
-    
-//    request.naturalLanguageQuery = @"Starbucks, New York, NY";
-////    request.naturalLanguageQuery = @"48 Wall Street New York NY";
-//    
-//    MKLocalSearch *search = [[MKLocalSearch alloc]initWithRequest:request];
-//   
-//    [search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
-//        if (response.mapItems.count == 0)
-//            NSLog(@"no items");
-//        else
-//            for (MKMapItem *item in response.mapItems)
-//            {
-//                GMSMarker *marker = [[GMSMarker alloc] init];
-//                marker.position = CLLocationCoordinate2DMake(item.placemark.location.coordinate.latitude, item.placemark.location.coordinate.longitude);
-//                marker.title = item.name;
-//                marker.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
-//                marker.map = self.mapView;
-//                
-////                NSLog(@"latitude = %f", item.placemark.location.coordinate.latitude);
-////                NSLog(@"longitude = %f", item.placemark.location.coordinate.longitude);
-//            }
-//    }];
 
     NSURL *url = [NSURL URLWithString:@"http://www.citibikenyc.com/stations/json"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
