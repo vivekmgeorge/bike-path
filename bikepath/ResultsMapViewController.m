@@ -86,7 +86,6 @@
                         }
                     }
              }
-             
              NSLog(@"%f", smallestDistance);
         }
      }];
