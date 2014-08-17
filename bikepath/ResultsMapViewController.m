@@ -39,18 +39,23 @@
     marker.icon = [GMSMarker markerImageWithColor:[UIColor redColor]];
     marker.map = self.mapView;
     
-    GMSCameraPosition *dbc = [GMSCameraPosition cameraWithLatitude:40.706638
-                                                         longitude:-74.009070
-                                                              zoom:14];
+    
     
     self.mapView.mapType = kGMSTypeNormal;
-    [self.mapView setCamera:dbc];
+    
     self.mapView.myLocationEnabled          = YES;
     self.mapView.settings.compassButton     = YES;
     self.mapView.settings.myLocationButton  = YES;
     self.mapView.settings.zoomGestures      = YES;
     self.mapView.settings.scrollGestures    = YES;
     self.mapView.delegate                   = self;
+    
+    GMSCoordinateBounds *bounds =
+    [[GMSCoordinateBounds alloc] initWithCoordinate:marker.position coordinate:CLLocationCoordinate2DMake(40.706809, -74.009077)];
+    // zoom camera to show origin (hard coded) and destination
+    GMSCameraPosition *originToDestination = [self.mapView cameraForBounds:bounds insets:UIEdgeInsetsZero];
+    
+    [self.mapView setCamera:originToDestination];
     
     NSURL *url = [NSURL URLWithString:@"http://www.citibikenyc.com/stations/json"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
