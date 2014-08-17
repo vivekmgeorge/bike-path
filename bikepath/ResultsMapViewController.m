@@ -32,11 +32,11 @@
     
     self.mapView.mapType = kGMSTypeNormal;
     [self.mapView setCamera:dbc];
-    self.mapView.myLocationEnabled = YES;
-    self.mapView.settings.compassButton = YES;
-    self.mapView.settings.myLocationButton = YES;
-    self.mapView.settings.zoomGestures = YES;
-    self.mapView.delegate = self;
+    self.mapView.myLocationEnabled          = YES;
+    self.mapView.settings.compassButton     = YES;
+    self.mapView.settings.myLocationButton  = YES;
+    self.mapView.settings.zoomGestures      = YES;
+    self.mapView.delegate                   = self;
     
     NSURL *url = [NSURL URLWithString:@"http://www.citibikenyc.com/stations/json"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -85,8 +85,8 @@
                         CLLocationDistance distance = [currentLocation distanceFromLocation:location];
     
                         if (distance < smallestDistance) {
-                            smallestDistance = distance;
-                            closestLocation = location;
+                            smallestDistance    = distance;
+                            closestLocation     = location;
                         }
                     }
              }
