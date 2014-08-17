@@ -2,7 +2,8 @@
 # platform :ios, "6.0"
 
 target "bikepath" do
-
+	pod 'FTGooglePlacesAPI'
+	pod 'SPGooglePlacesAutocomplete'
 end
 
 target "bikepathTests" do
