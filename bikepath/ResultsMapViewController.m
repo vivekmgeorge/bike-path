@@ -13,6 +13,10 @@
 
 @implementation ResultsMapViewController
 
+
+- (IBAction)unwindToSearchPage:(UIStoryboardSegue *)segue{
+    
+}
 - (void)viewDidLoad
 {
 //

@@ -9,6 +9,7 @@
 #import "SearchMapViewController.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import <MapKit/MapKit.h>
+#import "SearchItem.h"
 
 @interface SearchMapViewController ()
 
@@ -19,6 +20,7 @@
 }
 - (IBAction)unwindToSearchPage:(UIStoryboardSegue *)segue {
 }
+
 
 - (void)viewDidLoad
 {
@@ -36,7 +38,9 @@
     self.mapView.settings.zoomGestures = YES;
     self.mapView.delegate = self;
     
+    
     MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
+    
     request.naturalLanguageQuery = @"Starbucks, New York, NY";
 //    request.naturalLanguageQuery = @"48 Wall Street New York NY";
     
@@ -61,14 +65,19 @@
     
 //    [mapView_ setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
 //    NSString *urlString = [NSString stringWithFormat:@"http://maps.google.com/maps/geo?q=%@&output=CSV", "FETCH TEXT FROM SEARCH BAR" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
+    
+//    self.title = @"Searching";
+//    UISearchBar *nameSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
+//    nameSearchBar = self;
+//    nameSearchBar.placeholder = @"Enter Search Item";
+//    nameSearchBar.tintColor = [UIColor blackColor];
+//    [nameSearchBar sizeToFit];
+//    [self.view addSubview:nameSearchBar];
 //
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+//    self.searchField.delegate = self;
 }
 
 
 @end
+
+
