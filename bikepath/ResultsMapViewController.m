@@ -50,7 +50,7 @@
     
     CLLocationCoordinate2D startStationPosition = CLLocationCoordinate2DMake(40.705638, -74.013070);
     GMSMarker *startStationPoint = [GMSMarker markerWithPosition:startStationPosition];
-    startStationPoint.title = @"Middle";
+    startStationPoint.title = @"Start station";
     startStationPoint.map = mapView_;
     [waypoints_ addObject:startStationPoint];
     
@@ -59,7 +59,7 @@
     
     CLLocationCoordinate2D endStationPosition = CLLocationCoordinate2DMake(40.722638, -74.009070);
     GMSMarker *endStationPoint = [GMSMarker markerWithPosition:endStationPosition];
-    endStationPoint.title = @"Middle";
+    endStationPoint.title = @"End Station";
     endStationPoint.map = mapView_;
     [waypoints_ addObject:endStationPoint];
     
@@ -68,7 +68,7 @@
     
     CLLocationCoordinate2D endPosition = CLLocationCoordinate2DMake(40.720638, -74.006070);
     GMSMarker *endPoint = [GMSMarker markerWithPosition:endPosition];
-    endPoint.title = @"End";
+    endPoint.title = @"Your destination";
     endPoint.map = mapView_;
     [waypoints_ addObject:endPoint];
     
