@@ -70,12 +70,22 @@
                     <view key="view" contentMode="scaleToFill" id="eN0-HA-GRj" customClass="GMSMapView">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kdo-ke-N9w">
+                                <rect key="frame" x="-77" y="66" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="BikePath Search" id="EoJ-yJ-sBB">
                         <barButtonItem key="leftBarButtonItem" title="Other" id="Aq9-9Z-EkI">
                             <connections>
-                                <segue destination="6Ty-Vv-Sfv" kind="modal" id="lKc-Sh-NkD"/>
+                                <segue destination="Psq-1E-C2k" kind="modal" id="P28-GV-rTT"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="FjH-MX-Uw3">
@@ -84,6 +94,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="mapView" destination="eN0-HA-GRj" id="Ffd-wP-o94"/>
                     </connections>
@@ -109,7 +120,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </mapView>
                             <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OE4-j8-mQy">
-                                <rect key="frame" x="0.0" y="26" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="24" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
@@ -133,6 +144,64 @@
                 </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="-476" y="-311"/>
+        </scene>
+        <!--Google Autocomplete Test View Controller - Title-->
+        <scene sceneID="5Zi-wm-dVQ">
+            <objects>
+                <viewController id="Psq-1E-C2k" customClass="GoogleAutocompleteTestViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Vd7-0b-AE6"/>
+                        <viewControllerLayoutGuide type="bottom" id="PA5-In-NpB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nC9-aF-gT6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NZ1-zz-rQX">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Psq-1E-C2k" id="OH0-Bl-gfX"/>
+                                </connections>
+                            </searchBar>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3KM-hY-iTs" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ogr-tt-ar1">
+                                        <rect key="frame" x="208" y="454" width="85" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.80000001192092896" green="1" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="14"/>
+                                        <state key="normal" title="My Location">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="JNG-ag-Ove"/>
+                    <connections>
+                        <outlet property="mapView" destination="3KM-hY-iTs" id="GEL-8W-Xbn"/>
+                        <outlet property="searchDisplayController" destination="7f6-Ls-NCu" id="tsh-35-kYi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ih9-KG-S8W" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="7f6-Ls-NCu">
+                    <connections>
+                        <outlet property="delegate" destination="Psq-1E-C2k" id="9vK-Hk-sUa"/>
+                        <outlet property="searchBar" destination="NZ1-zz-rQX" id="hW0-xo-qxt"/>
+                        <outlet property="searchContentsController" destination="Psq-1E-C2k" id="ZeD-RP-a2X"/>
+                        <outlet property="searchResultsDataSource" destination="Psq-1E-C2k" id="tmv-Af-9jx"/>
+                        <outlet property="searchResultsDelegate" destination="Psq-1E-C2k" id="O0x-0t-SJS"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="-47" y="-311"/>
         </scene>
         <!--Search List View Controller-->
         <scene sceneID="JjR-Li-dwF">
