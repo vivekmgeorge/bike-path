@@ -89,24 +89,11 @@
         else
             for (MKMapItem *item in response.mapItems)
             {
-                NSLog(item.name);
-                
                 SearchItem *query = [[SearchItem alloc] init];
-                    query.searchQuery = item.name;
+                query.searchQuery = item.name;
 //                    query.position = CLLocationCoordinate2DMake(item.placemark.location.coordinate.latitude, item.placemark.location.coordinate.longitude);
-
-                NSLog(@"HERE");
-                NSLog(query.searchQuery);
-                
                 [self.searchResults addObject:query];
             }
-        
-        // debugging for search results list
-        for (NSObject *item in self.searchResults)
-        {
-            SearchItem *item2 = (SearchItem*)item;
-            NSLog(item2.searchQuery);
-        }
         self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
         self.tableView.dataSource = self;
         self.tableView.delegate = self;
@@ -122,19 +109,10 @@
 }
 #pragma Table View Methods
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//{
-//#warning Potentially incomplete method implementation.
-//    return 1;
-//}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    int x = [self.searchResults count];
-    NSLog(@"count = %i", x);
     return [self.searchResults count];
 
-//    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -148,30 +126,8 @@
     cell.textLabel.text = item.searchQuery;
 //    cell.textLabel.text = @"foo";
     return cell;
-//    
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"ListPrototypeCell" forIndexPath:indexPath];
-////    SearchItem *item = (SearchItem*)[self.searchResults objectAtIndex:indexPath.row];
-////    cell.textLabel.text = item.searchQuery;
-//    
-//    cell.textLabel.text = @"foo";
-//    return cell;
 }
 
-
-#pragma Search Methods
-
-//-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-//{
-//    NSLog(@"now here");
-//    [self.tableView reloadData];
-////    [self filterContentForSearchText:searchString
-////    scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
-////                                      objectAtIndex:[self.searchDisplayController.searchBar
-////                                                     selectedScopeButtonIndex]];
-//////
-//    return YES;
-//}
-//
 @end
 
 
