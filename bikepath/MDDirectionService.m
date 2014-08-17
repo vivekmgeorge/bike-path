@@ -30,22 +30,19 @@ static NSString *kMDDirectionsURL = @"http://maps.googleapis.com/maps/api/direct
     [NSMutableString stringWithFormat:@"%@&origin=%@&destination=%@&sensor=%@",
      kMDDirectionsURL,origin,destination, sensor];
     if(waypointCount>2) {
-        [url appendString:@"&waypoints=optimize:true"];
         int wpCount = waypointCount-2;
         for(int i=1;i<wpCount;i++){
             [url appendString: @"|"];
             [url appendString:[waypoints objectAtIndex:i]];
         }
     }
-    url = [url
-           stringByAddingPercentEscapesUsingEncoding: NSASCIIStringEncoding];
+    url = [url stringByAddingPercentEscapesUsingEncoding: NSASCIIStringEncoding];
     _directionsURL = [NSURL URLWithString:url];
     [self retrieveDirections:selector withDelegate:delegate];
 }
 - (void)retrieveDirections:(SEL)selector withDelegate:(id)delegate{
     dispatch_async(dispatch_get_main_queue(), ^{
-        NSData* data =
-        [NSData dataWithContentsOfURL:_directionsURL];
+        NSData* data = [NSData dataWithContentsOfURL:_directionsURL];
         [self fetchedData:data withSelector:selector withDelegate:delegate];
     });
 }
@@ -53,7 +50,7 @@ static NSString *kMDDirectionsURL = @"http://maps.googleapis.com/maps/api/direct
 - (void)fetchedData:(NSData *)data
        withSelector:(SEL)selector
        withDelegate:(id)delegate{
-    
+
     NSError* error;
     NSDictionary *json = [NSJSONSerialization
                           JSONObjectWithData:data
