@@ -11,11 +11,13 @@
 #import <MapKit/MapKit.h>
 #import <Foundation/Foundation.h>
 #import "MDDirectionService.h"
+#import <CoreLocation/CoreLocation.h>
 
 @interface ResultsMapViewController () {
     GMSMapView *mapView_;
     NSMutableArray *waypoints_;
     NSMutableArray *waypointStrings_;
+    CLLocationManager *locationManager;
 }
 @end
 
@@ -25,8 +27,18 @@
 - (IBAction)unwindToSearchPage:(UIStoryboardSegue *)segue{
     
 }
+
+- (NSString *)deviceLocation {
+    return [NSString stringWithFormat:@"latitude: %f longitude: %f", locationManager.location.coordinate.latitude, locationManager.location.coordinate.longitude];
+}
+
 - (void)viewDidLoad{
     [super viewDidLoad];
+    
+    locationManager = [[CLLocationManager alloc] init];
+    locationManager.distanceFilter = kCLDistanceFilterNone; // whenever we move
+    locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters; // 100 m
+    [locationManager startUpdatingLocation];
     
     waypoints_ = [[NSMutableArray alloc]init];
     waypointStrings_ = [[NSMutableArray alloc]init];
@@ -38,8 +50,8 @@
     mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     mapView_.delegate = self;
     self.view = mapView_;
-    
-    CLLocationCoordinate2D startPosition = CLLocationCoordinate2DMake(40.706638, -74.009070);
+    NSLog(@"%@", locationManager.location);
+    CLLocationCoordinate2D startPosition = locationManager.location.coordinate;
     GMSMarker *startPoint = [GMSMarker markerWithPosition:startPosition];
     startPoint.title = @"Start";
     startPoint.map = mapView_;
