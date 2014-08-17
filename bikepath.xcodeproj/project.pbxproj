@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		09F19F78199EF6F500825ADE /* CitiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F19F77199EF6F500825ADE /* CitiViewController.m */; };
 		09F19F7B199FB16600825ADE /* LaunchScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F19F7A199FB16600825ADE /* LaunchScreenViewController.m */; };
+		435721EDF7AF4632961DCCB4 /* libPods-bikepathTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C5CC0201BF16497A8D359B0B /* libPods-bikepathTests.a */; };
 		80942BA319A048AC009305CB /* MDDirectionService.m in Sources */ = {isa = PBXBuildFile; fileRef = 80942BA219A048AC009305CB /* MDDirectionService.m */; };
 		8A18221C199ED28D001D7AE2 /* SearchItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A18221B199ED28D001D7AE2 /* SearchItem.m */; };
 		8A48A710199FC4420030F153 /* SearchListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A48A70F199FC4420030F153 /* SearchListViewController.m */; };
@@ -105,6 +106,8 @@
 		9FB68BF6A67F4944864A854A /* Pods-bikepath.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bikepath.xcconfig"; path = "Pods/Pods-bikepath.xcconfig"; sourceTree = "<group>"; };
 		C2813E3F199E789700B19D69 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C2813E41199E7BD800B19D69 /* dbc.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = dbc.gpx; sourceTree = "<group>"; };
+		C5CC0201BF16497A8D359B0B /* libPods-bikepathTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-bikepathTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7E879AA036042FF88264FF1 /* Pods-bikepathTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bikepathTests.xcconfig"; path = "Pods/Pods-bikepathTests.xcconfig"; sourceTree = "<group>"; };
 		DCC7FAA8B0C7490B8457CBC3 /* libPods-bikepath.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-bikepath.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -141,6 +144,7 @@
 				8AE403DF199D924200B926AB /* XCTest.framework in Frameworks */,
 				8AE403E1199D924200B926AB /* UIKit.framework in Frameworks */,
 				8AE403E0199D924200B926AB /* Foundation.framework in Frameworks */,
+				435721EDF7AF4632961DCCB4 /* libPods-bikepathTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,6 +160,7 @@
 				8AE403C4199D924200B926AB /* Frameworks */,
 				8AE403C3199D924200B926AB /* Products */,
 				9FB68BF6A67F4944864A854A /* Pods-bikepath.xcconfig */,
+				D7E879AA036042FF88264FF1 /* Pods-bikepathTests.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -191,6 +196,7 @@
 				8AE403C9199D924200B926AB /* UIKit.framework */,
 				8AE403DE199D924200B926AB /* XCTest.framework */,
 				DCC7FAA8B0C7490B8457CBC3 /* libPods-bikepath.a */,
+				C5CC0201BF16497A8D359B0B /* libPods-bikepathTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -276,9 +282,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8AE403F1199D924200B926AB /* Build configuration list for PBXNativeTarget "bikepathTests" */;
 			buildPhases = (
+				852D75CAA7AD41AFA95AC141 /* Check Pods Manifest.lock */,
 				8AE403D9199D924200B926AB /* Sources */,
 				8AE403DA199D924200B926AB /* Frameworks */,
 				8AE403DB199D924200B926AB /* Resources */,
+				1E4032CAA0FB4B5CAF542481 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -346,7 +354,37 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1E4032CAA0FB4B5CAF542481 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-bikepathTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		439CB0C214A14D45AFB76995 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		852D75CAA7AD41AFA95AC141 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -467,6 +505,11 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-framework",
+					XCTest,
+				);
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -498,6 +541,11 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-framework",
+					XCTest,
+				);
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -545,6 +593,7 @@
 		};
 		8AE403F2199D924200B926AB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D7E879AA036042FF88264FF1 /* Pods-bikepathTests.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/bikepath.app/bikepath";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -572,6 +621,7 @@
 		};
 		8AE403F3199D924200B926AB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D7E879AA036042FF88264FF1 /* Pods-bikepathTests.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/bikepath.app/bikepath";
 				FRAMEWORK_SEARCH_PATHS = (

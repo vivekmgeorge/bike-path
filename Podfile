@@ -6,5 +6,5 @@ target "bikepath" do
 end
 
 target "bikepathTests" do
-
+  pod "Kiwi"
 end
