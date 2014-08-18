@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>34A510E2-C8C1-451B-AFA7-6FAB310C0081</string>
+	<string>CA3D9613-685E-489F-9692-B7AFF48A1EED</string>
 	<key>IDESourceControlProjectName</key>
 	<string>bikepath</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>DC8B880C-B721-4FB2-A7D9-F4F75E17E533</key>
-		<string>ssh://github.com/mhuerster/bike-path.git</string>
+		<key>BDD7CE90-694F-4C13-8E48-51C91850EBB5</key>
+		<string>https://github.com/vivekmgeorge/bike-path.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>bikepath.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>DC8B880C-B721-4FB2-A7D9-F4F75E17E533</key>
+		<key>BDD7CE90-694F-4C13-8E48-51C91850EBB5</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/mhuerster/bike-path.git</string>
+	<string>https://github.com/vivekmgeorge/bike-path.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>DC8B880C-B721-4FB2-A7D9-F4F75E17E533</string>
+	<string>BDD7CE90-694F-4C13-8E48-51C91850EBB5</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>DC8B880C-B721-4FB2-A7D9-F4F75E17E533</string>
+			<string>BDD7CE90-694F-4C13-8E48-51C91850EBB5</string>
 			<key>IDESourceControlWCCName</key>
 			<string>bike-path</string>
 		</dict>
