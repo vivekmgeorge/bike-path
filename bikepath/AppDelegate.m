@@ -8,12 +8,30 @@
 
 #import "AppDelegate.h"
 #import <GoogleMaps/GoogleMaps.h>
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    // background color of navigation bar
+    UIColor * color = [UIColor colorWithRed:255/255.0f green:251/255.0f blue:246/255.0f alpha:1.0f];
+    [[UINavigationBar appearance] setBarTintColor:color];
+    // color of back button
+    UIColor * color2 = [UIColor colorWithRed:243/255.0f green:185/255.0f blue:44/255.0f alpha:1.0f];
+    [[UINavigationBar appearance] setTintColor: color2];
+    
+    //set back indicator image
+    [[UINavigationBar appearance] setBackIndicatorImage:[UIImage imageNamed:@"back_btn.png"]];
+    [[UINavigationBar appearance] setBackIndicatorTransitionMaskImage:[UIImage imageNamed:@"back_btn.png"]];
+    
+    // font style of the title
+     NSShadow *shadow = [[NSShadow alloc] init];
+     [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
+     [UIColor colorWithRed:243/255.0f green:185/255.0f blue:44/255.0f alpha:1.0f], NSForegroundColorAttributeName,
+     shadow, NSShadowAttributeName,
+     [UIFont fontWithName:@"American Typewriter" size:21.0], NSFontAttributeName, nil]];
+    
     [GMSServices provideAPIKey:@"AIzaSyDqQ7Ds6pvIZucpKNe0OiEfCCyepC0SHnw"];
     return YES;
 }

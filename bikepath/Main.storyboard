@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Results Map View Controller - BikePath Results-->
+        <!--Results Map View Controller - Results-->
         <scene sceneID="y25-Gz-VHz">
             <objects>
                 <viewController id="StR-Yi-Gvc" customClass="ResultsMapViewController" sceneMemberID="viewController">
@@ -13,19 +13,19 @@
                         <viewControllerLayoutGuide type="bottom" id="doY-Pr-8J5"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="iVa-G1-NWu" customClass="GMSMapView">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="BikePath Results" id="TcU-1J-CRn">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="uJL-aa-GD6">
+                    <navigationItem key="navigationItem" title="Results" id="TcU-1J-CRn">
+                        <barButtonItem key="leftBarButtonItem" systemItem="rewind" id="38F-3W-mvs">
                             <connections>
-                                <segue destination="G0S-6X-bg1" kind="unwind" unwindAction="unwindToSearchPage:" id="erh-B2-gzs"/>
+                                <segue destination="G0S-6X-bg1" kind="unwind" unwindAction="unwindToSearchPage:" id="mtr-0s-eLm"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Next" id="9ZU-FS-WQJ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="9ZU-FS-WQJ">
                             <connections>
-                                <segue destination="otc-CS-obf" kind="modal" id="it7-bU-Jex"/>
+                                <segue destination="Icl-rY-jN6" kind="modal" id="f6B-aY-a8Z"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -38,28 +38,7 @@
             </objects>
             <point key="canvasLocation" x="464" y="-977"/>
         </scene>
-        <!--Citi View Controller-->
-        <scene sceneID="hFY-af-fca">
-            <objects>
-                <viewController id="otc-CS-obf" customClass="CitiViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="H7j-of-Jfi"/>
-                        <viewControllerLayoutGuide type="bottom" id="fch-qt-Ho0"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="rUA-eI-RaC" customClass="GMSMapView">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <connections>
-                        <outlet property="mapView" destination="rUA-eI-RaC" id="4nV-5o-8to"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VOW-IA-NOJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="908" y="-977"/>
-        </scene>
-        <!--Search Map View Controller - BikePath Search-->
+        <!--Search Map View Controller - Stations Nearby-->
         <scene sceneID="uBy-pW-Yuz">
             <objects>
                 <viewController id="nM0-WI-Oec" customClass="SearchMapViewController" sceneMemberID="viewController">
@@ -68,11 +47,11 @@
                         <viewControllerLayoutGuide type="bottom" id="hYZ-xm-PYs"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="eN0-HA-GRj" customClass="GMSMapView">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="BikePath Search" id="EoJ-yJ-sBB">
+                    <navigationItem key="navigationItem" title="Stations Nearby" id="EoJ-yJ-sBB">
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="FjH-MX-Uw3">
                             <connections>
                                 <segue destination="vmW-OD-HOf" kind="push" id="cMg-Bf-juU"/>
@@ -87,7 +66,7 @@
             </objects>
             <point key="canvasLocation" x="-491" y="-977"/>
         </scene>
-        <!--Search List View Controller-->
+        <!--Search List View Controller - Search-->
         <scene sceneID="JjR-Li-dwF">
             <objects>
                 <viewController id="vmW-OD-HOf" customClass="SearchListViewController" sceneMemberID="viewController">
@@ -96,23 +75,20 @@
                         <viewControllerLayoutGuide type="bottom" id="NBP-ZH-SUb"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="vGL-th-Lyy">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" fixedFrame="YES" showsSearchResultsButton="YES" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ogR-Xi-9rc">
+                            <searchBar contentMode="redraw" fixedFrame="YES" searchBarStyle="minimal" placeholder="Enter your destination" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ogR-Xi-9rc">
                                 <rect key="frame" x="0.0" y="65" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <scopeButtonTitles>
-                                    <string>Title</string>
-                                    <string>Title</string>
-                                </scopeButtonTitles>
+                                <color key="barTintColor" red="0.99594352715897982" green="1" blue="0.63333170884241707" alpha="1" colorSpace="calibratedRGB"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="yes"/>
                                 <connections>
                                     <outlet property="delegate" destination="vmW-OD-HOf" id="aHG-n0-MXi"/>
                                 </connections>
                             </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="hKc-k8-JR0">
-                                <rect key="frame" x="0.0" y="109" width="332" height="472"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="hKc-k8-JR0">
+                                <rect key="frame" x="0.0" y="109" width="332" height="384"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -131,7 +107,7 @@
                                                     <nil key="highlightedColor"/>
                                                     <color key="shadowColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eoy-DK-cgH">
+                                                <label opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eoy-DK-cgH">
                                                     <rect key="frame" x="20" y="18" width="279" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="11"/>
@@ -152,13 +128,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="apk-eL-f0g">
-                        <barButtonItem key="rightBarButtonItem" title="Next" id="Zbg-N4-Qjh">
-                            <connections>
-                                <segue destination="StR-Yi-Gvc" kind="push" identifier="" id="LmC-ZQ-9e3"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Search" id="apk-eL-f0g"/>
                     <connections>
                         <outlet property="searchField" destination="ogR-Xi-9rc" id="78f-tN-53C"/>
                         <outlet property="tableView" destination="hKc-k8-JR0" id="oF3-ly-Fqv"/>
@@ -190,9 +160,6 @@
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
+        <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="HYJ-FP-ZUY"/>
-    </inferredMetricsTieBreakers>
 </document>
