@@ -54,20 +54,6 @@
     [super viewDidUnload];
 }
 
-
-//- (IBAction)recenterMapToUserLocation:(id)sender {
-//    MKCoordinateRegion region;
-//    MKCoordinateSpan span;
-//    
-//    span.latitudeDelta = 0.02;
-//    span.longitudeDelta = 0.02;
-//    
-//    region.span = span;
-//    region.center = self.mapView.userLocation.coordinate;
-//    
-//    [self.mapView setRegion:region animated:YES];
-//}
-
 #pragma mark -
 #pragma mark UITableViewDataSource
 
@@ -93,30 +79,6 @@
 
 #pragma mark -
 #pragma mark UITableViewDelegate
-
-//- (void)recenterMapToPlacemark:(CLPlacemark *)placemark {
-//    MKCoordinateRegion region;
-//    MKCoordinateSpan span;
-//    
-//    span.latitudeDelta = 0.02;
-//    span.longitudeDelta = 0.02;
-//    
-//    region.span = span;
-//    region.center = placemark.location.coordinate;
-//    
-////    [self.mapView setRegion:region];
-//}
-
-//- (void)addPlacemarkAnnotationToMap:(SearchItem *)placemark addressString:(NSString *)address {
-////    [self.mapView removeAnnotation:selectedPlaceAnnotation];
-//    
-////    selectedPlaceAnnotation = [[MKPointAnnotation alloc] init];
-//    selectedPlaceAnnotation = [[SearchItem alloc] init];
-//    
-////    selectedPlaceAnnotation.coordinate = placemark.location.coordinate;
-//    selectedPlaceAnnotation.title = address;
-////    [self.mapView addAnnotation:selectedPlaceAnnotation];
-//}
 
 - (void)dismissSearchControllerWhileStayingActive {
     // Animate out the table view.
@@ -168,8 +130,8 @@
     [searchQuery fetchPlaces:^(NSArray *places, NSError *error) {
         if (error) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Could not fetch Places"
-                                                            message:error.localizedDescription
-                                                           delegate:nil
+                                                    message:error.localizedDescription
+                                                    delegate:nil
                                                   cancelButtonTitle:@"OK"
                                                   otherButtonTitles:nil, nil];
             [alert show];
@@ -215,35 +177,5 @@
     return boolToReturn;
 }
 
-#pragma mark -
-#pragma mark MKMapView Delegate
-
-//- (MKAnnotationView *)mapView:(MKMapView *)mapViewIn viewForAnnotation:(id <MKAnnotation>)annotation {
-//    if (mapViewIn != self.mapView || [annotation isKindOfClass:[MKUserLocation class]]) {
-//        return nil;
-//    }
-//    static NSString *annotationIdentifier = @"SPGooglePlacesAutocompleteAnnotation";
-//    MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[self.mapView dequeueReusableAnnotationViewWithIdentifier:annotationIdentifier];
-//    if (!annotationView) {
-//        annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationIdentifier];
-//    }
-//    annotationView.animatesDrop = YES;
-//    annotationView.canShowCallout = YES;
-//
-//    UIButton *detailButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-//    [detailButton addTarget:self action:@selector(annotationDetailButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-//    annotationView.rightCalloutAccessoryView = detailButton;
-//    
-//    return annotationView;
-//}
-//
-//- (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views {
-//    // Whenever we've dropped a pin on the map, immediately select it to present its callout bubble.
-//    [self.mapView selectAnnotation:selectedPlaceAnnotation animated:YES];
-//}
-//
-//- (void)annotationDetailButtonPressed:(id)sender {
-//    // Detail view controller application logic here.
-//}
 
 @end
