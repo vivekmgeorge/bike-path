@@ -12,6 +12,8 @@
 		4D2B88EEF48841E88DE7D44E /* libPods-bikepath.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CC8DBFD4CDEA40F5B4BCED9E /* libPods-bikepath.a */; };
 		6D22410A19A172BC00CD89C7 /* nycbikesresponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 6D22410919A172BC00CD89C7 /* nycbikesresponse.json */; };
 		6D22410D19A1787400CD89C7 /* StationFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D22410C19A1787400CD89C7 /* StationFinder.m */; };
+		6D4BAC4919A23BA800CF6D48 /* StationFinder.h in Sources */ = {isa = PBXBuildFile; fileRef = 6D22410B19A1787400CD89C7 /* StationFinder.h */; };
+		6D4BAC4A19A23BB000CF6D48 /* StationFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D22410C19A1787400CD89C7 /* StationFinder.m */; };
 		808E86B119A12D3A006D0277 /* MDDirectionService.m in Sources */ = {isa = PBXBuildFile; fileRef = 808E86B019A12D3A006D0277 /* MDDirectionService.m */; };
 		8A02797B19A04DA200F3FFC7 /* SearchItemTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A02797A19A04DA200F3FFC7 /* SearchItemTableCell.m */; };
 		8A18221C199ED28D001D7AE2 /* SearchItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A18221B199ED28D001D7AE2 /* SearchItem.m */; };
@@ -430,6 +432,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D4BAC4A19A23BB000CF6D48 /* StationFinder.m in Sources */,
+				6D4BAC4919A23BA800CF6D48 /* StationFinder.h in Sources */,
 				808E86B119A12D3A006D0277 /* MDDirectionService.m in Sources */,
 				8A48A710199FC4420030F153 /* SearchListViewController.m in Sources */,
 				8AB03328199DADA80036FF7A /* ResultsMapViewController.m in Sources */,
