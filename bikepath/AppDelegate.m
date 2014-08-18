@@ -14,6 +14,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    NSURLCache *URLCache = [[NSURLCache alloc]initWithMemoryCapacity:4*1024*1024
+                                                        diskCapacity:4*1024*1024
+                                                            diskPath:nil];
+    [NSURLCache setSharedURLCache:URLCache];
+    
     // background color of navigation bar
     UIColor * color = [UIColor colorWithRed:255/255.0f green:251/255.0f blue:246/255.0f alpha:1.0f];
     [[UINavigationBar appearance] setBarTintColor:color];
