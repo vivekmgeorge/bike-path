@@ -45,10 +45,11 @@
     return;
 }
 
-- (void)userLocation{
-    // intialize locationManager instance var to a location manager that is constantly
-    // keeping its current location up-to-date in the background
+- (void)getUserLocation{
     locationManager = [[CLLocationManager alloc] init];
+}
+
+- (void)updateUserLocation{
     locationManager.distanceFilter = kCLDistanceFilterNone; // whenever we move
     locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters; // 100 m
     [locationManager startUpdatingLocation];
@@ -59,7 +60,8 @@
     [super viewDidLoad];
     
     [self initMap];
-    [self userLocation];
+    [self getUserLocation]; // does this initialize every time the view loads? possible reason for crashing
+    [self updateUserLocation];
 
     // get the current location of the phone from the locationManager
     CLLocationCoordinate2D startPosition = locationManager.location.coordinate;
