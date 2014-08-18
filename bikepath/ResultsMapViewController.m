@@ -112,12 +112,12 @@
                  
                  CLLocation *endLocation = [[CLLocation alloc] initWithLatitude:self.item.lati longitude:self.item.longi];
                  
-                 for (CLLocation *location in locations) {
-                     CLLocationDistance distance = [endLocation distanceFromLocation:location];
+                 for (CLLocation *endStationlocation in locations) {
+                     CLLocationDistance distance = [endLocation distanceFromLocation:endStationlocation];
                      
                      if (distance < smallestDistance) {
                          smallestDistance    = distance;
-                         closestEndLocation  = location;
+                         closestEndLocation  = endStationlocation;
                          closestEndStation   = station;
                      }
                  }
