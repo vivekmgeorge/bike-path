@@ -37,7 +37,6 @@
     self.mapView.delegate = self;
 
     NSURL *url = [NSURL URLWithString:@"http://www.citibikenyc.com/stations/json"];
-    /////
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: url
                                                            cachePolicy: NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval: 30.0];
@@ -47,9 +46,7 @@
     [formatter setDateFormat: @"EEE, dd MM yyyy HH:mm:ss"];
     NSString *currentTime = [[formatter stringFromDate:now] stringByAppendingString:@"GMT"];
     [request addValue: currentTime forHTTPHeaderField: @"If-Modified-Since"];
-//    NSURLConnection *urlConnection = [[NSURLConnection alloc] initWithRequest: request
-//                                                    delegate: self];
-    /////
+
     [NSURLConnection sendAsynchronousRequest:request
                                        queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *response,
@@ -61,12 +58,20 @@
                                                                       options:0
                                                                         error:NULL];
              NSArray* stations = [greeting objectForKey:@"stationBeanList"];
-             for(id st in stations) {
+             NSSortDescriptor *sortDescriptor;
+             sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"availableBikes"
+                                                          ascending:NO];
+             NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+             NSArray *sortedStations;
+             sortedStations = [stations sortedArrayUsingDescriptors:sortDescriptors];
+
+             for(id st in sortedStations) {
                  NSDictionary *station = (NSDictionary *)st;
                  NSString *lati             = [station objectForKey:@"latitude"];
                  NSString *longi            = [station objectForKey:@"longitude"];
                  NSString *title            = [station objectForKey:@"stationName"];
                  NSString *availableBikes   = [[station objectForKey:@"availableBikes"] stringValue];
+                 NSLog(@"%@",availableBikes);
                  
                  GMSMarker *citiMarker = [[GMSMarker alloc] init];
                  
