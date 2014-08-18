@@ -13,6 +13,7 @@
 #import "MDDirectionService.h"
 #import <CoreLocation/CoreLocation.h>
 #import "StationFinder.h"
+#import "GMSMarkerFactory.h"
 
 @interface ResultsMapViewController () {
     GMSMapView *mapView_;
@@ -55,6 +56,13 @@
     [locationManager startUpdatingLocation];
 }
 
+-(void)GMSMarkerFactory{
+    CLLocationCoordinate2D position = CLLocationCoordinate2DMake(coordinates);
+    GMSMarker *startPoint = [GMSMarker markerWithPosition:postion];
+    startPoint.title = @"Start";
+    startPoint.map = mapView_;
+}
+
 - (void)viewDidLoad{
     // do the default view behavior
     [super viewDidLoad];
@@ -67,16 +75,22 @@
     CLLocationCoordinate2D startPosition = locationManager.location.coordinate;
     
     // init a waypoints instance var, it's an array of markers not locations
-    waypoints_ = [[NSMutableArray alloc]init];
+//    waypoints_ = [[NSMutableArray alloc]init];
     waypointStrings_ = [[NSMutableArray alloc]init];
 
     // place a marker on the map at the current location of the phone
-    GMSMarker *startPoint = [GMSMarker markerWithPosition:startPosition];
-    startPoint.title = @"Start";
-    startPoint.map = mapView_;
+//    startPosition = locationManager.coordinate;
+//    NSDictionary *closestStation = [StationFinder findClosestStation:stations location:currentLocation];
+    
+
+    
+    [self GMSMarkerFactory]; GMSMarker *startPoint = [Factory:startPosition];
+//    GMSMarker *startPoint = [GMSMarker markerWithPosition:startPosition];
+//    startPoint.title = @"Start";
+//    startPoint.map = mapView_;
     
     // set the first waypoint to the *marker* that's at the current position
-    [waypoints_ addObject: startPoint];
+//    [waypoints_ addObject: startPoint];
     // also set the first "poistion string" ... where are these used?
     NSString *startPositionString = [[NSString alloc] initWithFormat:@"%f,%f", locationManager.location.coordinate.latitude, locationManager.location.coordinate.longitude];
     [waypointStrings_ addObject:startPositionString];

@@ -11,6 +11,7 @@
 		2879AD7C3E4E49F8AA71BDCA /* libPods-bikepathTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33EAE0460F714A259616CB76 /* libPods-bikepathTests.a */; };
 		4D2B88EEF48841E88DE7D44E /* libPods-bikepath.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CC8DBFD4CDEA40F5B4BCED9E /* libPods-bikepath.a */; };
 		6D4BAC4D19A2738E00CF6D48 /* StationFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D4BAC4C19A2738E00CF6D48 /* StationFinder.m */; };
+		80508A6A19A2AF6C00B5DCED /* GMSMarkerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 80508A6919A2AF6C00B5DCED /* GMSMarkerFactory.m */; };
 		808E86B119A12D3A006D0277 /* MDDirectionService.m in Sources */ = {isa = PBXBuildFile; fileRef = 808E86B019A12D3A006D0277 /* MDDirectionService.m */; };
 		8A02797B19A04DA200F3FFC7 /* SearchItemTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A02797A19A04DA200F3FFC7 /* SearchItemTableCell.m */; };
 		8A18221C199ED28D001D7AE2 /* SearchItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A18221B199ED28D001D7AE2 /* SearchItem.m */; };
@@ -69,6 +70,8 @@
 		443C4517985D4981AFE851A3 /* Pods-bikepathTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bikepathTests.xcconfig"; path = "Pods/Pods-bikepathTests.xcconfig"; sourceTree = "<group>"; };
 		6D4BAC4B19A2738E00CF6D48 /* StationFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationFinder.h; sourceTree = "<group>"; };
 		6D4BAC4C19A2738E00CF6D48 /* StationFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationFinder.m; sourceTree = "<group>"; };
+		80508A6819A2AF6C00B5DCED /* GMSMarkerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMSMarkerFactory.h; sourceTree = "<group>"; };
+		80508A6919A2AF6C00B5DCED /* GMSMarkerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMSMarkerFactory.m; sourceTree = "<group>"; };
 		808E86AF19A12D3A006D0277 /* MDDirectionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDDirectionService.h; path = ../MDDirectionService.h; sourceTree = "<group>"; };
 		808E86B019A12D3A006D0277 /* MDDirectionService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDDirectionService.m; path = ../MDDirectionService.m; sourceTree = "<group>"; };
 		8A02797919A04DA200F3FFC7 /* SearchItemTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchItemTableCell.h; sourceTree = "<group>"; };
@@ -226,6 +229,8 @@
 				8AB03324199DAD8A0036FF7A /* SearchMapViewController.m */,
 				8AB03326199DADA80036FF7A /* ResultsMapViewController.h */,
 				8AB03327199DADA80036FF7A /* ResultsMapViewController.m */,
+				80508A6819A2AF6C00B5DCED /* GMSMarkerFactory.h */,
+				80508A6919A2AF6C00B5DCED /* GMSMarkerFactory.m */,
 				6D4BAC4B19A2738E00CF6D48 /* StationFinder.h */,
 				6D4BAC4C19A2738E00CF6D48 /* StationFinder.m */,
 				8AA991E819A1B9C3009CC402 /* Images.xcassets */,
@@ -446,6 +451,7 @@
 				808E86B119A12D3A006D0277 /* MDDirectionService.m in Sources */,
 				8A48A710199FC4420030F153 /* SearchListViewController.m in Sources */,
 				8AB03328199DADA80036FF7A /* ResultsMapViewController.m in Sources */,
+				80508A6A19A2AF6C00B5DCED /* GMSMarkerFactory.m in Sources */,
 				8AE403D6199D924200B926AB /* AppDelegate.m in Sources */,
 				8AB03325199DAD8A0036FF7A /* SearchMapViewController.m in Sources */,
 				8A02797B19A04DA200F3FFC7 /* SearchItemTableCell.m in Sources */,
