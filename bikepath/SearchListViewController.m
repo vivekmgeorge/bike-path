@@ -115,12 +115,7 @@
         ResultsMapViewController *destViewController = segue.destinationViewController;
         SearchItem *item = (SearchItem*)[self.searchResults objectAtIndex:indexPath.row];
         destViewController.item = item;
-        
-        // to check what is being passed
-        NSLog(@"%@", destViewController.item.searchQuery);
-        NSLog(@"%f", destViewController.item.lati);
-        NSLog(@"%f", destViewController.item.longi);
-        NSLog(@"%@", destViewController.item.address);
+
     }
 }
 
