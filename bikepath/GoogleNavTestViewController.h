@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GoogleNavTestView_Controller : UIViewController
+@interface GoogleNavTestViewController : UIViewController
 
 @end
