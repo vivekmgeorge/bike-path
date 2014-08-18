@@ -20,16 +20,10 @@ static NSString *kMDDirectionsURL = @"http://maps.googleapis.com/maps/api/direct
 
 - (void)setDirectionsQuery:(NSDictionary *)query withSelector:(SEL)selector withDelegate:(id)delegate{
     NSArray *waypoints = [query objectForKey:@"waypoints"];
-    NSString *origin = [waypoints objectAtIndex:0];
-    NSString *destination = [waypoints objectAtIndex:1];
     NSString *sensor = [query objectForKey:@"sensor"];
-    NSMutableString *url = [NSMutableString stringWithFormat:@"%@&origin=%@&destination=%@&sensor=%@",
-                            kMDDirectionsURL, origin, destination, sensor];
-    
-    [url appendString: @"&waypoints="];
-    [url appendString:[waypoints objectAtIndex:2]];
-    [url appendString: @"|"];
-    [url appendString:[waypoints objectAtIndex:3]];
+    NSMutableString *url =
+    [NSMutableString stringWithFormat:@"%@&origin=%@&destination=%@&sensor=%@&waypoints=%@|%@", kMDDirectionsURL, [waypoints objectAtIndex:0], [waypoints objectAtIndex:1], sensor,[waypoints objectAtIndex:2], [waypoints objectAtIndex:3]];
+
     url = [url stringByAddingPercentEscapesUsingEncoding: NSASCIIStringEncoding];
     _directionsURL = [NSURL URLWithString:url];
     [self retrieveDirections:selector withDelegate:delegate];
