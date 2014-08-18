@@ -4,9 +4,9 @@
 target "bikepath" do
 	pod 'FTGooglePlacesAPI'
 	pod 'SPGooglePlacesAutocomplete'
+  pod "AFNetworking"
 end
 
 target "bikepathTests" do
-
+  pod "Kiwi"
 end
-

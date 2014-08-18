@@ -24,6 +24,10 @@
 
 @implementation SearchListViewController
 
+- (IBAction)unwindToSearchPage:(UIStoryboardSegue *)segue {
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -42,10 +46,9 @@
 }
 -(void) searchBarCancelButtonClicked:(UISearchBar *) searchBar
 {
-    //    [self keyboardWillHide];
     searchBar.text=@"";
     [searchBar setShowsCancelButton:NO animated:YES];
-    //    [searchBar resignFirstResponder];
+    [searchBar resignFirstResponder];
 }
 
 -(void) searchBar: (UISearchBar *) searchBar textDidChange:(NSString *) searchText
@@ -54,7 +57,7 @@
 
 -(void) searchBarSearchButtonClicked: (UISearchBar *) searchBar
 {
-    
+    [searchBar resignFirstResponder];
     self.searchLocation = [[SearchItem alloc] init];
     self.searchLocation.searchQuery = self.searchField.text;
     MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
@@ -91,6 +94,7 @@
 
 }
 
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"SearchResultTableCell";
@@ -111,12 +115,7 @@
         ResultsMapViewController *destViewController = segue.destinationViewController;
         SearchItem *item = (SearchItem*)[self.searchResults objectAtIndex:indexPath.row];
         destViewController.item = item;
-        
-        // to check what is being passed
-        NSLog(@"%@", destViewController.item.searchQuery);
-        NSLog(@"%f", destViewController.item.lati);
-        NSLog(@"%f", destViewController.item.longi);
-        NSLog(@"%@", destViewController.item.address);
+
     }
 }
 
