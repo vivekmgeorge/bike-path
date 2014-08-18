@@ -82,7 +82,7 @@
             </objects>
             <point key="canvasLocation" x="-611" y="-923"/>
         </scene>
-        <!--Google Autocomplete Test View Controller - Results-->
+        <!--Google Autocomplete Test View Controller - Search-->
         <scene sceneID="5Zi-wm-dVQ">
             <objects>
                 <viewController id="Psq-1E-C2k" customClass="GoogleAutocompleteTestViewController" sceneMemberID="viewController">
@@ -110,7 +110,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Results" id="JNG-ag-Ove"/>
+                    <navigationItem key="navigationItem" title="Search" id="JNG-ag-Ove"/>
                     <connections>
                         <outlet property="mapView" destination="Xt2-r6-gCh" id="OvQ-Of-zTN"/>
                         <outlet property="searchDisplayController" destination="7f6-Ls-NCu" id="tsh-35-kYi"/>
@@ -227,6 +227,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Nlw-BY-fgj"/>
+        <segue reference="bxq-HC-rED"/>
     </inferredMetricsTieBreakers>
 </document>
