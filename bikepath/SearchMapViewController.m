@@ -37,7 +37,19 @@
     self.mapView.delegate = self;
 
     NSURL *url = [NSURL URLWithString:@"http://www.citibikenyc.com/stations/json"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    /////
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: url
+                                                           cachePolicy: NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval: 30.0];
+    NSDate *now = [NSDate date];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setTimeZone: [NSTimeZone timeZoneWithName: @"GMT"]];
+    [formatter setDateFormat: @"EEE, dd MM yyyy HH:mm:ss"];
+    NSString *currentTime = [[formatter stringFromDate:now] stringByAppendingString:@"GMT"];
+    [request addValue: currentTime forHTTPHeaderField: @"If-Modified-Since"];
+//    NSURLConnection *urlConnection = [[NSURLConnection alloc] initWithRequest: request
+//                                                    delegate: self];
+    /////
     [NSURLConnection sendAsynchronousRequest:request
                                        queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *response,
