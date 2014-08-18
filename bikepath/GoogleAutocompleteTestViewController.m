@@ -17,7 +17,7 @@
 
 @implementation GoogleAutocompleteTestViewController
 
-@synthesize mapView;
+//@synthesize mapView;
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -37,7 +37,7 @@
 }
 
 - (void)viewDidUnload {
-    [self setMapView:nil];
+//    [self setMapView:nil];
     [super viewDidUnload];
 }
 
@@ -81,27 +81,29 @@
 #pragma mark -
 #pragma mark UITableViewDelegate
 
-- (void)recenterMapToPlacemark:(CLPlacemark *)placemark {
-    MKCoordinateRegion region;
-    MKCoordinateSpan span;
-    
-    span.latitudeDelta = 0.02;
-    span.longitudeDelta = 0.02;
-    
-    region.span = span;
-    region.center = placemark.location.coordinate;
-    
-//    [self.mapView setRegion:region];
-}
+//- (void)recenterMapToPlacemark:(CLPlacemark *)placemark {
+//    MKCoordinateRegion region;
+//    MKCoordinateSpan span;
+//    
+//    span.latitudeDelta = 0.02;
+//    span.longitudeDelta = 0.02;
+//    
+//    region.span = span;
+//    region.center = placemark.location.coordinate;
+//    
+////    [self.mapView setRegion:region];
+//}
 
-- (void)addPlacemarkAnnotationToMap:(CLPlacemark *)placemark addressString:(NSString *)address {
-//    [self.mapView removeAnnotation:selectedPlaceAnnotation];
-    
-    selectedPlaceAnnotation = [[MKPointAnnotation alloc] init];
-    selectedPlaceAnnotation.coordinate = placemark.location.coordinate;
-    selectedPlaceAnnotation.title = address;
-//    [self.mapView addAnnotation:selectedPlaceAnnotation];
-}
+//- (void)addPlacemarkAnnotationToMap:(SearchItem *)placemark addressString:(NSString *)address {
+////    [self.mapView removeAnnotation:selectedPlaceAnnotation];
+//    
+////    selectedPlaceAnnotation = [[MKPointAnnotation alloc] init];
+//    selectedPlaceAnnotation = [[SearchItem alloc] init];
+//    
+////    selectedPlaceAnnotation.coordinate = placemark.location.coordinate;
+//    selectedPlaceAnnotation.title = address;
+////    [self.mapView addAnnotation:selectedPlaceAnnotation];
+//}
 
 - (void)dismissSearchControllerWhileStayingActive {
     // Animate out the table view.
@@ -120,27 +122,21 @@
     [place resolveToPlacemark:^(CLPlacemark *placemark, NSString *addressString, NSError *error) {
         if (error) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Could not map selected Place"
-                                                            message:error.localizedDescription
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil, nil];
+            message:error.localizedDescription
+            delegate:nil
+            cancelButtonTitle:@"OK"
+            otherButtonTitles:nil, nil];
             [alert show];
         } else if (placemark) {
             SearchItem *selectedItem   = [[SearchItem alloc] init];
             selectedItem.searchQuery   = place.name;
-            NSLog(@"%@", place);
-            NSLog(@"%@", addressString);
-            NSLog(@"%@", placemark);
+            selectedItem.lati = placemark.location.coordinate.latitude;
+            selectedItem.longi = placemark.location.coordinate.longitude;
+            selectedItem.address = placemark.thoroughfare;
+//            NSLog(@"%@",self);
             
-            NSLog(@"%@", selectedItem.searchQuery);
-            
-//            selectedItem.lati          = place.placemark.location.coordinate.latitude;
-//            selectedItem.longi         = item.placemark.location.coordinate.longitude;
-//            selectedItem.position      = CLLocationCoordinate2DMake(item.placemark.location.coordinate.latitude, item.placemark.location.coordinate.longitude);
-//            selectedItem.address       = item.placemark.thoroughfare;
-
-            [self addPlacemarkAnnotationToMap:placemark addressString:addressString];
-            [self recenterMapToPlacemark:placemark];
+//            [self addPlacemarkAnnotationToMap:placemark addressString:addressString];
+//            [self recenterMapToPlacemark:placemark];
             [self dismissSearchControllerWhileStayingActive];
             [self.searchDisplayController.searchResultsTableView deselectRowAtIndexPath:indexPath animated:NO];
         }
