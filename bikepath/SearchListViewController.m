@@ -58,6 +58,7 @@
 
 -(void) searchBarSearchButtonClicked: (UISearchBar *) searchBar
 {
+    [searchBar resignFirstResponder];
     self.searchLocation = [[SearchItem alloc] init];
     self.searchLocation.searchQuery = self.searchField.text;
     MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
