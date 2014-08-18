@@ -12,6 +12,7 @@
 #import <Foundation/Foundation.h>
 #import "MDDirectionService.h"
 #import <CoreLocation/CoreLocation.h>
+#import "StationFinder.h"
 
 @interface ResultsMapViewController () {
     GMSMapView *mapView_;
@@ -81,13 +82,19 @@
 //         add error handler here
          if (data.length > 0 && connectionError == nil)
          {
-             NSDictionary *greeting = [NSJSONSerialization JSONObjectWithData:data
+             NSDictionary *bikepathjson = [NSJSONSerialization JSONObjectWithData:data
                                                                       options:0
                                                                         error:NULL];
-             NSArray *stations = [greeting objectForKey:@"stationBeanList"];
+             NSArray *stations = [bikepathjson objectForKey:@"stationBeanList"];
+             
+             CLLocation *currentLocation = [[CLLocation alloc] initWithLatitude:startPosition.latitude longitude:startPosition.longitude];
+             
+             NSDictionary *closestStation = [StationFinder findClosestStation:stations location:currentLocation];
+             
+             
              CLLocationDistance smallestDistance = DBL_MAX;
              CLLocation *closestLocation;
-             NSDictionary *closestStation;
+//             NSDictionary *closestStation;
              
              CLLocation *closestEndLocation;
              NSDictionary *closestEndStation;
@@ -98,20 +105,20 @@
                  NSString *stationLongitude = [station objectForKey:@"longitude"];
                  
                  CLLocation *bikeStop = [[CLLocation alloc] initWithLatitude:[stationLatitude doubleValue] longitude:[stationLongitude doubleValue]];
-                 CLLocation *currentLocation = [[CLLocation alloc] initWithLatitude:startPosition.latitude longitude:startPosition.longitude];
+//                 CLLocation *currentLocation = [[CLLocation alloc] initWithLatitude:startPosition.latitude longitude:startPosition.longitude];
                  
                  NSMutableArray *locations = [[NSMutableArray alloc] init];
                  [locations addObject:bikeStop];
                  
-                 for (CLLocation *location in locations) {
-                     CLLocationDistance distance = [currentLocation distanceFromLocation:location];
-                     
-                     if (distance < smallestDistance) {
-                         smallestDistance    = distance;
-                         closestLocation     = location;
-                         closestStation      = station;
-                     }
-                 }
+//                 for (CLLocation *location in locations) {
+//                     CLLocationDistance distance = [currentLocation distanceFromLocation:location];
+                 
+//                     if (distance < smallestDistance) {
+//                         smallestDistance    = distance;
+//                         closestLocation     = location;
+//                         closestStation      = station;
+//                     }
+//                 }
                  
                  CLLocation *endLocation = [[CLLocation alloc] initWithLatitude:self.item.lati longitude:self.item.longi];
                  
