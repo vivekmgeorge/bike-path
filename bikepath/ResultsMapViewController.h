@@ -7,9 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GoogleMaps/GoogleMaps.h>
+#import "SearchItem.h"
 
-@interface ResultsMapViewController : UIViewController
+@interface ResultsMapViewController : UIViewController <GMSMapViewDelegate>
+@property (strong, nonatomic) IBOutlet GMSMapView *mapView;
 
 - (IBAction)unwindToSearchPage:(UIStoryboardSegue *)segue;
+
+@property (nonatomic, strong) SearchItem *item;
+
 
 @end

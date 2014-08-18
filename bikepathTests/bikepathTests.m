@@ -2,33 +2,20 @@
 //  bikepathTests.m
 //  bikepathTests
 //
-//  Created by Farheen Malik on 8/14/14.
+//  Created by Vivek George, Molly Huerster, Farheen Malik and Armen Vartan on 8/14/14.
 //  Copyright (c) 2014 Bike Path. All rights reserved.
 //
 
-#import <XCTest/XCTest.h>
+#import "Kiwi.h"
 
-@interface bikepathTests : XCTestCase
+SPEC_BEGIN(MathSpec)
 
-@end
+describe(@"Math", ^{
+    it(@"is pretty cool", ^{
+        NSUInteger a = 16;
+        NSUInteger b = 26;
+        [[theValue(a + b) should] equal:theValue(43)];
+    });
+});
 
-@implementation bikepathTests
-
-- (void)setUp
-{
-    [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
-}
-
-- (void)tearDown
-{
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
-}
-
-- (void)testExample
-{
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-}
-
-@end
+SPEC_END
