@@ -18,12 +18,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="BikePath Results" id="TcU-1J-CRn">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="uJL-aa-GD6">
+                        <barButtonItem key="leftBarButtonItem" systemItem="rewind" id="38F-3W-mvs">
                             <connections>
-                                <segue destination="G0S-6X-bg1" kind="unwind" unwindAction="unwindToSearchPage:" id="erh-B2-gzs"/>
+                                <segue destination="G0S-6X-bg1" kind="unwind" unwindAction="unwindToSearchPage:" id="mtr-0s-eLm"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Next" id="9ZU-FS-WQJ"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="9ZU-FS-WQJ">
+                            <connections>
+                                <segue destination="Icl-rY-jN6" kind="modal" id="f6B-aY-a8Z"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="iVa-G1-NWu" id="Wg6-Kz-Xb5"/>
