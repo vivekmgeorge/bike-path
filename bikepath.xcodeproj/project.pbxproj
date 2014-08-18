@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		09F19F7B199FB16600825ADE /* LaunchScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F19F7A199FB16600825ADE /* LaunchScreenViewController.m */; };
 		2879AD7C3E4E49F8AA71BDCA /* libPods-bikepathTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33EAE0460F714A259616CB76 /* libPods-bikepathTests.a */; };
 		4D2B88EEF48841E88DE7D44E /* libPods-bikepath.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CC8DBFD4CDEA40F5B4BCED9E /* libPods-bikepath.a */; };
 		808E86B119A12D3A006D0277 /* MDDirectionService.m in Sources */ = {isa = PBXBuildFile; fileRef = 808E86B019A12D3A006D0277 /* MDDirectionService.m */; };
@@ -62,8 +61,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		09F19F79199FB16600825ADE /* LaunchScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchScreenViewController.h; sourceTree = "<group>"; };
-		09F19F7A199FB16600825ADE /* LaunchScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchScreenViewController.m; sourceTree = "<group>"; };
 		33EAE0460F714A259616CB76 /* libPods-bikepathTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-bikepathTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		443C4517985D4981AFE851A3 /* Pods-bikepathTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bikepathTests.xcconfig"; path = "Pods/Pods-bikepathTests.xcconfig"; sourceTree = "<group>"; };
 		808E86AF19A12D3A006D0277 /* MDDirectionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDDirectionService.h; path = ../MDDirectionService.h; sourceTree = "<group>"; };
@@ -224,8 +221,6 @@
 				8AB03326199DADA80036FF7A /* ResultsMapViewController.h */,
 				8AB03327199DADA80036FF7A /* ResultsMapViewController.m */,
 				8AA991E819A1B9C3009CC402 /* Images.xcassets */,
-				09F19F79199FB16600825ADE /* LaunchScreenViewController.h */,
-				09F19F7A199FB16600825ADE /* LaunchScreenViewController.m */,
 				8AE403D4199D924200B926AB /* AppDelegate.h */,
 				8AE403D5199D924200B926AB /* AppDelegate.m */,
 				8A48A70E199FC4420030F153 /* SearchListViewController.h */,
@@ -445,7 +440,6 @@
 				8A02797B19A04DA200F3FFC7 /* SearchItemTableCell.m in Sources */,
 				8A18221C199ED28D001D7AE2 /* SearchItem.m in Sources */,
 				8AE403D2199D924200B926AB /* main.m in Sources */,
-				09F19F7B199FB16600825ADE /* LaunchScreenViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -583,6 +577,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -603,6 +598,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
