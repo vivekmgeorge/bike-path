@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 
 @interface StationFinder : NSObject
+
++ (NSDictionary *) findClosestStation: (NSArray *) stations
+                             location: (CLLocation *) currentLocation;
 
 @end
