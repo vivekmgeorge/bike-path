@@ -34,12 +34,24 @@
 }
 
 // should be responsible for setting up the map, (setting camera point etc)
-//- (void) initMap();
+- (void) initMap{
+    // create a center point for the map
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.706638
+                                                            longitude:-74.009070
+                                                                 zoom:13];
+    
+    // create a map at that center point
+    mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+    mapView_.delegate = self;
+    self.view = mapView_;
+    return;
+};
 
 - (void)viewDidLoad{
     // do the default view behavior
     [super viewDidLoad];
     
+    [self initMap];
     // then ...
     
     // intialize locationManager instance var to a location manager that is constantly
@@ -54,16 +66,6 @@
     // init a waypoints instance var, it's an array of markers not locations
     waypoints_ = [[NSMutableArray alloc]init];
     waypointStrings_ = [[NSMutableArray alloc]init];
-    
-    // create a center point for the map
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.706638
-                                                            longitude:-74.009070
-                                                                 zoom:13];
-
-    // create a map at that center point
-    mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
-    mapView_.delegate = self;
-    self.view = mapView_;
 
     // place a marker on the map at the current location of the phone
     GMSMarker *startPoint = [GMSMarker markerWithPosition:startPosition];
