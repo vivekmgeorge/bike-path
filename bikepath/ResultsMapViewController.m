@@ -35,31 +35,32 @@
 
 // should be responsible for setting up the map, (setting camera point etc)
 - (void) initMap{
-    // create a center point for the map
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.706638
                                                             longitude:-74.009070
                                                                  zoom:13];
     
-    // create a map at that center point
     mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     mapView_.delegate = self;
     self.view = mapView_;
     return;
-};
+}
 
-- (void)viewDidLoad{
-    // do the default view behavior
-    [super viewDidLoad];
-    
-    [self initMap];
-    // then ...
-    
+- (void)userLocation{
     // intialize locationManager instance var to a location manager that is constantly
     // keeping its current location up-to-date in the background
     locationManager = [[CLLocationManager alloc] init];
     locationManager.distanceFilter = kCLDistanceFilterNone; // whenever we move
     locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters; // 100 m
     [locationManager startUpdatingLocation];
+}
+
+- (void)viewDidLoad{
+    // do the default view behavior
+    [super viewDidLoad];
+    
+    [self initMap];
+    [self userLocation];
+
     // get the current location of the phone from the locationManager
     CLLocationCoordinate2D startPosition = locationManager.location.coordinate;
     
