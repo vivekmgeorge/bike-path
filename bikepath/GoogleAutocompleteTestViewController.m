@@ -10,6 +10,7 @@
 #import "SPGooglePlacesAutocomplete.h"
 #import <UIKit/UIKit.h>
 #import "SearchItem.h"
+#import "ResultsMapViewController.h"
 
 @interface GoogleAutocompleteTestViewController ()
 
@@ -108,10 +109,9 @@
             selectedItem.lati = placemark.location.coordinate.latitude;
             selectedItem.longi = placemark.location.coordinate.longitude;
             selectedItem.address = placemark.thoroughfare;
-//            NSLog(@"%@",self);
-            
-//            [self addPlacemarkAnnotationToMap:placemark addressString:addressString];
-//            [self recenterMapToPlacemark:placemark];
+            [self performSegueWithIdentifier: @"showResults" sender: selectedItem];
+//            [self pushResultsMapViewController: (SearchItem*)selectedItem];
+//            [self actionWithSender:(UITableViewCell*)selectedItem];
             [self dismissSearchControllerWhileStayingActive];
             [self.searchDisplayController.searchResultsTableView deselectRowAtIndexPath:indexPath animated:NO];
         }
@@ -124,16 +124,14 @@
 - (void)handleSearchForSearchString:(NSString *)searchString {
     
     NSLog(@"%@", searchQuery);
-    
-//    searchQuery.location = self.mapView.userLocation.coordinate;
     searchQuery.input = searchString;
     [searchQuery fetchPlaces:^(NSArray *places, NSError *error) {
         if (error) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Could not fetch Places"
-                                                    message:error.localizedDescription
-                                                    delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil, nil];
+            message:error.localizedDescription
+            delegate:nil
+            cancelButtonTitle:@"OK"
+            otherButtonTitles:nil, nil];
             [alert show];
         } else {
             searchResultPlaces = places;
@@ -177,5 +175,39 @@
     return boolToReturn;
 }
 
+
+
+//-(void)actionWithSender:(UITableViewCell*)sender event:(UIEvent*)event {
+//    NSString* parameter;
+//    NSLog(@"%@", sender);
+////    if (sender.tag == 1)   // button1
+////        parameter = @"foo";
+////    else                   // button2
+////        parameter = @"bar";
+//////    ...
+//}
+
+//- (IBAction)pushResultsMapViewController: (SearchItem *)sender
+//{
+//    ResultsMapViewController *resultsMap = [[ResultsMapViewController alloc] initWithProperty:(SearchItem*)sender];
+//    NSLog(@"%@", sender);
+//    SearchItem *item = sender;
+//    ResultsMapViewController *destViewController = segue.destinationViewController;
+//    destViewController.item = item;
+//    [self presentModalViewController:resultsMap animated:YES];
+//}
+
+// segue to results page
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"showResults"]) {
+        NSLog(@"%@", sender);
+        ResultsMapViewController *destViewController = segue.destinationViewController;
+        SearchItem *item = sender;
+        
+        NSLog(@"%@",item.searchQuery);
+        destViewController.item = item;
+        
+    }
+}
 
 @end
