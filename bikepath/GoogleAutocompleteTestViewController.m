@@ -32,12 +32,25 @@
 }
 
 - (void)viewDidLoad {
-    NSLog(@"inviewDidLoad");
     self.searchDisplayController.searchBar.placeholder = @"Search or Address";
+    
+    GMSCameraPosition *nyc = [GMSCameraPosition cameraWithLatitude:40.706638
+                                                         longitude:-74.009070
+                                                              zoom:12
+                                                           bearing:30
+                                                        viewingAngle:45];
+    self.mapView.mapType = kGMSTypeNormal;
+    [self.mapView setCamera:nyc];
+    self.mapView.myLocationEnabled = YES;
+    self.mapView.settings.compassButton = YES;
+    self.mapView.settings.myLocationButton = YES;
+    self.mapView.settings.zoomGestures = YES;
+//    self.mapView.delegate = self;
+    
 }
 
 - (void)viewDidUnload {
-//    [self setMapView:nil];
+    [self setMapView:nil];
     [super viewDidUnload];
 }
 
