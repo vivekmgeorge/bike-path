@@ -18,14 +18,14 @@
 
 @implementation GoogleAutocompleteTestViewController
 
-//@synthesize mapView;
+@synthesize mapView;
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
     NSLog(@"initWithCoder");
     if (self) {
-        NSLog(@"hello");
+//        NSLog(@"hello");
         searchQuery = [[SPGooglePlacesAutocompleteQuery alloc] initWithApiKey:@"AIzaSyAxaqfMyyc-WSrvsWP_jF2IUaTZVjkMlFo"];
         shouldBeginEditing = YES;
     }
