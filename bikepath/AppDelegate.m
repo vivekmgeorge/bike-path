@@ -27,8 +27,6 @@
     
     // font style of the title
      NSShadow *shadow = [[NSShadow alloc] init];
-//     shadow.shadowColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
-//     shadow.shadowOffset = CGSizeMake(0, 1);
      [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
      [UIColor colorWithRed:243/255.0f green:185/255.0f blue:44/255.0f alpha:1.0f], NSForegroundColorAttributeName,
      shadow, NSShadowAttributeName,
