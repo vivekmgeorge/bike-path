@@ -7,11 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		09F19F78199EF6F500825ADE /* CitiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F19F77199EF6F500825ADE /* CitiViewController.m */; };
+		09F19F7B199FB16600825ADE /* LaunchScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F19F7A199FB16600825ADE /* LaunchScreenViewController.m */; };
 		2879AD7C3E4E49F8AA71BDCA /* libPods-bikepathTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33EAE0460F714A259616CB76 /* libPods-bikepathTests.a */; };
 		4D2B88EEF48841E88DE7D44E /* libPods-bikepath.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CC8DBFD4CDEA40F5B4BCED9E /* libPods-bikepath.a */; };
-		6D22410A19A172BC00CD89C7 /* nycbikesresponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 6D22410919A172BC00CD89C7 /* nycbikesresponse.json */; };
-		6D22410D19A1787400CD89C7 /* StationFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D22410C19A1787400CD89C7 /* StationFinder.m */; };
 		808E86B119A12D3A006D0277 /* MDDirectionService.m in Sources */ = {isa = PBXBuildFile; fileRef = 808E86B019A12D3A006D0277 /* MDDirectionService.m */; };
 		8A02797B19A04DA200F3FFC7 /* SearchItemTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A02797A19A04DA200F3FFC7 /* SearchItemTableCell.m */; };
 		8A18221C199ED28D001D7AE2 /* SearchItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A18221B199ED28D001D7AE2 /* SearchItem.m */; };
@@ -32,13 +30,17 @@
 		8AB03342199DB3EA0036FF7A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AB03341199DB3EA0036FF7A /* QuartzCore.framework */; };
 		8AB03344199DB3F20036FF7A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AB03343199DB3F20036FF7A /* SystemConfiguration.framework */; };
 		8AB03346199DB4AE0036FF7A /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AB03345199DB4AE0036FF7A /* CoreText.framework */; };
+		8AC02D3D19A185730066FEEB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8AC02D3C19A185730066FEEB /* Images.xcassets */; };
+		8AC02D4819A196E40066FEEB /* back_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AC02D4619A196E40066FEEB /* back_btn.png */; };
+		8AC02D4919A196E40066FEEB /* back_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AC02D4719A196E40066FEEB /* back_btn@2x.png */; };
+		8AC02D4C19A1B07D0066FEEB /* TempDefault.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AC02D4A19A1B07D0066FEEB /* TempDefault.png */; };
+		8AC02D4D19A1B07D0066FEEB /* TempDefault@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AC02D4B19A1B07D0066FEEB /* TempDefault@2x.png */; };
 		8AE403C6199D924200B926AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE403C5199D924200B926AB /* Foundation.framework */; };
 		8AE403C8199D924200B926AB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE403C7199D924200B926AB /* CoreGraphics.framework */; };
 		8AE403CA199D924200B926AB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE403C9199D924200B926AB /* UIKit.framework */; };
 		8AE403D0199D924200B926AB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8AE403CE199D924200B926AB /* InfoPlist.strings */; };
 		8AE403D2199D924200B926AB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AE403D1199D924200B926AB /* main.m */; };
 		8AE403D6199D924200B926AB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AE403D5199D924200B926AB /* AppDelegate.m */; };
-		8AE403D8199D924200B926AB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8AE403D7199D924200B926AB /* Images.xcassets */; };
 		8AE403DF199D924200B926AB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE403DE199D924200B926AB /* XCTest.framework */; };
 		8AE403E0199D924200B926AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE403C5199D924200B926AB /* Foundation.framework */; };
 		8AE403E1199D924200B926AB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE403C9199D924200B926AB /* UIKit.framework */; };
@@ -60,13 +62,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		09F19F76199EF6F500825ADE /* CitiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CitiViewController.h; sourceTree = "<group>"; };
-		09F19F77199EF6F500825ADE /* CitiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CitiViewController.m; sourceTree = "<group>"; };
+		09F19F79199FB16600825ADE /* LaunchScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchScreenViewController.h; sourceTree = "<group>"; };
+		09F19F7A199FB16600825ADE /* LaunchScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchScreenViewController.m; sourceTree = "<group>"; };
 		33EAE0460F714A259616CB76 /* libPods-bikepathTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-bikepathTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		443C4517985D4981AFE851A3 /* Pods-bikepathTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bikepathTests.xcconfig"; path = "Pods/Pods-bikepathTests.xcconfig"; sourceTree = "<group>"; };
-		6D22410919A172BC00CD89C7 /* nycbikesresponse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = nycbikesresponse.json; sourceTree = "<group>"; };
-		6D22410B19A1787400CD89C7 /* StationFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StationFinder.h; path = bikepath/StationFinder.h; sourceTree = SOURCE_ROOT; };
-		6D22410C19A1787400CD89C7 /* StationFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StationFinder.m; path = bikepath/StationFinder.m; sourceTree = SOURCE_ROOT; };
 		808E86AF19A12D3A006D0277 /* MDDirectionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDDirectionService.h; path = ../MDDirectionService.h; sourceTree = "<group>"; };
 		808E86B019A12D3A006D0277 /* MDDirectionService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDDirectionService.m; path = ../MDDirectionService.m; sourceTree = "<group>"; };
 		8A02797919A04DA200F3FFC7 /* SearchItemTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchItemTableCell.h; sourceTree = "<group>"; };
@@ -93,6 +92,11 @@
 		8AB03341199DB3EA0036FF7A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8AB03343199DB3F20036FF7A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8AB03345199DB4AE0036FF7A /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		8AC02D3C19A185730066FEEB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../../../../.Trash/Images.xcassets; sourceTree = "<group>"; };
+		8AC02D4619A196E40066FEEB /* back_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_btn.png; sourceTree = "<group>"; };
+		8AC02D4719A196E40066FEEB /* back_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_btn@2x.png"; sourceTree = "<group>"; };
+		8AC02D4A19A1B07D0066FEEB /* TempDefault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TempDefault.png; sourceTree = "<group>"; };
+		8AC02D4B19A1B07D0066FEEB /* TempDefault@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TempDefault@2x.png"; sourceTree = "<group>"; };
 		8AE403C2199D924200B926AB /* bikepath.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bikepath.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AE403C5199D924200B926AB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8AE403C7199D924200B926AB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -103,7 +107,6 @@
 		8AE403D3199D924200B926AB /* bikepath-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "bikepath-Prefix.pch"; sourceTree = "<group>"; };
 		8AE403D4199D924200B926AB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8AE403D5199D924200B926AB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		8AE403D7199D924200B926AB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8AE403DD199D924200B926AB /* bikepathTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bikepathTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AE403DE199D924200B926AB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		8AE403E6199D924200B926AB /* bikepathTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "bikepathTests-Info.plist"; sourceTree = "<group>"; };
@@ -209,18 +212,20 @@
 		8AE403CB199D924200B926AB /* bikepath */ = {
 			isa = PBXGroup;
 			children = (
+				8AC02D4619A196E40066FEEB /* back_btn.png */,
+				8AC02D4A19A1B07D0066FEEB /* TempDefault.png */,
+				8AC02D4B19A1B07D0066FEEB /* TempDefault@2x.png */,
+				8AC02D4719A196E40066FEEB /* back_btn@2x.png */,
 				808E86AF19A12D3A006D0277 /* MDDirectionService.h */,
 				808E86B019A12D3A006D0277 /* MDDirectionService.m */,
 				8AE403F4199D951100B926AB /* Main.storyboard */,
 				8AB03323199DAD8A0036FF7A /* SearchMapViewController.h */,
 				8AB03324199DAD8A0036FF7A /* SearchMapViewController.m */,
-				09F19F76199EF6F500825ADE /* CitiViewController.h */,
-				09F19F77199EF6F500825ADE /* CitiViewController.m */,
 				8AB03326199DADA80036FF7A /* ResultsMapViewController.h */,
 				8AB03327199DADA80036FF7A /* ResultsMapViewController.m */,
+				09F19F79199FB16600825ADE /* LaunchScreenViewController.h */,
+				09F19F7A199FB16600825ADE /* LaunchScreenViewController.m */,
 				8AE403D4199D924200B926AB /* AppDelegate.h */,
-				6D22410B19A1787400CD89C7 /* StationFinder.h */,
-				6D22410C19A1787400CD89C7 /* StationFinder.m */,
 				8AE403D5199D924200B926AB /* AppDelegate.m */,
 				8A48A70E199FC4420030F153 /* SearchListViewController.h */,
 				8A48A70F199FC4420030F153 /* SearchListViewController.m */,
@@ -228,7 +233,7 @@
 				8A02797A19A04DA200F3FFC7 /* SearchItemTableCell.m */,
 				8A18221A199ED28D001D7AE2 /* SearchItem.h */,
 				8A18221B199ED28D001D7AE2 /* SearchItem.m */,
-				8AE403D7199D924200B926AB /* Images.xcassets */,
+				8AC02D3C19A185730066FEEB /* Images.xcassets */,
 				8AE403CC199D924200B926AB /* Supporting Files */,
 			);
 			path = bikepath;
@@ -250,7 +255,6 @@
 			children = (
 				8AE403EA199D924200B926AB /* bikepathTests.m */,
 				8AE403E5199D924200B926AB /* Supporting Files */,
-				6D22410919A172BC00CD89C7 /* nycbikesresponse.json */,
 			);
 			path = bikepathTests;
 			sourceTree = "<group>";
@@ -344,9 +348,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				8AE403F5199D951100B926AB /* Main.storyboard in Resources */,
+				8AC02D3D19A185730066FEEB /* Images.xcassets in Resources */,
 				C2813E42199E7BD800B19D69 /* dbc.gpx in Resources */,
+				8AC02D4919A196E40066FEEB /* back_btn@2x.png in Resources */,
 				8AE403D0199D924200B926AB /* InfoPlist.strings in Resources */,
-				8AE403D8199D924200B926AB /* Images.xcassets in Resources */,
+				8AC02D4C19A1B07D0066FEEB /* TempDefault.png in Resources */,
+				8AC02D4D19A1B07D0066FEEB /* TempDefault@2x.png in Resources */,
+				8AC02D4819A196E40066FEEB /* back_btn.png in Resources */,
 				8AB0332E199DB3090036FF7A /* GoogleMaps.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -355,7 +363,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D22410A19A172BC00CD89C7 /* nycbikesresponse.json in Resources */,
 				8AE403E9199D924200B926AB /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -433,12 +440,12 @@
 				808E86B119A12D3A006D0277 /* MDDirectionService.m in Sources */,
 				8A48A710199FC4420030F153 /* SearchListViewController.m in Sources */,
 				8AB03328199DADA80036FF7A /* ResultsMapViewController.m in Sources */,
-				09F19F78199EF6F500825ADE /* CitiViewController.m in Sources */,
 				8AE403D6199D924200B926AB /* AppDelegate.m in Sources */,
 				8AB03325199DAD8A0036FF7A /* SearchMapViewController.m in Sources */,
 				8A02797B19A04DA200F3FFC7 /* SearchItemTableCell.m in Sources */,
 				8A18221C199ED28D001D7AE2 /* SearchItem.m in Sources */,
 				8AE403D2199D924200B926AB /* main.m in Sources */,
+				09F19F7B199FB16600825ADE /* LaunchScreenViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,7 +453,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D22410D19A1787400CD89C7 /* StationFinder.m in Sources */,
 				8AE403EB199D924200B926AB /* bikepathTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -566,7 +572,7 @@
 			baseConfigurationReference = E5E0BC5FD6A743E48726E717 /* Pods-bikepath.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -586,7 +592,7 @@
 			baseConfigurationReference = E5E0BC5FD6A743E48726E717 /* Pods-bikepath.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
