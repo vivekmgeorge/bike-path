@@ -12,6 +12,7 @@
 #import <Foundation/Foundation.h>
 #import "MDDirectionService.h"
 #import <CoreLocation/CoreLocation.h>
+#import "StationFinder.h"
 
 @interface ResultsMapViewController () {
     GMSMapView *mapView_;
@@ -78,13 +79,18 @@
      {
          if (data.length > 0 && connectionError == nil)
          {
-             NSDictionary *greeting = [NSJSONSerialization JSONObjectWithData:data
+             NSDictionary *bikepathjson = [NSJSONSerialization JSONObjectWithData:data
                                                                       options:0
                                                                         error:NULL];
-             NSArray *stations = [greeting objectForKey:@"stationBeanList"];
+             NSArray *stations = [bikepathjson objectForKey:@"stationBeanList"];
+             
+             CLLocation *currentLocation = [[CLLocation alloc] initWithLatitude:startPosition.latitude longitude:startPosition.longitude];
+             
+             NSDictionary *closestStation = [StationFinder findClosestStation:stations location:currentLocation];
+             
              CLLocationDistance smallestDistance = DBL_MAX;
              CLLocation *closestLocation;
-             NSDictionary *closestStation;
+//             NSDictionary *closestStation;
              
              CLLocation *closestEndLocation;
              NSDictionary *closestEndStation;
