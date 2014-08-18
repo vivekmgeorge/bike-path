@@ -14,10 +14,49 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    NSURLCache *URLCache = [[NSURLCache alloc]initWithMemoryCapacity:4*1024*1024
-                                                        diskCapacity:4*1024*1024
-                                                            diskPath:nil];
-    [NSURLCache setSharedURLCache:URLCache];
+    NSCache *citiBikeCache = [[NSCache alloc] init];
+    
+    /////
+    NSURL *url = [NSURL URLWithString:@"http://www.citibikenyc.com/stations/json"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: url
+                                                           cachePolicy: NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval: 30.0];
+    
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response,
+                                               NSData *data, NSError *connectionError)
+     {
+         if (data.length > 0 && connectionError == nil)
+         {
+             NSDictionary *citiBikeJSON = [NSJSONSerialization JSONObjectWithData:data
+                                                                      options:0
+                                                                        error:NULL];
+             NSArray* stations = [citiBikeJSON objectForKey:@"stationBeanList"];
+             NSSortDescriptor *sortDescriptor;
+             sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"availableBikes"
+                                                          ascending:NO];
+             NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+             NSArray *sortedStations;
+             sortedStations = [stations sortedArrayUsingDescriptors:sortDescriptors];
+             
+             for(id st in sortedStations) {
+                 NSDictionary *station = (NSDictionary *)st;
+                 [citiBikeCache setObject:station forKey:([station objectForKey:@"stationName"])];
+                 NSString *lati             = [station objectForKey:@"latitude"];
+                 NSString *longi            = [station objectForKey:@"longitude"];
+                 NSString *title            = [station objectForKey:@"stationName"];
+                 NSString *availableBikes   = [[station objectForKey:@"availableBikes"] stringValue];
+                 NSNumber *num = @([[station objectForKey:@"availableBikes"] intValue]);
+                 
+                 CLLocation *location = [[CLLocation alloc] initWithLatitude:[lati doubleValue] longitude:[longi doubleValue]];
+                 NSMutableArray *locations = [[NSMutableArray alloc] init];
+                 [locations addObject:location];
+             }
+         }
+     }];
+
+    /////
     
     // background color of navigation bar
     UIColor * color = [UIColor colorWithRed:255/255.0f green:251/255.0f blue:246/255.0f alpha:1.0f];

@@ -71,7 +71,6 @@
                  NSString *longi            = [station objectForKey:@"longitude"];
                  NSString *title            = [station objectForKey:@"stationName"];
                  NSString *availableBikes   = [[station objectForKey:@"availableBikes"] stringValue];
-                 NSLog(@"%@",availableBikes);
                  
                  GMSMarker *citiMarker = [[GMSMarker alloc] init];
                  
