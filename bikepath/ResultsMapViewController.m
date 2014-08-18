@@ -131,10 +131,10 @@
              
              if ([numBikes intValue] > 0) {
                  startStation.icon    = [GMSMarker markerImageWithColor:[UIColor greenColor]];
-                 startStation.snippet = availableBikes;
+                 startStation.snippet = [NSString stringWithFormat:@"Bicyles avaiable: %@", availableBikes];
              } else {
                  startStation.icon    = [GMSMarker markerImageWithColor:[UIColor redColor]];
-                 startStation.snippet = @"No bikes available at this location.";
+                 startStation.snippet = @"No bicyles available at this location.";
              };
              
              startStation.title       = title;
