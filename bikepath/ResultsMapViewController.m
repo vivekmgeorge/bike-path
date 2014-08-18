@@ -35,6 +35,8 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     
+    NSLog(@"%@", self.item);
+    
     locationManager = [[CLLocationManager alloc] init];
     locationManager.distanceFilter = kCLDistanceFilterNone; // whenever we move
     locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters; // 100 m
