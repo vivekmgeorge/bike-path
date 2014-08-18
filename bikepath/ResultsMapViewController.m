@@ -147,7 +147,7 @@
              CLLocation *closestLocation = [[CLLocation alloc]
                                             initWithLatitude:[[closestStation objectForKey:@"latitude"] doubleValue]    longitude:[[closestStation objectForKey:@"longitude"] doubleValue]];
              CLLocation *closestEndLocation = [[CLLocation alloc]
-                                            initWithLatitude:[[closestEndStation objectForKey:@"latitude"] doubleValue]    longitude:[[closestEndStation objectForKey:@"longitude"] doubleValue]];
+                                            initWithLatitude:[[closestEndLocation objectForKey:@"latitude"] doubleValue]    longitude:[[closestEndLocation objectForKey:@"longitude"] doubleValue]];
              
              // set the marker label and position for the start marker
              startStation.title       = title;
