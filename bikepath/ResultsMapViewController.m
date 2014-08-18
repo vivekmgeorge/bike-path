@@ -51,6 +51,7 @@
     self.view = mapView_;
 
     CLLocationCoordinate2D startPosition = locationManager.location.coordinate;
+    NSLog(@"%f %f", startPosition.latitude, startPosition.longitude);
     GMSMarker *startPoint = [GMSMarker markerWithPosition:startPosition];
     startPoint.title = @"Start";
     startPoint.map = mapView_;
@@ -69,6 +70,7 @@
     NSString *endPositionString = [[NSString alloc] initWithFormat:@"%f,%f", self.item.lati, self.item.longi];
     [waypointStrings_ addObject:endPositionString];
     
+//    should be a constant
     NSURL *url = [NSURL URLWithString:@"http://www.citibikenyc.com/stations/json"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [NSURLConnection sendAsynchronousRequest:request
@@ -76,6 +78,7 @@
                            completionHandler:^(NSURLResponse *response,
                                                NSData *data, NSError *connectionError)
      {
+//         add error handler here
          if (data.length > 0 && connectionError == nil)
          {
              NSDictionary *greeting = [NSJSONSerialization JSONObjectWithData:data
