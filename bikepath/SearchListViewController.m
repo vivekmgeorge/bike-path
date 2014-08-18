@@ -46,10 +46,9 @@
 }
 -(void) searchBarCancelButtonClicked:(UISearchBar *) searchBar
 {
-    //    [self keyboardWillHide];
     searchBar.text=@"";
     [searchBar setShowsCancelButton:NO animated:YES];
-    //    [searchBar resignFirstResponder];
+    [searchBar resignFirstResponder];
 }
 
 -(void) searchBar: (UISearchBar *) searchBar textDidChange:(NSString *) searchText
