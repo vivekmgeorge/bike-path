@@ -11,8 +11,8 @@
 #import <MapKit/MapKit.h>
 #import "SearchItem.h"
 #import "SearchItemTableCell.h"
+#import "FTGooglePlacesAPI.h"
 #import "ResultsMapViewController.h"
-
 
 @interface SearchListViewController () <UITableViewDataSource, UITableViewDelegate>
 
