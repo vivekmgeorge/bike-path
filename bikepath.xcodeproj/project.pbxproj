@@ -14,6 +14,7 @@
 		8A02797B19A04DA200F3FFC7 /* SearchItemTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A02797A19A04DA200F3FFC7 /* SearchItemTableCell.m */; };
 		8A18221C199ED28D001D7AE2 /* SearchItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A18221B199ED28D001D7AE2 /* SearchItem.m */; };
 		8A48A710199FC4420030F153 /* SearchListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A48A70F199FC4420030F153 /* SearchListViewController.m */; };
+		8AA991E919A1B9C3009CC402 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8AA991E819A1B9C3009CC402 /* Images.xcassets */; };
 		8AB03325199DAD8A0036FF7A /* SearchMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB03324199DAD8A0036FF7A /* SearchMapViewController.m */; };
 		8AB03328199DADA80036FF7A /* ResultsMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB03327199DADA80036FF7A /* ResultsMapViewController.m */; };
 		8AB0332A199DB2930036FF7A /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AB03329199DB2930036FF7A /* GoogleMaps.framework */; };
@@ -30,7 +31,6 @@
 		8AB03342199DB3EA0036FF7A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AB03341199DB3EA0036FF7A /* QuartzCore.framework */; };
 		8AB03344199DB3F20036FF7A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AB03343199DB3F20036FF7A /* SystemConfiguration.framework */; };
 		8AB03346199DB4AE0036FF7A /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AB03345199DB4AE0036FF7A /* CoreText.framework */; };
-		8AC02D3D19A185730066FEEB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8AC02D3C19A185730066FEEB /* Images.xcassets */; };
 		8AC02D4819A196E40066FEEB /* back_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AC02D4619A196E40066FEEB /* back_btn.png */; };
 		8AC02D4919A196E40066FEEB /* back_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AC02D4719A196E40066FEEB /* back_btn@2x.png */; };
 		8AC02D4C19A1B07D0066FEEB /* TempDefault.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AC02D4A19A1B07D0066FEEB /* TempDefault.png */; };
@@ -74,6 +74,7 @@
 		8A18221B199ED28D001D7AE2 /* SearchItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchItem.m; sourceTree = "<group>"; };
 		8A48A70E199FC4420030F153 /* SearchListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchListViewController.h; sourceTree = "<group>"; };
 		8A48A70F199FC4420030F153 /* SearchListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchListViewController.m; sourceTree = "<group>"; };
+		8AA991E819A1B9C3009CC402 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8AB03323199DAD8A0036FF7A /* SearchMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchMapViewController.h; sourceTree = "<group>"; };
 		8AB03324199DAD8A0036FF7A /* SearchMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchMapViewController.m; sourceTree = "<group>"; };
 		8AB03326199DADA80036FF7A /* ResultsMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsMapViewController.h; sourceTree = "<group>"; };
@@ -92,7 +93,6 @@
 		8AB03341199DB3EA0036FF7A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8AB03343199DB3F20036FF7A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8AB03345199DB4AE0036FF7A /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
-		8AC02D3C19A185730066FEEB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../../../../.Trash/Images.xcassets; sourceTree = "<group>"; };
 		8AC02D4619A196E40066FEEB /* back_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_btn.png; sourceTree = "<group>"; };
 		8AC02D4719A196E40066FEEB /* back_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_btn@2x.png"; sourceTree = "<group>"; };
 		8AC02D4A19A1B07D0066FEEB /* TempDefault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TempDefault.png; sourceTree = "<group>"; };
@@ -223,6 +223,7 @@
 				8AB03324199DAD8A0036FF7A /* SearchMapViewController.m */,
 				8AB03326199DADA80036FF7A /* ResultsMapViewController.h */,
 				8AB03327199DADA80036FF7A /* ResultsMapViewController.m */,
+				8AA991E819A1B9C3009CC402 /* Images.xcassets */,
 				09F19F79199FB16600825ADE /* LaunchScreenViewController.h */,
 				09F19F7A199FB16600825ADE /* LaunchScreenViewController.m */,
 				8AE403D4199D924200B926AB /* AppDelegate.h */,
@@ -233,7 +234,6 @@
 				8A02797A19A04DA200F3FFC7 /* SearchItemTableCell.m */,
 				8A18221A199ED28D001D7AE2 /* SearchItem.h */,
 				8A18221B199ED28D001D7AE2 /* SearchItem.m */,
-				8AC02D3C19A185730066FEEB /* Images.xcassets */,
 				8AE403CC199D924200B926AB /* Supporting Files */,
 			);
 			path = bikepath;
@@ -348,7 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8AE403F5199D951100B926AB /* Main.storyboard in Resources */,
-				8AC02D3D19A185730066FEEB /* Images.xcassets in Resources */,
+				8AA991E919A1B9C3009CC402 /* Images.xcassets in Resources */,
 				C2813E42199E7BD800B19D69 /* dbc.gpx in Resources */,
 				8AC02D4919A196E40066FEEB /* back_btn@2x.png in Resources */,
 				8AE403D0199D924200B926AB /* InfoPlist.strings in Resources */,
