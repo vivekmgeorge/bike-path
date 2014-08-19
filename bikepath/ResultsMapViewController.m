@@ -123,24 +123,32 @@
              NSString *availableBikes      = [[closestStation objectForKey:@"availableBikes"] stringValue];
              NSNumber *numBikes            = @([[closestStation objectForKey:@"availableBikes"] intValue]);
              
-             GMSMarker *startStation  = [GMSMarkerFactory createGMSMarker:&closestStationLocation
+             GMSMarker *startStation  = [GMSMarkerFactory createGMSMarkerForStation:&closestStationLocation
                                                                   mapView:mapView_
                                                                     title:closestStationTitle
-                                                                    color:[GMSMarker markerImageWithColor:[UIColor redColor]]];
+                                                         availableSnippet:@"Bicyles available"
+                                                       unavailableSnippet:@"No bicyles available at this location."
+                                                            numberOfBikes:numBikes];
+//         createGMSMarkerForStation:(CLLocationCoordinate2D*) locationCoordinates
+//         mapView:(GMSMapView*) map
+//         title:(NSString*) title
+//         availableSnippet:(NSString*) availableSnippet
+//         unavailableSnippet:(NSString*) unavailableSnippet
+//         numberOfBikes:(int) numberOfBikes
              [waypoints_ addObject:startStation];
              NSString *startStationString = [[NSString alloc] initWithFormat:@"%f,%f", closestStationLocation.latitude, closestStationLocation.longitude];
              [waypointStrings_ addObject:startStationString];
              
-             if ([numBikes intValue] > 3) {
-                 startStation.icon    = [GMSMarker markerImageWithColor:[UIColor greenColor]];
-                 startStation.snippet = [NSString stringWithFormat:@"Bicyles available: %@", numBikes];
-             } else if ([numBikes intValue] > 0) {
-                 startStation.icon    = [GMSMarker markerImageWithColor:[UIColor orangeColor]];
-                 startStation.snippet = [NSString stringWithFormat:@"Bicyles available: %@", numBikes];
-             } else {
-                 startStation.icon    = [GMSMarker markerImageWithColor:[UIColor redColor]];
-                 startStation.snippet = @"No bicyles available at this location.";
-             };
+//             if ([numBikes intValue] > 3) {
+//                 startStation.icon    = [GMSMarker markerImageWithColor:[UIColor greenColor]];
+//                 startStation.snippet = [NSString stringWithFormat:@"Bicyles available: %@", numBikes];
+//             } else if ([numBikes intValue] > 0) {
+//                 startStation.icon    = [GMSMarker markerImageWithColor:[UIColor orangeColor]];
+//                 startStation.snippet = [NSString stringWithFormat:@"Bicyles available: %@", numBikes];
+//             } else {
+//                 startStation.icon    = [GMSMarker markerImageWithColor:[UIColor redColor]];
+//                 startStation.snippet = @"No bicyles available at this location.";
+//             };
              
              CLLocation *endLocation = [[CLLocation alloc] initWithLatitude:createEndLocation.latitude
                                                                   longitude:createEndLocation.longitude];

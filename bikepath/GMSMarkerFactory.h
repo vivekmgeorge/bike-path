@@ -16,4 +16,11 @@
                         title:(NSString*) title
                         color:(UIImage*) color;
 
++ (GMSMarker*)createGMSMarkerForStation:(CLLocationCoordinate2D*) locationCoordinates
+                                mapView:(GMSMapView*) map
+                                  title:(NSString*) title
+                       availableSnippet:(NSString*) availableSnippet
+                     unavailableSnippet:(NSString*) unavailableSnippet
+                          numberOfBikes:(int) numberOfBikes;
+
 @end
