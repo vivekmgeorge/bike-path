@@ -34,6 +34,7 @@
     return [NSString stringWithFormat:@"latitude: %f longitude: %f", locationManager.location.coordinate.latitude, locationManager.location.coordinate.longitude];
 }
 
+//FUNCTION BELOW INCLUDES CITIBIKE CALL - NEEDS TO BE DECOUPLED!
 -(void)buttonPressed {
     NSLog(@"Button Pressed!");
     NSURL *testURL = [NSURL URLWithString:@"comgooglemaps-x-callback://"];
@@ -42,11 +43,11 @@
         NSString *callBackUrl = @"comgooglemaps-x-callback://";
         //        NSString *startLati = @"+40.76727216";
         //        NSString *startLongi = @"-73.99392888";
-        NSString *endLati = @"+40.71117416";
-        NSString *endLongi = @"-74.00016545";
+        CLLocationDegrees endLati = self.item.lati;
+        CLLocationDegrees endLongi = self.item.longi;
         NSString *directionsMode = @"&directionsmode=bicycling&zoom=17";
         NSString *appConnection = @"&x-success=sourceapp://?resume=true&x-source=bike-path.bikepath";
-        NSString *directions = [[NSString alloc] initWithFormat: @"%@?daddr=%@,%@%@%@", callBackUrl, endLati, endLongi, directionsMode, appConnection];
+        NSString *directions = [[NSString alloc] initWithFormat: @"%@?daddr=%f,%f%@%@", callBackUrl, endLati, endLongi, directionsMode, appConnection];
         NSLog(@"%@", directions);
         
         NSString *directionsRequest = directions;
