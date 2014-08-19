@@ -13,7 +13,7 @@
 + (GMSMarker*)createGMSMarker:(CLLocationCoordinate2D*) locationCoordinates
                       mapView:(GMSMapView*) map
                         title:(NSString*) title
-                        color:(UIColor*) color{
+                        color:(UIImage*) color{
     GMSMarker *marker = [GMSMarker markerWithPosition:*locationCoordinates];
     marker.title = title;
     marker.map = map;

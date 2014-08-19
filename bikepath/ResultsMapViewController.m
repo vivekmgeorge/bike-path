@@ -72,7 +72,7 @@
     GMSMarker *startPoint = [GMSMarkerFactory createGMSMarker:&startPosition
                                                       mapView:mapView_
                                                         title:@"Start"
-                                                        color:[GMSMarker markerImageWithColor:[UIColor redColor]]];
+                                                        color:[UIImage imageNamed:@"startStation"]];
     [waypoints_ addObject: startPoint];
 
     CLLocation *currentLocation = [[CLLocation alloc] initWithLatitude:startPosition.latitude
@@ -83,7 +83,7 @@
     GMSMarker *endPoint = [GMSMarkerFactory createGMSMarker:&createEndLocation
                                                     mapView:mapView_
                                                       title:self.item.address //the address being given is not the full address
-                                                      color:[GMSMarker markerImageWithColor:[UIColor redColor]]];
+                                                      color:[UIImage imageNamed:@"endStation"]];
     [waypoints_ addObject:endPoint];
 
     // now fetch the nyc bike station locations and try to find closeby stations for
