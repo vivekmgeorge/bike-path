@@ -119,6 +119,8 @@
             otherButtonTitles:nil, nil];
             [alert show];
         } else if (placemark) {
+//            https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyAxaqfMyyc-WSrvsWP_jF2IUaTZVjkMlFo
+//            
 //            //  Create location around which to search (hardcoded location of Big Ben here)
 //            CLLocationCoordinate2D locationCoordinate = CLLocationCoordinate2DMake(51.501103,-0.124565);
 //            
