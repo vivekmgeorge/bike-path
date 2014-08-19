@@ -134,10 +134,12 @@
                                                                   mapView:mapView_
                                                                     title:closestStationTitle
                                                                     color:[GMSMarker markerImageWithColor:[UIColor redColor]]];
-             
-             if ([numBikes intValue] > 0) {
+             if ([numBikes intValue] > 3) {
                  startStation.icon    = [GMSMarker markerImageWithColor:[UIColor greenColor]];
-                 startStation.snippet = [NSString stringWithFormat:@"Bicyles avaiable: %@", availableBikes];
+                 startStation.snippet = [NSString stringWithFormat:@"Bicyles available: %@", availableBikes];
+             } else if ([numBikes intValue] > 0) {
+                 startStation.icon    = [GMSMarker markerImageWithColor:[UIColor orangeColor]];
+                 startStation.snippet = @"No bicyles available at this location.";
              } else {
                  startStation.icon    = [GMSMarker markerImageWithColor:[UIColor redColor]];
                  startStation.snippet = @"No bicyles available at this location.";
