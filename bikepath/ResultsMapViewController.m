@@ -56,12 +56,12 @@
     [locationManager startUpdatingLocation];
 }
 
--(void)GMSMarkerFactory{
-    CLLocationCoordinate2D position = CLLocationCoordinate2DMake(coordinates);
-    GMSMarker *startPoint = [GMSMarker markerWithPosition:postion];
-    startPoint.title = @"Start";
-    startPoint.map = mapView_;
-}
+//-(void)GMSMarkerFactory{
+//    CLLocationCoordinate2D position = CLLocationCoordinate2DMake(coordinates);
+//    GMSMarker *startPoint = [GMSMarker markerWithPosition:postion];
+//    startPoint.title = @"Start";
+//    startPoint.map = mapView_;
+//}
 
 - (void)viewDidLoad{
     // do the default view behavior
@@ -84,10 +84,10 @@
     
 
     
-    [self GMSMarkerFactory]; GMSMarker *startPoint = [Factory:startPosition];
-//    GMSMarker *startPoint = [GMSMarker markerWithPosition:startPosition];
-//    startPoint.title = @"Start";
-//    startPoint.map = mapView_;
+//    [self GMSMarkerFactory]; GMSMarker *startPoint = [Factory:startPosition];
+    GMSMarker *startPoint = [GMSMarker markerWithPosition:startPosition];
+    startPoint.title = @"Start";
+    startPoint.map = mapView_;
     
     // set the first waypoint to the *marker* that's at the current position
 //    [waypoints_ addObject: startPoint];
@@ -129,6 +129,7 @@
              NSDictionary *bikepathjson = [NSJSONSerialization JSONObjectWithData:data
                                                                       options:0
                                                                         error:NULL];
+               NSLog(@"%@", bikepathjson);
              // extract out the list of stations from the response dict, throw away everthing
              // else
              NSArray *stations = [bikepathjson objectForKey:@"stationBeanList"];

@@ -8,12 +8,20 @@
 
 #import "GMSMarkerFactory.h"
 #import <GoogleMaps/GoogleMaps.h>
+#import <MapKit/MapKit.h>
+#import <Foundation/Foundation.h>
+#import "MDDirectionService.h"
+#import <CoreLocation/CoreLocation.h>
+#import "StationFinder.h"
+#import "GMSMarkerFactory.h"
+
 
 @implementation GMSMarkerFactory
-    CLLocationCoordinate2D position = CLLocationCoordinate2DMake(locationManager.location.coordinate);
-    GMSMarker *startPoint = [GMSMarker markerWithPosition:postion];
-    startPoint.title = @"Start";
-    startPoint.map = mapView_;
++ (CLLocationCoordinate2D)createGMSMarker:(CLLocationCoordinate2D*) locationCoordinates
+                                  mapView:(GMSMapView*) map{
+    GMSMarker *marker = [GMSMarker markerWithPosition:*locationCoordinates];
+    marker.title = @"Start";
+    marker.map = map;
 }
 
 @end
