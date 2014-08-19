@@ -23,9 +23,7 @@
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
-    NSLog(@"initWithCoder");
     if (self) {
-//        NSLog(@"hello");
         searchQuery = [[SPGooglePlacesAutocompleteQuery alloc] initWithApiKey:@"AIzaSyAxaqfMyyc-WSrvsWP_jF2IUaTZVjkMlFo"];
         shouldBeginEditing = YES;
     }
@@ -50,8 +48,6 @@
     self.mapView.settings.zoomGestures = YES;
 //    self.mapView.delegate = self;
     
-    NSLog(@"User's location: %@", self.mapView.myLocation);
-    
 }
 
 - (void)viewDidUnload {
@@ -72,8 +68,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"SPGooglePlacesAutocompleteCell";
-//    [tableView setContentInset:UIEdgeInsetsMake(50,0,0,0)];
-//    tableView.frame = CGRectMake(0,50,320,300);
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
@@ -99,17 +93,6 @@
     [self.searchDisplayController.searchBar resignFirstResponder];
 }
 
-//typedef void (^SPGooglePlacesPlacemarkResultBlock)(CLPlacemark *placemark, NSString *addressString, NSError *error);
-//
-//- (void)resolveToPlacemark:(SPGooglePlacesPlacemarkResultBlock)block {
-//    if (self.type == SPPlaceTypeGeocode) {
-//        // Geocode places already have their address stored in the 'name' field.
-//        [self resolveGecodePlaceToPlacemark:block];
-//    } else {
-//        [self resolveEstablishmentPlaceToPlacemark:block];
-//    }
-//}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     SPGooglePlacesAutocompletePlace *place = [self placeAtIndexPath:indexPath];
     [place resolveToPlacemark:^(CLPlacemark *placemark, NSString *addressString, NSError *error) {
@@ -128,9 +111,11 @@
                 [addressCombinedArray addObject:[[NSString alloc] initWithFormat:@"%@+", addressPart]];
             }
             NSString *addressCombinedString = [addressCombinedArray componentsJoinedByString:@""];
-            NSString *kGoogleGeocodeApiUrl = @"https://maps.googleapis.com/maps/api/geocode/json?address=1";
+            NSString *kGoogleGeocodeApiUrl = @"https://maps.googleapis.com/maps/api/geocode/json?address=";
             NSString *kGoogleGeocodeApiKey = @"AIzaSyAxaqfMyyc-WSrvsWP_jF2IUaTZVjkMlFo";
             NSString *addressForJson = [[NSString alloc] initWithFormat:@"%@%@&key=%@", kGoogleGeocodeApiUrl, addressCombinedString, kGoogleGeocodeApiKey];
+            
+            NSLog(@"%@", addressForJson);
             
             NSURL *url = [NSURL URLWithString: addressForJson];
             NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -146,7 +131,12 @@
                                                 options:0
                                                 error:NULL];
                      
-                    NSArray *addressParts = [[addressJson objectForKey:@"results"] valueForKey:@"geometry"];
+//                    NSArray *addressParts = [[addressJson objectForKey:@"results"] valueForKey:@"geometry"];
+                      NSArray *addressParts = [addressJson objectForKey:@"results"];
+                     
+                     for (id x in addressParts) {
+                         NSLog(@"%@", x);
+                     }
                     NSString *formattedAddress = [addressParts valueForKey:@"formatted_address"];
                      for(id info in addressParts){
                         NSDictionary *addressPartsLocation = (NSDictionary *)[info valueForKey:@"location"];
@@ -158,7 +148,7 @@
                          selectedItem.lati = location.coordinate.latitude;
                          selectedItem.longi = location.coordinate.longitude;
                          selectedItem.address = formattedAddress;
-                         [self performSegueWithIdentifier: @"showResults" sender: selectedItem];
+//                         [self performSegueWithIdentifier: @"showResults" sender: selectedItem];
                          [self dismissSearchControllerWhileStayingActive];
                          [self.searchDisplayController.searchResultsTableView deselectRowAtIndexPath:indexPath animated:NO];
                      }
@@ -173,8 +163,6 @@
 #pragma mark UISearchDisplayDelegate
 
 - (void)handleSearchForSearchString:(NSString *)searchString {
-    
-    NSLog(@"%@", searchQuery);
     searchQuery.input = searchString;
     [searchQuery fetchPlaces:^(NSArray *places, NSError *error) {
         if (error) {
@@ -230,11 +218,8 @@
 // segue to results page
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"showResults"]) {
-        NSLog(@"%@", sender);
         ResultsMapViewController *destViewController = segue.destinationViewController;
         SearchItem *item = sender;
-        
-        NSLog(@"%@",item.searchQuery);
         destViewController.item = item;
         
     }
