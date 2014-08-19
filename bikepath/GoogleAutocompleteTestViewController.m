@@ -121,19 +121,38 @@
             otherButtonTitles:nil, nil];
             [alert show];
         } else if (placemark) {
+            NSLog(@"address string: %@",addressString);
+            
+            NSString *address = addressString;
+            NSArray *addressItems = [address componentsSeparatedByString:@" "];
+            NSMutableArray *addressCombinedArray = [[NSMutableArray alloc] init];
+            
+            for (NSString *addressPart in addressItems){
+                [addressCombinedArray addObject:[[NSString alloc] initWithFormat:@"%@+", addressPart]];
+            }
+            
+            NSLog(@"address combined array: %@", addressCombinedArray);
+            NSString *addressCombinedString = [addressCombinedArray componentsJoinedByString:@""];
+            
+            NSLog(@"address combined string: %@", addressCombinedString);
+            
+            NSString *kGoogleGeocodeApiUrl = @"https://maps.googleapis.com/maps/api/geocode/json?address=1";
+            NSString *kGoogleGeocodeApiKey = @"AIzaSyAxaqfMyyc-WSrvsWP_jF2IUaTZVjkMlFo";
+            
+            NSString *addressForJson = [[NSString alloc] initWithFormat:@"%@%@&key=%@", kGoogleGeocodeApiUrl, addressCombinedString, kGoogleGeocodeApiKey];
+            NSLog(@"address for json: %@", addressForJson);
+            
+//            Google New York, 8th Avenue, New York, NY, United States;
 //            https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyAxaqfMyyc-WSrvsWP_jF2IUaTZVjkMlFo
 //            
 //            //  Create location around which to search (hardcoded location of Big Ben here)
 //            CLLocationCoordinate2D locationCoordinate = CLLocationCoordinate2DMake(51.501103,-0.124565);
-//            
-//            //  Create request searching nearest galleries and museums
-//            FTGooglePlacesAPINearbySearchRequest *request = [[FTGooglePlacesAPINearbySearchRequest alloc] initWithLocationCoordinate:locationCoordinate];
-//            request.rankBy = FTGooglePlacesAPIRequestParamRankByDistance;
-//            request.types = @[@"art_gallery", @"museum"];
+//
             
-            NSLog(@"Placemark: %@", placemark);
+            NSLog(@"Placemark name: %@", placemark);
             NSLog(@"Placemark Location: %@", placemark.location);
             NSLog(@"Place: %@", place);
+            NSLog(@"Placemark address: %@", placemark.thoroughfare);
             //
             //static NSString *kMDDirectionsURL = @"http://maps.googleapis.com/maps/api/json?%@"
             //addressString
