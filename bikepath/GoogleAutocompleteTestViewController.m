@@ -34,7 +34,7 @@
 
 - (void)viewDidLoad {
 //    self.navigationController.navigationBar.translucent = YES;
-    [self.navigationController setNavigationBarHidden:TRUE];
+//    [self.navigationController setNavigationBarHidden:TRUE];
     self.searchDisplayController.searchBar.placeholder = @"Search or Address";
     
     GMSCameraPosition *nyc = [GMSCameraPosition cameraWithLatitude:40.706638
@@ -72,6 +72,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"SPGooglePlacesAutocompleteCell";
+//    [tableView setContentInset:UIEdgeInsetsMake(50,0,0,0)];
+//    tableView.frame = CGRectMake(0,50,320,300);
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
