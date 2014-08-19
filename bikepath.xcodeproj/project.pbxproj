@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0978B2E119A148E0007D9FAB /* GoogleAutocompleteTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0978B2E019A148E0007D9FAB /* GoogleAutocompleteTestViewController.m */; };
-		09F19F78199EF6F500825ADE /* CitiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F19F77199EF6F500825ADE /* CitiViewController.m */; };
 		09F19F7B199FB16600825ADE /* LaunchScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F19F7A199FB16600825ADE /* LaunchScreenViewController.m */; };
 		3A8BE839FF5A4487AABD6EB3 /* libPods-bikepath.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15F6EAA2E00741E89CD9CA83 /* libPods-bikepath.a */; };
 		8A02797B19A04DA200F3FFC7 /* SearchItemTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A02797A19A04DA200F3FFC7 /* SearchItemTableCell.m */; };
@@ -63,8 +62,6 @@
 /* Begin PBXFileReference section */
 		0978B2DF19A148E0007D9FAB /* GoogleAutocompleteTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleAutocompleteTestViewController.h; sourceTree = "<group>"; };
 		0978B2E019A148E0007D9FAB /* GoogleAutocompleteTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleAutocompleteTestViewController.m; sourceTree = "<group>"; };
-		09F19F76199EF6F500825ADE /* CitiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CitiViewController.h; sourceTree = "<group>"; };
-		09F19F77199EF6F500825ADE /* CitiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CitiViewController.m; sourceTree = "<group>"; };
 		09F19F79199FB16600825ADE /* LaunchScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchScreenViewController.h; sourceTree = "<group>"; };
 		09F19F7A199FB16600825ADE /* LaunchScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchScreenViewController.m; sourceTree = "<group>"; };
 		15F6EAA2E00741E89CD9CA83 /* libPods-bikepath.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-bikepath.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -218,8 +215,6 @@
 				8AE403F4199D951100B926AB /* Main.storyboard */,
 				8AB03323199DAD8A0036FF7A /* SearchMapViewController.h */,
 				8AB03324199DAD8A0036FF7A /* SearchMapViewController.m */,
-				09F19F76199EF6F500825ADE /* CitiViewController.h */,
-				09F19F77199EF6F500825ADE /* CitiViewController.m */,
 				8AB03326199DADA80036FF7A /* ResultsMapViewController.h */,
 				8AB03327199DADA80036FF7A /* ResultsMapViewController.m */,
 				09F19F79199FB16600825ADE /* LaunchScreenViewController.h */,
@@ -439,7 +434,6 @@
 				8A48A710199FC4420030F153 /* SearchListViewController.m in Sources */,
 				8AB03328199DADA80036FF7A /* ResultsMapViewController.m in Sources */,
 				8ACFF70F19A25DC300FB1E09 /* MDDirectionService.m in Sources */,
-				09F19F78199EF6F500825ADE /* CitiViewController.m in Sources */,
 				8AE403D6199D924200B926AB /* AppDelegate.m in Sources */,
 				8AB03325199DAD8A0036FF7A /* SearchMapViewController.m in Sources */,
 				8A02797B19A04DA200F3FFC7 /* SearchItemTableCell.m in Sources */,
