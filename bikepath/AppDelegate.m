@@ -30,6 +30,10 @@
      {
          if (data.length > 0 && connectionError == nil)
          {
+             
+             NSLog(@"%i",citiBikeCache.currentDiskUsage);
+             NSLog(@"%i",citiBikeCache.currentMemoryUsage);
+             
              NSDictionary *citiBikeJSON = [NSJSONSerialization JSONObjectWithData:data
                                                                           options:0
                                                                             error:NULL];
@@ -38,8 +42,7 @@
              sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"availableBikes"
                                                           ascending:NO];
              NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-             NSArray *sortedStations;
-             sortedStations = [stations sortedArrayUsingDescriptors:sortDescriptors];
+             NSArray* sortedStations = [stations sortedArrayUsingDescriptors:sortDescriptors];
              
              NSLog(@"Current Memory Usage: %i", [citiBikeCache currentMemoryUsage]);
              NSLog(@"Current Disk Usage: %i", [citiBikeCache currentDiskUsage]);
@@ -52,7 +55,9 @@
                  NSMutableArray *locations = [[NSMutableArray alloc] init];
                  [locations addObject:location];
              }
+             NSLog(@"%@",sortedStations);
          }
+         
      }];
     
     // background color of navigation bar
