@@ -27,18 +27,17 @@
     
     AppDelegate *appDel = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [appDel loadCitiBikeData];
-    NSLog(@"Search Map View Controller: %@",appDel.stationJSON);
     
     GMSCameraPosition *dbc = [GMSCameraPosition cameraWithLatitude:40.706638
                                                          longitude:-74.009070
                                                               zoom:16];
-    self.mapView.mapType = kGMSTypeNormal;
     [self.mapView setCamera:dbc];
-    self.mapView.myLocationEnabled = YES;
-    self.mapView.settings.compassButton = YES;
-    self.mapView.settings.myLocationButton = YES;
-    self.mapView.settings.zoomGestures = YES;   
-    self.mapView.delegate = self;
+    self.mapView.mapType                    = kGMSTypeNormal;
+    self.mapView.myLocationEnabled          = YES;
+    self.mapView.settings.compassButton     = YES;
+    self.mapView.settings.myLocationButton  = YES;
+    self.mapView.settings.zoomGestures      = YES;
+    self.mapView.delegate                   = self;
     
     NSArray *sortedStations = appDel.stationJSON;
 

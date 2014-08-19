@@ -38,6 +38,7 @@
              NSArray* sortedStations = [stations sortedArrayUsingDescriptors:sortDescriptors];
              
              _stationJSON = sortedStations;
+             NSLog(@"%@",_stationJSON);
              
              for(id st in sortedStations) {
                  NSDictionary *station = (NSDictionary *)st;
