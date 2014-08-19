@@ -50,6 +50,8 @@
     self.mapView.settings.zoomGestures = YES;
 //    self.mapView.delegate = self;
     
+    NSLog(@"User's location: %@", self.mapView.myLocation);
+    
 }
 
 - (void)viewDidUnload {
@@ -70,6 +72,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"SPGooglePlacesAutocompleteCell";
+//    [tableView setContentInset:UIEdgeInsetsMake(50,0,0,0)];
+//    tableView.frame = CGRectMake(0,50,320,300);
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
@@ -95,27 +99,72 @@
     [self.searchDisplayController.searchBar resignFirstResponder];
 }
 
+//typedef void (^SPGooglePlacesPlacemarkResultBlock)(CLPlacemark *placemark, NSString *addressString, NSError *error);
+//
+//- (void)resolveToPlacemark:(SPGooglePlacesPlacemarkResultBlock)block {
+//    if (self.type == SPPlaceTypeGeocode) {
+//        // Geocode places already have their address stored in the 'name' field.
+//        [self resolveGecodePlaceToPlacemark:block];
+//    } else {
+//        [self resolveEstablishmentPlaceToPlacemark:block];
+//    }
+//}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     SPGooglePlacesAutocompletePlace *place = [self placeAtIndexPath:indexPath];
     [place resolveToPlacemark:^(CLPlacemark *placemark, NSString *addressString, NSError *error) {
         if (error) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Could not map selected Place"
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Could not map selected place"
             message:error.localizedDescription
             delegate:nil
             cancelButtonTitle:@"OK"
             otherButtonTitles:nil, nil];
             [alert show];
         } else if (placemark) {
-            SearchItem *selectedItem   = [[SearchItem alloc] init];
-            selectedItem.searchQuery   = place.name;
-            selectedItem.lati = placemark.location.coordinate.latitude;
-            selectedItem.longi = placemark.location.coordinate.longitude;
-            selectedItem.address = placemark.thoroughfare;
-            [self performSegueWithIdentifier: @"showResults" sender: selectedItem];
-//            [self pushResultsMapViewController: (SearchItem*)selectedItem];
-//            [self actionWithSender:(UITableViewCell*)selectedItem];
-            [self dismissSearchControllerWhileStayingActive];
-            [self.searchDisplayController.searchResultsTableView deselectRowAtIndexPath:indexPath animated:NO];
+            NSString *address = addressString;
+            NSArray *addressItems = [address componentsSeparatedByString:@" "];
+            NSMutableArray *addressCombinedArray = [[NSMutableArray alloc] init];
+            for (NSString *addressPart in addressItems){
+                [addressCombinedArray addObject:[[NSString alloc] initWithFormat:@"%@+", addressPart]];
+            }
+            NSString *addressCombinedString = [addressCombinedArray componentsJoinedByString:@""];
+            NSString *kGoogleGeocodeApiUrl = @"https://maps.googleapis.com/maps/api/geocode/json?address=1";
+            NSString *kGoogleGeocodeApiKey = @"AIzaSyAxaqfMyyc-WSrvsWP_jF2IUaTZVjkMlFo";
+            NSString *addressForJson = [[NSString alloc] initWithFormat:@"%@%@&key=%@", kGoogleGeocodeApiUrl, addressCombinedString, kGoogleGeocodeApiKey];
+            
+            NSURL *url = [NSURL URLWithString: addressForJson];
+            NSURLRequest *request = [NSURLRequest requestWithURL:url];
+            [NSURLConnection sendAsynchronousRequest:request
+                                               queue:[NSOperationQueue mainQueue]
+                                   completionHandler:^(NSURLResponse *response,
+                                                       NSData *data, NSError *connectionError)
+             {
+                 if (data.length > 0 && connectionError == nil)
+                 {
+                    NSDictionary *addressJson = [NSJSONSerialization
+                                                JSONObjectWithData:data
+                                                options:0
+                                                error:NULL];
+                     
+                    NSArray *addressParts = [[addressJson objectForKey:@"results"] valueForKey:@"geometry"];
+                    NSString *formattedAddress = [addressParts valueForKey:@"formatted_address"];
+                     for(id info in addressParts){
+                        NSDictionary *addressPartsLocation = (NSDictionary *)[info valueForKey:@"location"];
+                         NSString *lati = [addressPartsLocation objectForKey:@"lat"];
+                         NSString *longi = [addressPartsLocation objectForKey:@"lng"];
+                         CLLocation *location = [[CLLocation alloc] initWithLatitude:[lati doubleValue] longitude:[longi doubleValue]];
+                         SearchItem *selectedItem   = [[SearchItem alloc] init];
+                         selectedItem.searchQuery   = place.name;
+                         selectedItem.lati = location.coordinate.latitude;
+                         selectedItem.longi = location.coordinate.longitude;
+                         selectedItem.address = formattedAddress;
+                         [self performSegueWithIdentifier: @"showResults" sender: selectedItem];
+                         [self dismissSearchControllerWhileStayingActive];
+                         [self.searchDisplayController.searchResultsTableView deselectRowAtIndexPath:indexPath animated:NO];
+                     }
+                 }
+             }];
+            
         }
     }];
 }
@@ -129,7 +178,7 @@
     searchQuery.input = searchString;
     [searchQuery fetchPlaces:^(NSArray *places, NSError *error) {
         if (error) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Could not fetch Places"
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Could not fetch places"
             message:error.localizedDescription
             delegate:nil
             cancelButtonTitle:@"OK"
@@ -177,27 +226,6 @@
     return boolToReturn;
 }
 
-
-
-//-(void)actionWithSender:(UITableViewCell*)sender event:(UIEvent*)event {
-//    NSString* parameter;
-//    NSLog(@"%@", sender);
-////    if (sender.tag == 1)   // button1
-////        parameter = @"foo";
-////    else                   // button2
-////        parameter = @"bar";
-//////    ...
-//}
-
-//- (IBAction)pushResultsMapViewController: (SearchItem *)sender
-//{
-//    ResultsMapViewController *resultsMap = [[ResultsMapViewController alloc] initWithProperty:(SearchItem*)sender];
-//    NSLog(@"%@", sender);
-//    SearchItem *item = sender;
-//    ResultsMapViewController *destViewController = segue.destinationViewController;
-//    destViewController.item = item;
-//    [self presentModalViewController:resultsMap animated:YES];
-//}
 
 // segue to results page
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

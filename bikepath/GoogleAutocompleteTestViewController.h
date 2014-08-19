@@ -16,7 +16,7 @@
 {
     NSArray *searchResultPlaces;
     SPGooglePlacesAutocompleteQuery *searchQuery;
-    MKPointAnnotation *selectedPlaceAnnotation;
+//    MKPointAnnotation *selectedPlaceAnnotation;
     
     BOOL shouldBeginEditing;
 }
