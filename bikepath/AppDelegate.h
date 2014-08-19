@@ -11,6 +11,6 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) NSCache *citiBikeCache;
+@property (strong, nonatomic) NSURLCache *citiBikeCache;
 
 @end
