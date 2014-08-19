@@ -34,7 +34,7 @@
 
 - (void)viewDidLoad {
 //    self.navigationController.navigationBar.translucent = YES;
-//    [self.navigationController setNavigationBarHidden:TRUE];
+    [self.navigationController setNavigationBarHidden:TRUE];
     self.searchDisplayController.searchBar.placeholder = @"Search or Address";
     
     GMSCameraPosition *nyc = [GMSCameraPosition cameraWithLatitude:40.706638

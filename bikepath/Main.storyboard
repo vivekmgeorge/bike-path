@@ -29,6 +29,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="mapView" destination="iVa-G1-NWu" id="Wg6-Kz-Xb5"/>
                     </connections>
