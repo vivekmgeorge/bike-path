@@ -95,6 +95,17 @@
     [self.searchDisplayController.searchBar resignFirstResponder];
 }
 
+typedef void (^SPGooglePlacesPlacemarkResultBlock)(CLPlacemark *placemark, NSString *addressString, NSError *error);
+
+- (void)resolveToPlacemark:(SPGooglePlacesPlacemarkResultBlock)block {
+    if (self.type == SPPlaceTypeGeocode) {
+        // Geocode places already have their address stored in the 'name' field.
+        [self resolveGecodePlaceToPlacemark:block];
+    } else {
+        [self resolveEstablishmentPlaceToPlacemark:block];
+    }
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     SPGooglePlacesAutocompletePlace *place = [self placeAtIndexPath:indexPath];
     [place resolveToPlacemark:^(CLPlacemark *placemark, NSString *addressString, NSError *error) {
@@ -106,14 +117,20 @@
             otherButtonTitles:nil, nil];
             [alert show];
         } else if (placemark) {
+//            //  Create location around which to search (hardcoded location of Big Ben here)
+//            CLLocationCoordinate2D locationCoordinate = CLLocationCoordinate2DMake(51.501103,-0.124565);
+//            
+//            //  Create request searching nearest galleries and museums
+//            FTGooglePlacesAPINearbySearchRequest *request = [[FTGooglePlacesAPINearbySearchRequest alloc] initWithLocationCoordinate:locationCoordinate];
+//            request.rankBy = FTGooglePlacesAPIRequestParamRankByDistance;
+//            request.types = @[@"art_gallery", @"museum"];
+            
             SearchItem *selectedItem   = [[SearchItem alloc] init];
             selectedItem.searchQuery   = place.name;
             selectedItem.lati = placemark.location.coordinate.latitude;
             selectedItem.longi = placemark.location.coordinate.longitude;
             selectedItem.address = placemark.thoroughfare;
             [self performSegueWithIdentifier: @"showResults" sender: selectedItem];
-//            [self pushResultsMapViewController: (SearchItem*)selectedItem];
-//            [self actionWithSender:(UITableViewCell*)selectedItem];
             [self dismissSearchControllerWhileStayingActive];
             [self.searchDisplayController.searchResultsTableView deselectRowAtIndexPath:indexPath animated:NO];
         }
@@ -177,27 +194,6 @@
     return boolToReturn;
 }
 
-
-
-//-(void)actionWithSender:(UITableViewCell*)sender event:(UIEvent*)event {
-//    NSString* parameter;
-//    NSLog(@"%@", sender);
-////    if (sender.tag == 1)   // button1
-////        parameter = @"foo";
-////    else                   // button2
-////        parameter = @"bar";
-//////    ...
-//}
-
-//- (IBAction)pushResultsMapViewController: (SearchItem *)sender
-//{
-//    ResultsMapViewController *resultsMap = [[ResultsMapViewController alloc] initWithProperty:(SearchItem*)sender];
-//    NSLog(@"%@", sender);
-//    SearchItem *item = sender;
-//    ResultsMapViewController *destViewController = segue.destinationViewController;
-//    destViewController.item = item;
-//    [self presentModalViewController:resultsMap animated:YES];
-//}
 
 // segue to results page
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
