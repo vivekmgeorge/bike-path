@@ -122,10 +122,6 @@
              CLLocationCoordinate2DMake([[closestStation objectForKey:@"latitude"] doubleValue],
                                         [[closestStation objectForKey:@"longitude"] doubleValue]);
              
-             CLLocation *endLocation = [[CLLocation alloc] initWithLatitude:createEndLocation.latitude
-                                                                  longitude:createEndLocation.longitude];
-             NSDictionary *closestEndStation = [StationFinder findClosestStation:stations location:endLocation];
-             
              NSString *closestStationTitle = [closestStation objectForKey:@"stationName"];
              NSString *availableBikes      = [[closestStation objectForKey:@"availableBikes"] stringValue];
              NSNumber *numBikes            = @([[closestStation objectForKey:@"availableBikes"] intValue]);
@@ -134,60 +130,56 @@
                                                                   mapView:mapView_
                                                                     title:closestStationTitle
                                                                     color:[GMSMarker markerImageWithColor:[UIColor redColor]]];
+             [waypoints_ addObject:startStation];
+             NSString *startStationString = [[NSString alloc] initWithFormat:@"%f,%f", closestStationLocation.latitude, closestStationLocation.longitude];
+             [waypointStrings_ addObject:startStationString];
+             
              if ([numBikes intValue] > 3) {
                  startStation.icon    = [GMSMarker markerImageWithColor:[UIColor greenColor]];
                  startStation.snippet = [NSString stringWithFormat:@"Bicyles available: %@", availableBikes];
              } else if ([numBikes intValue] > 0) {
                  startStation.icon    = [GMSMarker markerImageWithColor:[UIColor orangeColor]];
-                 startStation.snippet = @"No bicyles available at this location.";
+                 startStation.snippet = [NSString stringWithFormat:@"Bicyles available: %@", availableBikes];
              } else {
                  startStation.icon    = [GMSMarker markerImageWithColor:[UIColor redColor]];
                  startStation.snippet = @"No bicyles available at this location.";
              };
              
+             CLLocation *endLocation = [[CLLocation alloc] initWithLatitude:createEndLocation.latitude
+                                                                  longitude:createEndLocation.longitude];
              
-             // make core location objects for the locations of the two bike stations found
-             // above but the StationFinder module
+             NSDictionary *closestEndStation = [StationFinder findClosestStation:stations location:endLocation];
+             CLLocationCoordinate2D closestEndStationLocation =
+             CLLocationCoordinate2DMake([[closestEndStation objectForKey:@"latitude"] doubleValue],
+                                        [[closestEndStation objectForKey:@"longitude"] doubleValue]);
+
              
-             CLLocation *closestEndLocation = [[CLLocation alloc]
-                                            initWithLatitude:[[closestEndStation objectForKey:@"latitude"] doubleValue]    longitude:[[closestEndStation objectForKey:@"longitude"] doubleValue]];
-             
-             // set the marker label and position for the start marker
-//             startStation.title       = title;
-//             startStation.position    = closestLocation.coordinate;
-//             startStation.map         = mapView_;
-             
-             // add the start station as a waypoint as waypoint 3 (index 2)
-             [waypoints_ addObject:startStation];
-             NSString *startStationString = [[NSString alloc] initWithFormat:@"%f,%f", closestStationLocation.latitude, closestStationLocation.longitude];
-             [waypointStrings_ addObject:startStationString];
+//             CLLocation *closestEndLocation = [[CLLocation alloc]
+//                                            initWithLatitude:[[closestEndStation objectForKey:@"latitude"] doubleValue]    longitude:[[closestEndStation objectForKey:@"longitude"] doubleValue]];
              
              // extract title, bike count (twice, string and int)
-             NSString *endTitle            = [closestStation objectForKey:@"stationName"];
-             NSString *availableEndBikes   = [[closestStation objectForKey:@"availableBikes"] stringValue];
-             NSNumber *numEndBikes         = @([[closestStation objectForKey:@"availableBikes"] intValue]);
+             NSString *closestEndStationTitle            = [closestStation objectForKey:@"stationName"];
+             NSString *availableEndStationBikes   = [[closestStation objectForKey:@"availableBikes"] stringValue];
+             NSNumber *numberOfEndStationBikes         = @([[closestStation objectForKey:@"availableBikes"] intValue]);
              
-             // create a marker for the end station
-             GMSMarker *endStation  = [[GMSMarker alloc] init];
+             GMSMarker *endStation  = [GMSMarkerFactory createGMSMarker:&closestEndStationLocation
+                                                                mapView:mapView_
+                                                                  title:closestEndStationTitle
+                                                                  color:[GMSMarker markerImageWithColor:[UIColor redColor]]];
+             [waypoints_ addObject:closestEndStation];
+             NSString *endStationString = [[NSString alloc] initWithFormat:@"%f,%f", closestEndStationLocation.latitude, closestEndStationLocation.longitude];
+             [waypointStrings_ addObject:endStationString];
              
-             // color the markers based on number of bikes
-             if ([numEndBikes intValue] > 0) {
+             if ([numberOfEndStationBikes intValue] > 3) {
                  endStation.icon    = [GMSMarker markerImageWithColor:[UIColor greenColor]];
-                 endStation.snippet = availableEndBikes;
+                 endStation.snippet = [NSString stringWithFormat:@"Bicyles available: %@", availableBikes];
+             } else if ([numBikes intValue] > 0) {
+                 startStation.icon    = [GMSMarker markerImageWithColor:[UIColor orangeColor]];
+                 startStation.snippet = [NSString stringWithFormat:@"Bicyles available: %@", availableBikes];
              } else {
                  endStation.icon    = [GMSMarker markerImageWithColor:[UIColor redColor]];
                  endStation.snippet = @"No bikes available at this location.";
              };
-             
-             // set properties of end location marker
-             endStation.title       = endTitle;
-             endStation.position    = closestEndLocation.coordinate;
-             endStation.map         = mapView_;
-             
-             // add final waypoint (index 3), end station marker
-             [waypoints_ addObject:endStation];
-             NSString *endStationString = [[NSString alloc] initWithFormat:@"%f,%f", closestEndLocation.coordinate.latitude, closestEndLocation.coordinate.longitude];
-             [waypointStrings_ addObject:endStationString];
              
              // make google waypoint search struct ... do this somewhere else
              NSString *sensor = @"false";
