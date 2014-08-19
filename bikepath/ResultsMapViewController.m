@@ -75,7 +75,10 @@
 //    NSDictionary *closestStation = [StationFinder findClosestStation:stations location:currentLocation];
     
 
-    GMSMarker *startPoint = [GMSMarkerFactory createGMSMarker:&startPosition mapView:mapView_];
+    GMSMarker *startPoint = [GMSMarkerFactory createGMSMarker:&startPosition
+                                                      mapView:mapView_
+                                                        title:@"Start"
+                                                        color:[GMSMarker markerImageWithColor:[UIColor redColor]]];
 
     
     // set the first waypoint to the *marker* that's at the current position
@@ -87,15 +90,18 @@
 
     // place a marker on the map for the end point using the values in the self.item object
     // which is a custom object with lat & lng values passed from the search controller
-    CLLocationCoordinate2D position = CLLocationCoordinate2DMake(self.item.lati, self.item.longi);
-    GMSMarker *endPoint = [GMSMarkerFactory createGMSMarker:&position mapView:mapView_];
-
+    CLLocationCoordinate2D endLocation = CLLocationCoordinate2DMake(self.item.lati, self.item.longi);
+    GMSMarker *endPoint = [GMSMarkerFactory createGMSMarker:&endLocation
+                                                    mapView:mapView_
+                                                      title:@"End"
+                                                      color:[GMSMarker markerImageWithColor:[UIColor redColor]]];
+    
     // you probably want this line instead of the one above, that would allow you
     // to remove item.lati and item.longi
     // endPoint.position = self.item.position;
-    endPoint.title = self.item.searchQuery; // should be item.locationName
-    endPoint.icon = [GMSMarker markerImageWithColor:[UIColor redColor]];
-    endPoint.map = mapView_;
+//    endPoint.title = self.item.searchQuery; // should be item.locationName
+//    endPoint.icon = [GMSMarker markerImageWithColor:[UIColor redColor]];
+//    endPoint.map = mapView_;
     
     // Set the second waypoint to be the *marker* of the destination
     [waypoints_ addObject:endPoint];

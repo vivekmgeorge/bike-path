@@ -12,6 +12,8 @@
 @interface GMSMarkerFactory : NSObject
 
 + (GMSMarker*)createGMSMarker:(CLLocationCoordinate2D*) locationCoordinates
-                      mapView:(GMSMapView*) map;
+                      mapView:(GMSMapView*) map
+                        title:(NSString*) title
+                        color:(UIImage*) color;
 
 @end

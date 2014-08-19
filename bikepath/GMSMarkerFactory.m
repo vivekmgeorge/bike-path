@@ -11,10 +11,13 @@
 
 @implementation GMSMarkerFactory
 + (GMSMarker*)createGMSMarker:(CLLocationCoordinate2D*) locationCoordinates
-                                  mapView:(GMSMapView*) map{
+                      mapView:(GMSMapView*) map
+                        title:(NSString*) title
+                        color:(UIColor*) color{
     GMSMarker *marker = [GMSMarker markerWithPosition:*locationCoordinates];
-    marker.title = @"Start";
+    marker.title = title;
     marker.map = map;
+    marker.icon = color;
     return marker;
 }
 @end
