@@ -12,8 +12,8 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) NSURLCache *citiBikeCache;
-@property (strong) NSArray *stationJSON;
+@property (nonatomic, retain) NSArray *stationJSON;
 //@property (strong, nonatomic) id<UIApplicationDelegate>delegate;
--(void)loadCitiBikeData;
+-(NSArray*)loadCitiBikeData;
 
 @end
