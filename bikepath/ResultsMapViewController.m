@@ -12,6 +12,7 @@
 #import <Foundation/Foundation.h>
 #import "MDDirectionService.h"
 #import <CoreLocation/CoreLocation.h>
+#import "GoogleNavTestViewController.h"
 
 @interface ResultsMapViewController () {
     GMSMapView *mapView_;
@@ -32,6 +33,30 @@
     return [NSString stringWithFormat:@"latitude: %f longitude: %f", locationManager.location.coordinate.latitude, locationManager.location.coordinate.longitude];
 }
 
+-(void)buttonPressed {
+    NSLog(@"Button Pressed!");
+    NSURL *testURL = [NSURL URLWithString:@"comgooglemaps-x-callback://"];
+    if ([[UIApplication sharedApplication] canOpenURL:testURL]) {
+        
+        NSString *callBackUrl = @"comgooglemaps-x-callback://";
+        //        NSString *startLati = @"+40.76727216";
+        //        NSString *startLongi = @"-73.99392888";
+        NSString *endLati = @"+40.71117416";
+        NSString *endLongi = @"-74.00016545";
+        NSString *directionsMode = @"&directionsmode=bicycling&zoom=17";
+        NSString *appConnection = @"&x-success=sourceapp://?resume=true&x-source=bike-path.bikepath";
+        NSString *directions = [[NSString alloc] initWithFormat: @"%@?daddr=%@,%@%@%@", callBackUrl, endLati, endLongi, directionsMode, appConnection];
+        NSLog(@"%@", directions);
+        
+        NSString *directionsRequest = directions;
+        NSURL *directionsURL = [NSURL URLWithString:directionsRequest];
+        [[UIApplication sharedApplication] openURL:directionsURL];
+    } else {
+        NSLog(@"Can't use comgooglemaps-x-callback:// on this device.");
+    }
+}
+
+
 - (void)viewDidLoad{
     [super viewDidLoad];
     
@@ -46,9 +71,25 @@
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.706638
                                                             longitude:-74.009070
                                                                  zoom:13];
+    
+    //create the button
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    
+    //set the position of the button
+    button.frame = CGRectMake(100, 170, 100, 30);
+    
+    //set the button's title
+    [button setTitle:@"Click Me!" forState:UIControlStateNormal];
+    
+    //listen for clicks
+    [button addTarget:self action:@selector(buttonPressed)
+     forControlEvents:UIControlEventTouchUpInside];
+
+    
     mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     mapView_.delegate = self;
     self.view = mapView_;
+    [mapView_ addSubview:button];
 
     CLLocationCoordinate2D startPosition = locationManager.location.coordinate;
     GMSMarker *startPoint = [GMSMarker markerWithPosition:startPosition];

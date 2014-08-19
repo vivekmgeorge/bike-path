@@ -7,6 +7,7 @@
 //
 
 #import "GoogleNavTestViewController.h"
+#import "ResultsMapViewController.h"
 
 @implementation GoogleNavTestViewController
 
@@ -48,7 +49,7 @@
         NSString *endLati = @"+40.71117416";
         NSString *endLongi = @"-74.00016545";
         NSString *directionsMode = @"&directionsmode=bicycling&zoom=17";
-        NSString *appConnection = @"&x-success=sourceapp://?resume=true&x-source=bikePathApp";
+        NSString *appConnection = @"&x-success=sourceapp://?resume=true&x-source=bike-path.bikepath";
         NSString *directions = [[NSString alloc] initWithFormat: @"%@?daddr=%@,%@%@%@", callBackUrl, endLati, endLongi, directionsMode, appConnection];
         NSLog(@"%@", directions);
         
