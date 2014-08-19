@@ -56,7 +56,8 @@
                     block(nil, nil, error);
                 } else {
                     CLPlacemark *placemark = [placemarks onlyObject];
-                    block(placemark, self.name, error);
+//                    NSString *address = addressString;
+                    block(placemark, addressString, error);
                 }
             }];
         }
