@@ -67,7 +67,12 @@
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     
     //set the position of the button
-    button.frame = CGRectMake(100, 170, 100, 30);
+    button.frame = CGRectMake(175, 400, 100, 30);
+    button.layer.borderColor = [UIColor blackColor].CGColor;
+    button.layer.borderWidth = 1.0;
+    button.layer.cornerRadius = 10;
+//    button.backgroundColor = [UIColor whiteColor];
+    [button setBackgroundImage:[UIImage imageNamed:@"bike_icon"] forState:UIControlStateNormal];
     
     //set the button's title
     [button setTitle:@"Live Nav" forState:UIControlStateNormal];
