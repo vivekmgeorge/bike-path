@@ -12,4 +12,6 @@
 
 +(NSArray*)loadAndCacheStations;
 
+@property (strong, nonatomic) NSArray *sortedBikeStations;
+
 @end

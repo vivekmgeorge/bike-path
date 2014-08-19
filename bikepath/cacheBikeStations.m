@@ -11,7 +11,9 @@
 
 @implementation cacheBikeStations
 
-+(NSArray*)loadAndCacheStations
+@synthesize sortedBikeStations;
+
+-(NSArray*)loadAndCacheStations
 {
     NSArray *sortedStations;
     NSURLCache *citiBikeCache = [[NSURLCache alloc] initWithMemoryCapacity:4 * 1024 * 1024
@@ -55,7 +57,8 @@
                 NSMutableArray *locations = [[NSMutableArray alloc] init];
                 [locations addObject:location];
             }
-//            NSLog(@"%@",sortedStations);
+            NSLog(@"%@",sortedStations);
+            sortedBikeStations = sortedStations;
         }
     }];
     return 0;
