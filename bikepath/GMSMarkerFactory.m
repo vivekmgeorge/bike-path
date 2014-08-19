@@ -33,13 +33,13 @@
     marker.map = map;
     
     if ([numberOfBikes integerValue] > 3) {
-        marker.icon    = [GMSMarker markerImageWithColor:[UIColor greenColor]];
+        marker.icon    = [UIImage imageNamed:@"bicycleGreen"];
         marker.snippet = [NSString stringWithFormat:@"%@: %@", availableSnippet, numberOfBikes];
     } else if (numberOfBikes > 0) {
-        marker.icon    = [GMSMarker markerImageWithColor:[UIColor orangeColor]];
+        marker.icon    = [UIImage imageNamed:@"bicycleYellow"];
         marker.snippet = [NSString stringWithFormat:@"%@: %@", availableSnippet, numberOfBikes];
     } else {
-        marker.icon    = [GMSMarker markerImageWithColor:[UIColor redColor]];
+        marker.icon    = [UIImage imageNamed:@"bicycleRed"];
         marker.snippet = [NSString stringWithFormat:@"%@", unavailableSnippet];
     };
     return marker;
