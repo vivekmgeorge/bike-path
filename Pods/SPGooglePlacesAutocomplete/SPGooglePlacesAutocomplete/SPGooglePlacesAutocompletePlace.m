@@ -44,12 +44,14 @@
 - (void)resolveEstablishmentPlaceToPlacemark:(SPGooglePlacesPlacemarkResultBlock)block {
     SPGooglePlacesPlaceDetailQuery *query = [[SPGooglePlacesPlaceDetailQuery alloc] initWithApiKey:self.key];
     query.reference = self.reference;
+    NSLog(@"resolve establishment self.name: %@", self.name);
     [query fetchPlaceDetail:^(NSDictionary *placeDictionary, NSError *error) {
         if (error) {
             block(nil, nil, error);
         } else {
             NSString *addressString = placeDictionary[@"formatted_address"];
             [[self geocoder] geocodeAddressString:addressString completionHandler:^(NSArray *placemarks, NSError *error) {
+                NSLog(@"address String: %@", addressString);
                 if (error) {
                     block(nil, nil, error);
                 } else {
@@ -63,6 +65,7 @@
 
 - (void)resolveGecodePlaceToPlacemark:(SPGooglePlacesPlacemarkResultBlock)block {
     [[self geocoder] geocodeAddressString:self.name completionHandler:^(NSArray *placemarks, NSError *error) {
+        NSLog(@"self.name: %@", self.name);
         if (error) {
             block(nil, nil, error);
         } else {
