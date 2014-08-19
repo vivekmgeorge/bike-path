@@ -125,44 +125,55 @@
             NSString *address = addressString;
             NSArray *addressItems = [address componentsSeparatedByString:@" "];
             NSMutableArray *addressCombinedArray = [[NSMutableArray alloc] init];
-            
             for (NSString *addressPart in addressItems){
                 [addressCombinedArray addObject:[[NSString alloc] initWithFormat:@"%@+", addressPart]];
             }
             NSString *addressCombinedString = [addressCombinedArray componentsJoinedByString:@""];
-            
-            NSLog(@"address combined string: %@", addressCombinedString);
-            
             NSString *kGoogleGeocodeApiUrl = @"https://maps.googleapis.com/maps/api/geocode/json?address=1";
             NSString *kGoogleGeocodeApiKey = @"AIzaSyAxaqfMyyc-WSrvsWP_jF2IUaTZVjkMlFo";
-            
             NSString *addressForJson = [[NSString alloc] initWithFormat:@"%@%@&key=%@", kGoogleGeocodeApiUrl, addressCombinedString, kGoogleGeocodeApiKey];
-            NSLog(@"address for json: %@", addressForJson);
             
-//            Google New York, 8th Avenue, New York, NY, United States;
-//            https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyAxaqfMyyc-WSrvsWP_jF2IUaTZVjkMlFo
-//            
-//            //  Create location around which to search (hardcoded location of Big Ben here)
-//            CLLocationCoordinate2D locationCoordinate = CLLocationCoordinate2DMake(51.501103,-0.124565);
-//
-            
-            NSLog(@"Placemark name: %@", placemark);
-            NSLog(@"Placemark Location: %@", placemark.location);
-            NSLog(@"Place: %@", place);
-            NSLog(@"Placemark address: %@", placemark.thoroughfare);
+            NSURL *url = [NSURL URLWithString: addressForJson];
+            NSURLRequest *request = [NSURLRequest requestWithURL:url];
+            [NSURLConnection sendAsynchronousRequest:request
+                                               queue:[NSOperationQueue mainQueue]
+                                   completionHandler:^(NSURLResponse *response,
+                                                       NSData *data, NSError *connectionError)
+             {
+                 if (data.length > 0 && connectionError == nil)
+                 {
+                    NSDictionary *addressJson = [NSJSONSerialization
+                                                JSONObjectWithData:data
+                                                options:0
+                                                error:NULL];
+                     
+                    NSArray *addressParts = [[addressJson objectForKey:@"results"] valueForKey:@"geometry"];
+                     NSString *formattedAddress = [addressParts valueForKey:@"formatted_address"];
+                     for(id info in addressParts){
+//                         NSLog(@"info: %@", info);
+//                         NSDictionary *address = (NSDictionary *)info;
+                        NSDictionary *addressPartsLocation = (NSDictionary *)[info valueForKey:@"location"];
+                         NSString *lati = [addressPartsLocation objectForKey:@"lat"];
+                         NSString *longi = [addressPartsLocation objectForKey:@"lng"];
+                         NSLog(@"lati: %@", lati);
+                         SearchItem *selectedItem   = [[SearchItem alloc] init];
+                         selectedItem.searchQuery   = place.name;
+                         selectedItem.lati = lati;
+                         selectedItem.longi = longi;
+//                         //            selectedItem.address = placemark.thoroughfare;
+//                         //            [self performSegueWithIdentifier: @"showResults" sender: selectedItem];
+                         [self dismissSearchControllerWhileStayingActive];
+                         [self.searchDisplayController.searchResultsTableView deselectRowAtIndexPath:indexPath animated:NO];
+                     }
+                 }
+             }];
+
             //
             //static NSString *kMDDirectionsURL = @"http://maps.googleapis.com/maps/api/json?%@"
             //addressString
 
             
-            SearchItem *selectedItem   = [[SearchItem alloc] init];
-            selectedItem.searchQuery   = place.name;
-            selectedItem.lati = placemark.location.coordinate.latitude;
-            selectedItem.longi = placemark.location.coordinate.longitude;
-            selectedItem.address = placemark.thoroughfare;
-            [self performSegueWithIdentifier: @"showResults" sender: selectedItem];
-            [self dismissSearchControllerWhileStayingActive];
-            [self.searchDisplayController.searchResultsTableView deselectRowAtIndexPath:indexPath animated:NO];
+            
         }
     }];
 }
