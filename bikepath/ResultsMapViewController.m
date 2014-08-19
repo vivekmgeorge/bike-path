@@ -80,13 +80,11 @@
     NSString *startPositionString = [[NSString alloc] initWithFormat:@"%f,%f", startPoint.position.latitude, startPoint.position.longitude];
     [waypointStrings_ addObject:startPositionString];
 
-    CLLocationCoordinate2D endLocation = CLLocationCoordinate2DMake(self.item.lati, self.item.longi);
-    GMSMarker *endPoint = [GMSMarkerFactory createGMSMarker:&endLocation
+    CLLocationCoordinate2D createEndLocation = CLLocationCoordinate2DMake(self.item.lati, self.item.longi);
+    GMSMarker *endPoint = [GMSMarkerFactory createGMSMarker:&createEndLocation
                                                     mapView:mapView_
                                                       title:@"End"
                                                       color:[GMSMarker markerImageWithColor:[UIColor redColor]]];
-    
-    // Set the second waypoint to be the *marker* of the destination
     [waypoints_ addObject:endPoint];
     NSString *endPositionString = [[NSString alloc] initWithFormat:@"%f,%f", self.item.lati, self.item.longi];
     [waypointStrings_ addObject:endPositionString];
@@ -107,10 +105,10 @@
              // todo: handle invalid json from server
              // parse raw data response from server into dictionary
              NSDictionary *bikepathjson = [NSJSONSerialization JSONObjectWithData:data
-                                                                      options:0
-                                                                        error:NULL];
+                                                                          options:0
+                                                                            error:NULL];
 
-             // extract out the list of stations from the response dict, throw away everthing
+             // extract out the list of stations from the response dict, throw away everything
              // else
              NSArray *stations = [bikepathjson objectForKey:@"stationBeanList"];
              
@@ -122,8 +120,8 @@
              // server for the closest one (for now its just one)
              NSDictionary *closestStation = [StationFinder findClosestStation:stations location:currentLocation];
              
-             
-             CLLocation *endLocation = [[CLLocation alloc] initWithLatitude:self.item.lati longitude:self.item.longi];
+             CLLocation *endLocation = [[CLLocation alloc] initWithLatitude:createEndLocation.latitude
+                                                                  longitude:createEndLocation.longitude];
              NSDictionary *closestEndStation = [StationFinder findClosestStation:stations location:endLocation];
              
              
