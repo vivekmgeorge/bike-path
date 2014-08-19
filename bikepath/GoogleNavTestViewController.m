@@ -41,7 +41,18 @@
     NSLog(@"Button Pressed!");
     NSURL *testURL = [NSURL URLWithString:@"comgooglemaps-x-callback://"];
     if ([[UIApplication sharedApplication] canOpenURL:testURL]) {
-        NSString *directionsRequest = @"comgooglemaps-x-callback://?daddr=John+F.+Kennedy+International+Airport,+Van+Wyck+Expressway,+Jamaica,+New+York&x-success=sourceapp://?resume=true&x-source=AirApp";
+        
+        NSString *callBackUrl = @"comgooglemaps-x-callback://";
+        NSString *startLati = @"+40.76727216";
+        NSString *startLongi = @"-73.99392888";
+        NSString *endLati = @"+40.71117416";
+        NSString *endLongi = @"-74.00016545";
+        NSString *directionsMode = @"&directionsmode=bicycling&zoom=17";
+        NSString *appConnection = @"&x-success=sourceapp://?resume=true&x-source=bikePathApp";
+        NSString *directions = [[NSString alloc] initWithFormat: @"%@?saddr=%@,%@&daddr=%@,%@%@%@", callBackUrl, startLati, startLongi, endLati, endLongi, directionsMode, appConnection];
+        NSLog(@"%@", directions);
+        
+        NSString *directionsRequest = directions;
         NSURL *directionsURL = [NSURL URLWithString:directionsRequest];
         [[UIApplication sharedApplication] openURL:directionsURL];
     } else {
