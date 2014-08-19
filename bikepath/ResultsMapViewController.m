@@ -65,7 +65,7 @@
     GMSMarker *endPoint = [[GMSMarker alloc] init];
     endPoint.position = CLLocationCoordinate2DMake(self.item.lati, self.item.longi);
     endPoint.title = self.item.searchQuery;
-    endPoint.icon = [GMSMarker markerImageWithColor:[UIColor redColor]];
+    endPoint.icon = [UIImage imageNamed:@"flag_icon"];
     endPoint.map = mapView_;
     [waypoints_ addObject:endPoint];
     
@@ -194,6 +194,7 @@
     NSString *overview_route = [route objectForKey:@"points"];
     GMSPath *path = [GMSPath pathFromEncodedPath:overview_route];
     GMSPolyline *polyline = [GMSPolyline polylineWithPath:path];
+    polyline.strokeWidth = 5.f;
     polyline.map = mapView_;
 }
 
