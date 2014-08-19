@@ -87,8 +87,9 @@
 
     // place a marker on the map for the end point using the values in the self.item object
     // which is a custom object with lat & lng values passed from the search controller
-    GMSMarker *endPoint = [[GMSMarker alloc] init];
-    endPoint.position = CLLocationCoordinate2DMake(self.item.lati, self.item.longi);
+    CLLocationCoordinate2D position = CLLocationCoordinate2DMake(self.item.lati, self.item.longi);
+    GMSMarker *endPoint = [GMSMarkerFactory createGMSMarker:&position mapView:mapView_];
+
     // you probably want this line instead of the one above, that would allow you
     // to remove item.lati and item.longi
     // endPoint.position = self.item.position;
