@@ -47,7 +47,6 @@
 		8AE403F5199D951100B926AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8AE403F4199D951100B926AB /* Main.storyboard */; };
 		C2813E40199E789700B19D69 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2813E3F199E789700B19D69 /* MapKit.framework */; };
 		C2813E42199E7BD800B19D69 /* dbc.gpx in Resources */ = {isa = PBXBuildFile; fileRef = C2813E41199E7BD800B19D69 /* dbc.gpx */; };
-		C28E798019A3DF5200451F67 /* cacheBikeStations.m in Sources */ = {isa = PBXBuildFile; fileRef = C28E797F19A3DF5200451F67 /* cacheBikeStations.m */; };
 		C70C22797CE04349AF0FE44A /* libPods-bikepathTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 948EF4CBA6DC4809995448C3 /* libPods-bikepathTests.a */; };
 /* End PBXBuildFile section */
 
@@ -118,8 +117,6 @@
 		948EF4CBA6DC4809995448C3 /* libPods-bikepathTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-bikepathTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2813E3F199E789700B19D69 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C2813E41199E7BD800B19D69 /* dbc.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = dbc.gpx; sourceTree = "<group>"; };
-		C28E797E19A3DF5200451F67 /* cacheBikeStations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cacheBikeStations.h; sourceTree = "<group>"; };
-		C28E797F19A3DF5200451F67 /* cacheBikeStations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cacheBikeStations.m; sourceTree = "<group>"; };
 		C5F9D619AB3541A2B1ACCC52 /* Pods-bikepath.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bikepath.xcconfig"; path = "Pods/Pods-bikepath.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -239,8 +236,6 @@
 				8A02797A19A04DA200F3FFC7 /* SearchItemTableCell.m */,
 				8A18221A199ED28D001D7AE2 /* SearchItem.h */,
 				8A18221B199ED28D001D7AE2 /* SearchItem.m */,
-				C28E797E19A3DF5200451F67 /* cacheBikeStations.h */,
-				C28E797F19A3DF5200451F67 /* cacheBikeStations.m */,
 				8AE403D7199D924200B926AB /* Images.xcassets */,
 				8AE403CC199D924200B926AB /* Supporting Files */,
 			);
@@ -443,7 +438,6 @@
 			files = (
 				8A48A710199FC4420030F153 /* SearchListViewController.m in Sources */,
 				8AB03328199DADA80036FF7A /* ResultsMapViewController.m in Sources */,
-				C28E798019A3DF5200451F67 /* cacheBikeStations.m in Sources */,
 				8ACFF70F19A25DC300FB1E09 /* MDDirectionService.m in Sources */,
 				09F19F78199EF6F500825ADE /* CitiViewController.m in Sources */,
 				8AE403D6199D924200B926AB /* AppDelegate.m in Sources */,
