@@ -62,46 +62,29 @@
     [self initMap];
     [self getUserLocation]; // does this initialize every time the view loads? possible reason for crashing
     [self updateUserLocation];
-
-    // get the current location of the phone from the locationManager
-    CLLocationCoordinate2D startPosition = locationManager.location.coordinate;
     
     // init a waypoints instance var, it's an array of markers not locations
     waypoints_ = [[NSMutableArray alloc]init];
     waypointStrings_ = [[NSMutableArray alloc]init];
 
     // place a marker on the map at the current location of the phone
-//    startPosition = locationManager.coordinate.location;
 //    NSDictionary *closestStation = [StationFinder findClosestStation:stations location:currentLocation];
     
-
+    CLLocationCoordinate2D startPosition = locationManager.location.coordinate;
     GMSMarker *startPoint = [GMSMarkerFactory createGMSMarker:&startPosition
                                                       mapView:mapView_
                                                         title:@"Start"
                                                         color:[GMSMarker markerImageWithColor:[UIColor redColor]]];
-
-    
-    // set the first waypoint to the *marker* that's at the current position
     [waypoints_ addObject: startPoint];
-    NSLog(@"%@", waypoints_[0]);
     // also set the first "poistion string" ... where are these used?
     NSString *startPositionString = [[NSString alloc] initWithFormat:@"%f,%f", startPoint.position.latitude, startPoint.position.longitude];
     [waypointStrings_ addObject:startPositionString];
 
-    // place a marker on the map for the end point using the values in the self.item object
-    // which is a custom object with lat & lng values passed from the search controller
     CLLocationCoordinate2D endLocation = CLLocationCoordinate2DMake(self.item.lati, self.item.longi);
     GMSMarker *endPoint = [GMSMarkerFactory createGMSMarker:&endLocation
                                                     mapView:mapView_
                                                       title:@"End"
                                                       color:[GMSMarker markerImageWithColor:[UIColor redColor]]];
-    
-    // you probably want this line instead of the one above, that would allow you
-    // to remove item.lati and item.longi
-    // endPoint.position = self.item.position;
-//    endPoint.title = self.item.searchQuery; // should be item.locationName
-//    endPoint.icon = [GMSMarker markerImageWithColor:[UIColor redColor]];
-//    endPoint.map = mapView_;
     
     // Set the second waypoint to be the *marker* of the destination
     [waypoints_ addObject:endPoint];
