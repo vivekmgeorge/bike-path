@@ -2,7 +2,7 @@
 //  StationFinder.m
 //  bikepath
 //
-//  Created by Vivek M George on 8/17/14.
+//  Created by Vivek M George on 8/18/14.
 //  Copyright (c) 2014 Bike Path. All rights reserved.
 //
 
@@ -12,11 +12,11 @@
 @implementation StationFinder
 
 + (NSDictionary *) findClosestStation: (NSArray *) stations
-                   location: (CLLocation *) currentLocation {
-
+                             location: (CLLocation *) currentLocation {
+    
     
     CLLocationDistance smallestDistance = DBL_MAX;
-//    CLLocation *closestLocation;
+    //    CLLocation *closestLocation;
     NSDictionary *closestStation;
     
     //        CLLocation *closestEndLocation;
@@ -38,7 +38,7 @@
             
             if (distance < smallestDistance) {
                 smallestDistance    = distance;
-//                closestLocation     = location;
+                //                closestLocation     = location;
                 closestStation      = station;
             }
         }
@@ -46,8 +46,8 @@
     }
     
     //        print it
-//    NSLog(@"%@", closestStation);
-
+    //    NSLog(@"%@", closestStation);
+    
     return closestStation;
 }
 
