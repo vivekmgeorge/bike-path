@@ -10,6 +10,7 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import <MapKit/MapKit.h>
 #import "SearchItem.h"
+#import "AppDelegate.h"
 
 @interface SearchMapViewController ()
 
@@ -22,8 +23,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-
     
     GMSCameraPosition *dbc = [GMSCameraPosition cameraWithLatitude:40.706638
                                                          longitude:-74.009070
@@ -38,15 +37,8 @@
 
     NSURL *url = [NSURL URLWithString:@"http://www.citibikenyc.com/stations/json"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: url
-                                                           cachePolicy: NSURLRequestUseProtocolCachePolicy
+                                                           cachePolicy: NSURLRequestReturnCacheDataDontLoad
                                                        timeoutInterval: 30.0];
-    NSDate *now = [NSDate date];
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setTimeZone: [NSTimeZone timeZoneWithName: @"GMT"]];
-    [formatter setDateFormat: @"EEE, dd MM yyyy HH:mm:ss"];
-    NSString *currentTime = [[formatter stringFromDate:now] stringByAppendingString:@"GMT"];
-    [request addValue: currentTime forHTTPHeaderField: @"If-Modified-Since"];
-
     [NSURLConnection sendAsynchronousRequest:request
                                        queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *response,
