@@ -101,6 +101,9 @@
 - (void)viewDidLoad{
     // do the default view behavior
     [super viewDidLoad];
+    
+    AppDelegate *appDel = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDel loadCitiBikeData];
 
     [self initMap];
     [self getUserLocation];
@@ -129,28 +132,9 @@
                                                       color:[UIImage imageNamed:@"endStation"]];
     [waypoints_ addObject:endPoint];
 
-    // now fetch the nyc bike station locations and try to find closeby stations for
-    // the start and destination locations
-    NSURL *url = [NSURL URLWithString:@"http://www.citibikenyc.com/stations/json"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse *response,
-                                               NSData *data, NSError *connectionError)
-     {
-         // todo: handle error response from server
-         // if some results and no error
-         if (data.length > 0 && connectionError == nil)
-         {
-             // todo: handle invalid json from server
-             // parse raw data response from server into dictionary
-             NSDictionary *bikepathjson = [NSJSONSerialization JSONObjectWithData:data
-                                                                          options:0
-                                                                            error:NULL];
-
-             // extract out the list of stations from the response dict, throw away everything
-             // else
-             NSArray *stations = [bikepathjson objectForKey:@"stationBeanList"];
+    
+    
+    NSArray *stations = appDel.stationJSON;
              NSLog(@"%@",stations);
 
              NSDictionary *closestStation = [StationFinder findClosestStation:stations location:currentLocation];
@@ -205,8 +189,6 @@
                         withSelector:selector
                         withDelegate:self];
          }
-     }];
-}
 
 - (void)addDirections:(NSDictionary *)json {
 
