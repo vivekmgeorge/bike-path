@@ -194,7 +194,8 @@
     NSString *overview_route = [route objectForKey:@"points"];
     GMSPath *path = [GMSPath pathFromEncodedPath:overview_route];
     GMSPolyline *polyline = [GMSPolyline polylineWithPath:path];
-    polyline.strokeWidth = 5.f;
+    polyline.strokeWidth = 3.f;
+    polyline.strokeColor = [UIColor blackColor];
     polyline.map = mapView_;
 }
 
