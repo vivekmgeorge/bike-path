@@ -68,7 +68,6 @@
 
     // place a marker on the map at the current location of the phone
 //    NSDictionary *closestStation = [StationFinder findClosestStation:stations location:currentLocation];
-    
     CLLocationCoordinate2D startPosition = locationManager.location.coordinate;
     GMSMarker *startPoint = [GMSMarkerFactory createGMSMarker:&startPosition
                                                       mapView:mapView_
@@ -78,14 +77,18 @@
     // also set the first "poistion string" ... where are these used?
     NSString *startPositionString = [[NSString alloc] initWithFormat:@"%f,%f", startPoint.position.latitude, startPoint.position.longitude];
     [waypointStrings_ addObject:startPositionString];
+    
+    CLLocation *currentLocation = [[CLLocation alloc] initWithLatitude:startPosition.latitude
+                                                             longitude:startPosition.longitude];
+
 
     CLLocationCoordinate2D createEndLocation = CLLocationCoordinate2DMake(self.item.lati, self.item.longi);
     GMSMarker *endPoint = [GMSMarkerFactory createGMSMarker:&createEndLocation
                                                     mapView:mapView_
-                                                      title:@"End"
+                                                      title:self.item.address //the address being given is not the full address
                                                       color:[GMSMarker markerImageWithColor:[UIColor redColor]]];
     [waypoints_ addObject:endPoint];
-    NSString *endPositionString = [[NSString alloc] initWithFormat:@"%f,%f", self.item.lati, self.item.longi];
+    NSString *endPositionString = [[NSString alloc] initWithFormat:@"%f,%f", endPoint.position.latitude, endPoint.position.longitude];
     [waypointStrings_ addObject:endPositionString];
     
     // now fetch the nyc bike station locations and try to find closeby stations for
@@ -110,17 +113,11 @@
              // extract out the list of stations from the response dict, throw away everything
              // else
              NSArray *stations = [bikepathjson objectForKey:@"stationBeanList"];
-             
-             // create a corelocation object from the phones current location
-             // this could be moved up out of this response handler
-             CLLocation *currentLocation = [[CLLocation alloc] initWithLatitude:startPosition.latitude longitude:startPosition.longitude];
 
-             // use the StationFinder module to search the station list returned from the
-             // server for the closest one (for now its just one)
              NSDictionary *closestStation = [StationFinder findClosestStation:stations location:currentLocation];
-             CLLocationCoordinate2D closestStationLocation =
-             CLLocationCoordinate2DMake([[closestStation objectForKey:@"latitude"] doubleValue],
-                                        [[closestStation objectForKey:@"longitude"] doubleValue]);
+             CLLocationCoordinate2D closestStationLocation = CLLocationCoordinate2DMake(
+                 [[closestStation objectForKey:@"latitude"] doubleValue],
+                 [[closestStation objectForKey:@"longitude"] doubleValue]);
              
              NSString *closestStationTitle = [closestStation objectForKey:@"stationName"];
              NSString *availableBikes      = [[closestStation objectForKey:@"availableBikes"] stringValue];
@@ -153,18 +150,12 @@
              CLLocationCoordinate2DMake([[closestEndStation objectForKey:@"latitude"] doubleValue],
                                         [[closestEndStation objectForKey:@"longitude"] doubleValue]);
 
-             
-//             CLLocation *closestEndLocation = [[CLLocation alloc]
-//                                            initWithLatitude:[[closestEndStation objectForKey:@"latitude"] doubleValue]    longitude:[[closestEndStation objectForKey:@"longitude"] doubleValue]];
-             
-             // extract title, bike count (twice, string and int)
-             NSString *closestEndStationTitle            = [closestStation objectForKey:@"stationName"];
-             NSString *availableEndStationBikes   = [[closestStation objectForKey:@"availableBikes"] stringValue];
-             NSNumber *numberOfEndStationBikes         = @([[closestStation objectForKey:@"availableBikes"] intValue]);
+             NSString *availableEndStationBikes = [[closestStation objectForKey:@"availableBikes"] stringValue];
+             NSNumber *numberOfEndStationBikes  = @([[closestStation objectForKey:@"availableBikes"] intValue]);
              
              GMSMarker *endStation  = [GMSMarkerFactory createGMSMarker:&closestEndStationLocation
                                                                 mapView:mapView_
-                                                                  title:closestEndStationTitle
+                                                                  title:[closestStation objectForKey:@"stationName"]
                                                                   color:[GMSMarker markerImageWithColor:[UIColor redColor]]];
              [waypoints_ addObject:closestEndStation];
              NSString *endStationString = [[NSString alloc] initWithFormat:@"%f,%f", closestEndStationLocation.latitude, closestEndStationLocation.longitude];
@@ -172,10 +163,10 @@
              
              if ([numberOfEndStationBikes intValue] > 3) {
                  endStation.icon    = [GMSMarker markerImageWithColor:[UIColor greenColor]];
-                 endStation.snippet = [NSString stringWithFormat:@"Bicyles available: %@", availableBikes];
+                 endStation.snippet = [NSString stringWithFormat:@"Bicyles available: %@", availableEndStationBikes];
              } else if ([numBikes intValue] > 0) {
                  startStation.icon    = [GMSMarker markerImageWithColor:[UIColor orangeColor]];
-                 startStation.snippet = [NSString stringWithFormat:@"Bicyles available: %@", availableBikes];
+                 startStation.snippet = [NSString stringWithFormat:@"Bicyles available: %@", availableEndStationBikes];
              } else {
                  endStation.icon    = [GMSMarker markerImageWithColor:[UIColor redColor]];
                  endStation.snippet = @"No bikes available at this location.";
@@ -208,8 +199,6 @@
     GMSPolyline *polyline = [GMSPolyline polylineWithPath:path];
     polyline.map = mapView_;
 }
-
-
 
 - (void)didReceiveMemoryWarning
 {
