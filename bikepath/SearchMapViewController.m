@@ -37,7 +37,7 @@
     self.mapView.myLocationEnabled = YES;
     self.mapView.settings.compassButton = YES;
     self.mapView.settings.myLocationButton = YES;
-    self.mapView.settings.zoomGestures = YES;
+    self.mapView.settings.zoomGestures = YES;   
     self.mapView.delegate = self;
     
     NSArray *sortedStations = appDel.stationJSON;

@@ -1,17 +1,17 @@
+////
+////  cacheBikeStations.h
+////  bikepath
+////
+////  Created by Molly Huerster on 8/19/14.
+////  Copyright (c) 2014 Bike Path. All rights reserved.
+////
 //
-//  cacheBikeStations.h
-//  bikepath
+//#import <Foundation/Foundation.h>
 //
-//  Created by Molly Huerster on 8/19/14.
-//  Copyright (c) 2014 Bike Path. All rights reserved.
+//@interface cacheBikeStations : NSObject
 //
-
-#import <Foundation/Foundation.h>
-
-@interface cacheBikeStations : NSObject
-
-+(NSArray*)loadAndCacheStations;
-
-@property (strong, nonatomic) NSArray *sortedBikeStations;
-
-@end
+//+(NSArray*)loadAndCacheStations;
+//
+//@property (strong, nonatomic) NSArray *sortedBikeStations;
+//
+//@end

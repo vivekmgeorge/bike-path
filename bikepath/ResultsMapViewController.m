@@ -36,8 +36,8 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     
-    appDel = [[UIApplication sharedApplication]delegate];
-    NSLog(@"%@",appDel.citiBikeCache);
+    AppDelegate *appDel = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDel loadCitiBikeData];
     
     
     locationManager = [[CLLocationManager alloc] init];
@@ -74,19 +74,19 @@
     NSString *endPositionString = [[NSString alloc] initWithFormat:@"%f,%f", self.item.lati, self.item.longi];
     [waypointStrings_ addObject:endPositionString];
     
-    NSURL *url = [NSURL URLWithString:@"http://www.citibikenyc.com/stations/json"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse *response,
-                                               NSData *data, NSError *connectionError)
+//    NSURL *url = [NSURL URLWithString:@"http://www.citibikenyc.com/stations/json"];
+//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//    [NSURLConnection sendAsynchronousRequest:request
+//                                       queue:[NSOperationQueue mainQueue]
+//                           completionHandler:^(NSURLResponse *response,
+//                                               NSData *data, NSError *connectionError)
      {
-         if (data.length > 0 && connectionError == nil)
-         {
-             NSDictionary *greeting = [NSJSONSerialization JSONObjectWithData:data
-                                                                      options:0
-                                                                        error:NULL];
-             NSArray *stations = [greeting objectForKey:@"stationBeanList"];
+//         if (data.length > 0 && connectionError == nil)
+//         {
+//             NSDictionary *greeting = [NSJSONSerialization JSONObjectWithData:data
+//                                                                      options:0
+//                                                                        error:NULL];
+         NSArray *stations = appDel.stationJSON;
              CLLocationDistance smallestDistance = DBL_MAX;
              CLLocation *closestLocation;
              NSDictionary *closestStation;
@@ -183,8 +183,8 @@
                         withSelector:selector
                         withDelegate:self];
          }
-     }];
-}
+     }//];
+//}
 
 - (void)addDirections:(NSDictionary *)json {
     
