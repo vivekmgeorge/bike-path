@@ -148,7 +148,7 @@
                          selectedItem.lati = location.coordinate.latitude;
                          selectedItem.longi = location.coordinate.longitude;
                          selectedItem.address = formattedAddress;
-//                         [self performSegueWithIdentifier: @"showResults" sender: selectedItem];
+                         [self performSegueWithIdentifier: @"showResults" sender: selectedItem];
                          [self dismissSearchControllerWhileStayingActive];
                          [self.searchDisplayController.searchResultsTableView deselectRowAtIndexPath:indexPath animated:NO];
                      }
