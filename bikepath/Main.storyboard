@@ -18,7 +18,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Results" id="TcU-1J-CRn">
-                        <barButtonItem key="leftBarButtonItem" systemItem="rewind" id="38F-3W-mvs">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="38F-3W-mvs">
                             <connections>
                                 <segue destination="G0S-6X-bg1" kind="unwind" unwindAction="unwindToSearchPage:" id="mtr-0s-eLm"/>
                             </connections>
