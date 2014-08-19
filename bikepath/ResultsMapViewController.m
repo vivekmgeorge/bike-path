@@ -34,7 +34,6 @@
     return [NSString stringWithFormat:@"latitude: %f longitude: %f", locationManager.location.coordinate.latitude, locationManager.location.coordinate.longitude];
 }
 
-// should be responsible for setting up the map, (setting camera point etc)
 - (void) initMap{
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.706638
                                                             longitude:-74.009070
@@ -56,13 +55,6 @@
     [locationManager startUpdatingLocation];
 }
 
-//-(void)GMSMarkerFactory{
-//    CLLocationCoordinate2D position = CLLocationCoordinate2DMake(coordinates);
-//    GMSMarker *startPoint = [GMSMarker markerWithPosition:postion];
-//    startPoint.title = @"Start";
-//    startPoint.map = mapView_;
-//}
-
 - (void)viewDidLoad{
     // do the default view behavior
     [super viewDidLoad];
@@ -75,24 +67,22 @@
     CLLocationCoordinate2D startPosition = locationManager.location.coordinate;
     
     // init a waypoints instance var, it's an array of markers not locations
-//    waypoints_ = [[NSMutableArray alloc]init];
+    waypoints_ = [[NSMutableArray alloc]init];
     waypointStrings_ = [[NSMutableArray alloc]init];
 
     // place a marker on the map at the current location of the phone
-//    startPosition = locationManager.coordinate;
+//    startPosition = locationManager.coordinate.location;
 //    NSDictionary *closestStation = [StationFinder findClosestStation:stations location:currentLocation];
     
 
-    
-//    [self GMSMarkerFactory]; GMSMarker *startPoint = [Factory:startPosition];
-    GMSMarker *startPoint = [GMSMarker markerWithPosition:startPosition];
-    startPoint.title = @"Start";
-    startPoint.map = mapView_;
+    GMSMarker *startPoint = [GMSMarkerFactory createGMSMarker:&startPosition mapView:mapView_];
+
     
     // set the first waypoint to the *marker* that's at the current position
-//    [waypoints_ addObject: startPoint];
+    [waypoints_ addObject: startPoint];
+    NSLog(@"%@", waypoints_[0]);
     // also set the first "poistion string" ... where are these used?
-    NSString *startPositionString = [[NSString alloc] initWithFormat:@"%f,%f", locationManager.location.coordinate.latitude, locationManager.location.coordinate.longitude];
+    NSString *startPositionString = [[NSString alloc] initWithFormat:@"%f,%f", startPoint.position.latitude, startPoint.position.longitude];
     [waypointStrings_ addObject:startPositionString];
 
     // place a marker on the map for the end point using the values in the self.item object
@@ -129,7 +119,7 @@
              NSDictionary *bikepathjson = [NSJSONSerialization JSONObjectWithData:data
                                                                       options:0
                                                                         error:NULL];
-               NSLog(@"%@", bikepathjson);
+
              // extract out the list of stations from the response dict, throw away everthing
              // else
              NSArray *stations = [bikepathjson objectForKey:@"stationBeanList"];
