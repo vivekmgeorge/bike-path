@@ -59,7 +59,7 @@
     [super viewDidLoad];
     
     [self initMap];
-    [self getUserLocation]; // does this initialize every time the view loads? possible reason for crashing
+    [self getUserLocation];
     [self updateUserLocation];
     
     // init a waypoints instance var, it's an array of markers not locations
@@ -133,10 +133,10 @@
              
              if ([numBikes intValue] > 3) {
                  startStation.icon    = [GMSMarker markerImageWithColor:[UIColor greenColor]];
-                 startStation.snippet = [NSString stringWithFormat:@"Bicyles available: %@", availableBikes];
+                 startStation.snippet = [NSString stringWithFormat:@"Bicyles available: %@", numBikes];
              } else if ([numBikes intValue] > 0) {
                  startStation.icon    = [GMSMarker markerImageWithColor:[UIColor orangeColor]];
-                 startStation.snippet = [NSString stringWithFormat:@"Bicyles available: %@", availableBikes];
+                 startStation.snippet = [NSString stringWithFormat:@"Bicyles available: %@", numBikes];
              } else {
                  startStation.icon    = [GMSMarker markerImageWithColor:[UIColor redColor]];
                  startStation.snippet = @"No bicyles available at this location.";
@@ -177,7 +177,7 @@
              NSArray *keys = [NSArray arrayWithObjects: @"waypoints", nil];
              NSDictionary *query = [NSDictionary dictionaryWithObjects:parameters
                                                                forKeys:keys];
-             
+//             [MDDirectionService markersToString:waypoints_];
              // finally, find the waypoints and set the delegate to this view, the direction
              // lines will be drawn when the request completes
              MDDirectionService *mds=[[MDDirectionService alloc] init];

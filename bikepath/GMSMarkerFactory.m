@@ -20,4 +20,28 @@
     marker.icon = color;
     return marker;
 }
+
++ (GMSMarker*)createGMSMarkerForStation:(CLLocationCoordinate2D*) locationCoordinates
+                      mapView:(GMSMapView*) map
+                        title:(NSString*) title
+             availableSnippet:(NSString*) availableSnippet
+           unavailableSnippet:(NSString*) unavailableSnippet
+                numberOfBikes:(int) numberOfBikes{
+    
+    GMSMarker *marker = [GMSMarker markerWithPosition:*locationCoordinates];
+    marker.title = title;
+    marker.map = map;
+    
+    if (numberOfBikes > 3) {
+        marker.icon    = [GMSMarker markerImageWithColor:[UIColor greenColor]];
+        marker.snippet = [NSString stringWithFormat:@"%@: %i", availableSnippet, numberOfBikes];
+    } else if (numberOfBikes > 0) {
+        marker.icon    = [GMSMarker markerImageWithColor:[UIColor orangeColor]];
+        marker.snippet = [NSString stringWithFormat:@"%@: %i", availableSnippet, numberOfBikes];
+    } else {
+        marker.icon    = [GMSMarker markerImageWithColor:[UIColor redColor]];
+        marker.snippet = [NSString stringWithFormat:@"%@: %i", unavailableSnippet, numberOfBikes];
+    };
+    return marker;
+}
 @end
