@@ -182,9 +182,8 @@
              };
              
              // make google waypoint search struct ... do this somewhere else
-             NSString *sensor = @"false";
-             NSArray *parameters = [NSArray arrayWithObjects:sensor, waypointStrings_, nil];
-             NSArray *keys = [NSArray arrayWithObjects:@"sensor", @"waypoints", nil];
+             NSArray *parameters = [NSArray arrayWithObjects: waypointStrings_, nil];
+             NSArray *keys = [NSArray arrayWithObjects: @"waypoints", nil];
              NSDictionary *query = [NSDictionary dictionaryWithObjects:parameters
                                                                forKeys:keys];
              
