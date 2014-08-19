@@ -121,7 +121,6 @@
             otherButtonTitles:nil, nil];
             [alert show];
         } else if (placemark) {
-
             NSString *address = addressString;
             NSArray *addressItems = [address componentsSeparatedByString:@" "];
             NSMutableArray *addressCombinedArray = [[NSMutableArray alloc] init];
@@ -148,31 +147,23 @@
                                                 error:NULL];
                      
                     NSArray *addressParts = [[addressJson objectForKey:@"results"] valueForKey:@"geometry"];
-                     NSString *formattedAddress = [addressParts valueForKey:@"formatted_address"];
+                    NSString *formattedAddress = [addressParts valueForKey:@"formatted_address"];
                      for(id info in addressParts){
-//                         NSLog(@"info: %@", info);
-//                         NSDictionary *address = (NSDictionary *)info;
                         NSDictionary *addressPartsLocation = (NSDictionary *)[info valueForKey:@"location"];
                          NSString *lati = [addressPartsLocation objectForKey:@"lat"];
                          NSString *longi = [addressPartsLocation objectForKey:@"lng"];
-                         NSLog(@"lati: %@", lati);
+                         CLLocation *location = [[CLLocation alloc] initWithLatitude:[lati doubleValue] longitude:[longi doubleValue]];
                          SearchItem *selectedItem   = [[SearchItem alloc] init];
                          selectedItem.searchQuery   = place.name;
-                         selectedItem.lati = lati;
-                         selectedItem.longi = longi;
-//                         //            selectedItem.address = placemark.thoroughfare;
-//                         //            [self performSegueWithIdentifier: @"showResults" sender: selectedItem];
+                         selectedItem.lati = location.coordinate.latitude;
+                         selectedItem.longi = location.coordinate.longitude;
+                         selectedItem.address = formattedAddress;
+                         [self performSegueWithIdentifier: @"showResults" sender: selectedItem];
                          [self dismissSearchControllerWhileStayingActive];
                          [self.searchDisplayController.searchResultsTableView deselectRowAtIndexPath:indexPath animated:NO];
                      }
                  }
              }];
-
-            //
-            //static NSString *kMDDirectionsURL = @"http://maps.googleapis.com/maps/api/json?%@"
-            //addressString
-
-            
             
         }
     }];
