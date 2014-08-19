@@ -31,8 +31,8 @@
          if (data.length > 0 && connectionError == nil)
          {
              NSDictionary *citiBikeJSON = [NSJSONSerialization JSONObjectWithData:data
-                                                                      options:0
-                                                                        error:NULL];
+                                                                          options:0
+                                                                            error:NULL];
              NSArray* stations = [citiBikeJSON objectForKey:@"stationBeanList"];
              NSSortDescriptor *sortDescriptor;
              sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"availableBikes"
@@ -53,10 +53,7 @@
                  [locations addObject:location];
              }
          }
-
      }];
-    
-
     
     // background color of navigation bar
     UIColor * color = [UIColor colorWithRed:255/255.0f green:251/255.0f blue:246/255.0f alpha:1.0f];

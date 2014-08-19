@@ -38,7 +38,7 @@
     NSURL *url = [NSURL URLWithString:@"http://www.citibikenyc.com/stations/json"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: url
                                                            cachePolicy: NSURLRequestReturnCacheDataDontLoad
-                                                       timeoutInterval: 30.0];
+                                                       timeoutInterval: 01.0];
     [NSURLConnection sendAsynchronousRequest:request
                                        queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *response,
