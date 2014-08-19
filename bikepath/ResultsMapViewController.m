@@ -108,20 +108,21 @@
              // extract out the list of stations from the response dict, throw away everything
              // else
              NSArray *stations = [bikepathjson objectForKey:@"stationBeanList"];
-
+             NSLog(@"%@",stations);
+             
              NSDictionary *closestStation = [StationFinder findClosestStation:stations location:currentLocation];
              CLLocationCoordinate2D closestStationLocation = CLLocationCoordinate2DMake(
                  [[closestStation objectForKey:@"latitude"] doubleValue],
                  [[closestStation objectForKey:@"longitude"] doubleValue]);
              
-             NSNumber *numBikes = @([[closestStation objectForKey:@"availableBikes"] intValue]);
+             NSNumber *numberOfBikes = @([[closestStation objectForKey:@"availableBikes"] intValue]);
              
              GMSMarker *startStation  = [GMSMarkerFactory createGMSMarkerForStation:&closestStationLocation
                                                                   mapView:mapView_
                                                                     title:[closestStation objectForKey:@"stationName"]
                                                          availableSnippet:@"Bicyles available"
                                                        unavailableSnippet:@"No bicyles available at this location."
-                                                            numberOfBikes:numBikes];
+                                                            numberOfBikes:numberOfBikes];
              [waypoints_ addObject:startStation];
              
              CLLocation *endLocation = [[CLLocation alloc] initWithLatitude:createEndLocation.latitude
@@ -132,21 +133,21 @@
              CLLocationCoordinate2DMake([[closestEndStation objectForKey:@"latitude"] doubleValue],
                                         [[closestEndStation objectForKey:@"longitude"] doubleValue]);
 
-             NSNumber *numberOfEndStationBikes  = @([[closestStation objectForKey:@"availableBikes"] intValue]);
+             NSNumber *availableDocks = @([[closestStation objectForKey:@"availableDocks"] intValue]);
              
              GMSMarker *endStation  = [GMSMarkerFactory createGMSMarkerForStation:&closestEndStationLocation
                                                                 mapView:mapView_
                                                                   title:[closestEndStation objectForKey:@"stationName"]
                                                        availableSnippet:@"Docks available"
                                                      unavailableSnippet:@"No docks available at this location."
-                                                          numberOfBikes:numberOfEndStationBikes];
+                                                          numberOfBikes:availableDocks];
              [waypoints_ addObject:endStation];
 
              // make google waypoint search struct ... do this somewhere else
              NSMutableArray *markerStrings = [[NSMutableArray alloc] init];
              for(GMSMarker *waypoint in waypoints_){
                  [markerStrings addObject:[[NSString alloc] initWithFormat:@"%f,%f", waypoint.position.latitude, waypoint.position.longitude]];
-             } // ask about running method on mutable and returning an immutable/garbage collection fun
+             }
              
              NSArray *keys = [NSArray arrayWithObjects: @"waypoints", nil];
              NSArray *parameters = [NSArray arrayWithObjects: markerStrings, nil];

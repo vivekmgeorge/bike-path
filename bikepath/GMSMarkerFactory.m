@@ -32,7 +32,7 @@
     marker.title = title;
     marker.map = map;
     
-    if (numberOfBikes > 3) {
+    if ([numberOfBikes integerValue] > 3) {
         marker.icon    = [GMSMarker markerImageWithColor:[UIColor greenColor]];
         marker.snippet = [NSString stringWithFormat:@"%@: %@", availableSnippet, numberOfBikes];
     } else if (numberOfBikes > 0) {

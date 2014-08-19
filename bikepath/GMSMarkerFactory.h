@@ -21,6 +21,6 @@
                                   title:(NSString*) title
                        availableSnippet:(NSString*) availableSnippet
                      unavailableSnippet:(NSString*) unavailableSnippet
-                          numberOfBikes:(int) numberOfBikes;
+                          numberOfBikes:(NSNumber*) numberOfBikes;
 
 @end
