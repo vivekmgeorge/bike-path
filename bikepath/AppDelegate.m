@@ -30,7 +30,7 @@
      [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
      [UIColor colorWithRed:243/255.0f green:185/255.0f blue:44/255.0f alpha:1.0f], NSForegroundColorAttributeName,
      shadow, NSShadowAttributeName,
-     [UIFont fontWithName:@"American Typewriter" size:21.0], NSFontAttributeName, nil]];
+     [UIFont fontWithName:@"STHeitiTC-Medium" size:18.0], NSFontAttributeName, nil]];
     
     [GMSServices provideAPIKey:@"AIzaSyDqQ7Ds6pvIZucpKNe0OiEfCCyepC0SHnw"];
     return YES;
