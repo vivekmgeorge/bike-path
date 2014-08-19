@@ -162,8 +162,8 @@
              GMSMarker *startStation  = [GMSMarkerFactory createGMSMarkerForStation:&closestStationLocation
                                                                   mapView:mapView_
                                                                     title:[closestStation objectForKey:@"stationName"]
-                                                         availableSnippet:@"Bicyles available"
-                                                       unavailableSnippet:@"No bicyles available at this location."
+                                                         availableSnippet:@"Bicycles available"
+                                                       unavailableSnippet:@"No bicycles available at this location."
                                                             numberOfBikes:numberOfBikes];
              [waypoints_ addObject:startStation];
 
