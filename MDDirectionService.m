@@ -7,8 +7,10 @@
 //
 
 #import "MDDirectionService.h"
+#import <GoogleMaps/GoogleMaps.h>
 
 @implementation MDDirectionService{
+    NSMutableArray *arrayOfMarkerStrings;
 @private
     BOOL _alternatives;
     NSURL *_directionsURL;
@@ -16,6 +18,15 @@
 }
 
 static NSString *kMDDirectionsURL = @"http://maps.googleapis.com/maps/api/directions/json?mode=bicycling";
+
+//-(NSArray *)markersToString:(NSMutableArray *)markers{
+//    NSMutableArray *arrayOfMarkerStrings = [[NSMutableArray alloc] init];
+//    for(GMSMarker *marker in markers){
+//        [arrayOfMarkerStrings addObject:marker] = [[NSString alloc] initWithFormat:@"%f,%f", marker.position.latitude, marker.position.longitude];
+//    };
+//    NSLog(@"%s", arrayOfMarkerStrings);
+//    return arrayOfMarkerStrings;
+//}
 
 - (void)setDirectionsQuery:(NSDictionary *)query withSelector:(SEL)selector withDelegate:(id)delegate{
     NSArray *waypoints = [query objectForKey:@"waypoints"];
