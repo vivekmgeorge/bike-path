@@ -12,6 +12,7 @@
 #import <Foundation/Foundation.h>
 #import "MDDirectionService.h"
 #import <CoreLocation/CoreLocation.h>
+#import "AppDelegate.h"
 
 @interface ResultsMapViewController () {
     GMSMapView *mapView_;
@@ -34,6 +35,10 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    
+    appDel = [[UIApplication sharedApplication]delegate];
+    NSLog(@"%@",appDel.citiBikeCache);
+    
     
     locationManager = [[CLLocationManager alloc] init];
     locationManager.distanceFilter = kCLDistanceFilterNone; // whenever we move
