@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface MDDirectionService : NSObject
-+ (NSArray *)markersToString:(NSArray *)markers;
 - (void)setDirectionsQuery:(NSDictionary *)object withSelector:(SEL)selector
               withDelegate:(id)delegate;
 - (void)retrieveDirections:(SEL)sel withDelegate:(id)delegate;

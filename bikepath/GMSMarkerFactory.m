@@ -26,7 +26,7 @@
                         title:(NSString*) title
              availableSnippet:(NSString*) availableSnippet
            unavailableSnippet:(NSString*) unavailableSnippet
-                numberOfBikes:(int) numberOfBikes{
+                numberOfBikes:(NSNumber*) numberOfBikes{
     
     GMSMarker *marker = [GMSMarker markerWithPosition:*locationCoordinates];
     marker.title = title;
@@ -34,13 +34,13 @@
     
     if (numberOfBikes > 3) {
         marker.icon    = [GMSMarker markerImageWithColor:[UIColor greenColor]];
-        marker.snippet = [NSString stringWithFormat:@"%@: %i", availableSnippet, numberOfBikes];
+        marker.snippet = [NSString stringWithFormat:@"%@: %@", availableSnippet, numberOfBikes];
     } else if (numberOfBikes > 0) {
         marker.icon    = [GMSMarker markerImageWithColor:[UIColor orangeColor]];
-        marker.snippet = [NSString stringWithFormat:@"%@: %i", availableSnippet, numberOfBikes];
+        marker.snippet = [NSString stringWithFormat:@"%@: %@", availableSnippet, numberOfBikes];
     } else {
         marker.icon    = [GMSMarker markerImageWithColor:[UIColor redColor]];
-        marker.snippet = [NSString stringWithFormat:@"%@: %i", unavailableSnippet, numberOfBikes];
+        marker.snippet = [NSString stringWithFormat:@"%@", unavailableSnippet];
     };
     return marker;
 }
