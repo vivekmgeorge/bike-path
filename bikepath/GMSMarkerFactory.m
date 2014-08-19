@@ -8,13 +8,6 @@
 
 #import "GMSMarkerFactory.h"
 #import <GoogleMaps/GoogleMaps.h>
-#import <MapKit/MapKit.h>
-#import <Foundation/Foundation.h>
-#import "MDDirectionService.h"
-#import <CoreLocation/CoreLocation.h>
-#import "StationFinder.h"
-#import "GMSMarkerFactory.h"
-
 
 @implementation GMSMarkerFactory
 + (GMSMarker*)createGMSMarker:(CLLocationCoordinate2D*) locationCoordinates

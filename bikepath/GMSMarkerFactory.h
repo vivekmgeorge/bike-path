@@ -7,8 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <GoogleMaps/GoogleMaps.h>
 
 @interface GMSMarkerFactory : NSObject
+
++ (GMSMarker*)createGMSMarker:(CLLocationCoordinate2D*) locationCoordinates
+                      mapView:(GMSMapView*) map;
 
 @end
