@@ -112,7 +112,7 @@
     SPGooglePlacesAutocompletePlace *place = [self placeAtIndexPath:indexPath];
     [place resolveToPlacemark:^(CLPlacemark *placemark, NSString *addressString, NSError *error) {
         if (error) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Could not map selected Place"
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Could not map selected place"
             message:error.localizedDescription
             delegate:nil
             cancelButtonTitle:@"OK"
@@ -158,7 +158,7 @@
     searchQuery.input = searchString;
     [searchQuery fetchPlaces:^(NSArray *places, NSError *error) {
         if (error) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Could not fetch Places"
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Could not fetch places"
             message:error.localizedDescription
             delegate:nil
             cancelButtonTitle:@"OK"
