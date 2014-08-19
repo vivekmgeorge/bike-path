@@ -169,8 +169,6 @@
                         withSelector:selector
                         withDelegate:self];
          }
-     }//];
-//}
 
 - (void)addDirections:(NSDictionary *)json {
     
