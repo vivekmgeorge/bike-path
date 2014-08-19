@@ -27,7 +27,7 @@
 
 
 - (IBAction)unwindToSearchPage:(UIStoryboardSegue *)segue{
-    
+
 }
 
 - (NSString *)deviceLocation {
@@ -57,11 +57,11 @@
 - (void)viewDidLoad{
     // do the default view behavior
     [super viewDidLoad];
-    
+
     [self initMap];
     [self getUserLocation];
     [self updateUserLocation];
-    
+
     // init a waypoints instance var, it's an array of markers not locations
     waypoints_ = [[NSMutableArray alloc]init];
     waypointStrings_ = [[NSMutableArray alloc]init];
@@ -74,7 +74,7 @@
                                                         title:@"Start"
                                                         color:[GMSMarker markerImageWithColor:[UIColor redColor]]];
     [waypoints_ addObject: startPoint];
-    
+
     CLLocation *currentLocation = [[CLLocation alloc] initWithLatitude:startPosition.latitude
                                                              longitude:startPosition.longitude];
 
@@ -85,7 +85,7 @@
                                                       title:self.item.address //the address being given is not the full address
                                                       color:[GMSMarker markerImageWithColor:[UIColor redColor]]];
     [waypoints_ addObject:endPoint];
-    
+
     // now fetch the nyc bike station locations and try to find closeby stations for
     // the start and destination locations
     NSURL *url = [NSURL URLWithString:@"http://www.citibikenyc.com/stations/json"];
@@ -109,14 +109,14 @@
              // else
              NSArray *stations = [bikepathjson objectForKey:@"stationBeanList"];
              NSLog(@"%@",stations);
-             
+
              NSDictionary *closestStation = [StationFinder findClosestStation:stations location:currentLocation];
              CLLocationCoordinate2D closestStationLocation = CLLocationCoordinate2DMake(
                  [[closestStation objectForKey:@"latitude"] doubleValue],
                  [[closestStation objectForKey:@"longitude"] doubleValue]);
-             
+
              NSNumber *numberOfBikes = @([[closestStation objectForKey:@"availableBikes"] intValue]);
-             
+
              GMSMarker *startStation  = [GMSMarkerFactory createGMSMarkerForStation:&closestStationLocation
                                                                   mapView:mapView_
                                                                     title:[closestStation objectForKey:@"stationName"]
@@ -124,17 +124,17 @@
                                                        unavailableSnippet:@"No bicyles available at this location."
                                                             numberOfBikes:numberOfBikes];
              [waypoints_ addObject:startStation];
-             
+
              CLLocation *endLocation = [[CLLocation alloc] initWithLatitude:createEndLocation.latitude
                                                                   longitude:createEndLocation.longitude];
-             
+
              NSDictionary *closestEndStation = [StationFinder findClosestStation:stations location:endLocation];
              CLLocationCoordinate2D closestEndStationLocation =
              CLLocationCoordinate2DMake([[closestEndStation objectForKey:@"latitude"] doubleValue],
                                         [[closestEndStation objectForKey:@"longitude"] doubleValue]);
 
              NSNumber *availableDocks = @([[closestStation objectForKey:@"availableDocks"] intValue]);
-             
+
              GMSMarker *endStation  = [GMSMarkerFactory createGMSMarkerForStation:&closestEndStationLocation
                                                                 mapView:mapView_
                                                                   title:[closestEndStation objectForKey:@"stationName"]
@@ -148,12 +148,12 @@
              for(GMSMarker *waypoint in waypoints_){
                  [markerStrings addObject:[[NSString alloc] initWithFormat:@"%f,%f", waypoint.position.latitude, waypoint.position.longitude]];
              }
-             
+
              NSArray *keys = [NSArray arrayWithObjects: @"waypoints", nil];
              NSArray *parameters = [NSArray arrayWithObjects: markerStrings, nil];
              NSDictionary *query = [NSDictionary dictionaryWithObjects:parameters
                                                                forKeys:keys];
-             
+
              // finally, find the waypoints and set the delegate to this view, the direction
              // lines will be drawn when the request completes
              MDDirectionService *mds=[[MDDirectionService alloc] init];
@@ -166,9 +166,9 @@
 }
 
 - (void)addDirections:(NSDictionary *)json {
-    
+
     NSDictionary *routes = [json objectForKey:@"routes"][0];
-    
+
     NSDictionary *route = [routes objectForKey:@"overview_polyline"];
     NSString *overview_route = [route objectForKey:@"points"];
     GMSPath *path = [GMSPath pathFromEncodedPath:overview_route];
