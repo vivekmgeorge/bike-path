@@ -121,8 +121,7 @@
             otherButtonTitles:nil, nil];
             [alert show];
         } else if (placemark) {
-            NSLog(@"address string: %@",addressString);
-            
+
             NSString *address = addressString;
             NSArray *addressItems = [address componentsSeparatedByString:@" "];
             NSMutableArray *addressCombinedArray = [[NSMutableArray alloc] init];
@@ -130,8 +129,6 @@
             for (NSString *addressPart in addressItems){
                 [addressCombinedArray addObject:[[NSString alloc] initWithFormat:@"%@+", addressPart]];
             }
-            
-            NSLog(@"address combined array: %@", addressCombinedArray);
             NSString *addressCombinedString = [addressCombinedArray componentsJoinedByString:@""];
             
             NSLog(@"address combined string: %@", addressCombinedString);
