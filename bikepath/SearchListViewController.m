@@ -11,8 +11,8 @@
 #import <MapKit/MapKit.h>
 #import "SearchItem.h"
 #import "SearchItemTableCell.h"
+#import "FTGooglePlacesAPI.h"
 #import "ResultsMapViewController.h"
-
 
 @interface SearchListViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -114,6 +114,7 @@
         
         ResultsMapViewController *destViewController = segue.destinationViewController;
         SearchItem *item = (SearchItem*)[self.searchResults objectAtIndex:indexPath.row];
+        NSLog(@"%@", item);
         destViewController.item = item;
 
     }

@@ -35,6 +35,8 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     
+    NSLog(@"%@", self.item);
+    
     locationManager = [[CLLocationManager alloc] init];
     locationManager.distanceFilter = kCLDistanceFilterNone; // whenever we move
     locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters; // 100 m
@@ -115,12 +117,12 @@
                  
                  CLLocation *endLocation = [[CLLocation alloc] initWithLatitude:self.item.lati longitude:self.item.longi];
                  
-                 for (CLLocation *location in locations) {
-                     CLLocationDistance distance = [endLocation distanceFromLocation:location];
+                 for (CLLocation *endStationlocation in locations) {
+                     CLLocationDistance distance = [endLocation distanceFromLocation:endStationlocation];
                      
                      if (distance < smallestDistance) {
                          smallestDistance    = distance;
-                         closestEndLocation  = location;
+                         closestEndLocation  = endStationlocation;
                          closestEndStation   = station;
                      }
                  }
