@@ -38,7 +38,7 @@
             </objects>
             <point key="canvasLocation" x="510" y="-953"/>
         </scene>
-        <!--Search Map View Controller - BikePath Search-->
+        <!--Search Map View Controller - Stations Nearby-->
         <scene sceneID="uBy-pW-Yuz">
             <objects>
                 <viewController id="nM0-WI-Oec" customClass="SearchMapViewController" sceneMemberID="viewController">
@@ -61,7 +61,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="BikePath Search" id="EoJ-yJ-sBB">
+                    <navigationItem key="navigationItem" title="Stations Nearby" id="EoJ-yJ-sBB">
                         <barButtonItem key="leftBarButtonItem" title="Other" id="Aq9-9Z-EkI">
                             <connections>
                                 <segue destination="Psq-1E-C2k" kind="push" customClass="UIStoryboardPopoverSegue" id="P28-GV-rTT"/>
