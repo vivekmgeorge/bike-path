@@ -35,9 +35,6 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     
-    appDel = [[UIApplication sharedApplication]delegate];
-    NSLog(@"%@",appDel.citiBikeCache);
-    
     locationManager = [[CLLocationManager alloc] init];
     locationManager.distanceFilter = kCLDistanceFilterNone; // whenever we move
     locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters; // 100 m

@@ -8,57 +8,59 @@
 
 #import "AppDelegate.h"
 #import <GoogleMaps/GoogleMaps.h>
+#import "cacheBikeStations.h"
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    NSURLCache *citiBikeCache = [[NSURLCache alloc] initWithMemoryCapacity:4 * 1024 * 1024
-                                                              diskCapacity:20 * 1024 * 1024
-                                                                  diskPath:nil];
-    [NSURLCache setSharedURLCache:citiBikeCache];
-    
-    NSURL *url = [NSURL URLWithString:@"http://www.citibikenyc.com/stations/json"];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: url
-                                                           cachePolicy: NSURLRequestUseProtocolCachePolicy
-                                                       timeoutInterval: 120.0];
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse *response,
-                                               NSData *data, NSError *connectionError)
-     {
-         if (data.length > 0 && connectionError == nil)
-         {
-             
-             NSLog(@"%i",citiBikeCache.currentDiskUsage);
-             NSLog(@"%i",citiBikeCache.currentMemoryUsage);
-             
-             NSDictionary *citiBikeJSON = [NSJSONSerialization JSONObjectWithData:data
-                                                                          options:0
-                                                                            error:NULL];
-             NSArray* stations = [citiBikeJSON objectForKey:@"stationBeanList"];
-             NSSortDescriptor *sortDescriptor;
-             sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"availableBikes"
-                                                          ascending:NO];
-             NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-             NSArray* sortedStations = [stations sortedArrayUsingDescriptors:sortDescriptors];
-             
-             NSLog(@"Current Memory Usage: %i", [citiBikeCache currentMemoryUsage]);
-             NSLog(@"Current Disk Usage: %i", [citiBikeCache currentDiskUsage]);
-             
-             for(id st in sortedStations) {
-                 NSDictionary *station = (NSDictionary *)st;
-                 NSString *lati             = [station objectForKey:@"latitude"];
-                 NSString *longi            = [station objectForKey:@"longitude"];
-                 CLLocation *location = [[CLLocation alloc] initWithLatitude:[lati doubleValue] longitude:([longi doubleValue] *2)];
-                 NSMutableArray *locations = [[NSMutableArray alloc] init];
-                 [locations addObject:location];
-             }
-             NSLog(@"%@",sortedStations);
-         }
-         
-     }];
+    [cacheBikeStations loadAndCacheStations];
+//    NSURLCache *citiBikeCache = [[NSURLCache alloc] initWithMemoryCapacity:4 * 1024 * 1024
+//                                                              diskCapacity:20 * 1024 * 1024
+//                                                                  diskPath:nil];
+//    [NSURLCache setSharedURLCache:citiBikeCache];
+//    
+//    NSURL *url = [NSURL URLWithString:@"http://www.citibikenyc.com/stations/json"];
+//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: url
+//                                                           cachePolicy: NSURLRequestUseProtocolCachePolicy
+//                                                       timeoutInterval: 120.0];
+//    [NSURLConnection sendAsynchronousRequest:request
+//                                       queue:[NSOperationQueue mainQueue]
+//                           completionHandler:^(NSURLResponse *response,
+//                                               NSData *data, NSError *connectionError)
+//     {
+//         if (data.length > 0 && connectionError == nil)
+//         {
+//             
+//             NSLog(@"%i",citiBikeCache.currentDiskUsage);
+//             NSLog(@"%i",citiBikeCache.currentMemoryUsage);
+//             
+//             NSDictionary *citiBikeJSON = [NSJSONSerialization JSONObjectWithData:data
+//                                                                          options:0
+//                                                                            error:NULL];
+//             NSArray* stations = [citiBikeJSON objectForKey:@"stationBeanList"];
+//             NSSortDescriptor *sortDescriptor;
+//             sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"availableBikes"
+//                                                          ascending:NO];
+//             NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+//             NSArray* sortedStations = [stations sortedArrayUsingDescriptors:sortDescriptors];
+//             
+//             NSLog(@"Current Memory Usage: %i", [citiBikeCache currentMemoryUsage]);
+//             NSLog(@"Current Disk Usage: %i", [citiBikeCache currentDiskUsage]);
+//             
+//             for(id st in sortedStations) {
+//                 NSDictionary *station = (NSDictionary *)st;
+//                 NSString *lati             = [station objectForKey:@"latitude"];
+//                 NSString *longi            = [station objectForKey:@"longitude"];
+//                 CLLocation *location = [[CLLocation alloc] initWithLatitude:[lati doubleValue] longitude:([longi doubleValue] *2)];
+//                 NSMutableArray *locations = [[NSMutableArray alloc] init];
+//                 [locations addObject:location];
+//             }
+//             NSLog(@"%@",sortedStations);
+//         }
+//         
+//     }];
     
     // background color of navigation bar
     UIColor * color = [UIColor colorWithRed:255/255.0f green:251/255.0f blue:246/255.0f alpha:1.0f];
