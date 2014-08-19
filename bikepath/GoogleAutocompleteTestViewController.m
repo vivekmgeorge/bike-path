@@ -50,6 +50,8 @@
     self.mapView.settings.zoomGestures = YES;
 //    self.mapView.delegate = self;
     
+    NSLog(@"User's location: %@", self.mapView.myLocation);
+    
 }
 
 - (void)viewDidUnload {
@@ -95,16 +97,16 @@
     [self.searchDisplayController.searchBar resignFirstResponder];
 }
 
-typedef void (^SPGooglePlacesPlacemarkResultBlock)(CLPlacemark *placemark, NSString *addressString, NSError *error);
-
-- (void)resolveToPlacemark:(SPGooglePlacesPlacemarkResultBlock)block {
-    if (self.type == SPPlaceTypeGeocode) {
-        // Geocode places already have their address stored in the 'name' field.
-        [self resolveGecodePlaceToPlacemark:block];
-    } else {
-        [self resolveEstablishmentPlaceToPlacemark:block];
-    }
-}
+//typedef void (^SPGooglePlacesPlacemarkResultBlock)(CLPlacemark *placemark, NSString *addressString, NSError *error);
+//
+//- (void)resolveToPlacemark:(SPGooglePlacesPlacemarkResultBlock)block {
+//    if (self.type == SPPlaceTypeGeocode) {
+//        // Geocode places already have their address stored in the 'name' field.
+//        [self resolveGecodePlaceToPlacemark:block];
+//    } else {
+//        [self resolveEstablishmentPlaceToPlacemark:block];
+//    }
+//}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     SPGooglePlacesAutocompletePlace *place = [self placeAtIndexPath:indexPath];
@@ -124,6 +126,14 @@ typedef void (^SPGooglePlacesPlacemarkResultBlock)(CLPlacemark *placemark, NSStr
 //            FTGooglePlacesAPINearbySearchRequest *request = [[FTGooglePlacesAPINearbySearchRequest alloc] initWithLocationCoordinate:locationCoordinate];
 //            request.rankBy = FTGooglePlacesAPIRequestParamRankByDistance;
 //            request.types = @[@"art_gallery", @"museum"];
+            
+            NSLog(@"Placemark: %@", placemark);
+            NSLog(@"Placemark Location: %@", placemark.location);
+            NSLog(@"Place: %@", place);
+            //
+            //static NSString *kMDDirectionsURL = @"http://maps.googleapis.com/maps/api/json?%@"
+            //addressString
+
             
             SearchItem *selectedItem   = [[SearchItem alloc] init];
             selectedItem.searchQuery   = place.name;
