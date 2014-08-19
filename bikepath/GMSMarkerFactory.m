@@ -17,11 +17,11 @@
 
 
 @implementation GMSMarkerFactory
-+ (CLLocationCoordinate2D)createGMSMarker:(CLLocationCoordinate2D*) locationCoordinates
++ (GMSMarker*)createGMSMarker:(CLLocationCoordinate2D*) locationCoordinates
                                   mapView:(GMSMapView*) map{
     GMSMarker *marker = [GMSMarker markerWithPosition:*locationCoordinates];
     marker.title = @"Start";
     marker.map = map;
+    return marker;
 }
-
 @end
