@@ -12,6 +12,7 @@
 #import <Foundation/Foundation.h>
 #import "MDDirectionService.h"
 #import <CoreLocation/CoreLocation.h>
+#import "AppDelegate.h"
 #import "StationFinder.h"
 #import "GMSMarkerFactory.h"
 
@@ -34,13 +35,56 @@
     return [NSString stringWithFormat:@"latitude: %f longitude: %f", locationManager.location.coordinate.latitude, locationManager.location.coordinate.longitude];
 }
 
+-(void)buttonPressed {
+    NSLog(@"Button Pressed!");
+    NSURL *testURL = [NSURL URLWithString:@"comgooglemaps-x-callback://"];
+    if ([[UIApplication sharedApplication] canOpenURL:testURL]) {
+        
+        NSString *callBackUrl = @"comgooglemaps-x-callback://";
+        //        NSString *startLati = @"+40.76727216";
+        //        NSString *startLongi = @"-73.99392888";
+        NSString *endLati = @"+40.71117416";
+        NSString *endLongi = @"-74.00016545";
+        NSString *directionsMode = @"&directionsmode=bicycling&zoom=17";
+        NSString *appConnection = @"&x-success=sourceapp://?resume=true&x-source=bike-path.bikepath";
+        NSString *directions = [[NSString alloc] initWithFormat: @"%@?daddr=%@,%@%@%@", callBackUrl, endLati, endLongi, directionsMode, appConnection];
+        NSLog(@"%@", directions);
+        
+        NSString *directionsRequest = directions;
+        NSURL *directionsURL = [NSURL URLWithString:directionsRequest];
+        [[UIApplication sharedApplication] openURL:directionsURL];
+    } else {
+        NSLog(@"Can't use comgooglemaps-x-callback:// on this device.");
+    }
+}
+
 - (void) initMap{
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.706638
                                                             longitude:-74.009070
                                                                  zoom:13];
     mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+    
+    //create the button
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    
+    //set the position of the button
+    button.frame = CGRectMake(175, 400, 100, 30);
+    button.layer.borderColor = [UIColor blackColor].CGColor;
+    button.layer.borderWidth = 1.0;
+    button.layer.cornerRadius = 10;
+//    button.backgroundColor = [UIColor whiteColor];
+    [button setBackgroundImage:[UIImage imageNamed:@"bike_icon"] forState:UIControlStateNormal];
+    
+    //set the button's title
+    [button setTitle:@"Live Nav" forState:UIControlStateNormal];
+    
+    //listen for clicks
+    [button addTarget:self action:@selector(buttonPressed)
+     forControlEvents:UIControlEventTouchUpInside];
+    
     mapView_.delegate = self;
     self.view = mapView_;
+    [mapView_ addSubview:button];
     return;
 }
 
@@ -64,12 +108,11 @@
 
     // init a waypoints instance var, it's an array of markers not locations
     waypoints_ = [[NSMutableArray alloc]init];
-    waypointStrings_ = [[NSMutableArray alloc]init];
 
     // place a marker on the map at the current location of the phone
 //    NSDictionary *closestStation = [StationFinder findClosestStation:stations location:currentLocation];
     CLLocationCoordinate2D startPosition = locationManager.location.coordinate;
-    GMSMarker *startPoint = [GMSMarkerFactory createGMSMarker:&startPosition
+    GMSMarker *startPoint = [GMSMarkerFactory createGMSMarker:startPosition
                                                       mapView:mapView_
                                                         title:@"Start"
                                                         color:[UIImage imageNamed:@"startStation"]];
@@ -80,7 +123,7 @@
 
 
     CLLocationCoordinate2D createEndLocation = CLLocationCoordinate2DMake(self.item.lati, self.item.longi);
-    GMSMarker *endPoint = [GMSMarkerFactory createGMSMarker:&createEndLocation
+    GMSMarker *endPoint = [GMSMarkerFactory createGMSMarker:createEndLocation
                                                     mapView:mapView_
                                                       title:self.item.address //the address being given is not the full address
                                                       color:[UIImage imageNamed:@"endStation"]];
@@ -117,7 +160,7 @@
 
              NSNumber *numberOfBikes = @([[closestStation objectForKey:@"availableBikes"] intValue]);
 
-             GMSMarker *startStation  = [GMSMarkerFactory createGMSMarkerForStation:&closestStationLocation
+             GMSMarker *startStation  = [GMSMarkerFactory createGMSMarkerForStation:closestStationLocation
                                                                   mapView:mapView_
                                                                     title:[closestStation objectForKey:@"stationName"]
                                                          availableSnippet:@"Bicyles available"
@@ -135,7 +178,7 @@
 
              NSNumber *availableDocks = @([[closestStation objectForKey:@"availableDocks"] intValue]);
 
-             GMSMarker *endStation  = [GMSMarkerFactory createGMSMarkerForStation:&closestEndStationLocation
+             GMSMarker *endStation  = [GMSMarkerFactory createGMSMarkerForStation:closestEndStationLocation
                                                                 mapView:mapView_
                                                                   title:[closestEndStation objectForKey:@"stationName"]
                                                        availableSnippet:@"Docks available"
