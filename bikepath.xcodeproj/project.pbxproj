@@ -15,6 +15,7 @@
 		80508A7019A392C400B5DCED /* StationFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 80508A6F19A392C400B5DCED /* StationFinder.m */; };
 		8A02797B19A04DA200F3FFC7 /* SearchItemTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A02797A19A04DA200F3FFC7 /* SearchItemTableCell.m */; };
 		8A18221C199ED28D001D7AE2 /* SearchItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A18221B199ED28D001D7AE2 /* SearchItem.m */; };
+		8A37238919A2AD8F009BAB23 /* GoogleNavTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A37238819A2AD8F009BAB23 /* GoogleNavTestViewController.m */; };
 		8A48A710199FC4420030F153 /* SearchListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A48A70F199FC4420030F153 /* SearchListViewController.m */; };
 		8AB03325199DAD8A0036FF7A /* SearchMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB03324199DAD8A0036FF7A /* SearchMapViewController.m */; };
 		8AB03328199DADA80036FF7A /* ResultsMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB03327199DADA80036FF7A /* ResultsMapViewController.m */; };
@@ -78,6 +79,8 @@
 		8A02797A19A04DA200F3FFC7 /* SearchItemTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchItemTableCell.m; sourceTree = "<group>"; };
 		8A18221A199ED28D001D7AE2 /* SearchItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchItem.h; sourceTree = "<group>"; };
 		8A18221B199ED28D001D7AE2 /* SearchItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchItem.m; sourceTree = "<group>"; };
+		8A37238719A2AD8F009BAB23 /* GoogleNavTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleNavTestViewController.h; sourceTree = "<group>"; };
+		8A37238819A2AD8F009BAB23 /* GoogleNavTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleNavTestViewController.m; sourceTree = "<group>"; };
 		8A48A70E199FC4420030F153 /* SearchListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchListViewController.h; sourceTree = "<group>"; };
 		8A48A70F199FC4420030F153 /* SearchListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchListViewController.m; sourceTree = "<group>"; };
 		8AB03323199DAD8A0036FF7A /* SearchMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchMapViewController.h; sourceTree = "<group>"; };
@@ -223,6 +226,8 @@
 				80508A6F19A392C400B5DCED /* StationFinder.m */,
 				8ACFF70E19A25DC300FB1E09 /* MDDirectionService.m */,
 				8AE403F4199D951100B926AB /* Main.storyboard */,
+				8A37238719A2AD8F009BAB23 /* GoogleNavTestViewController.h */,
+				8A37238819A2AD8F009BAB23 /* GoogleNavTestViewController.m */,
 				8AB03323199DAD8A0036FF7A /* SearchMapViewController.h */,
 				8AB03324199DAD8A0036FF7A /* SearchMapViewController.m */,
 				09F19F76199EF6F500825ADE /* CitiViewController.h */,
@@ -449,6 +454,7 @@
 				8AB03325199DAD8A0036FF7A /* SearchMapViewController.m in Sources */,
 				80508A6D19A392A800B5DCED /* GMSMarkerFactory.m in Sources */,
 				8A02797B19A04DA200F3FFC7 /* SearchItemTableCell.m in Sources */,
+				8A37238919A2AD8F009BAB23 /* GoogleNavTestViewController.m in Sources */,
 				8A18221C199ED28D001D7AE2 /* SearchItem.m in Sources */,
 				80508A7019A392C400B5DCED /* StationFinder.m in Sources */,
 				0978B2E119A148E0007D9FAB /* GoogleAutocompleteTestViewController.m in Sources */,
