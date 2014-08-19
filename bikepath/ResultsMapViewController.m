@@ -38,7 +38,6 @@
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.706638
                                                             longitude:-74.009070
                                                                  zoom:13];
-    
     mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     mapView_.delegate = self;
     self.view = mapView_;
@@ -119,17 +118,22 @@
              // use the StationFinder module to search the station list returned from the
              // server for the closest one (for now its just one)
              NSDictionary *closestStation = [StationFinder findClosestStation:stations location:currentLocation];
+             CLLocationCoordinate2D closestStationLocation =
+             CLLocationCoordinate2DMake([[closestStation objectForKey:@"latitude"] doubleValue],
+                                        [[closestStation objectForKey:@"longitude"] doubleValue]);
              
              CLLocation *endLocation = [[CLLocation alloc] initWithLatitude:createEndLocation.latitude
                                                                   longitude:createEndLocation.longitude];
              NSDictionary *closestEndStation = [StationFinder findClosestStation:stations location:endLocation];
              
+             NSString *closestStationTitle = [closestStation objectForKey:@"stationName"];
+             NSString *availableBikes      = [[closestStation objectForKey:@"availableBikes"] stringValue];
+             NSNumber *numBikes            = @([[closestStation objectForKey:@"availableBikes"] intValue]);
              
-             NSString *title            = [closestStation objectForKey:@"stationName"];
-             NSString *availableBikes   = [[closestStation objectForKey:@"availableBikes"] stringValue];
-             NSNumber *numBikes         = @([[closestStation objectForKey:@"availableBikes"] intValue]);
-             
-             GMSMarker *startStation  = [[GMSMarker alloc] init];
+             GMSMarker *startStation  = [GMSMarkerFactory createGMSMarker:&closestStationLocation
+                                                                  mapView:mapView_
+                                                                    title:closestStationTitle
+                                                                    color:[GMSMarker markerImageWithColor:[UIColor redColor]]];
              
              if ([numBikes intValue] > 0) {
                  startStation.icon    = [GMSMarker markerImageWithColor:[UIColor greenColor]];
@@ -142,19 +146,18 @@
              
              // make core location objects for the locations of the two bike stations found
              // above but the StationFinder module
-             CLLocation *closestLocation = [[CLLocation alloc]
-                                            initWithLatitude:[[closestStation objectForKey:@"latitude"] doubleValue]    longitude:[[closestStation objectForKey:@"longitude"] doubleValue]];
+             
              CLLocation *closestEndLocation = [[CLLocation alloc]
                                             initWithLatitude:[[closestEndStation objectForKey:@"latitude"] doubleValue]    longitude:[[closestEndStation objectForKey:@"longitude"] doubleValue]];
              
              // set the marker label and position for the start marker
-             startStation.title       = title;
-             startStation.position    = closestLocation.coordinate;
-             startStation.map         = mapView_;
+//             startStation.title       = title;
+//             startStation.position    = closestLocation.coordinate;
+//             startStation.map         = mapView_;
              
              // add the start station as a waypoint as waypoint 3 (index 2)
              [waypoints_ addObject:startStation];
-             NSString *startStationString = [[NSString alloc] initWithFormat:@"%f,%f", closestLocation.coordinate.latitude, closestLocation.coordinate.longitude];
+             NSString *startStationString = [[NSString alloc] initWithFormat:@"%f,%f", closestStationLocation.latitude, closestStationLocation.longitude];
              [waypointStrings_ addObject:startStationString];
              
              // extract title, bike count (twice, string and int)
