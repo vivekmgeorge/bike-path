@@ -10,6 +10,7 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import <MapKit/MapKit.h>
 #import <Foundation/Foundation.h>
+#import "AppDelegate.h"
 
 @implementation CitiViewController
 
@@ -17,10 +18,9 @@
 {
     [super viewDidLoad];
     
-    
+    AppDelegate *appDel = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDel loadCitiBikeData];
 
-//- (IBAction)fetchGreeting;
-//{
     GMSCameraPosition *dbc = [GMSCameraPosition cameraWithLatitude:40.706638
                                                          longitude:-74.009070
                                                               zoom:14];
@@ -33,19 +33,20 @@
     self.mapView.settings.zoomGestures = YES;
     self.mapView.delegate = self;
     
-    NSURL *url = [NSURL URLWithString:@"http://www.citibikenyc.com/stations/json"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse *response,
-                                               NSData *data, NSError *connectionError)
-     {
-         if (data.length > 0 && connectionError == nil)
-         {
-             NSDictionary *greeting = [NSJSONSerialization JSONObjectWithData:data
-                                                                      options:0
-                                                                        error:NULL];
-             NSArray* stations = [greeting objectForKey:@"stationBeanList"];
+//    NSURL *url = [NSURL URLWithString:@"http://www.citibikenyc.com/stations/json"];
+//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//    [NSURLConnection sendAsynchronousRequest:request
+//                                       queue:[NSOperationQueue mainQueue]
+//                           completionHandler:^(NSURLResponse *response,
+//                                               NSData *data, NSError *connectionError)
+//     {
+//         if (data.length > 0 && connectionError == nil)
+//         {
+//             NSDictionary *greeting = [NSJSONSerialization JSONObjectWithData:data
+//                                                                      options:0
+//                                                                        error:NULL];
+    NSArray* stations = appDel.stationJSON;
+    
              for(id st in stations) {
                  NSDictionary *station = (NSDictionary *)st;
                  NSString *lati             = [station objectForKey:@"latitude"];
@@ -79,8 +80,6 @@
                  citiMarker.map = self.mapView;
              }
          }
-     }];
-}
-
+     //}];
 
 @end
