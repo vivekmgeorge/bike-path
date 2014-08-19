@@ -41,8 +41,6 @@
     if ([[UIApplication sharedApplication] canOpenURL:testURL]) {
         
         NSString *callBackUrl = @"comgooglemaps-x-callback://";
-        //        NSString *startLati = @"+40.76727216";
-        //        NSString *startLongi = @"-73.99392888";
         CLLocationDegrees endLati = self.item.lati;
         CLLocationDegrees endLongi = self.item.longi;
         NSString *directionsMode = @"&directionsmode=bicycling&zoom=17";
