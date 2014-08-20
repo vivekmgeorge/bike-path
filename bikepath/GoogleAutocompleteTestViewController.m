@@ -11,6 +11,7 @@
 #import <UIKit/UIKit.h>
 #import "SearchItem.h"
 #import "ResultsMapViewController.h"
+#import "AddressGeocoderFactory.h"
 
 @interface GoogleAutocompleteTestViewController ()
 
@@ -104,6 +105,17 @@
             otherButtonTitles:nil, nil];
             [alert show];
         } else if (placemark) {
+            SearchItem *selectedItem   = [[SearchItem alloc] init];
+//            GeocodeItem *geocodedObject = [[GeocodeItem alloc] init];
+//            [AddressGeocoderFactory translateAddressToGeocodeObject:(NSString*)addressString];
+//            NSLog(@"%@", addressString);
+//            NSString *addressForJson = [AddressGeocoderFactory translateAddressToUrl:(NSString *)addressString];
+            
+//            NSLog(@"%@", geocodedObject);
+//            GeocodeItem *geocodedObject = [AddressGeocoderFactory translateUrlToGeocodedObject:(NSString*)url];
+//            geocodedObject.latitude;
+//            NSLog(@"geocoded object lat: %@", geocodedObject);
+            
             NSString *address = addressString;
             NSArray *addressItems = [address componentsSeparatedByString:@" "];
             NSMutableArray *addressCombinedArray = [[NSMutableArray alloc] init];
@@ -114,8 +126,7 @@
             NSString *kGoogleGeocodeApiUrl = @"https://maps.googleapis.com/maps/api/geocode/json?address=";
             NSString *kGoogleGeocodeApiKey = @"AIzaSyAxaqfMyyc-WSrvsWP_jF2IUaTZVjkMlFo";
             NSString *addressForJson = [[NSString alloc] initWithFormat:@"%@%@&key=%@", kGoogleGeocodeApiUrl, addressCombinedString, kGoogleGeocodeApiKey];
-            
-            
+//
             NSURL *url = [NSURL URLWithString: addressForJson];
             NSURLRequest *request = [NSURLRequest requestWithURL:url];
             [NSURLConnection sendAsynchronousRequest:request
@@ -135,10 +146,12 @@
                     NSString *formattedAddress = [addressParts valueForKey:@"formatted_address"];
                      for(id info in addressParts){
                         NSDictionary *addressPartsLocation = (NSDictionary *)[info valueForKey:@"location"];
+//                     for (id x in addressPartsLocation){
+//                         NSLog(@"%@", x);
+//                     }
                          NSString *lati = [addressPartsLocation objectForKey:@"lat"];
                          NSString *longi = [addressPartsLocation objectForKey:@"lng"];
                          CLLocation *location = [[CLLocation alloc] initWithLatitude:[lati doubleValue] longitude:[longi doubleValue]];
-                         SearchItem *selectedItem   = [[SearchItem alloc] init];
                          selectedItem.searchQuery   = place.name;
                          selectedItem.lati = location.coordinate.latitude;
                          selectedItem.longi = location.coordinate.longitude;
@@ -150,10 +163,10 @@
                      }
                  }
              }];
-            
+//
         }
     }];
-}
+};
 
 #pragma mark -
 #pragma mark UISearchDisplayDelegate
@@ -218,6 +231,7 @@
         SearchItem *item = sender;
         destViewController.item = item;
         
+        NSLog(@"in search, item: %@", item);
     }
 }
 
