@@ -13,8 +13,7 @@
 //+ (GeocodeItem*)translateAddressToGeocodeObject:(NSString*) addressString {
 + (NSString*)translateAddresstoUrl:(NSString*)addressString{
     //create api url
-    NSString *address = addressString;
-    NSArray *addressItems = [address componentsSeparatedByString:@" "];
+    NSArray *addressItems = [addressString componentsSeparatedByString:@" "];
     NSMutableArray *addressCombinedArray = [[NSMutableArray alloc] init];
     for (NSString *addressPart in addressItems){
         [addressCombinedArray addObject:[[NSString alloc] initWithFormat:@"%@+", addressPart]];
