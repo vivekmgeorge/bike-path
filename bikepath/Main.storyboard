@@ -63,12 +63,11 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Get Directions" id="EoJ-yJ-sBB">
-                        <barButtonItem key="leftBarButtonItem" title="Other" id="Aq9-9Z-EkI">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="FjH-MX-Uw3">
                             <connections>
-                                <segue destination="Psq-1E-C2k" kind="push" customClass="UIStoryboardPopoverSegue" id="P28-GV-rTT"/>
+                                <segue destination="Psq-1E-C2k" kind="push" id="7VN-Ga-qxo"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="FjH-MX-Uw3"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
