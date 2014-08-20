@@ -58,6 +58,9 @@
 }
 
 - (void) initMap{
+    
+    NSLog(@"in results, item: %@", self.item);
+    
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.706638
                                                             longitude:-74.009070
                                                                  zoom:13];

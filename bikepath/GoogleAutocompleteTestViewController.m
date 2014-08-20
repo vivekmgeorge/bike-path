@@ -131,12 +131,8 @@
                                                 options:0
                                                 error:NULL];
                      
-//                    NSArray *addressParts = [[addressJson objectForKey:@"results"] valueForKey:@"geometry"];
-                      NSArray *addressParts = [addressJson objectForKey:@"results"];
+                    NSArray *addressParts = [[addressJson objectForKey:@"results"] valueForKey:@"geometry"];
                      
-                     for (id x in addressParts) {
-                         NSLog(@"%@", x);
-                     }
                     NSString *formattedAddress = [addressParts valueForKey:@"formatted_address"];
                      for(id info in addressParts){
                         NSDictionary *addressPartsLocation = (NSDictionary *)[info valueForKey:@"location"];
@@ -147,6 +143,7 @@
                          selectedItem.searchQuery   = place.name;
                          selectedItem.lati = location.coordinate.latitude;
                          selectedItem.longi = location.coordinate.longitude;
+                         selectedItem.position = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
                          selectedItem.address = formattedAddress;
                          [self performSegueWithIdentifier: @"showResults" sender: selectedItem];
                          [self dismissSearchControllerWhileStayingActive];
@@ -221,6 +218,8 @@
         ResultsMapViewController *destViewController = segue.destinationViewController;
         SearchItem *item = sender;
         destViewController.item = item;
+        
+        NSLog(@"item: %@", item.searchQuery);
         
     }
 }
