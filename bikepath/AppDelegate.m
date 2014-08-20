@@ -93,11 +93,4 @@
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
-
-//- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-//{
-//    cacheBikeStations *cbs;
-//    [cbs loadAndCacheStations];
-//    return YES;
-//}
 @end
