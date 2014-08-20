@@ -63,8 +63,7 @@
     [super viewDidUnload];
 }
 
-#pragma mark -
-#pragma mark UITableViewDataSource
+#pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [searchResultPlaces count];
@@ -86,8 +85,7 @@
     return cell;
 }
 
-#pragma mark -
-#pragma mark UITableViewDelegate
+#pragma mark - UITableViewDelegate
 
 - (void)dismissSearchControllerWhileStayingActive {
     // Animate out the table view.
@@ -124,8 +122,7 @@
     }];
 };
 
-#pragma mark -
-#pragma mark UISearchDisplayDelegate
+#pragma mark - UISearchDisplayDelegate
 
 - (void)handleSearchForSearchString:(NSString *)searchString {
     searchQuery.input = searchString;
@@ -147,8 +144,7 @@
     return YES;
 }
 
-#pragma mark -
-#pragma mark UISearchBar Delegate
+#pragma mark - UISearchBar Delegate
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     if (![searchBar isFirstResponder]) {
