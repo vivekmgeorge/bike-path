@@ -39,11 +39,20 @@
 -(void)buttonPressed {
     NSURL *testURL = [NSURL URLWithString:@"comgooglemaps-x-callback://"];
     if ([[UIApplication sharedApplication] canOpenURL:testURL]) {
+        AppDelegate *appDel = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         NSArray *stations = appDel.stationJSON;
         CLLocationCoordinate2D createEndLocation = CLLocationCoordinate2DMake(self.item.lati, self.item.longi);
         CLLocation *endLocation = [[CLLocation alloc] initWithLatitude:createEndLocation.latitude
                                                              longitude:createEndLocation.longitude];
+    
         NSDictionary *endStationforNav = [StationFinder findClosestStation:stations location:endLocation];
+    
+//    NSLog(@"station for nav: %@", endStationforNav );
+//    NSLog(@"stations: %@", stations);
+//
+//        NSLog(@"lati: %f",[[endStationforNav objectForKey:@"latitude"] doubleValue]);
+//        NSLog(@"longi: %f",[[endStationforNav objectForKey:@"longitude"] doubleValue]);
+//    
 
         NSString *callBackUrl = @"comgooglemaps-x-callback://";
         CLLocationDegrees endLati = [[endStationforNav objectForKey:@"latitude"] doubleValue];
@@ -52,7 +61,7 @@
         NSString *appConnection = @"&x-success=sourceapp://?resume=true&x-source=bike-path.bikepath";
         NSString *directions = [[NSString alloc] initWithFormat: @"%@?daddr=%f,%f%@%@", callBackUrl, endLati, endLongi, directionsMode, appConnection];
         NSLog(@"%@", directions);
-        
+
         NSString *directionsRequest = directions;
         NSURL *directionsURL = [NSURL URLWithString:directionsRequest];
         [[UIApplication sharedApplication] openURL:directionsURL];
@@ -71,19 +80,41 @@
     
     mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     
+    //allocate the view
+    self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
+    
+    //set the view's background color
+    self.view.backgroundColor = [UIColor whiteColor];
+    
     //create the button
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     
     //set the position of the button
-    button.frame = CGRectMake(250, 500, 32, 48);
+    button.frame = CGRectMake(100, 170, 100, 30);
+    
+    //set the button's title
+    [button setTitle:@"Click Me!" forState:UIControlStateNormal];
+    
+    //listen for clicks
+    [button addTarget:self action:@selector(buttonPressed)
+     forControlEvents:UIControlEventTouchUpInside];
+    
+    //add the button to the view
+    [self.view addSubview:button];
+    
+    //create the button
+//    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    //set the position of the button
+//    button.frame = CGRectMake(250, 500, 32, 48);
 //    button.layer.borderColor = [UIColor blackColor].CGColor;
 //    button.layer.borderWidth = 1.0;
 //    button.layer.cornerRadius = 10;
 //    button.backgroundColor = [UIColor whiteColor];
-    [button setImage:[UIImage imageNamed:@"navButtonTwo"] forState:UIControlStateNormal];
+//    [button setImage:[UIImage imageNamed:@"navButtonTwo"] forState:UIControlStateNormal];
     
     //set the button's title
-//    [button setTitle:@"Live Nav" forState:UIControlStateNormal];
+//    [button setTitle:@"Live Nav" forState:UI    ControlStateNormal];
     
     //listen for clicks
     [button addTarget:self action:@selector(buttonPressed)
