@@ -34,7 +34,7 @@
              NSArray* stations = [citiBikeJSON objectForKey:@"stationBeanList"];
              
              if (!stations)
-             {
+             {  
                  [ErrorMessage renderErrorMessage:@"No stations available." cancelButtonTitle:@"OK" error:nil];
              }
              
@@ -47,11 +47,11 @@
              _stationJSON = sortedStations;
              
              for(id st in sortedStations) {
-                 NSDictionary *station = (NSDictionary *)st;
+                 NSDictionary *station      = (NSDictionary *)st;
                  NSString *lati             = [station objectForKey:@"latitude"];
                  NSString *longi            = [station objectForKey:@"longitude"];
-                 CLLocation *location = [[CLLocation alloc] initWithLatitude:[lati doubleValue] longitude:([longi doubleValue] *2)];
-                 NSMutableArray *locations = [[NSMutableArray alloc] init];
+                 CLLocation *location       = [[CLLocation alloc] initWithLatitude:[lati doubleValue] longitude:([longi doubleValue] *2)];
+                 NSMutableArray *locations  = [[NSMutableArray alloc] init];
                  [locations addObject:location];
              }
          } else if (error) {
