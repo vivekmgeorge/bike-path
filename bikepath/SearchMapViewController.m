@@ -17,7 +17,7 @@
 @end
 
 @implementation SearchMapViewController {
-
+    
 }
 
 - (void)viewDidLoad
@@ -40,32 +40,37 @@
     self.mapView.delegate                   = self;
     
     NSArray *sortedStations = appDel.stationJSON;
-
-        for(id st in sortedStations) {
-            NSDictionary *station = (NSDictionary *)st;
-            NSString *lati             = [station objectForKey:@"latitude"];
-            NSString *longi            = [station objectForKey:@"longitude"];
-            NSString *title            = [station objectForKey:@"stationName"];
-            NSString *availableBikes   = [[station objectForKey:@"availableBikes"] stringValue];
-            
-            GMSMarker *citiMarker = [[GMSMarker alloc] init];
-            citiMarker.position = CLLocationCoordinate2DMake([lati doubleValue], [longi doubleValue]);
-            citiMarker.title    = title;
-            citiMarker.map      = self.mapView;
-            NSNumber *num = @([[station objectForKey:@"availableBikes"] intValue]);
-            CLLocation *location = [[CLLocation alloc] initWithLatitude:[lati doubleValue] longitude:[longi doubleValue]];
-            NSMutableArray *locations = [[NSMutableArray alloc] init];
-            [locations addObject:location];
-            if ([num intValue] > 0) {
-                citiMarker.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
-                citiMarker.snippet  = availableBikes;
-            } else {
-                citiMarker.icon = [GMSMarker markerImageWithColor:[UIColor redColor]];
-                citiMarker.snippet = @"No bikes availabe at this location.";
-            };
+    
+    for(id st in sortedStations) {
+        NSDictionary *station = (NSDictionary *)st;
+        NSString *lati             = [station objectForKey:@"latitude"];
+        NSString *longi            = [station objectForKey:@"longitude"];
+        NSString *title            = [station objectForKey:@"stationName"];
+        NSString *availableBikes   = [[station objectForKey:@"availableBikes"] stringValue];
+        
+                 GMSMarker *citiMarker = [[GMSMarker alloc] init];
+                 
+                 citiMarker.position = CLLocationCoordinate2DMake([lati doubleValue], [longi doubleValue]);
+                 citiMarker.title    = title;
+                 citiMarker.map      = self.mapView;
+                 
+                 NSNumber *num = @([[station objectForKey:@"availableBikes"] intValue]);
+                 
+                 CLLocation *location = [[CLLocation alloc] initWithLatitude:[lati doubleValue] longitude:[longi doubleValue]];
+                 NSMutableArray *locations = [[NSMutableArray alloc] init];
+                 [locations addObject:location];
+                 
+                 if ([num intValue] > 0) {
+                     citiMarker.icon = [UIImage imageNamed:@"bicycleGreen"];
+                     citiMarker.snippet  = [NSString stringWithFormat:@"Bicyles avaiable: %@", availableBikes];
+                 } else {
+                     citiMarker.icon = [UIImage imageNamed:@"bicycleRed"];
+                     citiMarker.snippet = @"No bicyles availabe at this location.";
+                 };
                  citiMarker.map = self.mapView;
-        }
     }
+}
+
 
 @end
 
