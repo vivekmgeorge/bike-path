@@ -11,6 +11,7 @@
 #import <UIKit/UIKit.h>
 #import "SearchItem.h"
 #import "ResultsMapViewController.h"
+#import "AddressGeocoderFactory.h"
 
 @interface GoogleAutocompleteTestViewController ()
 
@@ -23,9 +24,7 @@
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
-    NSLog(@"initWithCoder");
     if (self) {
-//        NSLog(@"hello");
         searchQuery = [[SPGooglePlacesAutocompleteQuery alloc] initWithApiKey:@"AIzaSyAxaqfMyyc-WSrvsWP_jF2IUaTZVjkMlFo"];
         shouldBeginEditing = YES;
     }
@@ -99,7 +98,7 @@
     SPGooglePlacesAutocompletePlace *place = [self placeAtIndexPath:indexPath];
     [place resolveToPlacemark:^(CLPlacemark *placemark, NSString *addressString, NSError *error) {
         if (error) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Could not map selected Place"
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Could not map selected place"
             message:error.localizedDescription
             delegate:nil
             cancelButtonTitle:@"OK"
@@ -107,29 +106,30 @@
             [alert show];
         } else if (placemark) {
             SearchItem *selectedItem   = [[SearchItem alloc] init];
+            NSString *addressForJson = [AddressGeocoderFactory translateAddresstoUrl:addressString];
+
+            NSMutableDictionary *geocode = [AddressGeocoderFactory translateUrlToGeocodedObject:addressForJson];
             selectedItem.searchQuery   = place.name;
-            selectedItem.lati = placemark.location.coordinate.latitude;
-            selectedItem.longi = placemark.location.coordinate.longitude;
-            selectedItem.address = placemark.thoroughfare;
+             CLLocation *location = [[CLLocation alloc] initWithLatitude:[[geocode objectForKey:@"latitude"] doubleValue] longitude:[[geocode objectForKey:@"longitude"] doubleValue]];
+            selectedItem.lati = location.coordinate.latitude;
+            selectedItem.longi = location.coordinate.longitude;
+            selectedItem.position = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
+           selectedItem.address = [geocode objectForKey:@"address"];
             [self performSegueWithIdentifier: @"showResults" sender: selectedItem];
-//            [self pushResultsMapViewController: (SearchItem*)selectedItem];
-//            [self actionWithSender:(UITableViewCell*)selectedItem];
             [self dismissSearchControllerWhileStayingActive];
             [self.searchDisplayController.searchResultsTableView deselectRowAtIndexPath:indexPath animated:NO];
         }
     }];
-}
+};
 
 #pragma mark -
 #pragma mark UISearchDisplayDelegate
 
 - (void)handleSearchForSearchString:(NSString *)searchString {
-    
-    NSLog(@"%@", searchQuery);
     searchQuery.input = searchString;
     [searchQuery fetchPlaces:^(NSArray *places, NSError *error) {
         if (error) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Could not fetch Places"
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Could not fetch places"
             message:error.localizedDescription
             delegate:nil
             cancelButtonTitle:@"OK"
@@ -178,37 +178,14 @@
 }
 
 
-
-//-(void)actionWithSender:(UITableViewCell*)sender event:(UIEvent*)event {
-//    NSString* parameter;
-//    NSLog(@"%@", sender);
-////    if (sender.tag == 1)   // button1
-////        parameter = @"foo";
-////    else                   // button2
-////        parameter = @"bar";
-//////    ...
-//}
-
-//- (IBAction)pushResultsMapViewController: (SearchItem *)sender
-//{
-//    ResultsMapViewController *resultsMap = [[ResultsMapViewController alloc] initWithProperty:(SearchItem*)sender];
-//    NSLog(@"%@", sender);
-//    SearchItem *item = sender;
-//    ResultsMapViewController *destViewController = segue.destinationViewController;
-//    destViewController.item = item;
-//    [self presentModalViewController:resultsMap animated:YES];
-//}
-
 // segue to results page
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"showResults"]) {
-        NSLog(@"%@", sender);
         ResultsMapViewController *destViewController = segue.destinationViewController;
         SearchItem *item = sender;
-        
-        NSLog(@"%@",item.searchQuery);
         destViewController.item = item;
         
+        NSLog(@"in search, item: %@", item);
     }
 }
 

@@ -35,19 +35,22 @@
     return [NSString stringWithFormat:@"latitude: %f longitude: %f", locationManager.location.coordinate.latitude, locationManager.location.coordinate.longitude];
 }
 
+//FUNCTION BELOW INCLUDES CITIBIKE CALL - NEEDS TO BE DECOUPLED!
 -(void)buttonPressed {
-    NSLog(@"Button Pressed!");
     NSURL *testURL = [NSURL URLWithString:@"comgooglemaps-x-callback://"];
     if ([[UIApplication sharedApplication] canOpenURL:testURL]) {
-        
+        NSArray *stations = appDel.stationJSON;
+        CLLocationCoordinate2D createEndLocation = CLLocationCoordinate2DMake(self.item.lati, self.item.longi);
+        CLLocation *endLocation = [[CLLocation alloc] initWithLatitude:createEndLocation.latitude
+                                                             longitude:createEndLocation.longitude];
+        NSDictionary *endStationforNav = [StationFinder findClosestStation:stations location:endLocation];
+
         NSString *callBackUrl = @"comgooglemaps-x-callback://";
-        //        NSString *startLati = @"+40.76727216";
-        //        NSString *startLongi = @"-73.99392888";
-        NSString *endLati = @"+40.71117416";
-        NSString *endLongi = @"-74.00016545";
+        CLLocationDegrees endLati = [[endStationforNav objectForKey:@"latitude"] doubleValue];
+        CLLocationDegrees endLongi = [[endStationforNav objectForKey:@"longitude"] doubleValue];
         NSString *directionsMode = @"&directionsmode=bicycling&zoom=17";
         NSString *appConnection = @"&x-success=sourceapp://?resume=true&x-source=bike-path.bikepath";
-        NSString *directions = [[NSString alloc] initWithFormat: @"%@?daddr=%@,%@%@%@", callBackUrl, endLati, endLongi, directionsMode, appConnection];
+        NSString *directions = [[NSString alloc] initWithFormat: @"%@?daddr=%f,%f%@%@", callBackUrl, endLati, endLongi, directionsMode, appConnection];
         NSLog(@"%@", directions);
         
         NSString *directionsRequest = directions;
@@ -59,24 +62,30 @@
 }
 
 - (void) initMap{
+    
+    NSLog(@"in results, item: %@", self.item);
+    
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.706638
                                                             longitude:-74.009070
                                                                  zoom:13];
+//    
+//    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude: 37.7848395 longitude:-122.4041945 zoom:13];
+    
     mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     
     //create the button
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     
     //set the position of the button
-    button.frame = CGRectMake(175, 400, 100, 30);
-    button.layer.borderColor = [UIColor blackColor].CGColor;
-    button.layer.borderWidth = 1.0;
-    button.layer.cornerRadius = 10;
+    button.frame = CGRectMake(250, 500, 32, 48);
+//    button.layer.borderColor = [UIColor blackColor].CGColor;
+//    button.layer.borderWidth = 1.0;
+//    button.layer.cornerRadius = 10;
 //    button.backgroundColor = [UIColor whiteColor];
-    [button setBackgroundImage:[UIImage imageNamed:@"bike_icon"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"navButtonTwo"] forState:UIControlStateNormal];
     
     //set the button's title
-    [button setTitle:@"Live Nav" forState:UIControlStateNormal];
+//    [button setTitle:@"Live Nav" forState:UIControlStateNormal];
     
     //listen for clicks
     [button addTarget:self action:@selector(buttonPressed)
@@ -118,7 +127,7 @@
     GMSMarker *startPoint = [GMSMarkerFactory createGMSMarker:startPosition
                                                       mapView:mapView_
                                                         title:@"Start"
-                                                        color:[GMSMarker markerImageWithColor:[UIColor redColor]]];
+                                                        color:[UIImage imageNamed:@"startStation"]];
     [waypoints_ addObject: startPoint];
 
     CLLocation *currentLocation = [[CLLocation alloc] initWithLatitude:startPosition.latitude
@@ -129,13 +138,12 @@
     GMSMarker *endPoint = [GMSMarkerFactory createGMSMarker:createEndLocation
                                                     mapView:mapView_
                                                       title:self.item.address //the address being given is not the full address
-                                                      color:[GMSMarker markerImageWithColor:[UIColor redColor]]];
+                                                      color:[UIImage imageNamed:@"endStation"]];
     [waypoints_ addObject:endPoint];
 
     
     
     NSArray *stations = appDel.stationJSON;
-             NSLog(@"%@",stations);
 
              NSDictionary *closestStation = [StationFinder findClosestStation:stations location:currentLocation];
              CLLocationCoordinate2D closestStationLocation = CLLocationCoordinate2DMake(
@@ -147,8 +155,8 @@
              GMSMarker *startStation  = [GMSMarkerFactory createGMSMarkerForStation:closestStationLocation
                                                                   mapView:mapView_
                                                                     title:[closestStation objectForKey:@"stationName"]
-                                                         availableSnippet:@"Bicyles available"
-                                                       unavailableSnippet:@"No bicyles available at this location."
+                                                         availableSnippet:@"Bicycles available"
+                                                       unavailableSnippet:@"No bicycles available at this location."
                                                             numberOfBikes:numberOfBikes];
              [waypoints_ addObject:startStation];
 
@@ -198,6 +206,7 @@
     NSString *overview_route = [route objectForKey:@"points"];
     GMSPath *path = [GMSPath pathFromEncodedPath:overview_route];
     GMSPolyline *polyline = [GMSPolyline polylineWithPath:path];
+    polyline.strokeWidth = 3.f;
     polyline.map = mapView_;
 }
 

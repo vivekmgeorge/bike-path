@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Results Map View Controller - Results-->
+        <!--Results Map View Controller - Directions-->
         <scene sceneID="y25-Gz-VHz">
             <objects>
                 <viewController id="StR-Yi-Gvc" customClass="ResultsMapViewController" sceneMemberID="viewController">
@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Results" id="TcU-1J-CRn">
+                    <navigationItem key="navigationItem" title="Directions" id="TcU-1J-CRn">
                         <barButtonItem key="leftBarButtonItem" systemItem="rewind" id="38F-3W-mvs">
                             <connections>
                                 <segue destination="G0S-6X-bg1" kind="unwind" unwindAction="unwindToSearchPage:" id="mtr-0s-eLm"/>
@@ -29,6 +29,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="mapView" destination="iVa-G1-NWu" id="Wg6-Kz-Xb5"/>
                     </connections>
@@ -38,7 +39,7 @@
             </objects>
             <point key="canvasLocation" x="510" y="-953"/>
         </scene>
-        <!--Search Map View Controller - BikePath Search-->
+        <!--Search Map View Controller - Get Directions-->
         <scene sceneID="uBy-pW-Yuz">
             <objects>
                 <viewController id="nM0-WI-Oec" customClass="SearchMapViewController" sceneMemberID="viewController">
@@ -61,7 +62,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="BikePath Search" id="EoJ-yJ-sBB">
+                    <navigationItem key="navigationItem" title="Get Directions" id="EoJ-yJ-sBB">
                         <barButtonItem key="leftBarButtonItem" title="Other" id="Aq9-9Z-EkI">
                             <connections>
                                 <segue destination="Psq-1E-C2k" kind="push" customClass="UIStoryboardPopoverSegue" id="P28-GV-rTT"/>
@@ -227,6 +228,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="bxq-HC-rED"/>
+        <segue reference="Nlw-BY-fgj"/>
     </inferredMetricsTieBreakers>
 </document>
