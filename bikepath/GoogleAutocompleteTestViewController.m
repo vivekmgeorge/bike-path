@@ -12,6 +12,7 @@
 #import "SearchItem.h"
 #import "ResultsMapViewController.h"
 #import "AddressGeocoderFactory.h"
+#import "ErrorMessage.h"
 
 @interface GoogleAutocompleteTestViewController ()
 
@@ -104,12 +105,7 @@
     SPGooglePlacesAutocompletePlace *place = [self placeAtIndexPath:indexPath];
     [place resolveToPlacemark:^(CLPlacemark *placemark, NSString *addressString, NSError *error) {
         if (error) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Could not map selected place"
-            message:error.localizedDescription
-            delegate:nil
-            cancelButtonTitle:@"OK"
-            otherButtonTitles:nil, nil];
-            [alert show];
+            [ErrorMessage renderErrorMessage:@"Could not map selected place" cancelButtonTitle:@"OK" error:error];
         } else if (placemark) {
             SearchItem *selectedItem   = [[SearchItem alloc] init];
             NSString *addressForJson = [AddressGeocoderFactory translateAddresstoUrl:addressString];
