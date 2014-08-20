@@ -32,9 +32,15 @@
     return self;
 }
 
+- (IBAction)unwindToSearchPage:(UIStoryboardSegue *)segue {
+    
+}
+
+
 - (void)viewDidLoad {
-//    self.navigationController.navigationBar.translucent = YES;
-    [self.navigationController setNavigationBarHidden:TRUE];
+    [self.view setAutoresizesSubviews:YES];
+    [self.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+    
     self.searchDisplayController.searchBar.placeholder = @"Search or Address";
     
     GMSCameraPosition *nyc = [GMSCameraPosition cameraWithLatitude:40.706638
@@ -48,9 +54,9 @@
     self.mapView.settings.compassButton = YES;
     self.mapView.settings.myLocationButton = YES;
     self.mapView.settings.zoomGestures = YES;
-//    self.mapView.delegate = self;
     
 }
+
 
 - (void)viewDidUnload {
     [self setMapView:nil];
@@ -133,6 +139,7 @@
             [alert show];
         } else {
             searchResultPlaces = places;
+            
             [self.searchDisplayController.searchResultsTableView reloadData];
         }
     }];
@@ -150,6 +157,7 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     if (![searchBar isFirstResponder]) {
+        
         // User tapped the 'clear' button.
         shouldBeginEditing = NO;
         [self.searchDisplayController setActive:NO];
