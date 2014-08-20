@@ -81,21 +81,21 @@
         <!--Google Autocomplete Test View Controller - Search-->
         <scene sceneID="5Zi-wm-dVQ">
             <objects>
-                <viewController autoresizesArchivedViewToFullSize="NO" extendedLayoutIncludesOpaqueBars="YES" id="Psq-1E-C2k" customClass="GoogleAutocompleteTestViewController" sceneMemberID="viewController">
+                <viewController autoresizesArchivedViewToFullSize="NO" modalTransitionStyle="partialCurl" id="Psq-1E-C2k" customClass="GoogleAutocompleteTestViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Vd7-0b-AE6"/>
                         <viewControllerLayoutGuide type="bottom" id="PA5-In-NpB"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="nC9-aF-gT6">
-                        <rect key="frame" x="0.0" y="64" width="320" height="372"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xt2-r6-gCh" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="44" width="320" height="436"/>
+                            <view contentMode="scaleAspectFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xt2-r6-gCh" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="44" width="320" height="372"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
-                            <searchBar contentMode="redraw" fixedFrame="YES" searchBarStyle="prominent" translatesAutoresizingMaskIntoConstraints="NO" id="NZ1-zz-rQX">
+                            <searchBar contentMode="redraw" fixedFrame="YES" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="NZ1-zz-rQX">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -106,8 +106,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Search" id="JNG-ag-Ove"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="mapView" destination="Xt2-r6-gCh" id="OvQ-Of-zTN"/>
                         <outlet property="searchDisplayController" destination="7f6-Ls-NCu" id="tsh-35-kYi"/>

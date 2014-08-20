@@ -32,12 +32,14 @@
 }
 
 - (IBAction)unwindToSearchPage:(UIStoryboardSegue *)segue {
-    [self viewDidLoad];
     
 }
 
 
 - (void)viewDidLoad {
+    [self.view setAutoresizesSubviews:YES];
+    [self.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+    
     self.searchDisplayController.searchBar.placeholder = @"Search or Address";
     
     GMSCameraPosition *nyc = [GMSCameraPosition cameraWithLatitude:40.706638
