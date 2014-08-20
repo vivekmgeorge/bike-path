@@ -91,10 +91,6 @@
     
     mapView_.delegate = self;
     self.view = mapView_;
-    mapView_.myLocationEnabled = YES;
-    mapView_.settings.compassButton = YES;
-    mapView_.settings.myLocationButton = YES;
-    mapView_.settings.zoomGestures = YES;
     [mapView_ addSubview:button];
     return;
 }
