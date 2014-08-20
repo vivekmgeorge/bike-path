@@ -65,11 +65,9 @@
     
     NSLog(@"in results, item: %@", self.item);
     
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.706638
-                                                            longitude:-74.009070
-                                                                 zoom:13];
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.706638 longitude:-74.009070 zoom:13];
 //    
-//    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude: 37.7848395 longitude:-122.4041945 zoom:13];
+//  GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude: 37.7848395 longitude:-122.4041945 zoom:13];
     
     mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     
@@ -93,6 +91,10 @@
     
     mapView_.delegate = self;
     self.view = mapView_;
+    mapView_.myLocationEnabled = YES;
+    mapView_.settings.compassButton = YES;
+    mapView_.settings.myLocationButton = YES;
+    mapView_.settings.zoomGestures = YES;
     [mapView_ addSubview:button];
     return;
 }

@@ -12,6 +12,7 @@
 #import "SearchItem.h"
 #import "ResultsMapViewController.h"
 #import "AddressGeocoderFactory.h"
+#import "ErrorMessage.h"
 
 @interface GoogleAutocompleteTestViewController ()
 
@@ -31,9 +32,15 @@
     return self;
 }
 
+- (IBAction)unwindToSearchPage:(UIStoryboardSegue *)segue {
+    
+}
+
+
 - (void)viewDidLoad {
-//    self.navigationController.navigationBar.translucent = YES;
-    [self.navigationController setNavigationBarHidden:TRUE];
+    [self.view setAutoresizesSubviews:YES];
+    [self.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+    
     self.searchDisplayController.searchBar.placeholder = @"Search or Address";
     
     GMSCameraPosition *nyc = [GMSCameraPosition cameraWithLatitude:40.706638
@@ -47,9 +54,9 @@
     self.mapView.settings.compassButton = YES;
     self.mapView.settings.myLocationButton = YES;
     self.mapView.settings.zoomGestures = YES;
-//    self.mapView.delegate = self;
     
 }
+
 
 - (void)viewDidUnload {
     [self setMapView:nil];
@@ -98,12 +105,7 @@
     SPGooglePlacesAutocompletePlace *place = [self placeAtIndexPath:indexPath];
     [place resolveToPlacemark:^(CLPlacemark *placemark, NSString *addressString, NSError *error) {
         if (error) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Could not map selected place"
-            message:error.localizedDescription
-            delegate:nil
-            cancelButtonTitle:@"OK"
-            otherButtonTitles:nil, nil];
-            [alert show];
+            [ErrorMessage renderErrorMessage:@"Could not map selected place" cancelButtonTitle:@"OK" error:error];
         } else if (placemark) {
             SearchItem *selectedItem   = [[SearchItem alloc] init];
             NSString *addressForJson = [AddressGeocoderFactory translateAddresstoUrl:addressString];
@@ -137,6 +139,7 @@
             [alert show];
         } else {
             searchResultPlaces = places;
+            
             [self.searchDisplayController.searchResultsTableView reloadData];
         }
     }];
@@ -154,6 +157,7 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     if (![searchBar isFirstResponder]) {
+        
         // User tapped the 'clear' button.
         shouldBeginEditing = NO;
         [self.searchDisplayController setActive:NO];
