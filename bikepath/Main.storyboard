@@ -109,6 +109,7 @@
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Search" id="JNG-ag-Ove"/>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <size key="freeformSize" width="320" height="480"/>
                     <connections>
                         <outlet property="mapView" destination="Xt2-r6-gCh" id="OvQ-Of-zTN"/>
                         <outlet property="searchDisplayController" destination="7f6-Ls-NCu" id="tsh-35-kYi"/>
