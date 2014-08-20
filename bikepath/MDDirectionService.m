@@ -19,11 +19,11 @@
 static NSString *kMDDirectionsURL = @"http://maps.googleapis.com/maps/api/directions/json?mode=bicycling";
 
 - (void)setDirectionsQuery:(NSDictionary *)query withSelector:(SEL)selector withDelegate:(id)delegate{
-    NSArray *waypoints = [query objectForKey:@"waypoints"];
-    NSString *url = [NSMutableString stringWithFormat:@"%@&origin=%@&destination=%@&sensor=true&waypoints=%@|%@", kMDDirectionsURL, [waypoints objectAtIndex:0], [waypoints objectAtIndex:1], [waypoints objectAtIndex:2], [waypoints objectAtIndex:3]];
+    NSArray *waypoints  = [query objectForKey:@"waypoints"];
+    NSString *url       = [NSMutableString stringWithFormat:@"%@&origin=%@&destination=%@&sensor=true&waypoints=%@|%@", kMDDirectionsURL, [waypoints objectAtIndex:0], [waypoints objectAtIndex:1], [waypoints objectAtIndex:2], [waypoints objectAtIndex:3]];
 
-    url = [url stringByAddingPercentEscapesUsingEncoding: NSASCIIStringEncoding];
-    _directionsURL = [NSURL URLWithString:url];
+    url             = [url stringByAddingPercentEscapesUsingEncoding: NSASCIIStringEncoding];
+    _directionsURL  = [NSURL URLWithString:url];
     [self retrieveDirections:selector withDelegate:delegate];
 }
 - (void)retrieveDirections:(SEL)selector withDelegate:(id)delegate{

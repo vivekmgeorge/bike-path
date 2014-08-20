@@ -27,10 +27,14 @@
     
     AppDelegate *appDel = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [appDel loadCitiBikeData];
-    
+  
     GMSCameraPosition *dbc = [GMSCameraPosition cameraWithLatitude:40.706638
                                                          longitude:-74.009070
                                                               zoom:16];
+    
+//    GMSCameraPosition *dbc = [GMSCameraPosition cameraWithLatitude:37.7848395
+//                                                            longitude:-122.4041945
+//                                                                 zoom:15];
     [self.mapView setCamera:dbc];
     self.mapView.mapType                    = kGMSTypeNormal;
     self.mapView.myLocationEnabled          = YES;
