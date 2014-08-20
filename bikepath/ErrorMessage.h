@@ -10,7 +10,7 @@
 
 @interface ErrorMessage : NSObject
 
-+ (UIAlertView*)renderErrorMessage:(NSString*) messageTitle
++ (void)renderErrorMessage:(NSString*) messageTitle
                  cancelButtonTitle:(NSString*) buttonTitle
                              error:(NSError*) error;
 

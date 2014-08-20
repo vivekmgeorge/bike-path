@@ -10,7 +10,7 @@
 
 @implementation ErrorMessage
 
-+ (UIAlertView*)renderErrorMessage:(NSString*) messageTitle
++ (void)renderErrorMessage:(NSString*) messageTitle
                  cancelButtonTitle:(NSString*) buttonTitle
                              error:(NSError*) error{
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:messageTitle
@@ -18,6 +18,6 @@
                                                    delegate:nil
                                           cancelButtonTitle:buttonTitle
                                           otherButtonTitles:nil, nil];
-    return alert;
+    [alert show];
 }
 @end
