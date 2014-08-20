@@ -44,12 +44,11 @@
         NSString *longi = [addressPartsLocation objectForKey:@"lng"];
         CLLocation *location = [[CLLocation alloc] initWithLatitude:[lati doubleValue] longitude:[longi doubleValue]];
         NSLog(@"address parts: %@", addressPartsLocation);
+        
         [geocodedDictionary setObject:lati forKey:@"latitude"];
         [geocodedDictionary setObject:longi forKey:@"longitude"];
         [geocodedDictionary setObject:location forKey:@"position"];
         [geocodedDictionary setObject:formattedAddress forKey:@"address"];
-        
-        NSLog(@"geocoded dictionary:%@", geocodedDictionary);
     }
     return geocodedDictionary;
 }
@@ -57,12 +56,9 @@
 
 
 + (NSMutableDictionary*)translateUrlToGeocodedObject:(NSString*)addressUrl {
-//    NSLog(@"hello");
-//    NSLog(@"yo");
     NSMutableDictionary *geocodedDictionary = NULL;
     NSURL *url = [NSURL URLWithString: addressUrl];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
-//    NSMutableDictionary *result;
     NSURLResponse *response;
     NSError *error = nil;
     NSData* data = [
