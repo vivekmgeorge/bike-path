@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <GoogleMaps/GoogleMaps.h>
+#import "ErrorMessage.h"
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 @implementation AppDelegate
@@ -16,7 +17,7 @@
 
 - (NSArray*)loadCitiBikeData
 {
-    NSURL *url = [NSURL URLWithString:@"http://www.citibikenyc.com/stations/json"];
+    NSURL *url = [NSURL URLWithString:@"http://www.citibikenyc.com/stations/js"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: url
                                                            cachePolicy: NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval: 120.0];
@@ -34,12 +35,7 @@
              
              if (!stations)
              {
-                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No stations available."
-                                                                 message:error.localizedDescription
-                                                                delegate:nil
-                                                       cancelButtonTitle:@"OK"
-                                                       otherButtonTitles:nil, nil];
-                 [alert show];
+                 [ErrorMessage renderErrorMessage:@"No stations available." cancelButtonTitle:@"OK" error:nil];
              }
              
              NSSortDescriptor *sortDescriptor;
@@ -61,30 +57,13 @@
          } else if (error) {
              _stationJSON = nil;
              NSLog(@"%@",error);
-             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connection error. Please try again later."
-                                                             message:error.localizedDescription
-                                                            delegate:nil
-                                                   cancelButtonTitle:@"OK"
-                                                   otherButtonTitles:nil, nil];
-             [alert show];
-
+             [ErrorMessage renderErrorMessage:@"Connection error. Please try again later." cancelButtonTitle:@"OK" error:error];
          } else if (data.length < 1) {
              _stationJSON = nil;
-             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No items were retrieved. Please try again later."
-                                                             message:error.localizedDescription
-                                                            delegate:nil
-                                                   cancelButtonTitle:@"OK"
-                                                   otherButtonTitles:nil, nil];
-             [alert show];
-             
+             [ErrorMessage renderErrorMessage:@"No items were retrieved. Please try again later." cancelButtonTitle:@"OK" error:nil];
          } else {
              _stationJSON = nil;
-             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"An unidentified error occrred. Please try again later."
-                                                             message:error.localizedDescription
-                                                            delegate:nil
-                                                   cancelButtonTitle:@"OK"
-                                                   otherButtonTitles:nil, nil];
-             [alert show];
+             [ErrorMessage renderErrorMessage:@"An unidentified error occurred. Please try again later." cancelButtonTitle:@"OK" error:nil];
          };
     return _stationJSON;
 }
