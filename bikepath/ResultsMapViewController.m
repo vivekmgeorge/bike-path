@@ -63,6 +63,9 @@
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.706638
                                                             longitude:-74.009070
                                                                  zoom:13];
+//    
+//    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude: 37.7848395 longitude:-122.4041945 zoom:13];
+    
     mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     
     //create the button
