@@ -70,17 +70,5 @@
                     error: &error];
     geocodedDictionary = [self processTheJson:data];
     return geocodedDictionary;
-    /*
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse *response,
-                                NSData *data, NSError *connectionError) {
-         if (data.length > 0 && connectionError == nil) {
-             result  =  [self processTheJson:data];
-            }
-                           }
-];
-    return geocodedDictionary;
-     */
 }
 @end
