@@ -24,44 +24,12 @@
     NSString *kGoogleGeocodeApiKey = @"AIzaSyAxaqfMyyc-WSrvsWP_jF2IUaTZVjkMlFo";
     NSString *addressForJson = [[NSString alloc] initWithFormat:@"%@%@&key=%@", kGoogleGeocodeApiUrl, addressCombinedString, kGoogleGeocodeApiKey];
     return addressForJson;
-//    GeocodeItem *geocodeAddress = [[GeocodeItem init] alloc];
-//    NSURL *url = [NSURL URLWithString: addressForJson];
-//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-//    [NSURLConnection sendAsynchronousRequest:request
-//                                       queue:[NSOperationQueue mainQueue]
-//                           completionHandler:^(NSURLResponse *response,
-//                                               NSData *data, NSError *connectionError) {
-//                               if (data.length > 0 && connectionError == nil) {
-//                                   
-//                                   // parse json to create object
-//                                   NSDictionary *addressJson = [NSJSONSerialization
-//                                                                JSONObjectWithData:data
-//                                                                options:0
-//                                                                error:NULL];
-//                                   
-//                                   NSArray *addressParts = [[addressJson objectForKey:@"results"] valueForKey:@"geometry"];
-//                                   NSString *formattedAddress = [addressParts valueForKey:@"formatted_address"];
-//                                   for(id info in addressParts){
-//                                       NSDictionary *addressPartsLocation = (NSDictionary *)[addressParts valueForKey:@"location"];
-//                                       NSString *lati = [addressPartsLocation objectForKey:@"lat"];
-//                                       NSString *longi = [addressPartsLocation objectForKey:@"lng"];
-//                                       CLLocation *location = [[CLLocation alloc] initWithLatitude:[lati doubleValue] longitude:[longi doubleValue]];
-//                                       geocodeAddress.latitude = lati;
-//                                       
-//                                       NSLog(@"geocode address: %@", geocodeAddress.latitude);
-//                                       
-//                                       geocodeAddress.longitude = longi;
-//                                       geocodeAddress.position = location;
-//                                   }
-//                                   geocodeAddress.address = formattedAddress;
-//                               }
-//                           }];
-//    return geocodeAddress;
-
 }
     
-+ (GeocodeItem*)translateUrlToGeocodedObject:(NSString*)addressUrl {
-    GeocodeItem *geocodeAddress = [[GeocodeItem init] alloc];
++ (NSMutableDictionary*)translateUrlToGeocodedObject:(NSString*)addressUrl {
+//    NSLog(@"hello");
+    NSMutableDictionary *geocodedDictionary = [[NSMutableDictionary alloc] init];
+//    NSLog(@"yo");
     NSURL *url = [NSURL URLWithString: addressUrl];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [NSURLConnection sendAsynchronousRequest:request
@@ -79,20 +47,39 @@
              NSArray *addressParts = [[addressJson objectForKey:@"results"] valueForKey:@"geometry"];
              NSString *formattedAddress = [addressParts valueForKey:@"formatted_address"];
              for(id info in addressParts){
-                 NSDictionary *addressPartsLocation = (NSDictionary *)[addressParts valueForKey:@"location"];
+                 NSDictionary *addressPartsLocation = (NSDictionary *)[info valueForKey:@"location"];
                  NSString *lati = [addressPartsLocation objectForKey:@"lat"];
                  NSString *longi = [addressPartsLocation objectForKey:@"lng"];
                  CLLocation *location = [[CLLocation alloc] initWithLatitude:[lati doubleValue] longitude:[longi doubleValue]];
-                 geocodeAddress.latitude = lati;
+                 NSLog(@"address parts: %@", addressPartsLocation);
                  
-                 NSLog(@"geocode address: %@", geocodeAddress.latitude);
+//                 NSDictionary *dict8 =[NSDictionary
+//                                       dictionaryWithObjects:@[obj1,obj2]
+//                                       forKeys:@[key1,key2]];
+//                 [geocodedAddress setObject:lati forKey:
+//                  geocodedDictionary = [NSMutableDictionary dictionaryWithObjects: @[@"latitude", @"longitude", @"position",@"address"]
+//                                                                   forKeys: @[lati, longi, location, formattedAddress]];
+                 //                  @"latitude" : [NSString lati],
+                 [geocodedDictionary setObject:lati forKey:@"latitude"];
+                 [geocodedDictionary setObject:longi forKey:@"longitude"];
+                 [geocodedDictionary setObject:location forKey:@"position"];
+                 [geocodedDictionary setObject:formattedAddress forKey:@"address"];
                  
-                 geocodeAddress.longitude = longi;
-                 geocodeAddress.position = location;
+//                  @"longitude" : [NSString longi],
+//                  @"position" : [NSString location],
+//                  @"address" : [NSString formattedAddress],
+//                  };
+//                 geocodeAddress.latitude = lati;
+//                 
+//                 NSLog(@"geocode address: %@", geocodeAddress.latitude);
+//                 
+//                 geocodeAddress.longitude = longi;
+//                 geocodeAddress.position = location;
              }
-             geocodeAddress.address = formattedAddress;
+//             geocodeAddress.address = formattedAddress;
          }
     }];
-    return geocodeAddress;
+    return geocodedDictionary;
+//    return geocodeAddress;
 }
 @end
