@@ -43,7 +43,6 @@
         NSString *lati = [addressPartsLocation objectForKey:@"lat"];
         NSString *longi = [addressPartsLocation objectForKey:@"lng"];
         CLLocation *location = [[CLLocation alloc] initWithLatitude:[lati doubleValue] longitude:[longi doubleValue]];
-        NSLog(@"address parts: %@", addressPartsLocation);
         
         [geocodedDictionary setObject:lati forKey:@"latitude"];
         [geocodedDictionary setObject:longi forKey:@"longitude"];
