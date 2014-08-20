@@ -15,10 +15,10 @@
                         title:(NSString*) title
 
                         color:(UIImage*) color{
-    GMSMarker *marker = [GMSMarker markerWithPosition:locationCoordinates];
-    marker.title = title;
-    marker.map = map;
-    marker.icon = color;
+    GMSMarker *marker   = [GMSMarker markerWithPosition:locationCoordinates];
+    marker.title        = title;
+    marker.map          = map;
+    marker.icon         = color;
     return marker;
 }
 
