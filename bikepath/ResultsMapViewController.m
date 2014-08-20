@@ -66,18 +66,18 @@
     mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     
     //create the button
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     
     //set the position of the button
-    button.frame = CGRectMake(175, 400, 100, 30);
-    button.layer.borderColor = [UIColor blackColor].CGColor;
-    button.layer.borderWidth = 1.0;
-    button.layer.cornerRadius = 10;
+    button.frame = CGRectMake(250, 500, 32, 48);
+//    button.layer.borderColor = [UIColor blackColor].CGColor;
+//    button.layer.borderWidth = 1.0;
+//    button.layer.cornerRadius = 10;
 //    button.backgroundColor = [UIColor whiteColor];
-    [button setBackgroundImage:[UIImage imageNamed:@"bike_icon"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"navButtonTwo"] forState:UIControlStateNormal];
     
     //set the button's title
-    [button setTitle:@"Live Nav" forState:UIControlStateNormal];
+//    [button setTitle:@"Live Nav" forState:UIControlStateNormal];
     
     //listen for clicks
     [button addTarget:self action:@selector(buttonPressed)
@@ -119,7 +119,7 @@
     GMSMarker *startPoint = [GMSMarkerFactory createGMSMarker:startPosition
                                                       mapView:mapView_
                                                         title:@"Start"
-                                                        color:[GMSMarker markerImageWithColor:[UIColor redColor]]];
+                                                        color:[UIImage imageNamed:@"startStation"]];
     [waypoints_ addObject: startPoint];
 
     CLLocation *currentLocation = [[CLLocation alloc] initWithLatitude:startPosition.latitude
@@ -130,13 +130,12 @@
     GMSMarker *endPoint = [GMSMarkerFactory createGMSMarker:createEndLocation
                                                     mapView:mapView_
                                                       title:self.item.address //the address being given is not the full address
-                                                      color:[GMSMarker markerImageWithColor:[UIColor redColor]]];
+                                                      color:[UIImage imageNamed:@"endStation"]];
     [waypoints_ addObject:endPoint];
 
     
     
     NSArray *stations = appDel.stationJSON;
-             NSLog(@"%@",stations);
 
              NSDictionary *closestStation = [StationFinder findClosestStation:stations location:currentLocation];
              CLLocationCoordinate2D closestStationLocation = CLLocationCoordinate2DMake(
@@ -199,6 +198,7 @@
     NSString *overview_route = [route objectForKey:@"points"];
     GMSPath *path = [GMSPath pathFromEncodedPath:overview_route];
     GMSPolyline *polyline = [GMSPolyline polylineWithPath:path];
+    polyline.strokeWidth = 3.f;
     polyline.map = mapView_;
 }
 
