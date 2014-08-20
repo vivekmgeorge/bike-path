@@ -47,10 +47,34 @@
                  NSMutableArray *locations = [[NSMutableArray alloc] init];
                  [locations addObject:location];
              }
+         } else if (error) {
+             _stationJSON = nil;
+             NSLog(@"%@",error);
+             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connection error. Please try again later."
+                                                             message:error.localizedDescription
+                                                            delegate:nil
+                                                   cancelButtonTitle:@"OK"
+                                                   otherButtonTitles:nil, nil];
+             [alert show];
+
+         } else if (data.length < 1) {
+             _stationJSON = nil;
+             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No items were retrieved. Please try again later."
+                                                             message:error.localizedDescription
+                                                            delegate:nil
+                                                   cancelButtonTitle:@"OK"
+                                                   otherButtonTitles:nil, nil];
+             [alert show];
+             
          } else {
              _stationJSON = nil;
-         }
-
+             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"An unidentified error occrred. Please try again later."
+                                                             message:error.localizedDescription
+                                                            delegate:nil
+                                                   cancelButtonTitle:@"OK"
+                                                   otherButtonTitles:nil, nil];
+             [alert show];
+         };
     return _stationJSON;
 }
 
