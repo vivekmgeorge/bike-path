@@ -12,6 +12,7 @@
 #import <Foundation/Foundation.h>
 #import "MDDirectionService.h"
 #import <CoreLocation/CoreLocation.h>
+#import "AppDelegate.h"
 #import "StationFinder.h"
 #import "GMSMarkerFactory.h"
 
@@ -34,19 +35,17 @@
     return [NSString stringWithFormat:@"latitude: %f longitude: %f", locationManager.location.coordinate.latitude, locationManager.location.coordinate.longitude];
 }
 
+//FUNCTION BELOW INCLUDES CITIBIKE CALL - NEEDS TO BE DECOUPLED!
 -(void)buttonPressed {
-    NSLog(@"Button Pressed!");
     NSURL *testURL = [NSURL URLWithString:@"comgooglemaps-x-callback://"];
     if ([[UIApplication sharedApplication] canOpenURL:testURL]) {
         
         NSString *callBackUrl = @"comgooglemaps-x-callback://";
-        //        NSString *startLati = @"+40.76727216";
-        //        NSString *startLongi = @"-73.99392888";
-        NSString *endLati = @"+40.71117416";
-        NSString *endLongi = @"-74.00016545";
+        CLLocationDegrees endLati = self.item.lati;
+        CLLocationDegrees endLongi = self.item.longi;
         NSString *directionsMode = @"&directionsmode=bicycling&zoom=17";
         NSString *appConnection = @"&x-success=sourceapp://?resume=true&x-source=bike-path.bikepath";
-        NSString *directions = [[NSString alloc] initWithFormat: @"%@?daddr=%@,%@%@%@", callBackUrl, endLati, endLongi, directionsMode, appConnection];
+        NSString *directions = [[NSString alloc] initWithFormat: @"%@?daddr=%f,%f%@%@", callBackUrl, endLati, endLongi, directionsMode, appConnection];
         NSLog(@"%@", directions);
         
         NSString *directionsRequest = directions;
@@ -58,6 +57,9 @@
 }
 
 - (void) initMap{
+    
+    NSLog(@"in results, item: %@", self.item);
+    
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.706638
                                                             longitude:-74.009070
                                                                  zoom:13];
@@ -100,6 +102,9 @@
 - (void)viewDidLoad{
     // do the default view behavior
     [super viewDidLoad];
+    
+    AppDelegate *appDel = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDel loadCitiBikeData];
 
     [self initMap];
     [self getUserLocation];
@@ -107,12 +112,11 @@
 
     // init a waypoints instance var, it's an array of markers not locations
     waypoints_ = [[NSMutableArray alloc]init];
-    waypointStrings_ = [[NSMutableArray alloc]init];
 
     // place a marker on the map at the current location of the phone
 //    NSDictionary *closestStation = [StationFinder findClosestStation:stations location:currentLocation];
     CLLocationCoordinate2D startPosition = locationManager.location.coordinate;
-    GMSMarker *startPoint = [GMSMarkerFactory createGMSMarker:&startPosition
+    GMSMarker *startPoint = [GMSMarkerFactory createGMSMarker:startPosition
                                                       mapView:mapView_
                                                         title:@"Start"
                                                         color:[GMSMarker markerImageWithColor:[UIColor redColor]]];
@@ -123,34 +127,15 @@
 
 
     CLLocationCoordinate2D createEndLocation = CLLocationCoordinate2DMake(self.item.lati, self.item.longi);
-    GMSMarker *endPoint = [GMSMarkerFactory createGMSMarker:&createEndLocation
+    GMSMarker *endPoint = [GMSMarkerFactory createGMSMarker:createEndLocation
                                                     mapView:mapView_
                                                       title:self.item.address //the address being given is not the full address
                                                       color:[GMSMarker markerImageWithColor:[UIColor redColor]]];
     [waypoints_ addObject:endPoint];
 
-    // now fetch the nyc bike station locations and try to find closeby stations for
-    // the start and destination locations
-    NSURL *url = [NSURL URLWithString:@"http://www.citibikenyc.com/stations/json"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse *response,
-                                               NSData *data, NSError *connectionError)
-     {
-         // todo: handle error response from server
-         // if some results and no error
-         if (data.length > 0 && connectionError == nil)
-         {
-             // todo: handle invalid json from server
-             // parse raw data response from server into dictionary
-             NSDictionary *bikepathjson = [NSJSONSerialization JSONObjectWithData:data
-                                                                          options:0
-                                                                            error:NULL];
-
-             // extract out the list of stations from the response dict, throw away everything
-             // else
-             NSArray *stations = [bikepathjson objectForKey:@"stationBeanList"];
+    
+    
+    NSArray *stations = appDel.stationJSON;
              NSLog(@"%@",stations);
 
              NSDictionary *closestStation = [StationFinder findClosestStation:stations location:currentLocation];
@@ -160,11 +145,11 @@
 
              NSNumber *numberOfBikes = @([[closestStation objectForKey:@"availableBikes"] intValue]);
 
-             GMSMarker *startStation  = [GMSMarkerFactory createGMSMarkerForStation:&closestStationLocation
+             GMSMarker *startStation  = [GMSMarkerFactory createGMSMarkerForStation:closestStationLocation
                                                                   mapView:mapView_
                                                                     title:[closestStation objectForKey:@"stationName"]
-                                                         availableSnippet:@"Bicyles available"
-                                                       unavailableSnippet:@"No bicyles available at this location."
+                                                         availableSnippet:@"Bicycles available"
+                                                       unavailableSnippet:@"No bicycles available at this location."
                                                             numberOfBikes:numberOfBikes];
              [waypoints_ addObject:startStation];
 
@@ -178,7 +163,7 @@
 
              NSNumber *availableDocks = @([[closestStation objectForKey:@"availableDocks"] intValue]);
 
-             GMSMarker *endStation  = [GMSMarkerFactory createGMSMarkerForStation:&closestEndStationLocation
+             GMSMarker *endStation  = [GMSMarkerFactory createGMSMarkerForStation:closestEndStationLocation
                                                                 mapView:mapView_
                                                                   title:[closestEndStation objectForKey:@"stationName"]
                                                        availableSnippet:@"Docks available"
@@ -205,8 +190,6 @@
                         withSelector:selector
                         withDelegate:self];
          }
-     }];
-}
 
 - (void)addDirections:(NSDictionary *)json {
 
