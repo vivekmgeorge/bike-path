@@ -31,6 +31,17 @@
                                                                           options:0
                                                                             error:NULL];
              NSArray* stations = [citiBikeJSON objectForKey:@"stationBeanList"];
+             
+             if (!stations)
+             {
+                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No stations available."
+                                                                 message:error.localizedDescription
+                                                                delegate:nil
+                                                       cancelButtonTitle:@"OK"
+                                                       otherButtonTitles:nil, nil];
+                 [alert show];
+             }
+             
              NSSortDescriptor *sortDescriptor;
              sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"availableBikes"
                                                           ascending:NO];
