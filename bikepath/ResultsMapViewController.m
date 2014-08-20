@@ -37,7 +37,6 @@
 
 //FUNCTION BELOW INCLUDES CITIBIKE CALL - NEEDS TO BE DECOUPLED!
 -(void)buttonPressed {
-    NSLog(@"Button Pressed!");
     NSURL *testURL = [NSURL URLWithString:@"comgooglemaps-x-callback://"];
     if ([[UIApplication sharedApplication] canOpenURL:testURL]) {
         

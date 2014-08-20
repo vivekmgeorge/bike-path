@@ -115,7 +115,6 @@
             NSString *kGoogleGeocodeApiKey = @"AIzaSyAxaqfMyyc-WSrvsWP_jF2IUaTZVjkMlFo";
             NSString *addressForJson = [[NSString alloc] initWithFormat:@"%@%@&key=%@", kGoogleGeocodeApiUrl, addressCombinedString, kGoogleGeocodeApiKey];
             
-            NSLog(@"%@", addressForJson);
             
             NSURL *url = [NSURL URLWithString: addressForJson];
             NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -218,8 +217,6 @@
         ResultsMapViewController *destViewController = segue.destinationViewController;
         SearchItem *item = sender;
         destViewController.item = item;
-        
-        NSLog(@"item: %@", item.searchQuery);
         
     }
 }
