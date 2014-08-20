@@ -108,25 +108,23 @@
             SearchItem *selectedItem   = [[SearchItem alloc] init];
 //            GeocodeItem *geocodedObject = [[GeocodeItem alloc] init];
 //            [AddressGeocoderFactory translateAddressToGeocodeObject:(NSString*)addressString];
-//            NSLog(@"%@", addressString);
-//            NSString *addressForJson = [AddressGeocoderFactory translateAddressToUrl:(NSString *)addressString];
-            
+            NSString *addressForJson = [AddressGeocoderFactory translateAddresstoUrl:addressString];
 //            NSLog(@"%@", geocodedObject);
 //            GeocodeItem *geocodedObject = [AddressGeocoderFactory translateUrlToGeocodedObject:(NSString*)url];
 //            geocodedObject.latitude;
 //            NSLog(@"geocoded object lat: %@", geocodedObject);
             
-            NSString *address = addressString;
-            NSArray *addressItems = [address componentsSeparatedByString:@" "];
-            NSMutableArray *addressCombinedArray = [[NSMutableArray alloc] init];
-            for (NSString *addressPart in addressItems){
-                [addressCombinedArray addObject:[[NSString alloc] initWithFormat:@"%@+", addressPart]];
-            }
-            NSString *addressCombinedString = [addressCombinedArray componentsJoinedByString:@""];
-            NSString *kGoogleGeocodeApiUrl = @"https://maps.googleapis.com/maps/api/geocode/json?address=";
-            NSString *kGoogleGeocodeApiKey = @"AIzaSyAxaqfMyyc-WSrvsWP_jF2IUaTZVjkMlFo";
-            NSString *addressForJson = [[NSString alloc] initWithFormat:@"%@%@&key=%@", kGoogleGeocodeApiUrl, addressCombinedString, kGoogleGeocodeApiKey];
-//
+//            NSString *address = addressString;
+//            NSArray *addressItems = [address componentsSeparatedByString:@" "];
+//            NSMutableArray *addressCombinedArray = [[NSMutableArray alloc] init];
+//            for (NSString *addressPart in addressItems){
+//                [addressCombinedArray addObject:[[NSString alloc] initWithFormat:@"%@+", addressPart]];
+//            }
+//            NSString *addressCombinedString = [addressCombinedArray componentsJoinedByString:@""];
+//            NSString *kGoogleGeocodeApiUrl = @"https://maps.googleapis.com/maps/api/geocode/json?address=";
+//            NSString *kGoogleGeocodeApiKey = @"AIzaSyAxaqfMyyc-WSrvsWP_jF2IUaTZVjkMlFo";
+//            NSString *addressForJson = [[NSString alloc] initWithFormat:@"%@%@&key=%@", kGoogleGeocodeApiUrl, addressCombinedString, kGoogleGeocodeApiKey];
+////
             NSURL *url = [NSURL URLWithString: addressForJson];
             NSURLRequest *request = [NSURLRequest requestWithURL:url];
             [NSURLConnection sendAsynchronousRequest:request
