@@ -15,6 +15,8 @@
 
 @synthesize stationJSON = _stationJSON;
 
+#pragma mark - loadAndSaveCitiBikeData
+
 - (NSArray*)loadCitiBikeData
 {
     NSURL *url = [NSURL URLWithString:@"http://www.citibikenyc.com/stations/json"];
@@ -34,7 +36,7 @@
              NSArray* stations = [citiBikeJSON objectForKey:@"stationBeanList"];
              
              if (!stations)
-             {  
+             {
                  [ErrorMessage renderErrorMessage:@"No stations available." cancelButtonTitle:@"OK" error:nil];
              }
              
@@ -68,13 +70,10 @@
     return _stationJSON;
 }
 
+#pragma mark - UIFormatting
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    NSURLCache *citiBikeCache = [[NSURLCache alloc] initWithMemoryCapacity:4 * 1024 * 1024
-                                                              diskCapacity:20 * 1024 * 1024
-                                                                  diskPath:nil];
-    [NSURLCache setSharedURLCache:citiBikeCache];
-        
     // background color of navigation bar
     //    UIColor * color = [UIColor colorWithRed:244/255.0f green:74/255.0f blue:11/255.0f alpha:1.0f];
     //    [[UINavigationBar appearance] setBarTintColor:color];
@@ -96,6 +95,8 @@
     [GMSServices provideAPIKey:@"AIzaSyDqQ7Ds6pvIZucpKNe0OiEfCCyepC0SHnw"];
     return YES;
 }
+
+#pragma mark - closeApp
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
