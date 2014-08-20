@@ -44,4 +44,11 @@ describe(@"NYCBikeData", ^{
     });
 });
 
+describe(@"ErrorMessage",^{
+    it(@"is an instance of class error message", ^{
+        id errorMock = [UIAlertView mock];
+        [ [errorMock should] beMemberOfClass:[UIAlertView class]];
+    });
+});
+
 SPEC_END
