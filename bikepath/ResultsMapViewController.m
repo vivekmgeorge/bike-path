@@ -66,18 +66,18 @@
     mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     
     //create the button
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     
     //set the position of the button
-    button.frame = CGRectMake(175, 400, 100, 30);
-    button.layer.borderColor = [UIColor blackColor].CGColor;
-    button.layer.borderWidth = 1.0;
-    button.layer.cornerRadius = 10;
+    button.frame = CGRectMake(250, 500, 32, 48);
+//    button.layer.borderColor = [UIColor blackColor].CGColor;
+//    button.layer.borderWidth = 1.0;
+//    button.layer.cornerRadius = 10;
 //    button.backgroundColor = [UIColor whiteColor];
-    [button setBackgroundImage:[UIImage imageNamed:@"bike_icon"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"navButtonTwo"] forState:UIControlStateNormal];
     
     //set the button's title
-    [button setTitle:@"Live Nav" forState:UIControlStateNormal];
+//    [button setTitle:@"Live Nav" forState:UIControlStateNormal];
     
     //listen for clicks
     [button addTarget:self action:@selector(buttonPressed)
