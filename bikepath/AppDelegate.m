@@ -13,19 +13,9 @@
 
 @implementation AppDelegate
 
-@synthesize stationJSON = _stationJSON;
+@synthesize stationJSON;
 
 #pragma mark - loadAndSaveCitiBikeData
-
-- (NSArray*)sortByNumberOfBikes:(NSArray*) citiBikesArray
-{
-    NSSortDescriptor *sortDescriptor;
-    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"availableBikes"
-                                                 ascending:NO];
-    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-    NSArray* sortedStations = [citiBikesArray sortedArrayUsingDescriptors:sortDescriptors];
-    return sortedStations;
-}
 
 - (NSArray*)loadCitiBikeData
 {
@@ -49,7 +39,7 @@
                  [ErrorMessage renderErrorMessage:@"No stations available." cancelButtonTitle:@"OK" error:nil];
              }
              
-             _stationJSON = [self sortByNumberOfBikes:stations];
+             stationJSON = stations;
              
          } else if (error) {
              NSLog(@"%@",error);
@@ -59,7 +49,7 @@
          } else {
              [ErrorMessage renderErrorMessage:@"An unidentified error occurred. Please try again later." cancelButtonTitle:@"OK" error:nil];
          };
-    return _stationJSON;
+    return stationJSON;
 }
 
 #pragma mark - UIFormatting
