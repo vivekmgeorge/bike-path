@@ -176,9 +176,7 @@
         
         [self.searchDisplayController.searchBar setShowsCancelButton:YES animated:YES];
     }
-    BOOL boolToReturn = shouldBeginEditing;
-    shouldBeginEditing = YES;
-    return boolToReturn;
+    return YES;
 }
 
 
