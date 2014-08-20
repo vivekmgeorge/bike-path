@@ -131,12 +131,7 @@
     searchQuery.input = searchString;
     [searchQuery fetchPlaces:^(NSArray *places, NSError *error) {
         if (error) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Could not fetch places"
-            message:error.localizedDescription
-            delegate:nil
-            cancelButtonTitle:@"OK"
-            otherButtonTitles:nil, nil];
-            [alert show];
+            [ErrorMessage renderErrorMessage:@"Could not fetch places." cancelButtonTitle:@"OK" error:error];
         } else {
             searchResultPlaces = places;
             
