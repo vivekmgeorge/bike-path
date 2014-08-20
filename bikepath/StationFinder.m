@@ -16,7 +16,6 @@
     
     
     CLLocationDistance smallestDistance = DBL_MAX;
-    //    CLLocation *closestLocation;
     NSDictionary *closestStation;
     
     //        CLLocation *closestEndLocation;
@@ -38,16 +37,10 @@
             
             if (distance < smallestDistance) {
                 smallestDistance    = distance;
-                //                closestLocation     = location;
                 closestStation      = station;
             }
         }
-        
     }
-    
-    //        print it
-    //    NSLog(@"%@", closestStation);
-    
     return closestStation;
 }
 
