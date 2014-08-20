@@ -38,7 +38,6 @@
              NSArray* sortedStations = [stations sortedArrayUsingDescriptors:sortDescriptors];
              
              _stationJSON = sortedStations;
-             NSLog(@"%@",_stationJSON);
              
              for(id st in sortedStations) {
                  NSDictionary *station = (NSDictionary *)st;
@@ -49,7 +48,7 @@
                  [locations addObject:location];
              }
          }
-    NSLog(@"App Delegate: %@",_stationJSON);
+
     return _stationJSON;
 }
 
