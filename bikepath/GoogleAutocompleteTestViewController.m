@@ -109,8 +109,6 @@
             NSString *addressForJson = [AddressGeocoderFactory translateAddresstoUrl:addressString];
 
             NSMutableDictionary *geocode = [AddressGeocoderFactory translateUrlToGeocodedObject:addressForJson];
-            NSLog(@"in controller, geocode: %@", geocode);
-//            NSLog(@"address: %@",[geocode objectForKey:@"address"]);
             selectedItem.searchQuery   = place.name;
              CLLocation *location = [[CLLocation alloc] initWithLatitude:[[geocode objectForKey:@"latitude"] doubleValue] longitude:[[geocode objectForKey:@"longitude"] doubleValue]];
             selectedItem.lati = location.coordinate.latitude;
@@ -120,10 +118,6 @@
             [self performSegueWithIdentifier: @"showResults" sender: selectedItem];
             [self dismissSearchControllerWhileStayingActive];
             [self.searchDisplayController.searchResultsTableView deselectRowAtIndexPath:indexPath animated:NO];
-//                     }
-//                 }
-//             }];
-//
         }
     }];
 };
