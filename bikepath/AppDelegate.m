@@ -17,7 +17,7 @@
 
 - (NSArray*)loadCitiBikeData
 {
-    NSURL *url = [NSURL URLWithString:@"http://www.citibikenyc.com/stations/js"];
+    NSURL *url = [NSURL URLWithString:@"http://www.citibikenyc.com/stations/json"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: url
                                                            cachePolicy: NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval: 120.0];
@@ -76,8 +76,8 @@
     [NSURLCache setSharedURLCache:citiBikeCache];
         
     // background color of navigation bar
-//    UIColor * color = [UIColor colorWithRed:244/255.0f green:74/255.0f blue:11/255.0f alpha:1.0f];
-//    [[UINavigationBar appearance] setBarTintColor:color];
+    //    UIColor * color = [UIColor colorWithRed:244/255.0f green:74/255.0f blue:11/255.0f alpha:1.0f];
+    //    [[UINavigationBar appearance] setBarTintColor:color];
     // color of back button
     UIColor * color2 = [UIColor colorWithRed:50/255.0f green:115/255.0f blue:233/255.0f alpha:1.0f];;
     [[UINavigationBar appearance] setTintColor: color2];
