@@ -39,10 +39,15 @@
 -(void)buttonPressed {
     NSURL *testURL = [NSURL URLWithString:@"comgooglemaps-x-callback://"];
     if ([[UIApplication sharedApplication] canOpenURL:testURL]) {
-        
+        NSArray *stations = appDel.stationJSON;
+        CLLocationCoordinate2D createEndLocation = CLLocationCoordinate2DMake(self.item.lati, self.item.longi);
+        CLLocation *endLocation = [[CLLocation alloc] initWithLatitude:createEndLocation.latitude
+                                                             longitude:createEndLocation.longitude];
+        NSDictionary *endStationforNav = [StationFinder findClosestStation:stations location:endLocation];
+
         NSString *callBackUrl = @"comgooglemaps-x-callback://";
-        CLLocationDegrees endLati = self.item.lati;
-        CLLocationDegrees endLongi = self.item.longi;
+        CLLocationDegrees endLati = [[endStationforNav objectForKey:@"latitude"] doubleValue];
+        CLLocationDegrees endLongi = [[endStationforNav objectForKey:@"longitude"] doubleValue];
         NSString *directionsMode = @"&directionsmode=bicycling&zoom=17";
         NSString *appConnection = @"&x-success=sourceapp://?resume=true&x-source=bike-path.bikepath";
         NSString *directions = [[NSString alloc] initWithFormat: @"%@?daddr=%f,%f%@%@", callBackUrl, endLati, endLongi, directionsMode, appConnection];
