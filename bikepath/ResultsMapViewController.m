@@ -136,7 +136,6 @@
     
     
     NSArray *stations = appDel.stationJSON;
-             NSLog(@"%@",stations);
 
              NSDictionary *closestStation = [StationFinder findClosestStation:stations location:currentLocation];
              CLLocationCoordinate2D closestStationLocation = CLLocationCoordinate2DMake(

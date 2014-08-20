@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <GoogleMaps/GoogleMaps.h>
+#import "ErrorMessage.h"
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 @implementation AppDelegate
@@ -31,6 +32,12 @@
                                                                           options:0
                                                                             error:NULL];
              NSArray* stations = [citiBikeJSON objectForKey:@"stationBeanList"];
+             
+             if (!stations)
+             {
+                 [ErrorMessage renderErrorMessage:@"No stations available." cancelButtonTitle:@"OK" error:nil];
+             }
+             
              NSSortDescriptor *sortDescriptor;
              sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"availableBikes"
                                                           ascending:NO];
@@ -38,7 +45,6 @@
              NSArray* sortedStations = [stations sortedArrayUsingDescriptors:sortDescriptors];
              
              _stationJSON = sortedStations;
-             NSLog(@"%@",_stationJSON);
              
              for(id st in sortedStations) {
                  NSDictionary *station = (NSDictionary *)st;
@@ -48,8 +54,17 @@
                  NSMutableArray *locations = [[NSMutableArray alloc] init];
                  [locations addObject:location];
              }
-         }
-    NSLog(@"App Delegate: %@",_stationJSON);
+         } else if (error) {
+             _stationJSON = nil;
+             NSLog(@"%@",error);
+             [ErrorMessage renderErrorMessage:@"Connection error. Please try again later." cancelButtonTitle:@"OK" error:error];
+         } else if (data.length < 1) {
+             _stationJSON = nil;
+             [ErrorMessage renderErrorMessage:@"No items were retrieved. Please try again later." cancelButtonTitle:@"OK" error:nil];
+         } else {
+             _stationJSON = nil;
+             [ErrorMessage renderErrorMessage:@"An unidentified error occurred. Please try again later." cancelButtonTitle:@"OK" error:nil];
+         };
     return _stationJSON;
 }
 
@@ -61,8 +76,8 @@
     [NSURLCache setSharedURLCache:citiBikeCache];
         
     // background color of navigation bar
-//    UIColor * color = [UIColor colorWithRed:244/255.0f green:74/255.0f blue:11/255.0f alpha:1.0f];
-//    [[UINavigationBar appearance] setBarTintColor:color];
+    //    UIColor * color = [UIColor colorWithRed:244/255.0f green:74/255.0f blue:11/255.0f alpha:1.0f];
+    //    [[UINavigationBar appearance] setBarTintColor:color];
     // color of back button
     UIColor * color2 = [UIColor colorWithRed:50/255.0f green:115/255.0f blue:233/255.0f alpha:1.0f];;
     [[UINavigationBar appearance] setTintColor: color2];
@@ -94,11 +109,4 @@
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
-
-//- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-//{
-//    cacheBikeStations *cbs;
-//    [cbs loadAndCacheStations];
-//    return YES;
-//}
 @end
