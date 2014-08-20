@@ -17,6 +17,16 @@
 
 #pragma mark - loadAndSaveCitiBikeData
 
+- (NSArray*)sortByNumberOfBikes:(NSArray*) citiBikesArray
+{
+    NSSortDescriptor *sortDescriptor;
+    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"availableBikes"
+                                                 ascending:NO];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    NSArray* sortedStations = [citiBikesArray sortedArrayUsingDescriptors:sortDescriptors];
+    return sortedStations;
+}
+
 - (NSArray*)loadCitiBikeData
 {
     NSURL *url = [NSURL URLWithString:@"http://www.citibikenyc.com/stations/json"];
@@ -28,11 +38,10 @@
     NSData *data = [NSURLConnection sendSynchronousRequest:request
                           returningResponse:&response
                                       error:&error];
+
          if (data.length > 0 && error == nil)
          {
-             NSDictionary *citiBikeJSON = [NSJSONSerialization JSONObjectWithData:data
-                                                                          options:0
-                                                                            error:NULL];
+             NSDictionary *citiBikeJSON = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
              NSArray* stations = [citiBikeJSON objectForKey:@"stationBeanList"];
              
              if (!stations)
@@ -40,31 +49,14 @@
                  [ErrorMessage renderErrorMessage:@"No stations available." cancelButtonTitle:@"OK" error:nil];
              }
              
-             NSSortDescriptor *sortDescriptor;
-             sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"availableBikes"
-                                                          ascending:NO];
-             NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-             NSArray* sortedStations = [stations sortedArrayUsingDescriptors:sortDescriptors];
+             _stationJSON = [self sortByNumberOfBikes:stations];
              
-             _stationJSON = sortedStations;
-             
-             for(id st in sortedStations) {
-                 NSDictionary *station      = (NSDictionary *)st;
-                 NSString *lati             = [station objectForKey:@"latitude"];
-                 NSString *longi            = [station objectForKey:@"longitude"];
-                 CLLocation *location       = [[CLLocation alloc] initWithLatitude:[lati doubleValue] longitude:([longi doubleValue] *2)];
-                 NSMutableArray *locations  = [[NSMutableArray alloc] init];
-                 [locations addObject:location];
-             }
          } else if (error) {
-             _stationJSON = nil;
              NSLog(@"%@",error);
              [ErrorMessage renderErrorMessage:@"Connection error. Please try again later." cancelButtonTitle:@"OK" error:error];
          } else if (data.length < 1) {
-             _stationJSON = nil;
              [ErrorMessage renderErrorMessage:@"No items were retrieved. Please try again later." cancelButtonTitle:@"OK" error:nil];
          } else {
-             _stationJSON = nil;
              [ErrorMessage renderErrorMessage:@"An unidentified error occurred. Please try again later." cancelButtonTitle:@"OK" error:nil];
          };
     return _stationJSON;
