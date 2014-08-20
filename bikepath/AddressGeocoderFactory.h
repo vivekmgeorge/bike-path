@@ -17,6 +17,6 @@
 
 + (NSString*)translateAddresstoUrl:(NSString*)addressString;
 //
-+ (GeocodeItem*)translateUrlToGeocodedObject:(NSString*)url;
++ (NSMutableDictionary*)translateUrlToGeocodedObject:(NSString*)url;
 
 @end
