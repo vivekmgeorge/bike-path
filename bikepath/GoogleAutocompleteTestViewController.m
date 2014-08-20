@@ -31,9 +31,16 @@
     return self;
 }
 
+- (IBAction)unwindToSearchPage:(UIStoryboardSegue *)segue {
+    [self viewDidLoad];
+    
+}
+
+
 - (void)viewDidLoad {
 //    self.navigationController.navigationBar.translucent = YES;
-    [self.navigationController setNavigationBarHidden:TRUE];
+//    [self.navigationController setNavigationBarHidden:TRUE];
+//       [self.navigationController setNavigationBarHidden: NO animated: NO];
     self.searchDisplayController.searchBar.placeholder = @"Search or Address";
     
     GMSCameraPosition *nyc = [GMSCameraPosition cameraWithLatitude:40.706638
@@ -49,12 +56,27 @@
     self.mapView.settings.zoomGestures = YES;
 //    self.mapView.delegate = self;
     
+    
+    
 }
 
-- (void)viewDidUnload {
-    [self setMapView:nil];
-    [super viewDidUnload];
-}
+
+//- (void)viewDidUnload {
+//    [self setMapView:nil];
+//    [super viewDidUnload];
+//}
+//
+//-(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
+//    [self.navigationController setNavigationBarHidden:NO animated:NO];
+//}
+
+//-(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
+//    [UIView animateWithDuration:0.2 animations:^{
+//        CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
+//        double yDiff = self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height + statusBarFrame.size.height;
+//        self.navigationController.navigationBar.frame = CGRectMake(0, yDiff, 320, self.navigationController.navigationBar.frame.size.height);
+//    }];
+//}
 
 #pragma mark -
 #pragma mark UITableViewDataSource
@@ -81,6 +103,10 @@
 
 #pragma mark -
 #pragma mark UITableViewDelegate
+
+//- (UINavigationController *)navigationController {
+//    return nil;
+//}
 
 - (void)dismissSearchControllerWhileStayingActive {
     // Animate out the table view.
@@ -137,6 +163,7 @@
             [alert show];
         } else {
             searchResultPlaces = places;
+            
             [self.searchDisplayController.searchResultsTableView reloadData];
         }
     }];
@@ -154,6 +181,7 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     if (![searchBar isFirstResponder]) {
+        
         // User tapped the 'clear' button.
         shouldBeginEditing = NO;
         [self.searchDisplayController setActive:NO];
