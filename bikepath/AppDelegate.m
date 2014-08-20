@@ -14,7 +14,7 @@
 
 @synthesize stationJSON = _stationJSON;
 
-- (NSArray*)loadCitiBikeData
+- (NSArray*)loadCitiBikeDatax
 {
     NSURL *url = [NSURL URLWithString:@"http://www.citibikenyc.com/stations/json"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: url
@@ -47,6 +47,8 @@
                  NSMutableArray *locations = [[NSMutableArray alloc] init];
                  [locations addObject:location];
              }
+         } else {
+             _stationJSON = nil;
          }
 
     return _stationJSON;
