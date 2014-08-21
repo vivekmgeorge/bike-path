@@ -15,6 +15,7 @@
 #import "AppDelegate.h"
 #import "StationFinder.h"
 #import "GMSMarkerFactory.h"
+#import "ErrorMessage.h"
 
 @interface ResultsMapViewController () {
     GMSMapView *mapView_;
@@ -27,11 +28,6 @@
 @implementation ResultsMapViewController
 
 - (IBAction)unwindToSearchPage:(UIStoryboardSegue *)segue {}
-
-- (BOOL)prefersStatusBarHidden
-{
-    return YES;
-}
 
 - (NSString *)deviceLocation {
     return [NSString stringWithFormat:@"latitude: %f longitude: %f", locationManager.location.coordinate.latitude, locationManager.location.coordinate.longitude];
@@ -182,8 +178,13 @@
          }
 
 - (void)addDirections:(NSDictionary *)json {
-
-    NSDictionary *routes = [json objectForKey:@"routes"][0];
+    NSDictionary *routes;
+    if ([json objectForKey:@"routes"][0]) {
+        routes = [json objectForKey:@"routes"][0];
+    } else {
+        [ErrorMessage renderErrorMessage:@"No routes found. Please reword your query with a full street address." cancelButtonTitle:@"OK" error:nil];
+    }
+    
 
     NSDictionary *route = [routes objectForKey:@"overview_polyline"];
     NSString *overview_route = [route objectForKey:@"points"];
