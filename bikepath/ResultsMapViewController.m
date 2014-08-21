@@ -31,6 +31,11 @@
 
 }
 
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
+
 - (NSString *)deviceLocation {
     return [NSString stringWithFormat:@"latitude: %f longitude: %f", locationManager.location.coordinate.latitude, locationManager.location.coordinate.longitude];
 }
@@ -68,6 +73,7 @@
 - (void) initMap{
     
     NSLog(@"in results, item: %@", self.item);
+    NSLog(@"in results, place name: %@", self.item.searchQuery);
     
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.706638 longitude:-74.009070 zoom:13];
 //    
