@@ -75,12 +75,12 @@
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     
     //set the position of the button
-    button.frame = CGRectMake(250, 500, 48, 48);
+    button.frame = CGRectMake(250, 500, 64, 64);
 //    button.layer.borderColor = [UIColor blackColor].CGColor;
 //    button.layer.borderWidth = 1.0;
 //    button.layer.cornerRadius = 10;
 //    button.backgroundColor = [UIColor whiteColor];
-    [button setImage:[UIImage imageNamed:@"navButtonNew"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"navButton"] forState:UIControlStateNormal];
     
     //set the button's title
 //    [button setTitle:@"Live Nav" forState:UIControlStateNormal];
@@ -112,6 +112,9 @@
 - (void)viewDidLoad{
     // do the default view behavior
     [super viewDidLoad];
+    
+    UIImage* logoImage = [UIImage imageNamed:@"inappicon"];
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:logoImage];
     
     AppDelegate *appDel = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [appDel loadCitiBikeData];
