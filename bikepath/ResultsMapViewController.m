@@ -153,10 +153,10 @@
     if ([[self.item.searchQuery componentsSeparatedByString:@","] objectAtIndex:0])
     {
         destinationName = [[self.item.searchQuery componentsSeparatedByString:@","] objectAtIndex:0];
-    } else
-    {
+    } else {
         destinationName = self.item.searchQuery;
-    }
+    };
+//    NSLog(destinationName);
     GMSMarker *endPoint = [GMSMarkerFactory createGMSMarker:createEndLocation
                                                     mapView:mapView_
                                                       title:destinationName
