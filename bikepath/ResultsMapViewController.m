@@ -156,7 +156,7 @@
     } else {
         destinationName = self.item.searchQuery;
     };
-    NSLog(destinationName);
+//    NSLog(destinationName);
     GMSMarker *endPoint = [GMSMarkerFactory createGMSMarker:createEndLocation
                                                     mapView:mapView_
                                                       title:destinationName
