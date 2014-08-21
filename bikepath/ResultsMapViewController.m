@@ -135,7 +135,7 @@
                                                       mapView:mapView_
                                                         title:@"Start"
                                                         color:[UIImage imageNamed:@"startStation"]];
-    [waypoints_ addObject: startPoint];
+    [waypoints_ addObject:startPoint];
 
     CLLocation *currentLocation = [[CLLocation alloc] initWithLatitude:startPosition.latitude
                                                              longitude:startPosition.longitude];
