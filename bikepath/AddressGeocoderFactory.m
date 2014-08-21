@@ -10,7 +10,6 @@
 
 @implementation AddressGeocoderFactory
 
-//+ (GeocodeItem*)translateAddressToGeocodeObject:(NSString*) addressString {
 + (NSString*)translateAddresstoUrl:(NSString*)addressString{
     //create api url
     NSArray *addressItems = [addressString componentsSeparatedByString:@" "];
@@ -22,6 +21,7 @@
     NSString *kGoogleGeocodeApiUrl = @"https://maps.googleapis.com/maps/api/geocode/json?address=";
     NSString *kGoogleGeocodeApiKey = @"AIzaSyAxaqfMyyc-WSrvsWP_jF2IUaTZVjkMlFo";
     NSString *addressForJson = [[NSString alloc] initWithFormat:@"%@%@&key=%@", kGoogleGeocodeApiUrl, addressCombinedString, kGoogleGeocodeApiKey];
+    
     return addressForJson;
 }
 
