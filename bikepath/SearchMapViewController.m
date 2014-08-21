@@ -10,11 +10,11 @@
 #import <MapKit/MapKit.h>
 #import <UIKit/UIKit.h>
 #import "SearchMapViewController.h"
-#import "SearchItem.h"
-#import "AppDelegate.h"
 #import "SPGooglePlacesAutocomplete.h"
 #import "ResultsMapViewController.h"
 #import "AddressGeocoderFactory.h"
+#import "SearchItem.h"
+#import "AppDelegate.h"
 #import "ErrorMessage.h"
 
 @interface SearchMapViewController ()
@@ -46,7 +46,7 @@
     [self.view setAutoresizesSubviews:YES];
     [self.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
     
-    self.searchDisplayController.searchBar.placeholder = @"Enter your destination";
+    self.searchDisplayController.searchBar.placeholder = @"Where would you like to go?";
     
     AppDelegate *appDel = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [appDel loadCitiBikeData];
