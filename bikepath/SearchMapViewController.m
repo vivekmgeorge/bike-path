@@ -219,6 +219,10 @@
         ResultsMapViewController *destViewController = segue.destinationViewController;
         SearchItem *item = sender;
         destViewController.item = item;
+        
+        NSLog(@"in search, item: %@", item);
+        NSLog(@"in search, search Query, item: %@", item.searchQuery);
+        NSLog(@"in search, lati, item: %@", item.searchQuery);
     }
 }
 
