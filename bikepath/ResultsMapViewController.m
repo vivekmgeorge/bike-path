@@ -39,11 +39,20 @@
 -(void)buttonPressed {
     NSURL *testURL = [NSURL URLWithString:@"comgooglemaps-x-callback://"];
     if ([[UIApplication sharedApplication] canOpenURL:testURL]) {
+        AppDelegate *appDel = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         NSArray *stations = appDel.stationJSON;
         CLLocationCoordinate2D createEndLocation = CLLocationCoordinate2DMake(self.item.lati, self.item.longi);
         CLLocation *endLocation = [[CLLocation alloc] initWithLatitude:createEndLocation.latitude
                                                              longitude:createEndLocation.longitude];
+    
         NSDictionary *endStationforNav = [StationFinder findClosestStation:stations location:endLocation];
+    
+//    NSLog(@"station for nav: %@", endStationforNav );
+//    NSLog(@"stations: %@", stations);
+//
+//        NSLog(@"lati: %f",[[endStationforNav objectForKey:@"latitude"] doubleValue]);
+//        NSLog(@"longi: %f",[[endStationforNav objectForKey:@"longitude"] doubleValue]);
+//    
 
         NSString *callBackUrl = @"comgooglemaps-x-callback://";
         CLLocationDegrees endLati = [[endStationforNav objectForKey:@"latitude"] doubleValue];
@@ -52,7 +61,7 @@
         NSString *appConnection = @"&x-success=sourceapp://?resume=true&x-source=bike-path.bikepath";
         NSString *directions = [[NSString alloc] initWithFormat: @"%@?daddr=%f,%f%@%@", callBackUrl, endLati, endLongi, directionsMode, appConnection];
         NSLog(@"%@", directions);
-        
+
         NSString *directionsRequest = directions;
         NSURL *directionsURL = [NSURL URLWithString:directionsRequest];
         [[UIApplication sharedApplication] openURL:directionsURL];
@@ -70,6 +79,7 @@
 //  GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude: 37.7848395 longitude:-122.4041945 zoom:13];
     
     mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+
     
     //create the button
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -83,7 +93,7 @@
     [button setImage:[UIImage imageNamed:@"navButton"] forState:UIControlStateNormal];
     
     //set the button's title
-//    [button setTitle:@"Live Nav" forState:UIControlStateNormal];
+//    [button setTitle:@"Live Nav" forState:UI    ControlStateNormal];
     
     //listen for clicks
     [button addTarget:self action:@selector(buttonPressed)
@@ -91,10 +101,6 @@
     
     mapView_.delegate = self;
     self.view = mapView_;
-    mapView_.myLocationEnabled = YES;
-    mapView_.settings.compassButton = YES;
-    mapView_.settings.myLocationButton = YES;
-    mapView_.settings.zoomGestures = YES;
     [mapView_ addSubview:button];
     return;
 }

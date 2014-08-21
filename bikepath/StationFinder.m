@@ -14,31 +14,20 @@
 + (NSDictionary *) findClosestStation: (NSArray *) stations
                              location: (CLLocation *) currentLocation {
     
-    
-    CLLocationDistance smallestDistance = DBL_MAX;
+    CLLocationDistance smallestDistance = [currentLocation distanceFromLocation:stations[0]];
     NSDictionary *closestStation;
     
-    //        CLLocation *closestEndLocation;
-    //        NSDictionary *closestEndStation;
-    
-    for(id st in stations) {
-        NSDictionary *station      = (NSDictionary *)st;
+    for(NSDictionary *station in stations) {
         NSString *stationLatitude  = [station objectForKey:@"latitude"];
         NSString *stationLongitude = [station objectForKey:@"longitude"];
         
-        
         CLLocation *bikeStop = [[CLLocation alloc] initWithLatitude:[stationLatitude doubleValue] longitude:[stationLongitude doubleValue]];
         
-        NSMutableArray *locations = [[NSMutableArray alloc] init];
-        [locations addObject:bikeStop];
-        
-        for (CLLocation *location in locations) {
-            CLLocationDistance distance = [currentLocation distanceFromLocation:location];
+        CLLocationDistance distance = [currentLocation distanceFromLocation:bikeStop];
             
-            if (distance < smallestDistance) {
-                smallestDistance    = distance;
-                closestStation      = station;
-            }
+        if (distance < smallestDistance) {
+            smallestDistance = distance;
+            closestStation   = station;
         }
     }
     return closestStation;
