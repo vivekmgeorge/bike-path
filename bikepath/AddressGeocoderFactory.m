@@ -10,7 +10,7 @@
 
 @implementation AddressGeocoderFactory
 
-+ (NSString*)translateAddresstoUrl:(NSString*)addressString{
++ (NSString*)translateAddresstoUrl:(NSString*)addressString {
     NSArray *addressItems = [addressString componentsSeparatedByString:@" "];
     NSMutableArray *addressCombinedArray = [[NSMutableArray alloc] init];
     for (NSString *addressPart in addressItems){
@@ -23,14 +23,10 @@
     return addressForJson;
 }
 
-
 +(NSMutableDictionary *) processTheJson:(NSData*)data {
     NSMutableDictionary *geocodedDictionary = [[NSMutableDictionary alloc] init];
 
-    NSDictionary *addressJson = [NSJSONSerialization
-                                 JSONObjectWithData:data
-                                 options:0
-                                 error:NULL];
+    NSDictionary *addressJson = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
     NSDictionary *resultsPart = [addressJson objectForKey:@"results"];
     NSArray *addressParts = [resultsPart valueForKey:@"geometry"];
     NSString *formattedAddress = [resultsPart valueForKey:@"formatted_address"];
@@ -39,7 +35,8 @@
         NSDictionary *addressPartsLocation = (NSDictionary *)[info valueForKey:@"location"];
         NSString *lati = [addressPartsLocation objectForKey:@"lat"];
         NSString *longi = [addressPartsLocation objectForKey:@"lng"];
-        CLLocation *location = [[CLLocation alloc] initWithLatitude:[lati doubleValue] longitude:[longi doubleValue]];
+        CLLocation *location = [[CLLocation alloc] initWithLatitude:[lati doubleValue]
+                                                          longitude:[longi doubleValue]];
         
         [geocodedDictionary setObject:lati forKey:@"latitude"];
         [geocodedDictionary setObject:longi forKey:@"longitude"];
@@ -57,9 +54,7 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     NSURLResponse *response;
     NSError *error = nil;
-    NSData* data = [
-                    NSURLConnection sendSynchronousRequest:request returningResponse:&response
-                    error: &error];
+    NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error: &error];
     geocodedDictionary = [self processTheJson:data];
     return geocodedDictionary;
 }
