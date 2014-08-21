@@ -73,7 +73,6 @@ describe(@"NYCBikeData", ^{
         NSDictionary *closestStation = [StationFinder findClosestStation:stations location:currentLocation];
         
 //        print result (not an assertion)
-        NSLog(@"%@", closestStation);
         
     });
 });
@@ -93,7 +92,6 @@ describe(@"SearchItem", ^ {
     item.longi =location.coordinate.latitude;
     item.position = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
     item.address = @"48 Wall Street, New York, NY";
-    
     it(@"is an instance of class search item", ^{
         [[item should] beKindOfClass:[SearchItem class]];
     });
