@@ -35,7 +35,6 @@
     return [NSString stringWithFormat:@"latitude: %f longitude: %f", locationManager.location.coordinate.latitude, locationManager.location.coordinate.longitude];
 }
 
-//FUNCTION BELOW INCLUDES CITIBIKE CALL - NEEDS TO BE DECOUPLED!
 -(void)buttonPressed {
     NSURL *testURL = [NSURL URLWithString:@"comgooglemaps-x-callback://"];
     if ([[UIApplication sharedApplication] canOpenURL:testURL]) {
@@ -143,7 +142,15 @@
 
     CLLocationCoordinate2D createEndLocation = CLLocationCoordinate2DMake(self.item.lati, self.item.longi);
     
-    NSString *destinationName = [[self.item.searchQuery componentsSeparatedByString:@","] objectAtIndex:0];
+    NSString *destinationName;
+    
+    if ([[self.item.searchQuery componentsSeparatedByString:@","] objectAtIndex:0])
+    {
+        destinationName = [[self.item.searchQuery componentsSeparatedByString:@","] objectAtIndex:0];
+    } else
+    {
+        destinationName = self.item.searchQuery;
+    }
     GMSMarker *endPoint = [GMSMarkerFactory createGMSMarker:createEndLocation
                                                     mapView:mapView_
                                                       title:destinationName
