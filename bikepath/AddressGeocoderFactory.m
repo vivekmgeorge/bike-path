@@ -10,9 +10,7 @@
 
 @implementation AddressGeocoderFactory
 
-//+ (GeocodeItem*)translateAddressToGeocodeObject:(NSString*) addressString {
 + (NSString*)translateAddresstoUrl:(NSString*)addressString{
-    //create api url
     NSArray *addressItems = [addressString componentsSeparatedByString:@" "];
     NSMutableArray *addressCombinedArray = [[NSMutableArray alloc] init];
     for (NSString *addressPart in addressItems){
@@ -28,7 +26,7 @@
 
 +(NSMutableDictionary *) processTheJson:(NSData*)data {
     NSMutableDictionary *geocodedDictionary = [[NSMutableDictionary alloc] init];
-    // parse json to create object
+
     NSDictionary *addressJson = [NSJSONSerialization
                                  JSONObjectWithData:data
                                  options:0

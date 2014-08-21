@@ -21,7 +21,8 @@
         NSString *stationLatitude  = [station objectForKey:@"latitude"];
         NSString *stationLongitude = [station objectForKey:@"longitude"];
         
-        CLLocation *bikeStop = [[CLLocation alloc] initWithLatitude:[stationLatitude doubleValue] longitude:[stationLongitude doubleValue]];
+        CLLocation *bikeStop = [[CLLocation alloc] initWithLatitude:[stationLatitude doubleValue]
+                                                          longitude:[stationLongitude doubleValue]];
         
         CLLocationDistance distance = [currentLocation distanceFromLocation:bikeStop];
             

@@ -34,8 +34,7 @@
              NSDictionary *citiBikeJSON = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
              NSArray* stations = [citiBikeJSON objectForKey:@"stationBeanList"];
              
-             if (!stations)
-             {
+             if (!stations) {
                  [ErrorMessage renderErrorMessage:@"No stations available." cancelButtonTitle:@"OK" error:nil];
              }
              
@@ -53,8 +52,7 @@
 
 #pragma mark - UIFormatting
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // background color of navigation bar
         UIColor * color = [UIColor colorWithRed:50/255.0f green:115/255.0f blue:233/255.0f alpha:1.0f];
     [[UINavigationBar appearance] setBarTintColor:color];

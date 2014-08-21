@@ -20,8 +20,6 @@
     BOOL shouldBeginEditing;
 }
 
-
 @property (strong, nonatomic) IBOutlet GMSMapView *mapView;
-
 
 @end

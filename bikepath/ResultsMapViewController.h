@@ -13,7 +13,6 @@
 AppDelegate *appDel;
 @interface ResultsMapViewController : UIViewController <GMSMapViewDelegate>
 
-
 @property (strong, nonatomic) IBOutlet GMSMapView *mapView;
 
 - (IBAction)unwindToSearchPage:(UIStoryboardSegue *)segue;
