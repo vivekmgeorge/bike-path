@@ -57,9 +57,6 @@
     if (self.countryCode != nil) {
         [url appendFormat:@"&components=country:%@", self.countryCode];
     }
-    
-    NSLog(@"google string:%@", url);
-    
     return url;
 }
 

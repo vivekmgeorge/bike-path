@@ -12,14 +12,12 @@
 
 @class SPGooglePlacesAutocompleteQuery;
 
-@interface GoogleAutocompleteTestViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, UISearchBarDelegate, MKMapViewDelegate>
-{
+@interface GoogleAutocompleteTestViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, UISearchBarDelegate, MKMapViewDelegate> {
     NSArray *searchResultPlaces;
     SPGooglePlacesAutocompleteQuery *searchQuery;
-//    MKPointAnnotation *selectedPlaceAnnotation;
-    
     BOOL shouldBeginEditing;
 }
+
 @property (strong, nonatomic) IBOutlet GMSMapView *mapView;
 
 @end

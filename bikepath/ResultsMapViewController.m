@@ -26,10 +26,7 @@
 
 @implementation ResultsMapViewController
 
-
-- (IBAction)unwindToSearchPage:(UIStoryboardSegue *)segue{
-
-}
+- (IBAction)unwindToSearchPage:(UIStoryboardSegue *)segue {}
 
 - (BOOL)prefersStatusBarHidden
 {
@@ -50,9 +47,6 @@
                                                              longitude:createEndLocation.longitude];
     
         NSDictionary *endStationforNav = [StationFinder findClosestStation:stations location:endLocation];
-    
-//        NSLog(@"lati: %f",[[endStationforNav objectForKey:@"latitude"] doubleValue]);
-//        NSLog(@"longi: %f",[[endStationforNav objectForKey:@"longitude"] doubleValue]); 
 
         NSString *callBackUrl = @"comgooglemaps-x-callback://";
         CLLocationDegrees endLati = [[endStationforNav objectForKey:@"latitude"] doubleValue];
@@ -60,7 +54,6 @@
         NSString *directionsMode = @"&directionsmode=bicycling&zoom=17";
         NSString *appConnection = @"&x-success=sourceapp://?resume=true&x-source=bike-path.bikepath";
         NSString *directions = [[NSString alloc] initWithFormat: @"%@?daddr=%f,%f%@%@", callBackUrl, endLati, endLongi, directionsMode, appConnection];
-        NSLog(@"%@", directions);
 
         NSString *directionsRequest = directions;
         NSURL *directionsURL = [NSURL URLWithString:directionsRequest];
@@ -70,33 +63,17 @@
     }
 }
 
-- (void) initMap{
-    
-    NSLog(@"in results, item: %@", self.item);
-    NSLog(@"in results, place name: %@", self.item.searchQuery);
-    
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.706638 longitude:-74.009070 zoom:13];
-//    
-//  GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude: 37.7848395 longitude:-122.4041945 zoom:13];
-    
+- (void) initMap:(CLLocationCoordinate2D)userLocation {
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:userLocation.latitude
+                                                            longitude:userLocation.longitude
+                                                                 zoom:13];
     mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
 
-    
-    //create the button
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     
-    //set the position of the button
     button.frame = CGRectMake(250, 500, 64, 64);
-//    button.layer.borderColor = [UIColor blackColor].CGColor;
-//    button.layer.borderWidth = 1.0;
-//    button.layer.cornerRadius = 10;
-//    button.backgroundColor = [UIColor whiteColor];
     [button setImage:[UIImage imageNamed:@"navButton"] forState:UIControlStateNormal];
     
-    //set the button's title
-//    [button setTitle:@"Live Nav" forState:UI    ControlStateNormal];
-    
-    //listen for clicks
     [button addTarget:self action:@selector(buttonPressed)
      forControlEvents:UIControlEventTouchUpInside];
     
@@ -106,18 +83,14 @@
     return;
 }
 
-- (void)getUserLocation{
+- (void)currentUserLocation {
     locationManager = [[CLLocationManager alloc] init];
-}
-
-- (void)updateUserLocation{
     locationManager.distanceFilter = kCLDistanceFilterNone; // whenever we move
     locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters; // 100 m
     [locationManager startUpdatingLocation];
 }
 
-- (void)viewDidLoad{
-    // do the default view behavior
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     UIImage* logoImage = [UIImage imageNamed:@"inappicon"];
@@ -126,25 +99,19 @@
     AppDelegate *appDel = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [appDel loadCitiBikeData];
 
-    [self initMap];
-    [self getUserLocation];
-    [self updateUserLocation];
+    [self currentUserLocation];
+    CLLocationCoordinate2D startPosition = locationManager.location.coordinate;
+    CLLocation *currentLocation = [[CLLocation alloc] initWithLatitude:startPosition.latitude
+                                                             longitude:startPosition.longitude];
+    [self initMap:startPosition];
 
-    // init a waypoints instance var, it's an array of markers not locations
     waypoints_ = [[NSMutableArray alloc]init];
 
-    // place a marker on the map at the current location of the phone
-//    NSDictionary *closestStation = [StationFinder findClosestStation:stations location:currentLocation];
-    CLLocationCoordinate2D startPosition = locationManager.location.coordinate;
     GMSMarker *startPoint = [GMSMarkerFactory createGMSMarker:startPosition
                                                       mapView:mapView_
                                                         title:@"Start"
                                                         color:[UIImage imageNamed:@"startStation"]];
-    [waypoints_ addObject: startPoint];
-
-    CLLocation *currentLocation = [[CLLocation alloc] initWithLatitude:startPosition.latitude
-                                                             longitude:startPosition.longitude];
-
+    [waypoints_ addObject:startPoint];
 
     CLLocationCoordinate2D createEndLocation = CLLocationCoordinate2DMake(self.item.lati, self.item.longi);
     
@@ -163,8 +130,6 @@
                                                       color:[UIImage imageNamed:@"endStation"]];
     [waypoints_ addObject:endPoint];
 
-    
-    
     NSArray *stations = appDel.stationJSON;
 
              NSDictionary *closestStation = [StationFinder findClosestStation:stations location:currentLocation];
@@ -200,7 +165,6 @@
                                                           numberOfBikes:availableDocks];
              [waypoints_ addObject:endStation];
 
-             // make google waypoint search struct ... do this somewhere else
              NSMutableArray *markerStrings = [[NSMutableArray alloc] init];
              for(GMSMarker *waypoint in waypoints_){
                  [markerStrings addObject:[[NSString alloc] initWithFormat:@"%f,%f", waypoint.position.latitude, waypoint.position.longitude]];
@@ -211,8 +175,6 @@
              NSDictionary *query = [NSDictionary dictionaryWithObjects:parameters
                                                                forKeys:keys];
 
-             // finally, find the waypoints and set the delegate to this view, the direction
-             // lines will be drawn when the request completes
              MDDirectionService *mds=[[MDDirectionService alloc] init];
              SEL selector = @selector(addDirections:);
              [mds setDirectionsQuery:query
@@ -232,8 +194,7 @@
     polyline.map = mapView_;
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
