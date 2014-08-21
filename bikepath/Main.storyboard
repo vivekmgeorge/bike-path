@@ -39,7 +39,7 @@
             </objects>
             <point key="canvasLocation" x="-143" y="-923"/>
         </scene>
-        <!--Search Map View Controller - Get Directions-->
+        <!--Search Map View Controller - Nearest Stations-->
         <scene sceneID="uBy-pW-Yuz">
             <objects>
                 <viewController id="nM0-WI-Oec" customClass="SearchMapViewController" sceneMemberID="viewController">
