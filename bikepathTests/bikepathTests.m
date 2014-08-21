@@ -10,6 +10,8 @@
 #import <CoreLocation/CoreLocation.h>
 #import "StationFinder.h"
 #import "AddressGeocoderFactory.h"
+#import "GMSMarkerFactory.h"
+#import <GoogleMaps/GoogleMaps.h>
 
 SPEC_BEGIN(MathSpec)
 
@@ -35,7 +37,19 @@ describe(@"AddressGeocoderFactory", ^{
     it(@"translates a query URL to a geocoded object",^{
         NSString *url = @"https://maps.googleapis.com/maps/api/geocode/json?address=48+Wall+St+&key=AIzaSyAxaqfMyyc-WSrvsWP_jF2IUaTZVjkMlFo";
         NSMutableDictionary *geocodedObject = [AddressGeocoderFactory translateUrlToGeocodedObject:url];
-        [[geocodedObject should] containsObject:nil];
+        [[[geocodedObject allKeys]should]containObjects:@"latitude",@"longitude",@"position", nil];
+    });
+});
+
+describe(@"GMSMarkerFactory", ^{
+    it(@"creates a marker for a trip start point", ^{
+//       do stuff
+    });
+    it(@"creates a marker for a full bike station",^{
+//        do stuff
+    });
+    it(@"creates a marker for an empty bike station",^{
+//        do stuff
     });
 });
 

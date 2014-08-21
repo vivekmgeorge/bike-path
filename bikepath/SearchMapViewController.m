@@ -16,6 +16,7 @@
 #import "SearchItem.h"
 #import "AppDelegate.h"
 #import "ErrorMessage.h"
+#import "GMSMarkerFactory.h"
 
 @interface SearchMapViewController ()
 
@@ -35,19 +36,13 @@
     return self;
 }
 
-- (IBAction)unwindToSearchPage:(UIStoryboardSegue *)segue {
-    
-}
+- (IBAction)unwindToSearchPage:(UIStoryboardSegue *)segue {}
 
-- (BOOL)prefersStatusBarHidden
-{
-    return YES;
-}
-
-- (void)viewDidLoad
-
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UIImage* logoImage = [UIImage imageNamed:@"titleicon"];
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:logoImage];
 
     self.searchDisplayController.searchBar.placeholder = @"Where would you like to go?";
     
@@ -57,39 +52,23 @@
     GMSCameraPosition *startLocation = [GMSCameraPosition cameraWithLatitude:40.706638
                                                          longitude:-74.009070
                                                               zoom:16];
-    
-//    GMSCameraPosition *startLocation = [GMSCameraPosition cameraWithLatitude:37.7848395
-//                                                            longitude:-122.4041945
-//                                                                 zoom:15];
-    
     [self.mapView setCamera:startLocation];
-    self.mapView.mapType                    = kGMSTypeNormal;
-    self.mapView.settings.zoomGestures      = YES;
-    self.mapView.myLocationEnabled          = YES;
-    self.mapView.settings.myLocationButton  = YES;
-    self.mapView.settings.compassButton = YES;
-    self.mapView.delegate                   = self;
+    self.mapView.mapType                   = kGMSTypeNormal;
+    self.mapView.settings.zoomGestures     = YES;
+    self.mapView.myLocationEnabled         = YES;
+    self.mapView.settings.myLocationButton = YES;
+    self.mapView.settings.compassButton    = YES;
+    self.mapView.delegate                  = self;
     
     for(id station in appDel.stationJSON) {
-        NSString *latitude          = [station objectForKey:@"latitude"];
-        NSString *longitude         = [station objectForKey:@"longitude"];
-        NSString *title             = [station objectForKey:@"stationName"];
-        NSString *availableBikes    = [[station objectForKey:@"availableBikes"] stringValue];
-        NSNumber *num               = @([[station objectForKey:@"availableBikes"] intValue]);
-        
-        GMSMarker *citiMarker   = [[GMSMarker alloc] init];
-        citiMarker.position     = CLLocationCoordinate2DMake([latitude doubleValue], [longitude doubleValue]);
-        citiMarker.title        = title;
-        citiMarker.map          = self.mapView;
-        
-        if ([num intValue] > 0) {
-            citiMarker.icon = [UIImage imageNamed:@"bicycleGreen"];
-            citiMarker.snippet  = [NSString stringWithFormat:@"Bicycles available: %@", availableBikes];
-        } else {
-            citiMarker.icon = [UIImage imageNamed:@"bicycleRed"];
-            citiMarker.snippet = @"No bicycles available at this location.";
-        };
-        citiMarker.map = self.mapView;
+        [GMSMarkerFactory createGMSMarkerForStation:CLLocationCoordinate2DMake(
+                                                   [[station objectForKey:@"latitude"]doubleValue],
+                                                   [[station objectForKey:@"longitude"]doubleValue])
+                                            mapView:self.mapView
+                                              title:[station objectForKey:@"stationName"]
+                                   availableSnippet:@"Bicycles available"
+                                 unavailableSnippet:@"No bicycles available at this location."
+                                      numberOfBikes:[station objectForKey:@"availableBikes"]];
     }
 }
 
@@ -138,16 +117,21 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     SPGooglePlacesAutocompletePlace *place = [self placeAtIndexPath:indexPath];
+    NSLog(@"place.name: %@", place.name);
     [place resolveToPlacemark:^(CLPlacemark *placemark, NSString *addressString, NSError *error) {
         if (error) {
             [ErrorMessage renderErrorMessage:@"Could not map selected place" cancelButtonTitle:@"OK" error:error];
         } else if (placemark) {
             SearchItem *selectedItem   = [[SearchItem alloc] init];
-            NSString *addressForJson = [AddressGeocoderFactory translateAddresstoUrl:addressString];
-            
+            NSString *addressForJson = [[NSString alloc] init];
+            NSArray *addressStringSplit = [addressString componentsSeparatedByString:@" "];
+            if (addressStringSplit.count < 3) {
+                addressForJson = [AddressGeocoderFactory translateAddresstoUrl:place.name];
+            } else {
+                addressForJson = [AddressGeocoderFactory translateAddresstoUrl:addressString];
+            }
             NSMutableDictionary *geocode = [AddressGeocoderFactory translateUrlToGeocodedObject:addressForJson];
             selectedItem.searchQuery   = place.name;
-            NSLog(@"name: %@", place.name);
             CLLocation *location = [[CLLocation alloc] initWithLatitude:[[geocode objectForKey:@"latitude"] doubleValue] longitude:[[geocode objectForKey:@"longitude"] doubleValue]];
             selectedItem.lati = location.coordinate.latitude;
             selectedItem.longi = location.coordinate.longitude;
@@ -197,7 +181,6 @@
         // User tapped the 'clear' button.
         shouldBeginEditing = NO;
         [self.searchDisplayController setActive:NO];
-        //        [self.mapView removeAnnotation:selectedPlaceAnnotation];
     }
 }
 
@@ -217,21 +200,12 @@
     return boolToReturn;
 }
 
-// segue to results page
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"showResults"]) {
         ResultsMapViewController *destViewController = segue.destinationViewController;
         SearchItem *item = sender;
         destViewController.item = item;
-        
-        NSLog(@"in search, item: %@", item);
-        NSLog(@"in search, search Query, item: %@", item.searchQuery);
-        NSLog(@"in search, lati, item: %@", item.searchQuery);
     }
 }
 
-
-
 @end
-
-
