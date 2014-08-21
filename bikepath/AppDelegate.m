@@ -57,10 +57,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // background color of navigation bar
-    //    UIColor * color = [UIColor colorWithRed:244/255.0f green:74/255.0f blue:11/255.0f alpha:1.0f];
-    //    [[UINavigationBar appearance] setBarTintColor:color];
+        UIColor * color = [UIColor colorWithRed:50/255.0f green:115/255.0f blue:233/255.0f alpha:1.0f];
+    [[UINavigationBar appearance] setBarTintColor:color];
     // color of back button
-    UIColor * color2 = [UIColor colorWithRed:50/255.0f green:115/255.0f blue:233/255.0f alpha:1.0f];;
+    UIColor * color2 = [UIColor colorWithRed:255/255.0f green:255/255.0f blue:255/255.0f alpha:1.0f];;
     [[UINavigationBar appearance] setTintColor: color2];
     
     //set back indicator image
@@ -70,7 +70,7 @@
     // font style of the title
      NSShadow *shadow = [[NSShadow alloc] init];
      [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
-     [UIColor colorWithRed:50/255.0f green:115/255.0f blue:233/255.0f alpha:1.0f], NSForegroundColorAttributeName,
+     [UIColor colorWithRed:255/255.0f green:255/255.0f blue:255/255.0f alpha:1.0f],NSForegroundColorAttributeName,
      shadow, NSShadowAttributeName,
      [UIFont fontWithName:@"STHeitiTC-Medium" size:18.0], NSFontAttributeName, nil]];
     
