@@ -76,13 +76,7 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Nearest Stations" id="EoJ-yJ-sBB">
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="FjH-MX-Uw3">
-                            <connections>
-                                <segue destination="Psq-1E-C2k" kind="push" id="7VN-Ga-qxo"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Get Directions" id="EoJ-yJ-sBB"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="mapView" destination="4No-LM-evM" id="nZt-0N-pkP"/>
