@@ -63,8 +63,7 @@
     [super viewDidUnload];
 }
 
-#pragma mark -
-#pragma mark UITableViewDataSource
+#pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [searchResultPlaces count];
@@ -86,8 +85,7 @@
     return cell;
 }
 
-#pragma mark -
-#pragma mark UITableViewDelegate
+#pragma mark - UITableViewDelegate
 
 - (void)dismissSearchControllerWhileStayingActive {
     // Animate out the table view.
@@ -124,19 +122,13 @@
     }];
 };
 
-#pragma mark -
-#pragma mark UISearchDisplayDelegate
+#pragma mark - UISearchDisplayDelegate
 
 - (void)handleSearchForSearchString:(NSString *)searchString {
     searchQuery.input = searchString;
     [searchQuery fetchPlaces:^(NSArray *places, NSError *error) {
         if (error) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Could not fetch places"
-            message:error.localizedDescription
-            delegate:nil
-            cancelButtonTitle:@"OK"
-            otherButtonTitles:nil, nil];
-            [alert show];
+            [ErrorMessage renderErrorMessage:@"Could not fetch places." cancelButtonTitle:@"OK" error:error];
         } else {
             searchResultPlaces = places;
             
@@ -152,8 +144,7 @@
     return YES;
 }
 
-#pragma mark -
-#pragma mark UISearchBar Delegate
+#pragma mark - UISearchBar Delegate
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     if (![searchBar isFirstResponder]) {
@@ -176,9 +167,7 @@
         
         [self.searchDisplayController.searchBar setShowsCancelButton:YES animated:YES];
     }
-    BOOL boolToReturn = shouldBeginEditing;
-    shouldBeginEditing = YES;
-    return boolToReturn;
+    return YES;
 }
 
 
