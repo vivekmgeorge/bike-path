@@ -51,13 +51,6 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kdo-ke-N9w">
-                                <rect key="frame" x="-77" y="66" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="cSr-Qj-LBq">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -75,14 +68,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="gQv-q2-UI5" firstAttribute="trailing" secondItem="cSr-Qj-LBq" secondAttribute="trailing" id="6JR-GX-mc7"/>
+                            <constraint firstItem="cSr-Qj-LBq" firstAttribute="top" secondItem="eN0-HA-GRj" secondAttribute="top" id="1Ku-bX-oLb"/>
+                            <constraint firstAttribute="trailing" secondItem="cSr-Qj-LBq" secondAttribute="trailing" id="3zo-5H-wUO"/>
+                            <constraint firstItem="cSr-Qj-LBq" firstAttribute="bottom" secondItem="gQv-q2-UI5" secondAttribute="top" id="9cZ-zG-YwJ"/>
                             <constraint firstItem="gQv-q2-UI5" firstAttribute="leading" secondItem="eN0-HA-GRj" secondAttribute="leading" id="KCd-oT-SfZ"/>
+                            <constraint firstItem="cSr-Qj-LBq" firstAttribute="leading" secondItem="gQv-q2-UI5" secondAttribute="leading" id="MKC-Z7-bMr"/>
                             <constraint firstAttribute="bottom" secondItem="gQv-q2-UI5" secondAttribute="bottom" id="WZc-PU-23E"/>
-                            <constraint firstItem="cSr-Qj-LBq" firstAttribute="top" secondItem="eN0-HA-GRj" secondAttribute="top" id="Z6m-JW-QpQ"/>
-                            <constraint firstItem="gQv-q2-UI5" firstAttribute="leading" secondItem="cSr-Qj-LBq" secondAttribute="leading" id="bW5-tk-Ijr"/>
-                            <constraint firstItem="kdo-ke-N9w" firstAttribute="top" secondItem="eN0-HA-GRj" secondAttribute="top" constant="66" id="bfL-gU-yP5"/>
-                            <constraint firstItem="gQv-q2-UI5" firstAttribute="top" secondItem="cSr-Qj-LBq" secondAttribute="bottom" id="ckh-ou-BNp"/>
-                            <constraint firstAttribute="trailing" secondItem="cSr-Qj-LBq" secondAttribute="trailing" id="mrq-bS-PFU"/>
+                            <constraint firstItem="cSr-Qj-LBq" firstAttribute="trailing" secondItem="gQv-q2-UI5" secondAttribute="trailing" id="tXH-2g-h78"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
