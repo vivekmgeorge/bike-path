@@ -41,7 +41,7 @@
     [self.view setAutoresizesSubviews:YES];
     [self.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
     
-    self.searchDisplayController.searchBar.placeholder = @"Enter your destination";
+    self.searchDisplayController.searchBar.placeholder = @"Where would you like to go?";
     
     GMSCameraPosition *nyc = [GMSCameraPosition cameraWithLatitude:40.706638
                                                          longitude:-74.009070
