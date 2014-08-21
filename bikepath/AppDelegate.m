@@ -42,7 +42,6 @@
              stationJSON = stations;
              
          } else if (error) {
-             NSLog(@"%@",error);
              [ErrorMessage renderErrorMessage:@"Connection error. Please try again later." cancelButtonTitle:@"OK" error:error];
          } else if (data.length < 1) {
              [ErrorMessage renderErrorMessage:@"No items were retrieved. Please try again later." cancelButtonTitle:@"OK" error:nil];

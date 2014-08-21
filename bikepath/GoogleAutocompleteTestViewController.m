@@ -88,7 +88,6 @@
 #pragma mark - UITableViewDelegate
 
 - (void)dismissSearchControllerWhileStayingActive {
-    // Animate out the table view.
     NSTimeInterval animationDuration = 0.3;
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:animationDuration];
@@ -139,8 +138,6 @@
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
     [self handleSearchForSearchString:searchString];
-    
-    // Return YES to cause the search result table view to be reloaded.
     return YES;
 }
 
@@ -148,11 +145,8 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     if (![searchBar isFirstResponder]) {
-        
-        // User tapped the 'clear' button.
         shouldBeginEditing = NO;
         [self.searchDisplayController setActive:NO];
-//        [self.mapView removeAnnotation:selectedPlaceAnnotation];
     }
 }
 
@@ -177,8 +171,6 @@
         ResultsMapViewController *destViewController = segue.destinationViewController;
         SearchItem *item = sender;
         destViewController.item = item;
-        
-        NSLog(@"in search, item: %@", item);
     }
 }
 

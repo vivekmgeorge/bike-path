@@ -220,8 +220,6 @@
         ResultsMapViewController *destViewController = segue.destinationViewController;
         SearchItem *item = sender;
         destViewController.item = item;
-        
-        NSLog(@"in search, item: %@", item);
     }
 }
 
