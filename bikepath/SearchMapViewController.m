@@ -119,23 +119,16 @@
         if (error) {
             [ErrorMessage renderErrorMessage:@"Could not map selected place" cancelButtonTitle:@"OK" error:error];
         } else if (placemark) {
-            NSLog(@"place.name: %@", place.name);
-            NSLog(@"placemark: %@", placemark);
-            NSLog(@"addressString: %@", addressString);
-            
             SearchItem *selectedItem   = [[SearchItem alloc] init];
             NSString *addressForJson = [[NSString alloc] init];
             NSArray *addressStringSplit = [addressString componentsSeparatedByString:@" "];
-            
             if (addressStringSplit.count < 3) {
                 addressForJson = [AddressGeocoderFactory translateAddresstoUrl:place.name];
             } else {
                 addressForJson = [AddressGeocoderFactory translateAddresstoUrl:addressString];
             }
-    
             NSMutableDictionary *geocode = [AddressGeocoderFactory translateUrlToGeocodedObject:addressForJson];
             selectedItem.searchQuery   = place.name;
-           
             CLLocation *location = [[CLLocation alloc] initWithLatitude:[[geocode objectForKey:@"latitude"] doubleValue] longitude:[[geocode objectForKey:@"longitude"] doubleValue]];
             selectedItem.lati = location.coordinate.latitude;
             selectedItem.longi = location.coordinate.longitude;
