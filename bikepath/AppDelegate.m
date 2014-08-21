@@ -76,7 +76,9 @@
     
     [GMSServices provideAPIKey:@"AIzaSyDqQ7Ds6pvIZucpKNe0OiEfCCyepC0SHnw"];
     return YES;
+    
 }
+
 
 #pragma mark - closeApp
 
