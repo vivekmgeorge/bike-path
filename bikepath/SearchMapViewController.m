@@ -60,6 +60,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UIImage* logoImage = [UIImage imageNamed:@"titleicon"];
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:logoImage];
 
     self.searchDisplayController.searchBar.placeholder = @"Where would you like to go?";
     
