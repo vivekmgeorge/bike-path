@@ -35,7 +35,6 @@
     return [NSString stringWithFormat:@"latitude: %f longitude: %f", locationManager.location.coordinate.latitude, locationManager.location.coordinate.longitude];
 }
 
-//FUNCTION BELOW INCLUDES CITIBIKE CALL - NEEDS TO BE DECOUPLED!
 -(void)buttonPressed {
     NSURL *testURL = [NSURL URLWithString:@"comgooglemaps-x-callback://"];
     if ([[UIApplication sharedApplication] canOpenURL:testURL]) {
