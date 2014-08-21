@@ -10,8 +10,19 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import "SearchItem.h"
 
-@interface SearchMapViewController : UIViewController <GMSMapViewDelegate>
+@class SPGooglePlacesAutocompleteQuery;
+
+@interface SearchMapViewController : UIViewController <GMSMapViewDelegate, UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, UISearchBarDelegate, MKMapViewDelegate>
+{
+    NSArray *searchResultPlaces;
+    SPGooglePlacesAutocompleteQuery *searchQuery;
+    //    MKPointAnnotation *selectedPlaceAnnotation;
+    
+    BOOL shouldBeginEditing;
+}
+
 
 @property (strong, nonatomic) IBOutlet GMSMapView *mapView;
+
 
 @end
