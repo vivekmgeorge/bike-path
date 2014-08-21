@@ -137,9 +137,11 @@
 
 
     CLLocationCoordinate2D createEndLocation = CLLocationCoordinate2DMake(self.item.lati, self.item.longi);
+    
+    NSString *destinationName = [[self.item.searchQuery componentsSeparatedByString:@","] objectAtIndex:0];
     GMSMarker *endPoint = [GMSMarkerFactory createGMSMarker:createEndLocation
                                                     mapView:mapView_
-                                                      title:self.item.address //the address being given is not the full address
+                                                      title:destinationName
                                                       color:[UIImage imageNamed:@"endStation"]];
     [waypoints_ addObject:endPoint];
 
