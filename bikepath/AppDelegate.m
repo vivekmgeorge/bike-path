@@ -17,8 +17,7 @@
 
 #pragma mark - loadAndSaveCitiBikeData
 
-- (NSArray*)loadCitiBikeData
-{
+- (NSArray*)loadCitiBikeData {
     NSURL *url = [NSURL URLWithString:@"http://www.citibikenyc.com/stations/json"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: url
                                                            cachePolicy: NSURLRequestUseProtocolCachePolicy
@@ -34,15 +33,13 @@
              NSDictionary *citiBikeJSON = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
              NSArray* stations = [citiBikeJSON objectForKey:@"stationBeanList"];
              
-             if (!stations)
-             {
+             if (!stations) {
                  [ErrorMessage renderErrorMessage:@"No stations available." cancelButtonTitle:@"OK" error:nil];
              }
              
              stationJSON = stations;
              
          } else if (error) {
-             NSLog(@"%@",error);
              [ErrorMessage renderErrorMessage:@"Connection error. Please try again later." cancelButtonTitle:@"OK" error:error];
          } else if (data.length < 1) {
              [ErrorMessage renderErrorMessage:@"No items were retrieved. Please try again later." cancelButtonTitle:@"OK" error:nil];
@@ -54,8 +51,7 @@
 
 #pragma mark - UIFormatting
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // background color of navigation bar
     UIColor * color = [UIColor colorWithRed:50/255.0f green:115/255.0f blue:233/255.0f alpha:1.0f];
     [[UINavigationBar appearance] setBarTintColor:color];
@@ -86,14 +82,12 @@
 
 #pragma mark - closeApp
 
-- (void)applicationWillResignActive:(UIApplication *)application
-{
+- (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
+- (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }

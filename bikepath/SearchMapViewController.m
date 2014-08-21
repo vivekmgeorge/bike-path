@@ -16,6 +16,7 @@
 #import "SearchItem.h"
 #import "AppDelegate.h"
 #import "ErrorMessage.h"
+#import "GMSMarkerFactory.h"
 
 @interface SearchMapViewController ()
 
@@ -35,13 +36,9 @@
     return self;
 }
 
-- (IBAction)unwindToSearchPage:(UIStoryboardSegue *)segue {
-    
-}
+- (IBAction)unwindToSearchPage:(UIStoryboardSegue *)segue {}
 
-- (void)viewDidLoad
-
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 
     self.searchDisplayController.searchBar.placeholder = @"Where would you like to go?";
@@ -52,39 +49,23 @@
     GMSCameraPosition *startLocation = [GMSCameraPosition cameraWithLatitude:40.706638
                                                          longitude:-74.009070
                                                               zoom:16];
-    
-//    GMSCameraPosition *startLocation = [GMSCameraPosition cameraWithLatitude:37.7848395
-//                                                            longitude:-122.4041945
-//                                                                 zoom:15];
-    
     [self.mapView setCamera:startLocation];
-    self.mapView.mapType                    = kGMSTypeNormal;
-    self.mapView.settings.zoomGestures      = YES;
-    self.mapView.myLocationEnabled          = YES;
-    self.mapView.settings.myLocationButton  = YES;
-    self.mapView.settings.compassButton = YES;
-    self.mapView.delegate                   = self;
+    self.mapView.mapType                   = kGMSTypeNormal;
+    self.mapView.settings.zoomGestures     = YES;
+    self.mapView.myLocationEnabled         = YES;
+    self.mapView.settings.myLocationButton = YES;
+    self.mapView.settings.compassButton    = YES;
+    self.mapView.delegate                  = self;
     
     for(id station in appDel.stationJSON) {
-        NSString *latitude          = [station objectForKey:@"latitude"];
-        NSString *longitude         = [station objectForKey:@"longitude"];
-        NSString *title             = [station objectForKey:@"stationName"];
-        NSString *availableBikes    = [[station objectForKey:@"availableBikes"] stringValue];
-        NSNumber *num               = @([[station objectForKey:@"availableBikes"] intValue]);
-        
-        GMSMarker *citiMarker   = [[GMSMarker alloc] init];
-        citiMarker.position     = CLLocationCoordinate2DMake([latitude doubleValue], [longitude doubleValue]);
-        citiMarker.title        = title;
-        citiMarker.map          = self.mapView;
-        
-        if ([num intValue] > 0) {
-            citiMarker.icon = [UIImage imageNamed:@"bicycleGreen"];
-            citiMarker.snippet  = [NSString stringWithFormat:@"Bicycles available: %@", availableBikes];
-        } else {
-            citiMarker.icon = [UIImage imageNamed:@"bicycleRed"];
-            citiMarker.snippet = @"No bicycles available at this location.";
-        };
-        citiMarker.map = self.mapView;
+        [GMSMarkerFactory createGMSMarkerForStation:CLLocationCoordinate2DMake(
+                                                   [[station objectForKey:@"latitude"]doubleValue],
+                                                   [[station objectForKey:@"longitude"]doubleValue])
+                                            mapView:self.mapView
+                                              title:[station objectForKey:@"stationName"]
+                                   availableSnippet:@"Bicycles available"
+                                 unavailableSnippet:@"No bicycles available at this location."
+                                      numberOfBikes:[station objectForKey:@"availableBikes"]];
     }
 }
 
@@ -204,7 +185,6 @@
         // User tapped the 'clear' button.
         shouldBeginEditing = NO;
         [self.searchDisplayController setActive:NO];
-        //        [self.mapView removeAnnotation:selectedPlaceAnnotation];
     }
 }
 
@@ -224,21 +204,12 @@
     return boolToReturn;
 }
 
-// segue to results page
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"showResults"]) {
         ResultsMapViewController *destViewController = segue.destinationViewController;
         SearchItem *item = sender;
         destViewController.item = item;
-        
-        NSLog(@"in search, item: %@", item);
-        NSLog(@"in search, search Query, item: %@", item.searchQuery);
-        NSLog(@"in search, lati, item: %@", item.searchQuery);
     }
 }
 
-
-
 @end
-
-

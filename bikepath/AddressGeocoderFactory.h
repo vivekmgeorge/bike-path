@@ -13,7 +13,6 @@
 @interface AddressGeocoderFactory : NSObject
 
 + (NSString*)translateAddresstoUrl:(NSString*)addressString;
-
 + (NSMutableDictionary*)translateUrlToGeocodedObject:(NSString*)url;
 
 
