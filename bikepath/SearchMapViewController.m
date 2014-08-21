@@ -61,10 +61,10 @@
     
     [self.mapView setCamera:startLocation];
     self.mapView.mapType                    = kGMSTypeNormal;
-    self.mapView.myLocationEnabled          = YES;
-    self.mapView.settings.compassButton     = YES;
-    self.mapView.settings.myLocationButton  = YES;
     self.mapView.settings.zoomGestures      = YES;
+    self.mapView.myLocationEnabled          = YES;
+    self.mapView.settings.myLocationButton  = YES;
+    self.mapView.settings.compassButton = YES;
     self.mapView.delegate                   = self;
     
     for(id station in appDel.stationJSON) {
