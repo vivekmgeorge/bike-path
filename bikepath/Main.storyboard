@@ -13,7 +13,7 @@
                         <viewControllerLayoutGuide type="bottom" id="doY-Pr-8J5"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="iVa-G1-NWu" customClass="GMSMapView">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -39,7 +39,7 @@
             </objects>
             <point key="canvasLocation" x="-143" y="-923"/>
         </scene>
-        <!--Search Map View Controller - Nearest Stations-->
+        <!--Search Map View Controller - Get Directions-->
         <scene sceneID="uBy-pW-Yuz">
             <objects>
                 <viewController id="nM0-WI-Oec" customClass="SearchMapViewController" sceneMemberID="viewController">
@@ -48,38 +48,41 @@
                         <viewControllerLayoutGuide type="bottom" id="hYZ-xm-PYs"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="eN0-HA-GRj">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kdo-ke-N9w">
-                                <rect key="frame" x="-77" y="66" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4No-LM-evM" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            </view>
-                            <searchBar contentMode="redraw" fixedFrame="YES" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="cSr-Qj-LBq">
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="cSr-Qj-LBq">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="nM0-WI-Oec" id="d9c-1A-Qck"/>
                                 </connections>
                             </searchBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gQv-q2-UI5" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="44" width="320" height="460"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cSr-Qj-LBq" firstAttribute="top" secondItem="eN0-HA-GRj" secondAttribute="top" id="1Ku-bX-oLb"/>
+                            <constraint firstAttribute="trailing" secondItem="cSr-Qj-LBq" secondAttribute="trailing" id="3zo-5H-wUO"/>
+                            <constraint firstItem="cSr-Qj-LBq" firstAttribute="bottom" secondItem="gQv-q2-UI5" secondAttribute="top" id="9cZ-zG-YwJ"/>
+                            <constraint firstItem="gQv-q2-UI5" firstAttribute="leading" secondItem="eN0-HA-GRj" secondAttribute="leading" id="KCd-oT-SfZ"/>
+                            <constraint firstItem="cSr-Qj-LBq" firstAttribute="leading" secondItem="gQv-q2-UI5" secondAttribute="leading" id="MKC-Z7-bMr"/>
+                            <constraint firstAttribute="bottom" secondItem="gQv-q2-UI5" secondAttribute="bottom" id="WZc-PU-23E"/>
+                            <constraint firstItem="cSr-Qj-LBq" firstAttribute="trailing" secondItem="gQv-q2-UI5" secondAttribute="trailing" id="tXH-2g-h78"/>
+                        </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Get Directions" id="EoJ-yJ-sBB"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="mapView" destination="4No-LM-evM" id="nZt-0N-pkP"/>
+                        <outlet property="mapView" destination="gQv-q2-UI5" id="byq-KE-Ydp"/>
                         <outlet property="searchDisplayController" destination="ILt-Qt-4zx" id="f6b-kj-bkt"/>
                         <segue destination="StR-Yi-Gvc" kind="push" identifier="showResults" id="WtO-WB-Mu6"/>
                     </connections>
@@ -123,6 +126,6 @@
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
 </document>

@@ -39,13 +39,16 @@
     
 }
 
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
+
 - (void)viewDidLoad
 
 {
     [super viewDidLoad];
-    [self.view setAutoresizesSubviews:YES];
-    [self.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
-    
+
     self.searchDisplayController.searchBar.placeholder = @"Where would you like to go?";
     
     AppDelegate *appDel = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -81,10 +84,10 @@
         
         if ([num intValue] > 0) {
             citiMarker.icon = [UIImage imageNamed:@"bicycleGreen"];
-            citiMarker.snippet  = [NSString stringWithFormat:@"Bicyles available: %@", availableBikes];
+            citiMarker.snippet  = [NSString stringWithFormat:@"Bicycles available: %@", availableBikes];
         } else {
             citiMarker.icon = [UIImage imageNamed:@"bicycleRed"];
-            citiMarker.snippet = @"No bicyles available at this location.";
+            citiMarker.snippet = @"No bicycles available at this location.";
         };
         citiMarker.map = self.mapView;
     }
@@ -144,6 +147,7 @@
             
             NSMutableDictionary *geocode = [AddressGeocoderFactory translateUrlToGeocodedObject:addressForJson];
             selectedItem.searchQuery   = place.name;
+            NSLog(@"name: %@", place.name);
             CLLocation *location = [[CLLocation alloc] initWithLatitude:[[geocode objectForKey:@"latitude"] doubleValue] longitude:[[geocode objectForKey:@"longitude"] doubleValue]];
             selectedItem.lati = location.coordinate.latitude;
             selectedItem.longi = location.coordinate.longitude;
@@ -213,7 +217,6 @@
     return boolToReturn;
 }
 
-
 // segue to results page
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"showResults"]) {
@@ -222,6 +225,8 @@
         destViewController.item = item;
         
         NSLog(@"in search, item: %@", item);
+        NSLog(@"in search, search Query, item: %@", item.searchQuery);
+        NSLog(@"in search, lati, item: %@", item.searchQuery);
     }
 }
 

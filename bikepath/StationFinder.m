@@ -14,7 +14,7 @@
 + (NSDictionary *) findClosestStation: (NSArray *) stations
                              location: (CLLocation *) currentLocation {
     
-    CLLocationDistance smallestDistance = [currentLocation distanceFromLocation:stations[0]];
+    CLLocationDistance smallestDistance = DBL_MAX;
     NSDictionary *closestStation;
     
     for(NSDictionary *station in stations) {
