@@ -12,11 +12,9 @@
 
 @class SPGooglePlacesAutocompleteQuery;
 
-@interface SearchMapViewController : UIViewController <GMSMapViewDelegate, UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, UISearchBarDelegate, MKMapViewDelegate>
-{
+@interface SearchMapViewController : UIViewController <GMSMapViewDelegate, UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, UISearchBarDelegate, MKMapViewDelegate> {
     NSArray *searchResultPlaces;
     SPGooglePlacesAutocompleteQuery *searchQuery;
-    
     BOOL shouldBeginEditing;
 }
 

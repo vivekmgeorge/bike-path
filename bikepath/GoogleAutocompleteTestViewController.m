@@ -31,10 +31,7 @@
     return self;
 }
 
-- (IBAction)unwindToSearchPage:(UIStoryboardSegue *)segue {
-    
-}
-
+- (IBAction)unwindToSearchPage:(UIStoryboardSegue *)segue {}
 
 - (void)viewDidLoad {
     [self.view setAutoresizesSubviews:YES];
@@ -135,7 +132,8 @@
     }];
 }
 
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller
+        shouldReloadTableForSearchString:(NSString *)searchString {
     [self handleSearchForSearchString:searchString];
     return YES;
 }
@@ -163,8 +161,6 @@
     return YES;
 }
 
-
-// segue to results page
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"showResults"]) {
         ResultsMapViewController *destViewController = segue.destinationViewController;

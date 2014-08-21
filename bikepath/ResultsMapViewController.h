@@ -19,5 +19,4 @@ AppDelegate *appDel;
 
 @property (nonatomic, strong) SearchItem *item;
 
-
 @end

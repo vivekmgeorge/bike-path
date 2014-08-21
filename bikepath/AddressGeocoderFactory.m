@@ -46,8 +46,6 @@
     return geocodedDictionary;
 }
 
-
-
 + (NSMutableDictionary*)translateUrlToGeocodedObject:(NSString*)addressUrl {
     NSMutableDictionary *geocodedDictionary = NULL;
     NSURL *url = [NSURL URLWithString: addressUrl];
@@ -58,4 +56,5 @@
     geocodedDictionary = [self processTheJson:data];
     return geocodedDictionary;
 }
+
 @end

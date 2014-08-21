@@ -35,13 +35,9 @@
     return self;
 }
 
-- (IBAction)unwindToSearchPage:(UIStoryboardSegue *)segue {
-    
-}
+- (IBAction)unwindToSearchPage:(UIStoryboardSegue *)segue {}
 
-- (void)viewDidLoad
-
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     [self.view setAutoresizesSubviews:YES];
     [self.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
@@ -54,18 +50,13 @@
     GMSCameraPosition *startLocation = [GMSCameraPosition cameraWithLatitude:40.706638
                                                          longitude:-74.009070
                                                               zoom:16];
-    
-//    GMSCameraPosition *startLocation = [GMSCameraPosition cameraWithLatitude:37.7848395
-//                                                            longitude:-122.4041945
-//                                                                 zoom:15];
-    
     [self.mapView setCamera:startLocation];
-    self.mapView.mapType                    = kGMSTypeNormal;
-    self.mapView.settings.zoomGestures      = YES;
-    self.mapView.myLocationEnabled          = YES;
-    self.mapView.settings.myLocationButton  = YES;
-    self.mapView.settings.compassButton = YES;
-    self.mapView.delegate                   = self;
+    self.mapView.mapType                   = kGMSTypeNormal;
+    self.mapView.settings.zoomGestures     = YES;
+    self.mapView.myLocationEnabled         = YES;
+    self.mapView.settings.myLocationButton = YES;
+    self.mapView.settings.compassButton    = YES;
+    self.mapView.delegate                  = self;
     
     for(id station in appDel.stationJSON) {
         NSString *latitude          = [station objectForKey:@"latitude"];
@@ -193,7 +184,6 @@
         // User tapped the 'clear' button.
         shouldBeginEditing = NO;
         [self.searchDisplayController setActive:NO];
-        //        [self.mapView removeAnnotation:selectedPlaceAnnotation];
     }
 }
 
@@ -213,8 +203,6 @@
     return boolToReturn;
 }
 
-
-// segue to results page
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"showResults"]) {
         ResultsMapViewController *destViewController = segue.destinationViewController;
@@ -223,8 +211,4 @@
     }
 }
 
-
-
 @end
-
-
