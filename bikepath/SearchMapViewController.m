@@ -79,10 +79,10 @@
         
         if ([num intValue] > 0) {
             citiMarker.icon = [UIImage imageNamed:@"bicycleGreen"];
-            citiMarker.snippet  = [NSString stringWithFormat:@"Bicyles available: %@", availableBikes];
+            citiMarker.snippet  = [NSString stringWithFormat:@"Bicycles available: %@", availableBikes];
         } else {
             citiMarker.icon = [UIImage imageNamed:@"bicycleRed"];
-            citiMarker.snippet = @"No bicyles available at this location.";
+            citiMarker.snippet = @"No bicycles available at this location.";
         };
         citiMarker.map = self.mapView;
     }
