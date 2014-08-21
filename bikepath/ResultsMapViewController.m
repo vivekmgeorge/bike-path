@@ -142,7 +142,15 @@
 
     CLLocationCoordinate2D createEndLocation = CLLocationCoordinate2DMake(self.item.lati, self.item.longi);
     
-    NSString *destinationName = [[self.item.searchQuery componentsSeparatedByString:@","] objectAtIndex:0];
+    NSString *destinationName;
+    
+    if ([[self.item.searchQuery componentsSeparatedByString:@","] objectAtIndex:0])
+    {
+        destinationName = [[self.item.searchQuery componentsSeparatedByString:@","] objectAtIndex:0];
+    } else
+    {
+        destinationName = self.item.searchQuery;
+    }
     GMSMarker *endPoint = [GMSMarkerFactory createGMSMarker:createEndLocation
                                                     mapView:mapView_
                                                       title:destinationName
