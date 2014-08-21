@@ -16,6 +16,7 @@
 #import "SearchItem.h"
 #import "AppDelegate.h"
 #import "ErrorMessage.h"
+#import "GMSMarkerFactory.h"
 
 @interface SearchMapViewController ()
 
@@ -59,25 +60,14 @@
     self.mapView.delegate                  = self;
     
     for(id station in appDel.stationJSON) {
-        NSString *latitude          = [station objectForKey:@"latitude"];
-        NSString *longitude         = [station objectForKey:@"longitude"];
-        NSString *title             = [station objectForKey:@"stationName"];
-        NSString *availableBikes    = [[station objectForKey:@"availableBikes"] stringValue];
-        NSNumber *num               = @([[station objectForKey:@"availableBikes"] intValue]);
-        
-        GMSMarker *citiMarker   = [[GMSMarker alloc] init];
-        citiMarker.position     = CLLocationCoordinate2DMake([latitude doubleValue], [longitude doubleValue]);
-        citiMarker.title        = title;
-        citiMarker.map          = self.mapView;
-        
-        if ([num intValue] > 0) {
-            citiMarker.icon = [UIImage imageNamed:@"bicycleGreen"];
-            citiMarker.snippet  = [NSString stringWithFormat:@"Bicyles available: %@", availableBikes];
-        } else {
-            citiMarker.icon = [UIImage imageNamed:@"bicycleRed"];
-            citiMarker.snippet = @"No bicyles available at this location.";
-        };
-        citiMarker.map = self.mapView;
+        [GMSMarkerFactory createGMSMarkerForStation:CLLocationCoordinate2DMake(
+                                                   [[station objectForKey:@"latitude"]doubleValue],
+                                                   [[station objectForKey:@"longitude"]doubleValue])
+                                            mapView:self.mapView
+                                              title:[station objectForKey:@"stationName"]
+                                   availableSnippet:@"Bicycles available"
+                                 unavailableSnippet:@"No bicycles available at this location."
+                                      numberOfBikes:[station objectForKey:@"availableBikes"]];
     }
 }
 
