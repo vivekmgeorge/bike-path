@@ -43,9 +43,7 @@
 
 {
     [super viewDidLoad];
-    [self.view setAutoresizesSubviews:YES];
-    [self.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
-    
+
     self.searchDisplayController.searchBar.placeholder = @"Where would you like to go?";
     
     AppDelegate *appDel = (AppDelegate *)[[UIApplication sharedApplication] delegate];
