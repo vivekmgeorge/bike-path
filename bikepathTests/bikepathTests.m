@@ -100,15 +100,6 @@ describe(@"SearchItem", ^ {
     it(@"searchQuery is an instance of class string", ^{
         [[item.searchQuery should] beKindOfClass: [NSString class]];
     });
-    it(@"- the property 'lati' is CLLocationDegrees", ^{
-//        [[item.lati should] conformToProtocol:(CLLocationDegrees *)aCLLocationDegrees]];
-    });
-    it(@"-the property 'longi' is CLLocationDegrees", ^{
-        
-    });
-    it(@"-the property 'position' is a 2D coordinate", ^{
-        
-    });
     it(@"address is an instance of class string", ^{
         [[item.address should] beKindOfClass: [NSString class]];
     });
