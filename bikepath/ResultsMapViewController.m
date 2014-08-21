@@ -79,39 +79,18 @@
 //  GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude: 37.7848395 longitude:-122.4041945 zoom:13];
     
     mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
-    
-    //allocate the view
-    self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
-    
-    //set the view's background color
-    self.view.backgroundColor = [UIColor whiteColor];
+
     
     //create the button
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     
     //set the position of the button
-    button.frame = CGRectMake(100, 170, 100, 30);
-    
-    //set the button's title
-    [button setTitle:@"Click Me!" forState:UIControlStateNormal];
-    
-    //listen for clicks
-    [button addTarget:self action:@selector(buttonPressed)
-     forControlEvents:UIControlEventTouchUpInside];
-    
-    //add the button to the view
-    [self.view addSubview:button];
-    
-    //create the button
-//    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    
-    //set the position of the button
-//    button.frame = CGRectMake(250, 500, 32, 48);
+    button.frame = CGRectMake(250, 500, 32, 48);
 //    button.layer.borderColor = [UIColor blackColor].CGColor;
 //    button.layer.borderWidth = 1.0;
 //    button.layer.cornerRadius = 10;
 //    button.backgroundColor = [UIColor whiteColor];
-//    [button setImage:[UIImage imageNamed:@"navButtonTwo"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"navButtonTwo"] forState:UIControlStateNormal];
     
     //set the button's title
 //    [button setTitle:@"Live Nav" forState:UI    ControlStateNormal];
