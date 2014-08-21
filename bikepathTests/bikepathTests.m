@@ -9,6 +9,7 @@
 #import "Kiwi.h"
 #import <CoreLocation/CoreLocation.h>
 #import "StationFinder.h"
+#import "AddressGeocoderFactory.h"
 
 SPEC_BEGIN(MathSpec)
 
@@ -17,6 +18,24 @@ describe(@"Math", ^{
         NSUInteger a = 16;
         NSUInteger b = 26;
         [[theValue(a + b) should] equal:theValue(42)];
+    });
+});
+
+SPEC_END
+
+SPEC_BEGIN(BikePathSpec)
+
+describe(@"AddressGeocoderFactory", ^{
+    it(@"translates a street address to a URL",^{
+        NSString *address = @"48 Wall St New York NY";
+        NSString *translatedAddress = [AddressGeocoderFactory translateAddresstoUrl:address];
+        [[translatedAddress should] containString:@"https://maps.googleapis.com/maps/api/geocode/json?address="];
+        [[translatedAddress should] containString:@"48+Wall+St+New+York+NY"];
+    });
+    it(@"translates a query URL to a geocoded object",^{
+        NSString *url = @"https://maps.googleapis.com/maps/api/geocode/json?address=48+Wall+St+&key=AIzaSyAxaqfMyyc-WSrvsWP_jF2IUaTZVjkMlFo";
+        NSMutableDictionary *geocodedObject = [AddressGeocoderFactory translateUrlToGeocodedObject:url];
+        [[geocodedObject should] containsObject:nil];
     });
 });
 
