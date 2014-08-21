@@ -47,12 +47,8 @@
     
         NSDictionary *endStationforNav = [StationFinder findClosestStation:stations location:endLocation];
     
-//    NSLog(@"station for nav: %@", endStationforNav );
-//    NSLog(@"stations: %@", stations);
-//
 //        NSLog(@"lati: %f",[[endStationforNav objectForKey:@"latitude"] doubleValue]);
-//        NSLog(@"longi: %f",[[endStationforNav objectForKey:@"longitude"] doubleValue]);
-//    
+//        NSLog(@"longi: %f",[[endStationforNav objectForKey:@"longitude"] doubleValue]); 
 
         NSString *callBackUrl = @"comgooglemaps-x-callback://";
         CLLocationDegrees endLati = [[endStationforNav objectForKey:@"latitude"] doubleValue];
