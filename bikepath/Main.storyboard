@@ -18,7 +18,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Directions" id="TcU-1J-CRn">
-                        <barButtonItem key="leftBarButtonItem" systemItem="rewind" id="38F-3W-mvs">
+                        <barButtonItem key="leftBarButtonItem" image="backarrow" id="38F-3W-mvs">
                             <connections>
                                 <segue destination="G0S-6X-bg1" kind="unwind" unwindAction="unwindToSearchPage:" id="mtr-0s-eLm"/>
                             </connections>
@@ -39,7 +39,7 @@
             </objects>
             <point key="canvasLocation" x="-143" y="-923"/>
         </scene>
-        <!--Search Map View Controller - Nearest Stations-->
+        <!--Search Map View Controller - Get Directions-->
         <scene sceneID="uBy-pW-Yuz">
             <objects>
                 <viewController id="nM0-WI-Oec" customClass="SearchMapViewController" sceneMemberID="viewController">
@@ -120,6 +120,9 @@
             <point key="canvasLocation" x="-1066" y="-931"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="backarrow" width="36" height="36"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
