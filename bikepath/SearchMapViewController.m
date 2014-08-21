@@ -40,9 +40,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.view setAutoresizesSubviews:YES];
-    [self.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
-    
+
     self.searchDisplayController.searchBar.placeholder = @"Where would you like to go?";
     
     AppDelegate *appDel = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -125,6 +123,7 @@
             
             NSMutableDictionary *geocode = [AddressGeocoderFactory translateUrlToGeocodedObject:addressForJson];
             selectedItem.searchQuery   = place.name;
+            NSLog(@"name: %@", place.name);
             CLLocation *location = [[CLLocation alloc] initWithLatitude:[[geocode objectForKey:@"latitude"] doubleValue] longitude:[[geocode objectForKey:@"longitude"] doubleValue]];
             selectedItem.lati = location.coordinate.latitude;
             selectedItem.longi = location.coordinate.longitude;

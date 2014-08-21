@@ -53,11 +53,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // background color of navigation bar
-        UIColor * color = [UIColor colorWithRed:50/255.0f green:115/255.0f blue:233/255.0f alpha:1.0f];
+    UIColor * color = [UIColor colorWithRed:50/255.0f green:115/255.0f blue:233/255.0f alpha:1.0f];
     [[UINavigationBar appearance] setBarTintColor:color];
     // color of back button
     UIColor * color2 = [UIColor colorWithRed:255/255.0f green:255/255.0f blue:255/255.0f alpha:1.0f];;
     [[UINavigationBar appearance] setTintColor: color2];
+    
+    
+    [[UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+        [UIColor grayColor],NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
     
     //set back indicator image
     [[UINavigationBar appearance] setBackIndicatorImage:[UIImage imageNamed:@"back.png"]];
@@ -72,7 +76,9 @@
     
     [GMSServices provideAPIKey:@"AIzaSyDqQ7Ds6pvIZucpKNe0OiEfCCyepC0SHnw"];
     return YES;
+    
 }
+
 
 #pragma mark - closeApp
 
