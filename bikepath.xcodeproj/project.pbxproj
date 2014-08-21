@@ -10,7 +10,6 @@
 		0978B2E119A148E0007D9FAB /* GoogleAutocompleteTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0978B2E019A148E0007D9FAB /* GoogleAutocompleteTestViewController.m */; };
 		3A8BE839FF5A4487AABD6EB3 /* libPods-bikepath.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15F6EAA2E00741E89CD9CA83 /* libPods-bikepath.a */; };
 		8A18221C199ED28D001D7AE2 /* SearchItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A18221B199ED28D001D7AE2 /* SearchItem.m */; };
-		8A48A710199FC4420030F153 /* SearchListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A48A70F199FC4420030F153 /* SearchListViewController.m */; };
 		8A53724319A44011002B4351 /* AddressGeocoderFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A53724219A44011002B4351 /* AddressGeocoderFactory.m */; };
 		8AB03325199DAD8A0036FF7A /* SearchMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB03324199DAD8A0036FF7A /* SearchMapViewController.m */; };
 		8AB03328199DADA80036FF7A /* ResultsMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB03327199DADA80036FF7A /* ResultsMapViewController.m */; };
@@ -67,8 +66,6 @@
 		16236A47F48C4B6A876339DB /* Pods-bikepathTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bikepathTests.xcconfig"; path = "Pods/Pods-bikepathTests.xcconfig"; sourceTree = "<group>"; };
 		8A18221A199ED28D001D7AE2 /* SearchItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchItem.h; sourceTree = "<group>"; };
 		8A18221B199ED28D001D7AE2 /* SearchItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchItem.m; sourceTree = "<group>"; };
-		8A48A70E199FC4420030F153 /* SearchListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchListViewController.h; sourceTree = "<group>"; };
-		8A48A70F199FC4420030F153 /* SearchListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchListViewController.m; sourceTree = "<group>"; };
 		8A53724119A44011002B4351 /* AddressGeocoderFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressGeocoderFactory.h; sourceTree = "<group>"; };
 		8A53724219A44011002B4351 /* AddressGeocoderFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressGeocoderFactory.m; sourceTree = "<group>"; };
 		8AB03323199DAD8A0036FF7A /* SearchMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchMapViewController.h; sourceTree = "<group>"; };
@@ -228,8 +225,6 @@
 				8AB03327199DADA80036FF7A /* ResultsMapViewController.m */,
 				8AE403D4199D924200B926AB /* AppDelegate.h */,
 				8AE403D5199D924200B926AB /* AppDelegate.m */,
-				8A48A70E199FC4420030F153 /* SearchListViewController.h */,
-				8A48A70F199FC4420030F153 /* SearchListViewController.m */,
 				0978B2DF19A148E0007D9FAB /* GoogleAutocompleteTestViewController.h */,
 				0978B2E019A148E0007D9FAB /* GoogleAutocompleteTestViewController.m */,
 				8A18221A199ED28D001D7AE2 /* SearchItem.h */,
@@ -440,7 +435,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2BA9C9919A40BBF00AB42E0 /* StationFinder.m in Sources */,
-				8A48A710199FC4420030F153 /* SearchListViewController.m in Sources */,
 				8A53724319A44011002B4351 /* AddressGeocoderFactory.m in Sources */,
 				8AB03328199DADA80036FF7A /* ResultsMapViewController.m in Sources */,
 				8ACFF70F19A25DC300FB1E09 /* MDDirectionService.m in Sources */,
