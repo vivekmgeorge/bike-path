@@ -22,8 +22,7 @@
 
 @synthesize mapView;
 
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
+- (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
         searchQuery = [[SPGooglePlacesAutocompleteQuery alloc] initWithApiKey:@"AIzaSyAxaqfMyyc-WSrvsWP_jF2IUaTZVjkMlFo"];
@@ -32,10 +31,7 @@
     return self;
 }
 
-- (IBAction)unwindToSearchPage:(UIStoryboardSegue *)segue {
-    
-}
-
+- (IBAction)unwindToSearchPage:(UIStoryboardSegue *)segue {}
 
 - (void)viewDidLoad {
     [self.view setAutoresizesSubviews:YES];
@@ -88,7 +84,6 @@
 #pragma mark - UITableViewDelegate
 
 - (void)dismissSearchControllerWhileStayingActive {
-    // Animate out the table view.
     NSTimeInterval animationDuration = 0.3;
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:animationDuration];
@@ -137,10 +132,9 @@
     }];
 }
 
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller
+        shouldReloadTableForSearchString:(NSString *)searchString {
     [self handleSearchForSearchString:searchString];
-    
-    // Return YES to cause the search result table view to be reloaded.
     return YES;
 }
 
@@ -148,11 +142,8 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     if (![searchBar isFirstResponder]) {
-        
-        // User tapped the 'clear' button.
         shouldBeginEditing = NO;
         [self.searchDisplayController setActive:NO];
-//        [self.mapView removeAnnotation:selectedPlaceAnnotation];
     }
 }
 
@@ -170,15 +161,11 @@
     return YES;
 }
 
-
-// segue to results page
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"showResults"]) {
         ResultsMapViewController *destViewController = segue.destinationViewController;
         SearchItem *item = sender;
         destViewController.item = item;
-        
-        NSLog(@"in search, item: %@", item);
     }
 }
 

@@ -11,8 +11,8 @@
 @implementation ErrorMessage
 
 + (void)renderErrorMessage:(NSString*) messageTitle
-                 cancelButtonTitle:(NSString*) buttonTitle
-                             error:(NSError*) error{
+         cancelButtonTitle:(NSString*) buttonTitle
+                     error:(NSError*) error {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:messageTitle
                                                     message:error.localizedDescription
                                                    delegate:nil
