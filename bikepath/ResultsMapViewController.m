@@ -89,7 +89,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIImage* logoImage = [UIImage imageNamed:@"titleicon"];
+    UIImage* logoImage = [UIImage imageNamed:@"titleicon2"];
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:logoImage];
     
     AppDelegate *appDel = (AppDelegate *)[[UIApplication sharedApplication] delegate];
