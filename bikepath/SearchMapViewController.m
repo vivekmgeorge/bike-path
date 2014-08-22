@@ -44,6 +44,7 @@
         
         [self.mapView animateToLocation:target];
         [self.mapView animateToZoom:16];
+        self.mapView.settings.zoomGestures     = YES;
     }
 }
 
@@ -61,7 +62,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIImage* logoImage = [UIImage imageNamed:@"titleicon2"];
+    UIImage* logoImage = [UIImage imageNamed:@"titleicon3"];
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:logoImage];
 
     self.searchDisplayController.searchBar.placeholder = @"Where would you like to go?";
